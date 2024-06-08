@@ -1,0 +1,7 @@
+{
+  "name": "El_buen_comer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
