@@ -29,12 +29,3 @@ export interface client<T extends baseUserData | completeUserData>
     isAnonimus : boolean;
     state : enumClientState;
 }
-
-
-/*
-export default interface Persona {
-    id: string;
-    name: string;
-    lastName: string;
-  }
-*/
