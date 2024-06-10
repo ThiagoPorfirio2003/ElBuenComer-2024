@@ -1,13 +1,20 @@
-import { enumClientState } from "../enums/clientState";
-import { enumProfile } from "../enums/profile";
+import { enumClientState } from "../Enums/clientState";
+import { enumProfile } from "../Enums/profile";
+
+export interface userAccessData
+{
+    email : string;
+    password : string;
+}
 
 export interface baseUserData
 {
+    id : string;
     name : string;
     email : string;
-    photo : string;
-    uid : string;
-    profile : enumProfile
+    profile : enumProfile;
+    photoUrl : string;
+    photoId : string;
 }
 
 export interface completeUserData
