@@ -13,7 +13,7 @@
       <button id="supervisor" (click)="Tipo(1)" class="opcion">Supervisor</button>
     </div>
     <form [formGroup]="grupo">
-      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.completeData.baseData.email" formControlName="email" minlength="14" maxlength="71" label-placement="floating" label="Correo Electrónico" placeholder="micorreo@hotmail.com" [clearInput]="true" ngModel email></ion-input>
+      <ion-input mode="md" errorText=" " [(ngModel)]="this.registro.email" formControlName="email" minlength="14" maxlength="71" label-placement="floating" label="Correo Electrónico" placeholder="micorreo@hotmail.com" [clearInput]="true" ngModel email></ion-input>
       @if(grupo.controls['email'].touched)
       {
         @if(grupo.controls['email'].errors?.['required'])
@@ -24,12 +24,12 @@
         {
           <small>formato de correo invalido</small>
         }
-        @if(grupo.controls['email'].errors?.['minlength'])
+        @else if(grupo.controls['email'].errors?.['minlength'])
         {
           <small>debe de tener al menos 14 caracteres</small>
         }
       }
-      <ion-input mode="md" errorText="Falta contraseña" [(ngModel)]="contra" formControlName="contraseña" label-placement="floating" label="contraseña" type="password" [clearInput]="true"></ion-input>
+      <ion-input mode="md" errorText="Falta contraseña" [(ngModel)]="this.registro.password" formControlName="contraseña" label-placement="floating" label="contraseña" type="password" [clearInput]="true"></ion-input>
       <ion-input mode="md" errorText=" Falta nombre" [(ngModel)]="this.user.completeData.baseData.name" formControlName="nombre"   minlength="1" maxlength="51" label-placement="floating" label="nombre" placeholder="juan" [clearInput]="true"></ion-input>
       <ion-input mode="md" errorText="Falta apellido "[(ngModel)]="this.user.completeData.surName" formControlName="apellido" minlength="1" maxlength="51" label-placement="floating" label="apellido" placeholder="Perez" [clearInput]="true"></ion-input>
       <ion-input mode="md" errorText=" " [(ngModel)]="this.user.completeData.dni" formControlName="dni" min="9999999" max="70000000" label-placement="floating" label="Dni" placeholder="00000000" type="number"><ion-icon slot="end" name="qr-code-outline"></ion-icon></ion-input>

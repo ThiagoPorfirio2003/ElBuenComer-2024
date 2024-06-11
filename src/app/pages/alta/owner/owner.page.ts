@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { baseUserData, completeUserData, employe } from 'src/app/Interfaces/user';
+import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
@@ -12,7 +12,7 @@ export class OwnerPage implements OnInit
 {
   public path : string = "../../../../assets/icon/icon.png";
   public user : employe;
-  public contra :string="";
+  public registro : userAccessData
   public grupo : FormGroup;
 
   constructor(private fb : FormBuilder) 
@@ -20,6 +20,7 @@ export class OwnerPage implements OnInit
     this.user ={} as employe;
     this.user.completeData = {} as completeUserData;
     this.user.completeData.baseData = {} as baseUserData;
+    this.registro={} as userAccessData;
     this.grupo = this.fb.group
     ({
       email : ["",[Validators.required,Validators.email,Validators.minLength(14),Validators.maxLength(71)]],
@@ -71,7 +72,28 @@ export class OwnerPage implements OnInit
 
   ingresar()
   {
-    console.log(this.user.cuil)
+    if(this.path != "../../../../assets/icon/icon.png")
+    {
+      if(this.user.completeData.baseData.profile!=undefined)
+      {
+        if(this.grupo.valid)
+        {
+          alert("subido")
+        }
+        else
+        {
+          alert("error")
+        }
+      }
+      else
+      {
+        alert("dueño")
+      }
+    }
+    else
+    {
+      alert("Foto")
+    }
   }
 
 }
