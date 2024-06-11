@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import Swal, { SweetAlertOptions } from 'sweetalert2'
+import { UtilsService } from 'src/app/Services/utils.service';
 
 @Component({
   selector: 'app-owner',
@@ -15,7 +17,7 @@ export class OwnerPage implements OnInit
   public registro : userAccessData
   public grupo : FormGroup;
 
-  constructor(private fb : FormBuilder) 
+  constructor(private fb : FormBuilder, private utiles : UtilsService) 
   {
     this.user ={} as employe;
     this.user.completeData = {} as completeUserData;
@@ -92,7 +94,7 @@ export class OwnerPage implements OnInit
     }
     else
     {
-      alert("Foto")
+      this.utiles.getSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("FF"),icon:"warning"})
     }
   }
 
