@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import Swal, { SweetAlertOptions } from 'sweetalert2'
-import { UtilsService } from 'src/app/Services/utils.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-owner',
@@ -84,17 +83,17 @@ export class OwnerPage implements OnInit
         }
         else
         {
-          alert("error")
+          this.utiles.showSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("CI"),icon:"warning"})
         }
       }
       else
       {
-        alert("dueño")
+        this.utiles.showSweet({titleText:"CUIDADO",text:"Elija el tipo de perfil",icon:"warning"})
       }
     }
     else
     {
-      this.utiles.getSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("FF"),icon:"warning"})
+      this.utiles.showSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("FF"),icon:"warning"})
     }
   }
 
