@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc } from '@angular/fire/firestore';
-import { enumCollectionNames } from '../Enums/collectionNames';
-import { userImage } from '../Interfaces/image';
-import { baseUserData } from '../Interfaces/user';
+import { enumCollectionNames } from '../enums/collectionNames';
+import { userImage } from '../interfaces/image';
+import { baseUserData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'

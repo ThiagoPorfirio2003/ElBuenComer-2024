@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-import { baseUserData, client, completeUserData, employe, userAccessData } from '../Interfaces/user';
+import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
