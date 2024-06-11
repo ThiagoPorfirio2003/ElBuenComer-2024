@@ -69,11 +69,11 @@ export class UtilsService {
       case "auth/invalid-credential":
       case "auth/invalid-login-credentials":  
         errorMessageTranslated = "Los datos no pertenecen ningun usuario";
-      break;
+        break;
 
       case "auth/email-already-in-use": 
         errorMessageTranslated = 'El mail ya está registrado';
-      break;
+        break;
 
       case "CE":
         errorMessageTranslated = 'La cuenta esta en espera de aprobación'
@@ -94,6 +94,10 @@ export class UtilsService {
       case "UE": 
         errorMessageTranslated = 'El nombre de usuario ya está en uso';
       break;
+
+      case 'FF':
+        errorMessageTranslated = 'El nombre de usuario ya está en uso';
+        break;
 
       default:
         errorMessageTranslated = 'Error inesperado';

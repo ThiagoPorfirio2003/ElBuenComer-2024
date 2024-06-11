@@ -1,5 +1,5 @@
-import { enumClientState } from "../Enums/clientState";
-import { enumProfile } from "../Enums/profile";
+import { enumClientState } from "../enums/clientState";
+import { enumProfile } from "../enums/profile";
 
 export interface userAccessData
 {

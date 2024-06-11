@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-import { baseUserData, client, completeUserData, employe, userAccessData } from '../Interfaces/user';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,18 @@ export class AuthService {
      this.isLogued = false;
    }
  
-   public logMyUser(userLoged : any)
+   /*
+   Verlo luego
+   */
+   public logUser(userLoged : any)
    {
      this.user = userLoged;
      this.isLogued = true;
+   }
+
+   public register(userAccessData : userAccessData)
+   {
+     return createUserWithEmailAndPassword(this.auth, userAccessData.email, userAccessData.password)
    }
  
    public logIn(userAccessData : userAccessData)
