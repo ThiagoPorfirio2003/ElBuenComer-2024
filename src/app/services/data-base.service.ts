@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc } from '@angular/fire/firestore';
+import { collection, collectionData, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
 import { userImage } from '../interfaces/image';
 import { baseUserData } from '../interfaces/user';
@@ -22,12 +22,10 @@ export class DataBaseService
     return collection(this.firestore, collectionName);
   }
 
-  /*
-  public getPhotoOrdered(collectionName : enumCollectionNames)
+  public getUserByDNI(dni : string)
   {
-    return getDocs(query(this.getCollectionRef(collectionName), orderBy('originDate','desc')));
+    return getDocs(query(this.getCollectionRef(enumCollectionNames.Users), where('dni','==', dni)));
   }
-  */
 
   public getDocRef(collectionName : enumCollectionNames, idDoc : string)
   {
