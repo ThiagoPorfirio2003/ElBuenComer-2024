@@ -26,8 +26,7 @@ export class UtilsService {
 
   public showSweet(options : SweetAlertOptions)
   {
-    options.heightAuto = false;
-    return Swal.fire(options)
+    return this.getSweet(options).fire()
   }
 
   public getLoadingCtrl(options: LoadingOptions)
@@ -67,47 +66,58 @@ export class UtilsService {
         break;
 
       case "auth/weak-password":    
-        errorMessageTranslated.title = 'Clave inválido'   
-        errorMessageTranslated.content = "La clave debe de tener mas de 6 caracteres";
+        errorMessageTranslated.title = 'Clave inválida'   
+        errorMessageTranslated.content = "La clave debe de tener más de 6 caracteres";
       break;
 
       case "auth/missing-password": 
-        errorMessageTranslated.title = 'Clave inválido'   
-        errorMessageTranslated.content = "No se ingreso la clave";
+        errorMessageTranslated.title = 'Clave inválida'   
+        errorMessageTranslated.content = "No se ingresó  la clave";
       break;
 
       case "auth/invalid-credential":
       case "auth/invalid-login-credentials": 
         errorMessageTranslated.title = 'Datos inválidos'   
-        errorMessageTranslated.content = "Los datos no pertenecen ningun usuario";
+        errorMessageTranslated.content = "Los datos no pertenecen ningún usuario";
         break;
 
       case "CE":
-        errorMessageTranslated.title = 'Cuenta inválidos'   
+        errorMessageTranslated.title = 'Cuenta inválida'
         errorMessageTranslated.content = 'La cuenta esta en espera de aprobación'
         break;
 
       case "NV": 
+        errorMessageTranslated.title = 'Cuenta inválida'
         errorMessageTranslated.content = 'La cuenta no está verificada'
       break;
 
       case "NH":
+        errorMessageTranslated.title = 'Cuenta inválida'
         errorMessageTranslated.content = 'La cuenta no está habilitada'
       break;
 
       case "CI": 
+        errorMessageTranslated.title = 'Campos faltantes'
         errorMessageTranslated.content = 'Hay algún campo incompleto o con algún error'
       break;
 
       case "UE": 
+        errorMessageTranslated.title = 'Nombre inválido'
         errorMessageTranslated.content = 'El nombre de usuario ya está en uso';
       break;
 
       case 'FF':
-        errorMessageTranslated.content = 'El nombre de usuario ya está en uso';
+        errorMessageTranslated.title = 'Foto ausente'
+        errorMessageTranslated.content = 'Hay que subir una foto';
+        break;
+
+      case 'FP':
+        errorMessageTranslated.title = 'Perfil ausente';
+        errorMessageTranslated.content = 'Hay que elegir el perfil'
         break;
 
       default:
+        errorMessageTranslated.title = 'ERROR'
         errorMessageTranslated.content = 'Error inesperado';
       break;
     }
