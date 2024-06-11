@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, LoadingOptions } from '@ionic/angular';
 import Swal, { SweetAlertOptions } from 'sweetalert2'
+import { message } from '../interfaces/message';
 
 
 @Injectable({
@@ -44,66 +45,122 @@ export class UtilsService {
     return this.router.url;
   }
 
-  public translateAuthError(errorMessage : string) : string
+  public translateAuthError(errorMessage : string) : message
   {
-    let errorMessageTranslated! : string;
+    const errorMessageTranslated : message = {title: '', content: ''};
     
     switch(errorMessage)
     {
       case "auth/invalid-email": 
-        errorMessageTranslated = "El mail no cumple con el siguiente formato (ejemplo@gmail.com)";
+        errorMessageTranslated.title = 'Correo inválido'
+        errorMessageTranslated.content = "El correo no cumple con el siguiente formato (ejemplo@gmail.com)";
       break;
 
       case "auth/email-already-in-use": 
-        errorMessageTranslated = "El mail ya pertenece a otro usuario";
-      break;
+        errorMessageTranslated.title = 'Correo inválido'
+        errorMessageTranslated.content = "El correo ya pertenece a otro usuario";
+        break;
 
-      case "auth/weak-password":       
-        errorMessageTranslated = "La clave debe de tener mas de 6 caracteres";
+      case "auth/email-already-in-use": 
+        errorMessageTranslated.title = 'Correo inválido'
+        errorMessageTranslated.content = 'El correo ya está registrado';
+        break;
+
+      case "auth/weak-password":    
+        errorMessageTranslated.title = 'Clave inválido'   
+        errorMessageTranslated.content = "La clave debe de tener mas de 6 caracteres";
       break;
 
       case "auth/missing-password": 
-        errorMessageTranslated = "No se ingreso la clave";
+        errorMessageTranslated.title = 'Clave inválido'   
+        errorMessageTranslated.content = "No se ingreso la clave";
       break;
 
       case "auth/invalid-credential":
-      case "auth/invalid-login-credentials":  
-        errorMessageTranslated = "Los datos no pertenecen ningun usuario";
-        break;
-
-      case "auth/email-already-in-use": 
-        errorMessageTranslated = 'El mail ya está registrado';
+      case "auth/invalid-login-credentials": 
+        errorMessageTranslated.title = 'Datos inválidos'   
+        errorMessageTranslated.content = "Los datos no pertenecen ningun usuario";
         break;
 
       case "CE":
-        errorMessageTranslated = 'La cuenta esta en espera de aprobación'
+        errorMessageTranslated.title = 'Cuenta inválidos'   
+        errorMessageTranslated.content = 'La cuenta esta en espera de aprobación'
         break;
 
       case "NV": 
-        errorMessageTranslated = 'La cuenta no está verificada'
+        errorMessageTranslated.content = 'La cuenta no está verificada'
       break;
 
       case "NH":
-        errorMessageTranslated = 'La cuenta no está habilitada'
+        errorMessageTranslated.content = 'La cuenta no está habilitada'
       break;
 
       case "CI": 
-        errorMessageTranslated = 'Hay algún campo incompleto o con algún error'
+        errorMessageTranslated.content = 'Hay algún campo incompleto o con algún error'
       break;
 
       case "UE": 
-        errorMessageTranslated = 'El nombre de usuario ya está en uso';
+        errorMessageTranslated.content = 'El nombre de usuario ya está en uso';
       break;
 
       case 'FF':
-        errorMessageTranslated = 'El nombre de usuario ya está en uso';
+        errorMessageTranslated.content = 'El nombre de usuario ya está en uso';
         break;
 
       default:
-        errorMessageTranslated = 'Error inesperado';
+        errorMessageTranslated.content = 'Error inesperado';
       break;
     }
 
     return errorMessageTranslated;
   }
+
+  /*
+   case "auth/invalid-email": 
+      this.GenerarAlerta("No tiene el formato email (ejemplo@gmail.com)","warning","EL IMAIL!!");
+      break;
+
+      case "auth/email-already-in-use": 
+        this.GenerarAlerta("El mail ya existe","error","Lo sentimos");
+      break;
+
+      case "auth/weak-password": 
+        this.GenerarAlerta("La contraseña debe de tener mas de 6 caracteres","warning","CONTRASEÑA INSEGURA!!");
+      break;
+
+      case "auth/missing-password": 
+        this.GenerarAlerta("Falta la contraseña","warning","CUIDADO!!");
+      break;
+
+      case "auth/invalid-credential":
+      case "auth/invalid-login-credentials": 
+        this.GenerarAlerta("No existe ese ususario","error","Registrate!!");
+      break;
+
+      case "NV": 
+        this.GenerarAlerta("Tienes que verificar el email","warning","EMAIL NO VERIFICADO!!");
+      break;
+
+      case "AD": 
+        this.GenerarAlerta("Te tiene que habilitar el administrador","warning","Prohibido al entrada")
+      break
+      case "CI": 
+        this.GenerarAlerta("Hay algun campo incompleto o con algún error","warning","CUIDADO!!");
+      break;
+
+      case "DE":
+        this.GenerarAlerta("Un administrador te denego al entrada","error","DENEGADO!!");
+      break;
+
+      case "UE": 
+      this.GenerarAlerta("El nombre de usuario ya existe","error","USUARIO REPETIDO!!");
+      break;
+
+      default:
+        this.GenerarAlerta("Descuida no es tu culpa","error","ERROR NO REGISTRADO!!");
+        console.log(codigoError);
+      break;
+    }
+  }
+  */
 }

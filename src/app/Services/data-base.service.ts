@@ -34,7 +34,7 @@ export class DataBaseService
     return getDoc(doc(this.firestore, collectionName, idDoc));
   }
 
-  public saveUser(nombreCollection : string, user : any, uid : string)
+  public saveUser(nombreCollection : enumCollectionNames, user : any, uid : string)
   {
     setDoc(doc(this.firestore, nombreCollection, uid), user)
 
