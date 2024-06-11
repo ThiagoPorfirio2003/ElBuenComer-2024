@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>owner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<div class="fondo">
+  <button class="imagen" (click)="TomarFoto()"><img id="foto" src="{{this.path}}"></button>
+  <div class="centro">
+    <div class="opciones">
+      <button id="dueño" (click)="Tipo(0)" class="opcion">Dueño</button>
+      <button id="supervisor" (click)="Tipo(1)" class="opcion">Supervisor</button>
+    </div>
+    <form [formGroup]="grupo">
+      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.completeData.baseData.email" formControlName="email" minlength="14" maxlength="71" label-placement="floating" label="Correo Electrónico" placeholder="micorreo@hotmail.com" [clearInput]="true" ngModel email></ion-input>
+      @if(grupo.controls['email'].touched)
+      {
+        @if(grupo.controls['email'].errors?.['required'])
+        {
+          <small>falta correo electronico</small>
+        }
+        @if(grupo.controls['email'].errors?.['email'])
+        {
+          <small>formato de correo invalido</small>
+        }
+        @if(grupo.controls['email'].errors?.['minlength'])
+        {
+          <small>debe de tener al menos 14 caracteres</small>
+        }
+      }
+      <ion-input mode="md" errorText="Falta contraseña" [(ngModel)]="contra" formControlName="contraseña" label-placement="floating" label="contraseña" type="password" [clearInput]="true"></ion-input>
+      <ion-input mode="md" errorText=" Falta nombre" [(ngModel)]="this.user.completeData.baseData.name" formControlName="nombre"   minlength="1" maxlength="51" label-placement="floating" label="nombre" placeholder="juan" [clearInput]="true"></ion-input>
+      <ion-input mode="md" errorText="Falta apellido "[(ngModel)]="this.user.completeData.surName" formControlName="apellido" minlength="1" maxlength="51" label-placement="floating" label="apellido" placeholder="Perez" [clearInput]="true"></ion-input>
+      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.completeData.dni" formControlName="dni" min="9999999" max="70000000" label-placement="floating" label="Dni" placeholder="00000000" type="number"><ion-icon slot="end" name="qr-code-outline"></ion-icon></ion-input>
+    
+      @if(grupo.controls['dni'].touched)
+      {
+        @if(grupo.controls['dni'].errors?.['required'])
+        {
+          <small>falta DNI</small>
+        }
+        @if(grupo.controls['dni'].errors?.['min'])
+        {
+          <small>tu DNI debe de ser mas alto que 9999999 </small>
+        }
+        @if(grupo.controls['dni'].errors?.['max'])
+        {
+          <small>tu DNI no puede superar 70000000 </small>
+        }
+      }
+    
+      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.cuil" formControlName="cuil" min="9999999999" max="70000000000" label-placement="floating" label="Cuil" placeholder="00000000000"></ion-input>
+      @if(grupo.controls['cuil'].touched)
+      {
+        @if(grupo.controls['cuil'].errors?.['required'])
+        {
+          <small>falta cuil</small>
+        }
+        @if(grupo.controls['cuil'].errors?.['min'])
+        {
+          <small>tu cuil debe de ser mas alto que 9999999999 </small>
+        }
+        @if(grupo.controls['cuil'].errors?.['CuilValidacion'])
+        {
+          <small>el formato debe ser 00-00000000-0 </small>
+        }
+      }
+    
+    </form>
+    <button (click)="ingresar()" class="ingresar">ingresar</button>
+  </div> 
+</div>
+</ion-content>

@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AltaOunerPage } from './alta-ouner.page';
+import { OwnerPage } from './owner.page';
 
-describe('AltaOunerPage', () => {
-  let component: AltaOunerPage;
-  let fixture: ComponentFixture<AltaOunerPage>;
+describe('OwnerPage', () => {
+  let component: OwnerPage;
+  let fixture: ComponentFixture<OwnerPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaOunerPage);
+    fixture = TestBed.createComponent(OwnerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

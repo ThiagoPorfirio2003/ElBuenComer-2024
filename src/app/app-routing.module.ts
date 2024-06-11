@@ -12,9 +12,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'alta-ouner',
-    loadChildren: () => import('./pages/alta-ouner/alta-ouner.module').then( m => m.AltaOunerPageModule)
+    path: 'owner',
+    loadChildren: () => import('./pages/alta/owner/owner.module').then( m => m.OwnerPageModule)
   },
+
 
 ];
 
