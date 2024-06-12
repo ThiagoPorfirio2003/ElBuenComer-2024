@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { UtilsService } from 'src/app/services/utils.service';
+import { UtilsService } from 'src/app/Services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
@@ -27,14 +27,14 @@ export class OwnerPage implements OnInit
     this.user.completeData = {} as completeUserData;
     this.user.completeData.baseData = {} as baseUserData;
     this.registro={} as userAccessData;
-    this.grupo = this.fb.group
-    ({
+    this.grupo = this.fb.group(
+    {
       email : ["",[Validators.required,Validators.email,Validators.minLength(14),Validators.maxLength(71)]],
       contraseña :["",[Validators.required]],
       nombre :["",[Validators.required,Validators.minLength(1),Validators.maxLength(51)]],
       apellido :["",[Validators.required,Validators.minLength(1),Validators.maxLength(51)]],
       dni :["",[Validators.required,Validators.min(9999999), Validators.max(70000000)]],
-      cuil :["",[Validators.required,Validators.min(9999999999), Validators.max(70000000000)]],
+      cuil :["",[Validators.required]],
     });
   }
 
@@ -87,13 +87,29 @@ export class OwnerPage implements OnInit
         {
           this.firebase.getUserByDNI(this.user.completeData.dni).then((user)=>
           {
+            console.log(user);
             if(user.size ==0)
             {
-              this.auth.register(this.registro).then(()=>{
-                this.storage.savePhoto(this.image,"mauro").then
+              this.user.completeData.baseData.email = this.registro.email;
+              this.auth.register(this.registro).then((userRegistrado)=>{
+                this.storage.savePhoto(this.image,this.user.completeData.dni.toString()).then((url)=>
                 {
-                  
-                }
+                  this.user.completeData.baseData.photoUrl = url;
+                  console.log(this.user);
+                  this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+                  .catch((error)=>{
+                    let mensaje = this.utiles.translateAuthError(error);
+                    this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+                  })
+                })
+                .catch((error)=>{
+                  let mensaje = this.utiles.translateAuthError(error);
+                  this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+                })
+              })
+              .catch((error)=>{
+                let mensaje = this.utiles.translateAuthError(error);
+                this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
               })
             }
             else
@@ -101,6 +117,10 @@ export class OwnerPage implements OnInit
               this.utiles.showSweet({titleText:"Error",text:"Persona ya registrada",icon:"warning"})
             }
 
+          })
+          .catch((error)=>{
+            let mensaje = this.utiles.translateAuthError(error);
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
           })
         }
         else
