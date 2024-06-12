@@ -27,7 +27,7 @@ ion-toolbar {
       z-index: 2;
     }
     #header {
-      height: 45vh;
+      height: 40vh;
       background:url("../../../assets/images/login-fondo.png");
       background-position: center;
       background-repeat: no-repeat;
@@ -51,7 +51,7 @@ ion-toolbar {
   
     .wrapper {
       position: absolute;
-      top: 35%;
+      top: 30%;
       left: 4%;
       right: 4%;
   
@@ -156,8 +156,13 @@ ion-toolbar {
     ion-fab-button{
         --background: transparent;
     }
+    .size-input{
+      min-height: 70px;
+    }
     .custom-text-size {
+        display: block;
         font-size: 12px;
+        margin-top: 5px;
       }
     ion-label{
       color: white;

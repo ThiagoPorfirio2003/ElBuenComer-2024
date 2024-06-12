@@ -21,7 +21,7 @@
       <ion-card-content>
         <h2 align="center" class="titulo-txt">Iniciar sesión</h2>
         <form [formGroup]="loginForm">
-          <div class="ion-margin-bottom">
+          <div class="size-input">
             <ion-item>
               <ion-icon name="mail"></ion-icon>
               <ion-input
@@ -32,8 +32,8 @@
             </ion-item>
             <ion-text
               color="danger"
-              *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched"
               class="text-danger custom-text-size"
+              *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched"
               >EL <strong>Correo Electrónico</strong> es requerido.
             </ion-text>
             <ion-text
@@ -44,7 +44,7 @@
               correcto
             </ion-text>
           </div>
-          <div class="ion-margin-bottom">
+          <div class="size-input">
             <ion-item>
               <ion-icon name="lock-closed"></ion-icon>
               <ion-input
