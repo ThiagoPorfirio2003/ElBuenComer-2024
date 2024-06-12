@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
-import { userImage } from '../interfaces/image';
+//import { userImage } from '../interfaces/image';
 import { baseUserData } from '../interfaces/user';
 
 @Injectable({
@@ -39,6 +39,7 @@ export class DataBaseService
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
 
+  /*
   public saveImgData(collectionName : enumCollectionNames, img : userImage)
   {
     const docUserImg = doc(collection(this.firestore, enumCollectionNames.UserImages));
@@ -49,4 +50,5 @@ export class DataBaseService
 
     return setDoc(doc(this.firestore, collectionName, img.id), img);
   }
+  */
 }

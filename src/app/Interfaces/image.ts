@@ -1,3 +1,4 @@
+/*
 export interface userImage
 {
     id : string;
@@ -6,5 +7,6 @@ export interface userImage
     ownerUID : string;
     ownerUserName : string;
 }
+*/
 
 //Despues interface productImage
