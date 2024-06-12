@@ -87,7 +87,6 @@ export class OwnerPage implements OnInit
         {
           this.firebase.getUserByDNI(this.user.completeData.dni).then((user)=>
           {
-            console.log(user);
             if(user.size ==0)
             {
               this.user.completeData.baseData.email = this.registro.email;
@@ -114,6 +113,7 @@ export class OwnerPage implements OnInit
             }
             else
             {
+              console.log(user);
               this.utiles.showSweet({titleText:"Error",text:"Persona ya registrada",icon:"warning"})
             }
 
