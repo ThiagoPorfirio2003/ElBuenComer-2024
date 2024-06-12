@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
-import { UtilsService } from 'src/app/services/utils.service';
+import { UtilsService } from 'src/app/Services/utils.service';
 
 @Component({
   selector: 'app-splash-screen',
@@ -11,13 +11,15 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class SplashScreenPage{
 
   public headerClass : string;
+  public centerClass : string;
   public footerClass : string;
 
   constructor(private utilsService : UtilsService,
     private platform : Platform)
     {
-      this.headerClass = 'slide-out-right'
-      this.footerClass = 'slide-out-left'
+      this.headerClass = 'scale-out-hor-left';
+      this.centerClass = 'scale-out-horizontal';
+      this.footerClass = 'scale-out-hor-right';
     }
 
     ionViewDidEnter()
@@ -31,14 +33,15 @@ export class SplashScreenPage{
             {
               setTimeout(()=>
               {
-                this.headerClass = 'slide-in-left'
-                this.footerClass = 'slide-in-right'
-              },1600)
+                this.headerClass = 'slide-in-right';
+                this.centerClass = 'slide-in-left';
+                this.footerClass = 'slide-in-bottom';
+              }, 2700)
 
               setTimeout(() => 
               {
-                 //this.utilsService.changeRoute('/auth')
-              }, 3000);
+                 this.utilsService.changeRoute('/home')
+              }, 4500);
             })
           });
         }
