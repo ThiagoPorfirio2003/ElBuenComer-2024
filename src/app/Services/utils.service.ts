@@ -53,7 +53,6 @@ export class UtilsService {
       case "auth/invalid-email": 
         errorMessageTranslated = "El mail no cumple con el siguiente formato (ejemplo@gmail.com)";
       break;
-
       case "auth/email-already-in-use": 
         errorMessageTranslated = "El mail ya pertenece a otro usuario";
       break;
@@ -94,7 +93,6 @@ export class UtilsService {
       case "UE": 
         errorMessageTranslated = 'El nombre de usuario ya está en uso';
       break;
-
       default:
         errorMessageTranslated = 'Error inesperado';
       break;

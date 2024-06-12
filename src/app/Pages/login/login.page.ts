@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { userAccessData } from 'src/app/Interfaces/user';
+import { UtilsService } from 'src/app/Services/utils.service';
+import { IonLoaderService } from 'src/app/Services/ion-loader.service';
+import { IonToastService } from 'src/app/Services/ion-toast.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,10 @@ export class LoginPage implements OnInit {
   constructor(  
     private router: Router,
     private authService: AuthService,
-    private fb: FormBuilder,) {
+    private utils: UtilsService,
+    private ionLoaderService: IonLoaderService,
+    private ionToastService: IonToastService,
+    private fb: FormBuilder) {
       this.loginForm = this.fb.group({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required,Validators.minLength(6)]),
@@ -23,19 +30,24 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    const email = this.loginForm.get('email')?.value!;
-    const password = this.loginForm.get('password')?.value!;
-    this.authService
-      .login(email, password)
-      .then(() => {
-        this.router.navigate(['/home']);
-      })
-      .catch((er) => {
-        const error = er.message;
-      })
-      .finally(() => {
-      });
+  async login() {
+    await this.ionLoaderService.simpleLoader();
+    const user: userAccessData = {
+      email: this.loginForm.get('email')?.value!,
+      password: this.loginForm.get('password')?.value!
+    };
+    try {
+      await this.authService.logIn(user);
+      this.router.navigate(['/home']);
+    } catch (er) {
+      let errorMessage = 'Unknown error occurred.';
+      if (er instanceof Error && 'code' in er) {
+        errorMessage = this.utils.translateAuthError((er as any).code);
+      }
+      this.ionToastService.showToastError(errorMessage);
+    } finally {
+      await this.ionLoaderService.dismissLoader();
+    }
   }
 
   loginDirect(email: string, password: string) {

@@ -27,7 +27,7 @@ ion-toolbar {
       z-index: 2;
     }
     #header {
-      height: 50vh;
+      height: 45vh;
       background:url("../../../assets/images/login-fondo.png");
       background-position: center;
       background-repeat: no-repeat;
@@ -51,7 +51,7 @@ ion-toolbar {
   
     .wrapper {
       position: absolute;
-      top: 40%;
+      top: 35%;
       left: 4%;
       right: 4%;
   
@@ -101,8 +101,8 @@ ion-toolbar {
   
         .lines {
           height: 1px;
-          color: #502006;
-          background: #502006;
+          color: #003049;
+          background: #003049;
           display: block;
         }
   
@@ -111,7 +111,7 @@ ion-toolbar {
           top: -7px;
           left: 50%;
           transform: translateX(-50%);
-          color: #502006;
+          color: #003049;
           background: #e5e5e5;
           padding: 0 16px;
           font-size: 14px;
@@ -128,15 +128,15 @@ ion-toolbar {
         margin: 10px;
         .avatar-text {
           font-size: 9px;
-          color: #502006;
+          color: #003049;
           font-weight: 600;
         }
+     
       }
+
     }
     .mi-fab-boton {
-      /* Estilos parael botón */
       width: 100px;
-      /* Posicionamiento de la imagen */
       img {
         position: absolute;
         top: 50%;
@@ -146,9 +146,9 @@ ion-toolbar {
   
     }
     .custom-chip {
-        font-size: 16px; /* Tamaño de la tipografía */
-        width: 150px; /* Ancho del chip */
-        height: 20px; /* Alto del chip */
+        font-size: 16px;
+        width: 150px;
+        height: 20px;
         background: rgba(8, 8, 8, 0.5);
         font-weight: 600;
         border: 1px solid white;

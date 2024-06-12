@@ -73,48 +73,51 @@
             ><strong>Iniciar</strong>
           </ion-button>
         </form>
+
       </ion-card-content>
     </ion-card>
+    <div class="line-text">
+      <span class="lines"></span>
+      <span class="text">o conectarse usando</span>
+    </div>
+    <div class="avatar-container">
+      <ion-avatar (click)="loginDirect('duenio@gmail.com', '123456')">
+        <img alt="Img-duenio" src="../../assets/icon/icon-duenio.png" />
+        <p align="center" class="avatar-text">DUEÑO</p>
+      </ion-avatar>
+      <ion-avatar (click)="loginDirect('supervisor@gmail.com', '123456')">
+        <img alt="Img-supervisor" src="../../assets/icon/icon-supervisor.png" />
+        <p align="center" class="avatar-text">SUPERVISOR</p>
+      </ion-avatar>
+    </div>
   </div>
 
   <ion-fab slot="fixed" vertical="top" horizontal="start">
     <ion-fab-button size="small">
-      <img alt="empleados" src="../../assets/images/Icon-empleado.png" />
+      <img alt="empleados" src="../../assets/icon/Icon-empleado.png" />
     </ion-fab-button>
     <ion-fab-list side="bottom">
-      <ion-chip (click)="loginDirect('duenio@gmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>DUEÑO</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('supervisor@gmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>SUPERVISOR</ion-label>
-      </ion-chip>
       <ion-chip (click)="loginDirect('bartender@gmail.com', '123456')" class="custom-chip">
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
         </ion-avatar>
         <ion-label>BARTENDER</ion-label>
       </ion-chip>
       <ion-chip (click)="loginDirect('cocinero@gmail.com', '123456')" class="custom-chip">
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
         </ion-avatar>
         <ion-label>COCINERO</ion-label>
       </ion-chip>
       <ion-chip (click)="loginDirect('mozo@gmail.com', '123456')" class="custom-chip">
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
         </ion-avatar>
         <ion-label>MOZO</ion-label>
       </ion-chip>
       <ion-chip (click)="loginDirect('meitre@gmail.com', '123456')" class="custom-chip">
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/images/Icon-empleado.png" />
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
         </ion-avatar>
         <ion-label>MEITRE</ion-label>
       </ion-chip>
