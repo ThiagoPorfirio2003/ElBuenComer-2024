@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UtilsService } from 'src/app/services/utils.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { enumCollectionNames } from 'src/app/enums/collectionNames';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-owner',
@@ -11,12 +15,13 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class OwnerPage implements OnInit 
 {
+  private image : any = null;
   public path : string = "../../../../assets/icon/icon.png";
   public user : employe;
   public registro : userAccessData
   public grupo : FormGroup;
 
-  constructor(private fb : FormBuilder, private utiles : UtilsService) 
+  constructor(private fb : FormBuilder, private utiles : UtilsService, private firebase : DataBaseService, private auth : AuthService, private storage : StorageService) 
   {
     this.user ={} as employe;
     this.user.completeData = {} as completeUserData;
@@ -67,6 +72,7 @@ export class OwnerPage implements OnInit
     
     if(image.dataUrl)
     {
+      this.image = image;
       this.path = image.dataUrl;
     }
   }
@@ -79,21 +85,40 @@ export class OwnerPage implements OnInit
       {
         if(this.grupo.valid)
         {
-          alert("subido")
+          this.firebase.getUserByDNI(this.user.completeData.dni).then((user)=>
+          {
+            if(user.size ==0)
+            {
+              this.auth.register(this.registro).then(()=>{
+                this.storage.savePhoto(this.image,"mauro").then
+                {
+                  
+                }
+              })
+            }
+            else
+            {
+              this.utiles.showSweet({titleText:"Error",text:"Persona ya registrada",icon:"warning"})
+            }
+
+          })
         }
         else
         {
-          this.utiles.showSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("CI"),icon:"warning"})
+          let mensaje = this.utiles.translateAuthError("CI");
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
         }
       }
       else
       {
-        this.utiles.showSweet({titleText:"CUIDADO",text:"Elija el tipo de perfil",icon:"warning"})
+        let mensaje = this.utiles.translateAuthError("FP");
+        this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
       }
     }
     else
     {
-      this.utiles.showSweet({titleText:"CUIDADO",text:this.utiles.translateAuthError("FF"),icon:"warning"})
+      let mensaje = this.utiles.translateAuthError("FF");
+      this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
     }
   }
 

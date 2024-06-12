@@ -57,10 +57,6 @@
         {
           <small>falta cuil</small>
         }
-        @if(grupo.controls['cuil'].errors?.['min'])
-        {
-          <small>tu cuil debe de ser mas alto que 9999999999 </small>
-        }
         @if(grupo.controls['cuil'].errors?.['CuilValidacion'])
         {
           <small>el formato debe ser 00-00000000-0 </small>
