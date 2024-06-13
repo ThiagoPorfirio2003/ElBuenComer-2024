@@ -25,7 +25,7 @@
 
     <form [formGroup]="this.registerForm">
       <ion-input formControlName="email" name="email" type="email" inputmode="email" placeholder="thiago@gmail.com" clearInput="true"
-      label="Correo" label-placement="floating" fill="outline" (ionInput)="this.changeEmailErrorText()"></ion-input>
+      label="Correo" label-placement="floating" fill="outline" (ionInput)="this.changeEmailErrorText()" color="dark"></ion-input>
     
       @if(this.emailErrorText !== '') 
       {
