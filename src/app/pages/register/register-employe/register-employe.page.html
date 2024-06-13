@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registerEmploye</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Registro'"></app-header>
 
 <ion-content> 
   <div class="full-screen">
@@ -33,7 +29,7 @@
       }
     
       <ion-input formControlName="password" name="password" inputmode="password" type="password" placeholder="Ingrese una clave válida" clearInput="true" clearOnEdit="false"
-      label="Clave" label-placement="floating" fill="outline" (ionInput)="this.changePasswordErrorText()"></ion-input>
+      label="Clave" label-placement="floating" fill="outline" (ionInput)="this.changePasswordErrorText()" color="dark"></ion-input>
     
       @if(this.passwordErrorText !== '') 
       {
@@ -41,7 +37,7 @@
       }
     
       <ion-input formControlName="name" name="name" inputmode="text" placeholder="Thiago Lisandro" clearInput="true"
-      label="Nombre" label-placement="floating" fill="outline" (ionInput)="this.changeNameErrorText()"></ion-input>
+      label="Nombre" label-placement="floating" fill="outline" (ionInput)="this.changeNameErrorText()" color="dark"></ion-input>
   
       @if (this.nameErrorText !== '') 
       {
@@ -49,7 +45,7 @@
       }
   
       <ion-input formControlName="surname" name="surname" inputmode="text" placeholder="Porfirio" clearInput="true"
-      label="Apellido" label-placement="floating" fill="outline" (ionInput)="this.changeSurnameErrorText()"></ion-input>
+      label="Apellido" label-placement="floating" fill="outline" (ionInput)="this.changeSurnameErrorText()" color="dark"></ion-input>
   
       @if (this.surnameErrorText !== '') 
       {
@@ -59,17 +55,17 @@
       <div class="cuil-frame">
         <div class="cuil-input">
           <ion-input  formControlName="CUIL_Start" name="CUIL_Start" inputmode="number" type="number" clearInput="false"
-          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_StartErrorText()"></ion-input>
+          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_StartErrorText()" color="dark"></ion-input>
         </div>
 
         <div class="dni-input">
           <ion-input formControlName="DNI" name="DNI" inputmode="number" type="number" clearInput="false"
-          label="DNI" label-placement="floating" fill="outline" (ionInput)="this.changeDNIErrorText()"></ion-input>
+          label="DNI" label-placement="floating" fill="outline" (ionInput)="this.changeDNIErrorText()" color="dark"></ion-input>
         </div>
 
         <div class="cuil-input">
           <ion-input class="cuil" formControlName="CUIL_End" name="CUIL_End" inputmode="number" type="number" clearInput="false"
-          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_EndErrorText()"></ion-input>
+          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_EndErrorText()" color="dark"></ion-input>
         </div>
 
         <ion-button class="QR" color="primary" (click)="this.analyzeQR()" fill="solid">

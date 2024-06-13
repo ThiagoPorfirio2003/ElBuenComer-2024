@@ -4,20 +4,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterEmployePageRoutingModule } from './register-employe-routing.module';
+import { RegisterPageRoutingModule } from './register-routing.module';
 
-import { RegisterEmployePage } from './register-employe.page';
+import { RegisterPage } from './register.page';
+import { RegisterEmployeComponent } from 'src/app/components/register/register-employe/register-employe.component';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    RegisterEmployePageRoutingModule,
     ReactiveFormsModule,
+    IonicModule,
+    RegisterPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [RegisterEmployePage]
+  declarations: 
+  [
+    RegisterPage,
+    RegisterEmployeComponent
+  ]
 })
-export class RegisterEmployePageModule {}
+export class RegisterPageModule {}

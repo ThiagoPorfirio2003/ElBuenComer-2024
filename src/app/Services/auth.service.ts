@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
+import { enumProfile } from '../enums/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +52,8 @@ export class AuthService {
     this.logedUserData = userData;
    }
 
-   public getUserData<T extends employe | client<baseUserData | completeUserData>>() : T
+   public getUserProfile() : enumProfile
    {
-      return this.logedUserData as T
+      return (<baseUserData>this.logedUserData).profile;
    }
 }
