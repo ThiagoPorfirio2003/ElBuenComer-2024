@@ -13,7 +13,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot({mode: 'md'}), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideFirebaseApp(() => initializeApp({"projectId":"elbuencomer-dff17","appId":"1:400140358689:web:448b64a3636a67336cbf60","storageBucket":"elbuencomer-dff17.appspot.com","apiKey":"AIzaSyACpTBLiVK-d6V19SUaVal44EiOBhLK--Q","authDomain":"elbuencomer-dff17.firebaseapp.com","messagingSenderId":"400140358689"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideStorage(() => getStorage())],
   bootstrap: [AppComponent],
 })

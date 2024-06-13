@@ -14,7 +14,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'splash-screen',
     pathMatch: 'full'
-  },
+  },  {
+    path: 'register-employe',
+    loadChildren: () => import('./pages/register/register-employe/register-employe.module').then( m => m.RegisterEmployePageModule)
+  }
+
 
 ];
 

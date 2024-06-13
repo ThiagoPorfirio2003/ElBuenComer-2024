@@ -111,6 +111,11 @@ export class UtilsService {
         errorMessageTranslated.content = 'Hay que subir una foto';
         break;
 
+      case 'FFO':
+        errorMessageTranslated.title = 'Foto ausente'
+        errorMessageTranslated.content = '¿Seguro que no querés subir una? También podés hacerlo después';
+        break;
+
       case 'FP':
         errorMessageTranslated.title = 'Perfil ausente';
         errorMessageTranslated.content = 'Hay que elegir el perfil'
