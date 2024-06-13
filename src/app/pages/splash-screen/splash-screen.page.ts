@@ -40,7 +40,7 @@ export class SplashScreenPage{
 
               setTimeout(() => 
               {
-                 this.utilsService.changeRoute('/home')
+                 this.utilsService.changeRoute('/register-employe')
               }, 4500);
             })
           });

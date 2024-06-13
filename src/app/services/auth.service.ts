@@ -7,7 +7,7 @@ import { baseUserData, client, completeUserData, employe, userAccessData } from 
 })
 export class AuthService {
 
-  private user! : any;
+  public logedUserData! : any;
   public isLogued : boolean;
 
    constructor(private auth : Auth) 
@@ -18,9 +18,9 @@ export class AuthService {
    /*
    Verlo luego
    */
-   public logUser(userLoged : any)
+   public logUserData(userLogedData : any)
    {
-     this.user = userLoged;
+     this.logedUserData = userLogedData;
      this.isLogued = true;
    }
 
@@ -45,14 +45,14 @@ export class AuthService {
      return signOut(this.auth);
    }
 
-   public changeCurrentUser(authUser : User, myUser : any)
+   public changeCurrentUser(authUser : User, userData : any)
    {
     this.auth.updateCurrentUser(authUser);
-    this.user = myUser;
+    this.logedUserData = userData;
    }
 
-   public getUser<T extends employe | client<baseUserData | completeUserData>>() : T
+   public getUserData<T extends employe | client<baseUserData | completeUserData>>() : T
    {
-      return this.user as T
+      return this.logedUserData as T
    }
 }
