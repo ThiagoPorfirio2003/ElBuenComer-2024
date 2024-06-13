@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { userAccessData } from 'src/app/Interfaces/user';
+import { userAccessData } from 'src/app/interfaces/user';
 import { UtilsService } from 'src/app/services/utils.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
 import { IonToastService } from 'src/app/services/ion-toast.service';
-
+import { message } from 'src/app/interfaces/message';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -40,11 +40,11 @@ export class LoginPage implements OnInit {
       await this.authService.logIn(user);
       this.router.navigate(['/home']);
     } catch (er) {
-      let errorMessage = 'Unknown error occurred.';
       if (er instanceof Error && 'code' in er) {
-        errorMessage = this.utils.translateAuthError((er as any).code);
+        const errorMessage : message = this.utils.translateAuthError('FFO')
+        this.ionToastService.showToastError(errorMessage.content);
       }
-      this.ionToastService.showToastError(errorMessage);
+      
     } finally {
       await this.ionLoaderService.dismissLoader();
     }
