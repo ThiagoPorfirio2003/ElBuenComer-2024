@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { userAccessData } from 'src/app/Interfaces/user';
-import { UtilsService } from 'src/app/Services/utils.service';
-import { IonLoaderService } from 'src/app/Services/ion-loader.service';
-import { IonToastService } from 'src/app/Services/ion-toast.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import { IonLoaderService } from 'src/app/services/ion-loader.service';
+import { IonToastService } from 'src/app/services/ion-toast.service';
 
 @Component({
   selector: 'app-login',
