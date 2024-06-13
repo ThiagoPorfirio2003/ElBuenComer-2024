@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'owner',
     loadChildren: () => import('./pages/alta/owner/owner.module').then( m => m.OwnerPageModule)
+  },  {
+    path: 'producto',
+    loadChildren: () => import('./pages/alta/producto/producto.module').then( m => m.ProductoPageModule)
   },
+
 
 
 ];
