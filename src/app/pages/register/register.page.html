@@ -1,0 +1,32 @@
+<app-header [title]="'Altas'"></app-header>
+
+<ion-content>
+
+  <app-register-employe></app-register-employe>
+
+  <!-- 
+    @if (this.canShowRegister) 
+  {
+    @switch (this.registerToShow) 
+    {
+      @case (2) 
+      {
+        <app-register-employe></app-register-employe>
+      }
+    }    
+  }
+  @else {
+    <ion-button (click)="this.showRegister(1)" expand="block" fill="solid" shape="round">
+      Duenio / Supervisor
+    </ion-button>
+  
+    <ion-button (click)="this.showRegister(2)" expand="block" fill="solid" shape="round">
+      Empleados
+    </ion-button>
+  
+    <ion-button (click)="this.showRegister(3)" expand="block" fill="solid" shape="round">
+      Clientes
+    </ion-button>
+  }
+  -->
+</ion-content>

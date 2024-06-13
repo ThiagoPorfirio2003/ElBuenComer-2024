@@ -1,23 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { enumProfile } from 'src/app/enums/profile';
 import { message } from 'src/app/interfaces/message';
-import { completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
+import { outPutResult, status } from 'src/app/interfaces/outPutResult';
+import { baseUserData, client, completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/Services/auth.service';
 import { UtilsService } from 'src/app/Services/utils.service';
 
 @Component({
   selector: 'app-register-employe',
-  templateUrl: './register-employe.page.html',
-  styleUrls: ['./register-employe.page.scss'],
+  templateUrl: './register-employe.component.html',
+  styleUrls: ['./register-employe.component.scss'],
 })
-export class RegisterEmployePage 
-{
+export class RegisterEmployeComponent{
+
+  @Output() OutPutRestoreAppState : EventEmitter<void>;
+  @Output() OutPutRegisterUser : EventEmitter<outPutResult<any>>;
+
   public registerForm : FormGroup;
   
-  private appStateBeforeCamera : any;
+  private formValues : any;
 
   public emailErrorText : string;
   public passwordErrorText : string;
@@ -31,12 +35,15 @@ export class RegisterEmployePage
   public profileSelected : any;
 
   public urlImage : string;
-  public photoSelected! : Photo;
+  public photo! : Photo;
 
   constructor(private utilsService : UtilsService,
     private authService : AuthService
   ) 
   { 
+    this.OutPutRestoreAppState = new EventEmitter<void>();
+    this.OutPutRegisterUser = new EventEmitter<outPutResult<employe>>();
+
     this.emailErrorText = '';
     this.passwordErrorText = ''
     this.nameErrorText = '';
@@ -45,7 +52,6 @@ export class RegisterEmployePage
     this.CUIL_StartErrorText = '';
     this.CUIL_EndErrorText = '';
 
-    //this.thereIsImage = false;
     this.urlImage = '';
     this.profiles = 
     [
@@ -97,6 +103,8 @@ export class RegisterEmployePage
 
     return word;
   }
+
+  //#region Error text
 
   public changeEmailErrorText()
   {
@@ -322,9 +330,11 @@ export class RegisterEmployePage
     }
   }
 
+  //#endregion
+
   public takeImg()
   {
-    this.saveAppState
+    this.formValues = this.registerForm.value
 
     Camera.getPhoto({
       quality: 90,
@@ -335,11 +345,16 @@ export class RegisterEmployePage
     .then((img)=>
     {
       this.urlImage = img.dataUrl!;
-      this.photoSelected = img;
+      this.photo = img;
     })
-    .finally(()=> this.restoreAppState())
+    .finally(()=> 
+    {
+      this.OutPutRestoreAppState.emit();
+      this.registerForm.setValue(this.formValues);
+    })
   }
 
+  /*
   private saveAppState() {
     this.appStateBeforeCamera = {
       route: this.utilsService.getRoute(), 
@@ -348,14 +363,17 @@ export class RegisterEmployePage
       formValues : this.registerForm.value
     };
   }
+  */
 
+
+  /*
   private restoreAppState() {
     console.log(this.appStateBeforeCamera);
     this.authService.changeCurrentUser(this.appStateBeforeCamera.authUser, this.appStateBeforeCamera.myUser);
     this.utilsService.changeRoute(this.appStateBeforeCamera.route);
     this.registerForm.setValue(this.appStateBeforeCamera.formValues)
-    
   }
+  */
 
   public analyzeQR()
   {
@@ -375,80 +393,80 @@ export class RegisterEmployePage
     //ScanResult = 00561167632@APELLIDO@NOMBRES@SEXO(M O F)@DNI@A@25/02/1992@1/12/2039@205 (20= Inicio del CUIL, 5= final del CUIL)
   }
 
-  public registerEmploye()
+  private validateData() : status
   {
-    let isValid: boolean;
+    const dataStatus : status = {success: this.registerForm.valid}
 
-    isValid = this.registerForm.valid;
-
-    if(isValid)
+    if(dataStatus.success)
     {
       if(this.profileSelected.value > 1)
       {
-        if(this.urlImage != '')
-          {
-            this.authService.register(this.registerForm.value)
-            .then((userCredential)=>
-            {
+        if(this.urlImage == '')
+        {
+          dataStatus.success = false;
+          dataStatus.errorCode = 'FFO';
 
-            })
-          }
-          else
+          const errorMessage : message = this.utilsService.translateAuthError('FFO')
+  
+          this.utilsService.showSweet({title: errorMessage.title, text: errorMessage.content, icon: 'warning', 
+            cancelButtonText: 'Volver', showCancelButton: true,
+            confirmButtonText: 'Si'})
+          .then((value)=>
           {
-            const errorMessage : message = this.utilsService.translateAuthError('FFO')
-    
-            this.utilsService.showSweet({title: errorMessage.title, text: errorMessage.content, icon: 'warning', 
-              cancelButtonText: 'Volver', showCancelButton: true,
-              confirmButtonText: 'Si'})
-            .then((value)=>
+            if(value.isConfirmed)
             {
-              if(value.isConfirmed)
-              {
-                console.log('Valid: ' + isValid + "\nHay foto: " + this.urlImage != '' + '\nHay perfil: ' + this.profileSelected.value)
-              }
-            })
-          }
+              dataStatus.success = true;
+              dataStatus.errorCode = undefined;
+            }
+          })
+        }
       }
       else
       {
-        this.utilsService.showSweet({toast: true, text: 'Falta el tipo de perfil del empleado'})
+        dataStatus.success = false;
+        dataStatus.errorCode = 'FP'
       }
     }
-    else
-    {
-      console.log('invalido')
-    }
+
+    return dataStatus;
   }
 
-  private registerUser(accessData : userAccessData)
+  public registerEmploye()
   {
-    
-  }
+    const dataStatus : status = this.validateData();
+    const formValues = this.registerForm.value;
 
-
-
-
-
-  /*
-  private validateData() : MyStatus
-  {
-    const formStatus : MyStatus = 
+    const userAccessData : userAccessData =
     {
-      message: 
-      {
-        header: 'DATOS INVÁLIDOS', 
-        content: 'Los datos ingresados NO cumplen con las condiciones'
-      },
-      success: this.loginForm.valid,
-    };
-
-    if(formStatus.success)
-    {
-      formStatus.message.header = 'ÉXITO';
-      formStatus.message.content = 'Los datos ingresados cumplen con los requisitos'
+      email: formValues['email'],
+      password: formValues['password']
     }
 
-    return formStatus;
+    const employData : employe =
+    {
+      email: formValues['email'],
+      name: formValues['name'],
+      surname: formValues['surname'],
+      dni: formValues['DNI'].toString(),
+      cuil: formValues['CUIL_Start'].toString() + formValues['DNI'].toString() + formValues['CUIL_End'].toString(),
+      profile: this.profileSelected.value,
+      id: '',
+      photoUrl: '' 
+    }
+
+    if(dataStatus.success || dataStatus.errorCode != 'FFO')
+    {
+      dataStatus.success = true;
+      this.OutPutRegisterUser.emit(
+      { 
+        status: dataStatus,
+        data:
+        {
+          accessUserData: userAccessData,
+          userData: employData,
+          photo: this.photo
+        }
+      })
+    }
   }
-  */
 }

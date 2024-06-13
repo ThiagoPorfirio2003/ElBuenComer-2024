@@ -14,25 +14,23 @@ export interface baseUserData
     email : string;
     profile : enumProfile;
     photoUrl : string;
-    photoId : string;
 }
 
-export interface completeUserData
+export interface completeUserData extends baseUserData
 {
-    baseData : baseUserData;
-    surName : string;
+    surname : string;
     dni : string;
 }
 
-export interface employe
+export interface employe extends completeUserData
 {
-    completeData : completeUserData;
     cuil : string;
 }
 
+//REVISAR
 export interface client<T extends baseUserData | completeUserData>
 {
-    data : T;
+    clientData : T;
     isAnonimus : boolean;
     state : enumClientState;
 }
