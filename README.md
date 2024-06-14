@@ -16,7 +16,7 @@
     - Fecha de finalización: 11/6 
  
  - Creación del **alta de empleados**
-    - Fecha de inicio: 
+    - Fecha de inicio: 12/6
     - Fecha de finalización: A definir
        
  - Creación del **alta de mesa**
