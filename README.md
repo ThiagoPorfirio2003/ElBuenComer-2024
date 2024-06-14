@@ -29,12 +29,12 @@
 **Rama:** develop-wilsonh
 
  - Creación del **inicio de sesión**
-    - Fecha de inicio:
-    - Fecha de finalización: 
+    - Fecha de inicio: 10/6
+    - Fecha de finalización: 11/6 
  
  - Creación del **alta de clientes**
-    - Fecha de inicio:
-    - Fecha de finalización: 
+    - Fecha de inicio: 14/6
+    - Fecha de finalización: A definir 
 
 ### Racioppi Mauro
 
