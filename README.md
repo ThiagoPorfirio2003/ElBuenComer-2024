@@ -5,6 +5,5 @@
 ### Tareas  a desarrollar
 
 <ol>
-  <li>HOLA<li>
-
+  <li>HOLA</li>
 </ol>
