@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
-import { UtilsService } from 'src/app/Services/utils.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-splash-screen',
@@ -40,7 +40,7 @@ export class SplashScreenPage{
 
               setTimeout(() => 
               {
-                 this.utilsService.changeRoute('/home')
+                 this.utilsService.changeRoute('/login')
               }, 4500);
             })
           });

@@ -4,7 +4,6 @@ import { LoadingController, LoadingOptions } from '@ionic/angular';
 import Swal, { SweetAlertOptions } from 'sweetalert2'
 import { message } from '../interfaces/message';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +25,8 @@ export class UtilsService {
 
   public showSweet(options : SweetAlertOptions)
   {
-    return this.getSweet(options).fire()
+    options.heightAuto = false;
+    return Swal.fire(options)
   }
 
   public getLoadingCtrl(options: LoadingOptions)
@@ -111,6 +111,11 @@ export class UtilsService {
         errorMessageTranslated.content = 'Hay que subir una foto';
         break;
 
+      case 'FFO':
+        errorMessageTranslated.title = 'Foto ausente'
+        errorMessageTranslated.content = '¿Seguro que no querés subir una? También podés hacerlo después';
+        break;
+
       case 'FP':
         errorMessageTranslated.title = 'Perfil ausente';
         errorMessageTranslated.content = 'Hay que elegir el perfil'
@@ -125,52 +130,4 @@ export class UtilsService {
     return errorMessageTranslated;
   }
 
-  /*
-   case "auth/invalid-email": 
-      this.GenerarAlerta("No tiene el formato email (ejemplo@gmail.com)","warning","EL IMAIL!!");
-      break;
-
-      case "auth/email-already-in-use": 
-        this.GenerarAlerta("El mail ya existe","error","Lo sentimos");
-      break;
-
-      case "auth/weak-password": 
-        this.GenerarAlerta("La contraseña debe de tener mas de 6 caracteres","warning","CONTRASEÑA INSEGURA!!");
-      break;
-
-      case "auth/missing-password": 
-        this.GenerarAlerta("Falta la contraseña","warning","CUIDADO!!");
-      break;
-
-      case "auth/invalid-credential":
-      case "auth/invalid-login-credentials": 
-        this.GenerarAlerta("No existe ese ususario","error","Registrate!!");
-      break;
-
-      case "NV": 
-        this.GenerarAlerta("Tienes que verificar el email","warning","EMAIL NO VERIFICADO!!");
-      break;
-
-      case "AD": 
-        this.GenerarAlerta("Te tiene que habilitar el administrador","warning","Prohibido al entrada")
-      break
-      case "CI": 
-        this.GenerarAlerta("Hay algun campo incompleto o con algún error","warning","CUIDADO!!");
-      break;
-
-      case "DE":
-        this.GenerarAlerta("Un administrador te denego al entrada","error","DENEGADO!!");
-      break;
-
-      case "UE": 
-      this.GenerarAlerta("El nombre de usuario ya existe","error","USUARIO REPETIDO!!");
-      break;
-
-      default:
-        this.GenerarAlerta("Descuida no es tu culpa","error","ERROR NO REGISTRADO!!");
-        console.log(codigoError);
-      break;
-    }
-  }
-  */
 }

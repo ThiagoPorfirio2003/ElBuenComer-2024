@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+<<<<<<< HEAD
 import { baseUserData, client, completeUserData, employe, userAccessData } from '../Interfaces/user';
+=======
+import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
+import { enumProfile } from '../enums/profile';
+>>>>>>> main
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private user! : any;
+  public logedUserData! : any;
   public isLogued : boolean;
 
    constructor(private auth : Auth) 
@@ -18,9 +23,9 @@ export class AuthService {
    /*
    Verlo luego
    */
-   public logUser(userLoged : any)
+   public logUserData(userLogedData : any)
    {
-     this.user = userLoged;
+     this.logedUserData = userLogedData;
      this.isLogued = true;
    }
 
@@ -45,14 +50,14 @@ export class AuthService {
      return signOut(this.auth);
    }
 
-   public changeCurrentUser(authUser : User, myUser : any)
+   public changeCurrentUser(authUser : User, userData : any)
    {
     this.auth.updateCurrentUser(authUser);
-    this.user = myUser;
+    this.logedUserData = userData;
    }
 
-   public getUser<T extends employe | client<baseUserData | completeUserData>>() : T
+   public getUserProfile() : enumProfile
    {
-      return this.user as T
+      return (<baseUserData>this.logedUserData).profile;
    }
 }

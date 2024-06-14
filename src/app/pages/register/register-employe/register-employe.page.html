@@ -1,0 +1,114 @@
+<app-header [title]="'Registro'"></app-header>
+
+<ion-content> 
+  <div class="full-screen">
+    
+    <ion-button class="take-img" (click)="this.takeImg()">
+
+      <div class="img-frame">
+        
+        @if (this.urlImage !== '') 
+        {
+            <img [src]="this.urlImage">
+        }
+        @else {
+          <h6>Sacar foto</h6>
+          <h6>(Opcional)</h6>
+        }
+      </div>
+
+    </ion-button>
+
+    <form [formGroup]="this.registerForm">
+      <ion-input formControlName="email" name="email" type="email" inputmode="email" placeholder="thiago@gmail.com" clearInput="true"
+      label="Correo" label-placement="floating" fill="outline" (ionInput)="this.changeEmailErrorText()" color="dark"></ion-input>
+    
+      @if(this.emailErrorText !== '') 
+      {
+        <ion-note>{{this.emailErrorText}}</ion-note>
+      }
+    
+      <ion-input formControlName="password" name="password" inputmode="password" type="password" placeholder="Ingrese una clave válida" clearInput="true" clearOnEdit="false"
+      label="Clave" label-placement="floating" fill="outline" (ionInput)="this.changePasswordErrorText()" color="dark"></ion-input>
+    
+      @if(this.passwordErrorText !== '') 
+      {
+        <ion-note>{{this.passwordErrorText}}</ion-note>
+      }
+    
+      <ion-input formControlName="name" name="name" inputmode="text" placeholder="Thiago Lisandro" clearInput="true"
+      label="Nombre" label-placement="floating" fill="outline" (ionInput)="this.changeNameErrorText()" color="dark"></ion-input>
+  
+      @if (this.nameErrorText !== '') 
+      {
+        <ion-note>{{this.nameErrorText}}</ion-note>
+      }
+  
+      <ion-input formControlName="surname" name="surname" inputmode="text" placeholder="Porfirio" clearInput="true"
+      label="Apellido" label-placement="floating" fill="outline" (ionInput)="this.changeSurnameErrorText()" color="dark"></ion-input>
+  
+      @if (this.surnameErrorText !== '') 
+      {
+        <ion-note>{{this.surnameErrorText}}</ion-note>
+      }
+  
+      <div class="cuil-frame">
+        <div class="cuil-input">
+          <ion-input  formControlName="CUIL_Start" name="CUIL_Start" inputmode="number" type="number" clearInput="false"
+          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_StartErrorText()" color="dark"></ion-input>
+        </div>
+
+        <div class="dni-input">
+          <ion-input formControlName="DNI" name="DNI" inputmode="number" type="number" clearInput="false"
+          label="DNI" label-placement="floating" fill="outline" (ionInput)="this.changeDNIErrorText()" color="dark"></ion-input>
+        </div>
+
+        <div class="cuil-input">
+          <ion-input class="cuil" formControlName="CUIL_End" name="CUIL_End" inputmode="number" type="number" clearInput="false"
+          label="CUIL" label-placement="floating" fill="outline" (ionInput)="this.changeCUIL_EndErrorText()" color="dark"></ion-input>
+        </div>
+
+        <ion-button class="QR" color="primary" (click)="this.analyzeQR()" fill="solid">
+          <ion-icon slot="icon-only" name="qr-code-outline"></ion-icon>
+        </ion-button>
+      </div>
+  
+      
+      @if (this.CUIL_StartErrorText !== '') 
+      {
+        <ion-note>{{this.CUIL_StartErrorText}}</ion-note>
+      }
+  
+      @if (this.DNIErrorText !== '') 
+      {
+        <ion-note>{{this.DNIErrorText}}</ion-note>
+      }
+  
+      @if (this.CUIL_EndErrorText !== '') 
+      {
+        <ion-note>{{this.CUIL_EndErrorText}}</ion-note>
+      }
+
+      <div class="profiles-frame">
+        <header>
+          <h2>Perfil</h2>
+          <h2 [style]="'background-color: ' + this.profileSelected.background">{{this.enumToWord(this.profileSelected.value)}}</h2>
+        </header> 
+
+        <section class="profiles-btn-group">
+          @for (profile of this.profiles; track $index) 
+          {
+            <ion-button (click)="this.profileSelected = profile" [style]="'--background:' + profile.background" expand="full" fill="solid">
+              {{this.enumToWord(profile.value)}}            
+            </ion-button>
+          }          
+        </section>
+      </div>
+
+      <ion-button (click)="this.registerEmploye()" class="log-in" expand="full" fill="solid">
+        Registrar empleado
+        <ion-icon slot="end" name="log-in"></ion-icon>
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

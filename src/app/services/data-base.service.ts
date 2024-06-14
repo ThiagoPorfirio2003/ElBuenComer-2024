@@ -38,6 +38,23 @@ export class DataBaseService
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
 
+  public saveData(specificCollectionName : enumCollectionNames, generalCollectionName : enumCollectionNames, data : any, id? : string)
+  {
+    let idData : string;
+    const docGeneralData = doc(collection(this.firestore, generalCollectionName)) 
+
+    idData = docGeneralData.id;
+
+    if(id)
+    {
+      idData = id;
+    }
+    
+    setDoc(doc(this.firestore, specificCollectionName, idData), data)
+
+    return setDoc(docGeneralData, data);
+  }
+
   /*
   public saveImgData(collectionName : enumCollectionNames, img : userImage)
   {

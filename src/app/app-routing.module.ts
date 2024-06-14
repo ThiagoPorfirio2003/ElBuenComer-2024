@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: 'splash-screen',
     loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
@@ -16,9 +20,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'register-employe',
+    loadChildren: () => import('./pages/register/register-employe/register-employe.module').then( m => m.RegisterEmployePageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
     path: 'owner',
     loadChildren: () => import('./pages/alta/owner/owner.module').then( m => m.OwnerPageModule)
-  },  {
+  },
+  {
     path: 'producto',
     loadChildren: () => import('./pages/alta/producto/producto.module').then( m => m.ProductoPageModule)
   },
