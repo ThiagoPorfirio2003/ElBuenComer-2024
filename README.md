@@ -11,8 +11,8 @@
 
  - Creación del **splash estático y animado**
      - Fecha de inicio:
-     - Fecha de finalización:
-       
+     - Fecha de finalización: 
+ 
  - Creación del **alta de empleados**
      - Fecha de inicio:
      - Fecha de finalización:
