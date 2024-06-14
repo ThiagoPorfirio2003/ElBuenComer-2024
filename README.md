@@ -40,7 +40,7 @@
 
 **Rama:** develop-mauror
 
- - Creación del logo de la app y la empresa
+ - Creación del **logo de la app y la empresa**
     - Fecha de inicio:
     - Fecha de finalización:
 
