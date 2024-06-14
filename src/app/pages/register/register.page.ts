@@ -3,6 +3,7 @@ import { Photo } from '@capacitor/camera';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumProfile } from 'src/app/enums/profile';
 import { enumRegisters } from 'src/app/enums/register';
+import { enumStoragePaths } from 'src/app/enums/storagePaths';
 import { outPutResult } from 'src/app/Interfaces/outPutResult';
 import { baseUserData, completeUserData, userAccessData } from 'src/app/Interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';

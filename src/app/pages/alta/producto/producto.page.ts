@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { StorageService } from 'src/app/services/storage.service';
+import { enumStoragePaths } from 'src/app/enums/storagePaths';
+import { product } from 'src/app/Interfaces/products';
 
 @Component({
   selector: 'app-producto',
@@ -15,21 +16,19 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class ProductoPage implements OnInit 
 {
-
-  public descripcion: string = "";
-  public nombre: string = "";
-  public precio: number= 0;
-  public tiempo: number= 0;
-  public image : any = null;
-  public fotos: Array<any> = [];
+  public arrayFotosMostrar : Array<string>;
+  public producto : product;
   public path : string = "../../../../assets/icon/icon.png";
   public grupo : FormGroup;
 
   constructor(private fb : FormBuilder, private utiles : UtilsService, private firebase : DataBaseService, private auth : AuthService, private storage : StorageService) 
   {
-    this.fotos.push(this.path);
-    this.fotos.push(this.path);
-    this.fotos.push(this.path);
+    this.producto = {} as product
+    this.producto.photoUrl = [];
+    this.arrayFotosMostrar = [];
+    this.arrayFotosMostrar.push(this.path);
+    this.arrayFotosMostrar.push(this.path);
+    this.arrayFotosMostrar.push(this.path);
     this.grupo = this.fb.group(
     {
       nombre :["",[Validators.required,Validators.minLength(1),Validators.maxLength(51)]],
@@ -52,43 +51,44 @@ export class ProductoPage implements OnInit
     
     if(image.dataUrl)
     {
-      this.fotos[index] = image.dataUrl;
+      this.producto.photoUrl[index] = image;
+      this.arrayFotosMostrar[index] = image.dataUrl;
     }
   }
 
-  ingresar()
+  async ingresar()
   {
-    if(!this.fotos.includes(this.path))
+    if(!this.arrayFotosMostrar.includes(this.path))
     {
       if(this.grupo.valid)
       {
-        for (let index = 0; index < this.fotos.length; index++) 
+        let arrayPromesasFotos = Array<Promise<string>>();
+        for (let index = 0; index < this.producto.photoUrl.length; index++) 
         {
-          const element = this.fotos[index];
-          this.storage.savePhoto(element,this.nombre+index+"."+Date.now()).then((url)=>
-          {
-            this.fotos[index] = url;
-          })
-          .catch((error)=>{
-            let mensaje = this.utiles.translateAuthError(error);
-            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-          })
+          const element = this.producto.photoUrl[index];
+
+          arrayPromesasFotos.push(this.storage.savePhoto(element,enumStoragePaths.Products,this.producto.name+index+"."+Date.now()));
         }
-        /*
-        this.storage.savePhoto(this.image,this.).then((url)=>
+        Promise.all(arrayPromesasFotos).then((urlPhotos)=>
         {
-          this.user.completeData.baseData.photoUrl = url;
-          console.log(this.user);
-          this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+          this.producto.photoUrl = urlPhotos;
+          this.firebase.saveData(enumCollectionNames.Products,this.producto)
+          .then((a)=>
+          {
+            this.utiles.showSweet({titleText:"Producto Guardado",text:"el producto se guardo correctamente",icon:"success"});
+            console.log(a);
+          })
           .catch((error)=>{
             let mensaje = this.utiles.translateAuthError(error);
             this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+            console.log(error);
           })
         })
         .catch((error)=>{
           let mensaje = this.utiles.translateAuthError(error);
           this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-        })*/
+          console.log(error);
+        })
       }
       else
       {

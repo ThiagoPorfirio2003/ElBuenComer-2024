@@ -8,9 +8,9 @@
   <div class="fondo">
     <div class="centro">
       <form [formGroup]="grupo">
-        <ion-input mode="md" errorText=" Falta nombre" [(ngModel)]="this.nombre" formControlName="nombre"   minlength="1" maxlength="51" label-placement="floating" label="Nombre del producto" placeholder="Churrazco" [clearInput]="true"></ion-input>
-        <ion-input mode="md" errorText="Falta descripción "[(ngModel)]="this.descripcion" formControlName="descripcion" minlength="1" maxlength="51" label-placement="floating" label="Descripción" placeholder="Alimento de carne..." [clearInput]="true"></ion-input>
-        <ion-input mode="md" errorText=" " [(ngModel)]="this.precio" formControlName="precio" label-placement="floating" label="Precio" type="number"></ion-input>
+        <ion-input mode="md" errorText=" Falta nombre" [(ngModel)]="this.producto.name" formControlName="nombre"   minlength="1" maxlength="51" label-placement="floating" label="Nombre del producto" placeholder="Churrazco" [clearInput]="true"></ion-input>
+        <ion-input mode="md" errorText="Falta descripción "[(ngModel)]="this.producto.description" formControlName="descripcion" minlength="1" maxlength="51" label-placement="floating" label="Descripción" placeholder="Alimento de carne..." [clearInput]="true"></ion-input>
+        <ion-input mode="md" errorText=" " [(ngModel)]="this.producto.price" formControlName="precio" label-placement="floating" label="Precio" type="number"></ion-input>
         @if(grupo.controls['precio'].touched)
         {
           @if(grupo.controls['precio'].errors?.['required'])
@@ -23,7 +23,7 @@
           }
         }
           
-        <ion-input mode="md" errorText=" " [(ngModel)]="this.tiempo" formControlName="tiempo" label-placement="floating" label="Tiempo de preparación" type="number"></ion-input>
+        <ion-input mode="md" errorText=" " [(ngModel)]="this.producto.time" formControlName="tiempo" label-placement="floating" label="Tiempo de preparación" type="number"></ion-input>
         @if(grupo.controls['tiempo'].touched)
         {
           @if(grupo.controls['tiempo'].errors?.['required'])
@@ -39,7 +39,7 @@
       <button (click)="ingresar()" class="ingresar">ingresar</button>
     </div> 
     <div class="fotos">
-      @for (item of this.fotos; track $index) 
+      @for (item of this.arrayFotosMostrar; track $index) 
       {
         <button class="imagen" (click)="TomarFoto($index)"><img id="foto" src="{{item}}"></button>
       }

@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { StorageService } from 'src/app/services/storage.service';
+import { enumStoragePaths } from 'src/app/enums/storagePaths';
 
 @Component({
   selector: 'app-owner',
@@ -94,7 +95,7 @@ export class OwnerPage implements OnInit
                 {
                   this.auth.register(this.registro).then((userRegistrado)=>{
                     this.user.email = this.registro.email;
-                    this.storage.savePhoto(this.image,this.user.dni.toString()).then((url)=>
+                    this.storage.savePhoto(this.image,enumStoragePaths.Users,this.user.dni.toString()).then((url)=>
                     {
                       this.user.photoUrl = url;
                       console.log(this.user);
