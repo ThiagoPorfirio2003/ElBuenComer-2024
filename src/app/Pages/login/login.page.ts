@@ -12,7 +12,7 @@ import { message } from 'src/app/interfaces/message';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage{
   loginForm: FormGroup;
   constructor(  
     private router: Router,
@@ -27,8 +27,6 @@ export class LoginPage implements OnInit {
       })
      }
 
-  ngOnInit() {
-  }
 
   async login() {
     await this.ionLoaderService.simpleLoader();
