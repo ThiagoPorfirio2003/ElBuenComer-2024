@@ -46,4 +46,9 @@ export class SplashScreenPage{
           });
         }
     }  
+
+    public h()
+    {
+      
+    }
 }

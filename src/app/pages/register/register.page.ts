@@ -69,14 +69,14 @@ export class RegisterPage
       {
         const userCredential = await this.authService.logIn(userAccessData);
 
-        const URL = await this.storageService.savePhoto(photo, photoName);
+        //const URL = await this.storageService.savePhoto(photo, photoName);
 
         if(userData.profile != enumProfile.Client)
         {
 
         }
 
-        (<completeUserData>userData).photoUrl = URL;
+        //(<completeUserData>userData).photoUrl = URL;
 
         //await this.dataBaseService.saveData()
 
