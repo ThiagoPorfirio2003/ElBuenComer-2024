@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
+import { collection, collectionData, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
 //import { userImage } from '../interfaces/image';
 import { baseUserData } from '../interfaces/user';
@@ -39,21 +39,21 @@ export class DataBaseService
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
 
-  public saveData(specificCollectionName : enumCollectionNames, generalCollectionName : enumCollectionNames, data : any, id? : string)
+  public saveData(collectionName : enumCollectionNames, data : any, id? : string)
   {
-    let idData : string;
-    const docGeneralData = doc(collection(this.firestore, generalCollectionName)) 
-
-    idData = docGeneralData.id;
+    let docData : DocumentReference<DocumentData, DocumentData>;
 
     if(id)
     {
-      idData = id;
+      docData = doc(collection(this.firestore, collectionName, id)); 
+    }
+    else
+    {
+      docData = doc(collection(this.firestore, collectionName)); 
+      data.id = docData.id;
     }
     
-    setDoc(doc(this.firestore, specificCollectionName, idData), data)
-
-    return setDoc(docGeneralData, data);
+    return setDoc(docData, data);
   }
 
   /*

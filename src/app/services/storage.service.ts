@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { getDownloadURL, ref, Storage, StorageReference, uploadBytes } from '@angular/fire/storage';
 import { Photo } from '@capacitor/camera';
+import { enumStoragePaths } from '../enums/storagePaths';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class StorageService {
   constructor(private storage : Storage) 
   {}          
 
-  public async savePhoto(photo : Photo, name : string) : Promise<string>
+  public async savePhoto(photo : Photo, storagePath : enumStoragePaths, name : string) : Promise<string>
   {
     let imgRef : StorageReference;
     let error : any;
@@ -20,7 +21,7 @@ export class StorageService {
 
     error = undefined;
 
-    imgRef = ref(this.storage, this.IMGS_PATH + name)
+    imgRef = ref(this.storage, this.IMGS_PATH + storagePath + name)
 
     try
     {
