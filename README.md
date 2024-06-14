@@ -6,5 +6,4 @@
  - Racioppi Mauro (Gamma)
 
 ### Tareas  a desarrollar
-
 #### Porfirio Thiago Lisandro
