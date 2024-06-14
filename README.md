@@ -1,6 +1,6 @@
 # El buen comer
 
-### Integrantes del equipo INSERTAR NOMBRE
+### Integrantes del equipo "El buen comer"
  - Porfirio Thiago Lisandro (Alfa)
  - Huallpa Wilson (Beta)
  - Racioppi Mauro (Gamma)
