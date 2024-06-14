@@ -30,6 +30,7 @@ export interface employe extends completeUserData
 //REVISAR
 export interface client<T extends baseUserData | completeUserData>
 {
+    isAproved : boolean;
     clientData : T;
     isAnonimus : boolean;
     state : enumClientState;
