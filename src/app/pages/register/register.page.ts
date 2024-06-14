@@ -5,10 +5,10 @@ import { enumProfile } from 'src/app/enums/profile';
 import { enumRegisters } from 'src/app/enums/register';
 import { outPutResult } from 'src/app/interfaces/outPutResult';
 import { baseUserData, completeUserData, userAccessData } from 'src/app/interfaces/user';
-import { AuthService } from 'src/app/Services/auth.service';
-import { DataBaseService } from 'src/app/Services/data-base.service';
-import { StorageService } from 'src/app/Services/storage.service';
-import { UtilsService } from 'src/app/Services/utils.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-register',

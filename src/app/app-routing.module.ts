@@ -15,10 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
   {
-    path: 'splash-screen',
-    loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
-  },
-  {
     path: '',
     redirectTo: 'splash-screen',
     pathMatch: 'full'

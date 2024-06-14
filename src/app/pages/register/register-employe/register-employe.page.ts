@@ -5,8 +5,8 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { enumProfile } from 'src/app/enums/profile';
 import { message } from 'src/app/interfaces/message';
 import { completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
-import { AuthService } from 'src/app/Services/auth.service';
-import { UtilsService } from 'src/app/Services/utils.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-register-employe',
