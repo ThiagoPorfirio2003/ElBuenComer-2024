@@ -9,6 +9,8 @@
 
 #### Porfirio Thiago Lisandro
 
+**Rama:** develop-thiagop
+
  - Creación del **splash estático y animado**
     - Fecha de inicio:
     - Fecha de finalización: 
@@ -21,7 +23,6 @@
     - Fecha de inicio:
     - Fecha de finalización:
   
-**Rama:** develop-thiagop
 
 #### Huallpa Wilson
 
