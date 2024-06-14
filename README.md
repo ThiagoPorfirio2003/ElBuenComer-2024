@@ -1,6 +1,9 @@
 # El buen comer
 
-## Porfirio Thiago Lisandro
+### Integrantes del equipo INSERTAR NOMBRE
+Porfirio Thiago Lisandro (Alfa)
+Racioppi Mauro 
+Huallpa Wilson
 
 ### Tareas  a desarrollar
 
