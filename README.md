@@ -32,7 +32,9 @@
     - Fecha de inicio:
     - Fecha de finalización: 
  
- - Creación del **alta de clientes**
+ - Creación del **alta de clientes**:
+    - Fecha de inicio:
+    - Fecha de finalización: 
 
 ### Racioppi Mauro
 
