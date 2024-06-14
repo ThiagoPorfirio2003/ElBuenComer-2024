@@ -26,6 +26,8 @@
 
 #### Huallpa Wilson
 
+**Rama:** develop-wilsonh
+
  - Creación del **inicio de sesión**
     - Fecha de inicio:
     - Fecha de finalización: 
@@ -34,9 +36,16 @@
 
 ### Racioppi Mauro
 
+**Rama:** develop-mauror
+
  - Creación del logo de la app y la empresa
     - Fecha de inicio:
     - Fecha de finalización:
 
  - Creación del **alta de dueño / supervisor**
+    - Fecha de inicio:
+    - Fecha de finalización:
+      
  - Creación del **alta de productos**
+    - Fecha de inicio:
+    - Fecha de finalización:
