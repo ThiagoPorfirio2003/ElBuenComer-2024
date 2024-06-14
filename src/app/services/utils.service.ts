@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, LoadingOptions } from '@ionic/angular';
 import Swal, { SweetAlertOptions } from 'sweetalert2'
-import { message } from '../interfaces/message';
+import { message } from '../Interfaces/message';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,10 @@ export class UtilsService {
   public splashScreenHasShown : boolean;
 
   constructor(private loadingController : LoadingController,
-    private router : Router) 
-    { 
-      this.splashScreenHasShown = false;
-    }
+  private router : Router) 
+  { 
+    this.splashScreenHasShown = false;
+  }
 
   public getSweet(options : SweetAlertOptions)
   {
@@ -116,10 +116,20 @@ export class UtilsService {
         errorMessageTranslated.content = '¿Seguro que no querés subir una? También podés hacerlo después';
         break;
 
-      case 'FP':
-        errorMessageTranslated.title = 'Perfil ausente';
-        errorMessageTranslated.content = 'Hay que elegir el perfil'
-        break;
+    case 'FP':
+      errorMessageTranslated.title = 'Perfil ausente';
+      errorMessageTranslated.content = 'Hay que elegir el perfil'
+      break;
+
+    case 'PR':
+      errorMessageTranslated.title = 'Persona Registrada';
+      errorMessageTranslated.content = 'Esta persona ya esta registrada'
+      break;
+
+    case 'CuI':
+      errorMessageTranslated.title = 'Cuil Invalido';
+      errorMessageTranslated.content = 'El formato del cuil debe ser: 00-00000000-00'
+      break;
 
       default:
         errorMessageTranslated.title = 'ERROR'

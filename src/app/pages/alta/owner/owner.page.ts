@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
+import { employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { UtilsService } from 'src/app/Services/utils.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -24,8 +25,6 @@ export class OwnerPage implements OnInit
   constructor(private fb : FormBuilder, private utiles : UtilsService, private firebase : DataBaseService, private auth : AuthService, private storage : StorageService) 
   {
     this.user ={} as employe;
-    this.user.completeData = {} as completeUserData;
-    this.user.completeData.baseData = {} as baseUserData;
     this.registro={} as userAccessData;
     this.grupo = this.fb.group(
     {
@@ -57,7 +56,7 @@ export class OwnerPage implements OnInit
       supervisor.style.background = "none";
     }
 
-    this.user.completeData.baseData.profile = id;
+    this.user.profile = id;
   }
 
 
@@ -81,21 +80,28 @@ export class OwnerPage implements OnInit
   {
     if(this.path != "../../../../assets/icon/icon.png")
     {
-      if(this.user.completeData.baseData.profile!=undefined)
+      if(this.user.profile!=undefined)
       {
-        if(this.grupo.valid)
+        if(this.ValidarCuil())
         {
-          this.firebase.getUserByDNI(this.user.completeData.dni).then((user)=>
+          if(this.grupo.valid)
           {
-            if(user.size ==0)
+            this.firebase.getUserByDNI(this.user.dni).then((user)=>
             {
-              this.user.completeData.baseData.email = this.registro.email;
-              this.auth.register(this.registro).then((userRegistrado)=>{
-                this.storage.savePhoto(this.image,this.user.completeData.dni.toString()).then((url)=>
-                {
-                  this.user.completeData.baseData.photoUrl = url;
-                  console.log(this.user);
-                  this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+              if(user.size ==0)
+              {
+                this.auth.register(this.registro).then((userRegistrado)=>{
+                  this.user.email = this.registro.email;
+                  this.storage.savePhoto(this.image,this.user.dni.toString()).then((url)=>
+                  {
+                    this.user.photoUrl = url;
+                    console.log(this.user);
+                    this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+                    .catch((error)=>{
+                      let mensaje = this.utiles.translateAuthError(error);
+                      this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+                    })
+                  })
                   .catch((error)=>{
                     let mensaje = this.utiles.translateAuthError(error);
                     this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
@@ -105,27 +111,28 @@ export class OwnerPage implements OnInit
                   let mensaje = this.utiles.translateAuthError(error);
                   this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
                 })
-              })
-              .catch((error)=>{
-                let mensaje = this.utiles.translateAuthError(error);
+              }
+              else
+              {
+                let mensaje = this.utiles.translateAuthError("PR");
                 this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-              })
-            }
-            else
-            {
-              console.log(user);
-              this.utiles.showSweet({titleText:"Error",text:"Persona ya registrada",icon:"warning"})
-            }
-
-          })
-          .catch((error)=>{
-            let mensaje = this.utiles.translateAuthError(error);
-          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-          })
+              }
+  
+            })
+            .catch((error)=>{
+              let mensaje = this.utiles.translateAuthError(error);
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+            })
+          }
+          else
+          {
+            let mensaje = this.utiles.translateAuthError("CI");
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
+          }
         }
         else
         {
-          let mensaje = this.utiles.translateAuthError("CI");
+          let mensaje = this.utiles.translateAuthError("CuI");
           this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
         }
       }
@@ -140,6 +147,39 @@ export class OwnerPage implements OnInit
       let mensaje = this.utiles.translateAuthError("FF");
       this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
     }
+  }
+
+  public analyzeQR()
+  {
+    CapacitorBarcodeScanner.scanBarcode({hint: 2, cameraDirection: 1,scanOrientation: 1})
+    .then((value)=>
+    {
+      const dniRed : Array<string> = value.ScanResult.split('@');
+      const controls = this.grupo.controls;
+      const CUIL_complete : number = parseInt(dniRed[8]);
+
+      this.user.name = dniRed[2];
+      this.user.surname = dniRed[1];
+      this.user.dni = dniRed[4];
+      this.user.cuil = Math.floor(CUIL_complete / 10) + "-" + dniRed[4] + "-" + CUIL_complete % 10
+      
+      /*controls['surname'].setValue(dniRed[1]);
+      controls['name'].setValue(dniRed[2]);
+      controls['CUIL_Start'].setValue(Math.floor(CUIL_complete / 10));
+      controls['DNI'].setValue(parseInt(dniRed[4]));
+      controls['CUIL_End'].setValue(CUIL_complete % 10);*/
+    })
+  }
+
+  private ValidarCuil() : boolean
+  {
+    let retorno = false
+    const regex = /^\d{2}-\d{8}-\d{1}$/;
+    if(regex.test(this.user.cuil))
+    {
+      retorno = true
+    }
+    return retorno
   }
 
 }

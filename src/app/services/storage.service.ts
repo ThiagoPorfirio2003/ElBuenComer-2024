@@ -24,11 +24,6 @@ export class StorageService {
 
     try
     {
-<<<<<<< HEAD
-      //aca mandasa solo la foto
-=======
-      //await uploadBytes(imgRef, this.base64ToBlob(photo.base64String!, photo.format));
->>>>>>> main
       await uploadBytes(imgRef, this.dataURLToBlob(photo.dataUrl!));
       photoUrl = await getDownloadURL(imgRef)
     }
@@ -65,23 +60,6 @@ export class StorageService {
     const byteArray = new Uint8Array(byteNumbers);
     return new Blob([byteArray], { type: 'image/' + extension });
   }*/
-
-  private dataURLToBlob(dataURL: string): Blob 
-  {
-    const [header, base64String] = dataURL.split(',');
-    const mimeString = header.match(/:(.*?);/)![1];
-
-    const byteCharacters = atob(base64String);
-    const byteNumbers = new Array(byteCharacters.length);
-
-    for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-
-    const byteArray = new Uint8Array(byteNumbers);
-    return new Blob([byteArray], { type: mimeString });
-  }
-
 
   //USAMOS ESATA PARA GUARDAR LA FOTO
 

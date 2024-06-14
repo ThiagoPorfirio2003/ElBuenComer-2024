@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { enumProfile } from 'src/app/enums/profile';
-import { message } from 'src/app/interfaces/message';
-import { completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
+import { message } from 'src/app/Interfaces/message';
+import { completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilsService } from 'src/app/services/utils.service';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/Interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { UtilsService } from 'src/app/Services/utils.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';

@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-<<<<<<< HEAD
 import { baseUserData, client, completeUserData, employe, userAccessData } from '../Interfaces/user';
-=======
-import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
 import { enumProfile } from '../enums/profile';
->>>>>>> main
 
 @Injectable({
   providedIn: 'root'
