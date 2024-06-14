@@ -23,7 +23,7 @@ export class DataBaseService
 
   public getUserByDNI(dni : string)
   {
-    return getDocs(query(this.getCollectionRef(enumCollectionNames.Users), where('completeData.dni','==', dni)));
+    return getDocs(query(this.getCollectionRef(enumCollectionNames.Users), where('dni','==', dni)));
   }
 
   public getDocRef(collectionName : enumCollectionNames, idDoc : string)

@@ -35,7 +35,7 @@ export class ProductoPage implements OnInit
       nombre :["",[Validators.required,Validators.minLength(1),Validators.maxLength(51)]],
       descripcion :["",[Validators.required,Validators.minLength(1),Validators.maxLength(51)]],
       precio :["",[Validators.required,Validators.min(1)]],
-      tiempo :["",[Validators.required,Validators.min(1)]],
+      tiempo :["",[Validators.required,Validators.min(1)]]
     });
   }
 
@@ -67,7 +67,7 @@ export class ProductoPage implements OnInit
           const element = this.fotos[index];
           this.storage.savePhoto(element,this.nombre+index+"."+Date.now()).then((url)=>
           {
-            //firebase
+            this.fotos[index] = url;
           })
           .catch((error)=>{
             let mensaje = this.utiles.translateAuthError(error);

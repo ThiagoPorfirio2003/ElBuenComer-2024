@@ -128,7 +128,12 @@ export class UtilsService {
 
     case 'CuI':
       errorMessageTranslated.title = 'Cuil Invalido';
-      errorMessageTranslated.content = 'El formato del cuil debe ser: 00-00000000-00'
+      errorMessageTranslated.content = 'El formato del cuil debe ser: 00-00000000-0'
+      break;
+
+    case 'CDNI':
+      errorMessageTranslated.title = 'Cuil Invalido';
+      errorMessageTranslated.content = 'El dni que ingreso no es el mimsmo que el del cuil'
       break;
 
       default:

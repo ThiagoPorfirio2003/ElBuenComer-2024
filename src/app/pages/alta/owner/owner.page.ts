@@ -84,19 +84,26 @@ export class OwnerPage implements OnInit
       {
         if(this.ValidarCuil())
         {
-          if(this.grupo.valid)
+          if(this.DniCuil())
           {
-            this.firebase.getUserByDNI(this.user.dni).then((user)=>
+            if(this.grupo.valid)
             {
-              if(user.size ==0)
+              this.firebase.getUserByDNI(this.user.dni).then((user)=>
               {
-                this.auth.register(this.registro).then((userRegistrado)=>{
-                  this.user.email = this.registro.email;
-                  this.storage.savePhoto(this.image,this.user.dni.toString()).then((url)=>
-                  {
-                    this.user.photoUrl = url;
-                    console.log(this.user);
-                    this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+                if(user.size ==0)
+                {
+                  this.auth.register(this.registro).then((userRegistrado)=>{
+                    this.user.email = this.registro.email;
+                    this.storage.savePhoto(this.image,this.user.dni.toString()).then((url)=>
+                    {
+                      this.user.photoUrl = url;
+                      console.log(this.user);
+                      this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
+                      .catch((error)=>{
+                        let mensaje = this.utiles.translateAuthError(error);
+                        this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+                      })
+                    })
                     .catch((error)=>{
                       let mensaje = this.utiles.translateAuthError(error);
                       this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
@@ -106,27 +113,28 @@ export class OwnerPage implements OnInit
                     let mensaje = this.utiles.translateAuthError(error);
                     this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
                   })
-                })
-                .catch((error)=>{
-                  let mensaje = this.utiles.translateAuthError(error);
+                }
+                else
+                {
+                  let mensaje = this.utiles.translateAuthError("PR");
                   this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-                })
-              }
-              else
-              {
-                let mensaje = this.utiles.translateAuthError("PR");
-                this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-              }
-  
-            })
-            .catch((error)=>{
-              let mensaje = this.utiles.translateAuthError(error);
-            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
-            })
+                }
+    
+              })
+              .catch((error)=>{
+                let mensaje = this.utiles.translateAuthError(error);
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+              })
+            }
+            else
+            {
+              let mensaje = this.utiles.translateAuthError("CI");
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
+            }
           }
           else
           {
-            let mensaje = this.utiles.translateAuthError("CI");
+            let mensaje = this.utiles.translateAuthError("CDNI");
             this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"warning"})
           }
         }
@@ -173,13 +181,24 @@ export class OwnerPage implements OnInit
 
   private ValidarCuil() : boolean
   {
-    let retorno = false
+    let retorno = false;
     const regex = /^\d{2}-\d{8}-\d{1}$/;
     if(regex.test(this.user.cuil))
     {
       retorno = true
     }
     return retorno
+  }
+
+  private DniCuil() : boolean
+  {
+    let retorno = false;
+    let dni =this.user.cuil.split('-');
+    if(dni[1] == this.user.dni)
+    {
+      retorno = true
+    }
+    return retorno;
   }
 
 }
