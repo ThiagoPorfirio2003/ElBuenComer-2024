@@ -39,12 +39,15 @@ export class LoginPage implements OnInit {
     try {
       await this.authService.logIn(user);
       this.router.navigate(['/home']);
-    } catch (er) {
-      if (er instanceof Error && 'code' in er) {
-        const errorMessage : message = this.utils.translateAuthError('FFO')
-        this.ionToastService.showToastError(errorMessage.content);
+    }catch (error) {
+      //Funcionando! pero lo voy refactorizar mas adelante.
+      if (error instanceof Error && 'code' in error) {
+        const code = (error as { code: unknown }).code;
+        if (typeof code === 'string') {
+          const errorMessage : message = this.utils.translateAuthError(code)
+          this.ionToastService.showToastError(errorMessage.content);
+        }
       }
-      
     } finally {
       await this.ionLoaderService.dismissLoader();
     }
