@@ -10,7 +10,7 @@
 #### Porfirio Thiago Lisandro
 
  - Creación del **splash estático y animado**
-     *Hola 
+     * Hola 
  - Creación del **alta de empleados**
  - Creación del **alta de mesa**
 
