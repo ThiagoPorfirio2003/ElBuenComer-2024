@@ -10,10 +10,14 @@
 #### Porfirio Thiago Lisandro
 
  - Creación del **splash estático y animado**
-     * Hola 
+     - Fecha de inicio:
+     - Fecha de finalización: 
  - Creación del **alta de empleados**
+     - Fecha de inicio:
+     - Fecha de finalización: 
  - Creación del **alta de mesa**
-
+     - Fecha de inicio:
+     - Fecha de finalización: 
 
 #### Huallpa Wilson
 
