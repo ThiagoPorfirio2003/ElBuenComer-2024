@@ -2,8 +2,8 @@
 
 ### Integrantes del equipo INSERTAR NOMBRE
  - Porfirio Thiago Lisandro (Alfa)
- - Racioppi Mauro (Beta)
- - Huallpa Wilson (Gamma)
+ - Huallpa Wilson (Beta)
+ - Racioppi Mauro (Gamma)
 
 ### Tareas  a desarrollar
 
