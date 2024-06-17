@@ -6,5 +6,6 @@ export enum enumProfile
     Waiter,
     Chef,
     Bartender,
-    Client
+    Client,
+    AnonimusClient
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
+import { anonimusClient, baseUserData, completeUserData, employe, userAccessData } from '../interfaces/user';
 import { enumProfile } from '../enums/profile';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { enumProfile } from '../enums/profile';
 })
 export class AuthService {
 
-  public logedUserData! : any;
+  public logedUserData! : baseUserData;
   public isLogued : boolean;
 
    constructor(private auth : Auth) 
@@ -27,12 +27,12 @@ export class AuthService {
 
    public register(userAccessData : userAccessData)
    {
-     return createUserWithEmailAndPassword(this.auth, userAccessData.email, userAccessData.password)
+      return createUserWithEmailAndPassword(this.auth, userAccessData.email, userAccessData.password)
    }
  
    public logIn(userAccessData : userAccessData)
    {
-     return signInWithEmailAndPassword(this.auth, userAccessData.email, userAccessData.password);
+      return signInWithEmailAndPassword(this.auth, userAccessData.email, userAccessData.password);
    }     
 
    public getAuthUser()
@@ -52,8 +52,10 @@ export class AuthService {
     this.logedUserData = userData;
    }
 
-   public getUserProfile() : enumProfile
+   /*
+   public getProfileTransformed<T extends completeUserData | employe | anonimusClient>() : T
    {
-      return (<baseUserData>this.logedUserData).profile;
+      return <T><unknown>this.logedUserData.profile;
    }
+    */
 }
