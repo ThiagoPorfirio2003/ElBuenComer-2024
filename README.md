@@ -38,7 +38,7 @@
     - Fecha de inicio: 14/6
     - Fecha de finalización: A definir 
 
-### :vampire: Porfirio Thiago Lisandro
+### :santa: Porfirio Thiago Lisandro
 
 **Rama:** develop-mauror
 
