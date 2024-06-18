@@ -32,7 +32,7 @@
 
 ### Icono
 
-![Icono de la aplicación](src/assets/images/LogoApp.png)
+![Icono de la aplicación](src/assets/images/LogoApp.png){ .image25percent }
 
 ### Splash Screen animado
 
