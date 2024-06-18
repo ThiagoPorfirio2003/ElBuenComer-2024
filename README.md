@@ -7,7 +7,7 @@
  - Huallpa Wilson (Beta) 🧙
  - Racioppi Mauro (Gamma) 🧛
 
-## Tareas individuales 
+## Tareas individuales 🧱
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
@@ -18,7 +18,7 @@
 
 ## Ramas 🌿
 
-  - 🪵 Main 
+  - 🌲 Main 
   - 🎅 develop-thiagop
   - 🧙 develop-wilsonh
   - 🧛 develop-mauror
