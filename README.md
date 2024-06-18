@@ -7,7 +7,7 @@
  - Huallpa Wilson (Beta) 🧙
  - Racioppi Mauro (Gamma) 🧛
 
-## 🧱 Tareas individuales 🧱
+## Tareas individuales 🧱
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
@@ -16,7 +16,7 @@
 | Creación Splash Screen animado y estático | Creación del método para enviar correos automático ⏳ | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
 
-## 🌿 Ramas 🌿
+## Ramas 🌿
 
   - 🌲 Main 
   - 🎅 develop-thiagop
