@@ -1,11 +1,16 @@
 # El buen comer 🍽️
 
-![Icono de la aplicación](src/assets/images/LogoApp.png)
-
 ## Integrantes del equipo 🏭
  - Porfirio Thiago Lisandro (Alfa) 🎅
  - Huallpa Wilson (Beta) 🧙
  - Racioppi Mauro (Gamma) 🧛
+
+## Ramas 🌿
+
+  - 🌲 Main 
+  - 🎅 develop-thiagop
+  - 🧙 develop-wilsonh
+  - 🧛 develop-mauror
 
 ## Tareas 🧱
 
@@ -23,12 +28,15 @@
   - 📁 Creación de la estructura de datos y archivos
   - 🧰 Creación de métodos de utilería
 
-## Ramas 🌿
+## Demostraciones
 
-  - 🌲 Main 
-  - 🎅 develop-thiagop
-  - 🧙 develop-wilsonh
-  - 🧛 develop-mauror
+### Icono
+
+![Icono de la aplicación](src/assets/images/LogoApp.png)
+
+### Splash Screen animado
+
+![splashScreen (online-video-cutter com)](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/81282e33-1198-46fb-b0d5-36757d305945)
 
 <!--
 ### 🎅 Porfirio Thiago Lisandro
