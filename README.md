@@ -1,6 +1,6 @@
 <div style="text-align: center;">
   
-# El buen comer
+ El buen comer
 
 </div>
 
