@@ -38,7 +38,7 @@
     - Fecha de inicio: 14/6
     - Fecha de finalización: A definir 
 
-## 🧛 Racioppi Mauro
+### 🧛 Racioppi Mauro
 
 **Rama:** develop-mauror
 
