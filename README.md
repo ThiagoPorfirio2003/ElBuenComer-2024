@@ -7,7 +7,9 @@
  - Huallpa Wilson (Beta) 🧙
  - Racioppi Mauro (Gamma) 🧛
 
-## Tareas individuales 🧱
+## Tareas 🧱
+
+### Individuales 🤔
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
@@ -15,6 +17,8 @@
 | Interacción con el proyecto de Firebase | Creación del alta para el usuario de tipo cliente | Creación del listado de clientes pendientes de aprobación |
 | Creación Splash Screen animado y estático | Creación del método para enviar correos automático ⏳ | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
+
+### Grupales 👨‍👩‍👦
 
 ## Ramas 🌿
 
