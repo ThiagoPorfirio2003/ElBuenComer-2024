@@ -9,7 +9,7 @@
 
 ## Tareas 🧱
 
-### 👨‍🦱 Individuales
+### Individuales 👨‍🦱
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
@@ -18,7 +18,7 @@
 | Creación Splash Screen animado y estático | Creación del método para enviar correos automático ⏳ | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
 
-### 👨‍👩‍👦 Grupales
+### Grupales 👨‍👩‍👦
 
   - Creación de la estructura de datos y archivos
   - Creacion de la estructura de datos
