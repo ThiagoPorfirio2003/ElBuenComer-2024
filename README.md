@@ -3,9 +3,9 @@
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 
 ## Integrantes del equipo
- - Porfirio Thiago Lisandro (Alfa)
- - Huallpa Wilson (Beta)
- - Racioppi Mauro (Gamma)
+ - Porfirio Thiago Lisandro (Alfa) :superhero_man:
+ - Huallpa Wilson (Beta) :mage:
+ - Racioppi Mauro (Gamma) :vampire:
 
 ## Tareas a desarrollar
 
