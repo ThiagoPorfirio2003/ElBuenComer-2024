@@ -2,14 +2,14 @@
 
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 
-## Integrantes del equipo
+## 🏭 Integrantes del equipo
  - Porfirio Thiago Lisandro (Alfa) 🎅
  - Huallpa Wilson (Beta) 🧙
  - Racioppi Mauro (Gamma) 🧛
 
 ## Tareas 🧱
 
-### Individuales 🤔
+### 👨‍🦱 Individuales
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
@@ -18,7 +18,7 @@
 | Creación Splash Screen animado y estático | Creación del método para enviar correos automático ⏳ | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
 
-### Grupales 👨‍👩‍👦
+### 👨‍👩‍👦 Grupales
 
   - Creación de la estructura de datos y archivos
   - Creacion de la estructura de datos
