@@ -18,10 +18,10 @@
 
 ## 🌿 Ramas 
 
-   🌲 Main 
-   🎅 develop-thiagop
-   🧙 develop-wilsonh
-   🧛 develop-mauror
+  - 🌲 Main 
+  - 🎅 develop-thiagop
+  - 🧙 develop-wilsonh
+  - 🧛 develop-mauror
 
 <!--
 ### 🎅 Porfirio Thiago Lisandro
