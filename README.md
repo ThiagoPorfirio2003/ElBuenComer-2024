@@ -11,9 +11,9 @@
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
-| Creación y vinculación con el proyecto de Firebase |  | Creación del icono de la app |
-| Interacción con el proyecto de Firebase |  | Creación del listado de clientes pendientes de aprobación |
-| Creación Splash Screen animado y estático |  | Creación push notificación genérico |
+| Creación y vinculación con el proyecto de Firebase | Creación del login | Creación del icono de la app |
+| Interacción con el proyecto de Firebase | Creación del alta para el usuario de tipo cliente | Creación del listado de clientes pendientes de aprobación |
+| Creación Splash Screen animado y estático | Creación del método para enviar correos automático | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
 
 <!--
