@@ -1,4 +1,8 @@
+<div style="text-align: center;">
+  
 # El buen comer
+
+</div>
 
 ## Integrantes del equipo "El buen comer"
  - Porfirio Thiago Lisandro (Alfa)
