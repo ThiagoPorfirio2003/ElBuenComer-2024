@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
+import { anonimusClient } from 'src/app/interfaces/prueba';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -38,6 +39,8 @@ export class SplashScreenPage{
                 this.footerClass = 'slide-in-bottom';
               }, 2700)
 
+              let a : anonimusClient = {} as anonimusClient;
+
               setTimeout(() => 
               {
                  this.utilsService.changeRoute('/login')
@@ -46,9 +49,4 @@ export class SplashScreenPage{
           });
         }
     }  
-
-    public h()
-    {
-      
-    }
 }
