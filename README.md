@@ -16,7 +16,7 @@
 | Creación Splash Screen animado y estático | Creación del método para enviar correos automático | Creación push notificación genérico |
 | Creación de escáner QR DNI genérico | 
 
-## Ramas
+## Ramas 🌿
 
   - Main 
   - 🎅 develop-thiagop
