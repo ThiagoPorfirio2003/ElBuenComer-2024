@@ -36,8 +36,7 @@
 
 ### Splash Screen animado
 
-![Gif](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/c36dc3f5-5924-477f-aeca-4cf50da9a1ad)
-
+![Gif del Splash Screen animado](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/e015494b-ca4f-431f-a026-fecbde7a3b98)
 <!--
 ### 🎅 Porfirio Thiago Lisandro
 
