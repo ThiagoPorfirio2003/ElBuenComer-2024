@@ -9,7 +9,7 @@
 
 ## Tareas individuales
 
-| 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
+| ### 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
 |h| git status     | git status    |
 |h| git diff       | git diff      |
