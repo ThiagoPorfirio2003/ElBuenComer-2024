@@ -32,11 +32,11 @@
 
 ### Icono
 
-[Icono de la aplicación](src/assets/images/LogoApp.png)
+![Icono de la aplicación](src/assets/images/LogoApp.png)
 
 ### Splash Screen animado
 
-[download](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/c36dc3f5-5924-477f-aeca-4cf50da9a1ad)
+![Gif](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/c36dc3f5-5924-477f-aeca-4cf50da9a1ad)
 
 <!--
 ### 🎅 Porfirio Thiago Lisandro
