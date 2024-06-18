@@ -11,8 +11,8 @@
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+|h| git status     | git status    |
+|h| git diff       | git diff      |
 
 <!--
 ### 🎅 Porfirio Thiago Lisandro
