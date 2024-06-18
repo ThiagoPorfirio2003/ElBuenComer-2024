@@ -9,6 +9,7 @@
 
 ## Tareas individuales
 
+<!--
 ### 🎅 Porfirio Thiago Lisandro
 
 **Rama:** develop-thiagop
@@ -54,8 +55,9 @@
     - Fecha de inicio: 12/6
     - Fecha de finalización: 14/6
 
-| Encabezado 1 | Encabezado 2 | Encabezado 3 |
-|--------------|--------------|--------------|
-| Fila 1 Col 1 | Fila 1 Col 2 | Fila 1 Col 3 |
-| Fila 2 Col 1 | Fila 2 Col 2 | Fila 2 Col 3 |
-| Fila 3 Col 1 | Fila 3 Col 2 | Fila 3 Col 3 |
+  -->
+| TITULO|
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
