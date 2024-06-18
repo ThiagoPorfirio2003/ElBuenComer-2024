@@ -7,9 +7,9 @@
  - Huallpa Wilson (Beta) :mage:
  - Racioppi Mauro (Gamma) :vampire:
 
-## Tareas a desarrollar
+## Tareas individuales
 
-#### Porfirio Thiago Lisandro
+#### Porfirio Thiago Lisandro :superhero_man:
 
 **Rama:** develop-thiagop
 
@@ -26,7 +26,7 @@
     - Fecha de finalización: A definir
   
 
-#### Huallpa Wilson
+#### Huallpa Wilson :mage:
 
 **Rama:** develop-wilsonh
 
@@ -38,7 +38,7 @@
     - Fecha de inicio: 14/6
     - Fecha de finalización: A definir 
 
-### Racioppi Mauro
+### Racioppi Mauro :vampire:
 
 **Rama:** develop-mauror
 
