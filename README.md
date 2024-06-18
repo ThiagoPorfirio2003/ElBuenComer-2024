@@ -11,10 +11,10 @@
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
-|Creación y vinculación con el proyecto de Firebase| git status     | git status    |
-|Interacción con el proyecto de Firebase| git diff       | git diff      |
-|Creación Splash Screen animado y estático|
-|Creación de escáner QR DNI genérico|
+| Creación y vinculación con el proyecto de Firebase |  | Creación del icono de la app |
+| Interacción con el proyecto de Firebase |  | Creación del listado de clientes pendientes de aprobación |
+| Creación Splash Screen animado y estático |  | Creación push notificación genérico |
+| Creación de escáner QR DNI genérico | 
 
 <!--
 ### 🎅 Porfirio Thiago Lisandro
