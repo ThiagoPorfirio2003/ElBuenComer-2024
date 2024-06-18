@@ -20,6 +20,9 @@
 
 ### Grupales 👨‍👩‍👦
 
+  - Creación de la estructura de datos y archivos
+  - Creacion de la estructura de datos
+
 ## Ramas 🌿
 
   - 🌲 Main 
