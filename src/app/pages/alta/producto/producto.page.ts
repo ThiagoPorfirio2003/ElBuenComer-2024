@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { StorageService } from 'src/app/services/storage.service';
 import { enumStoragePaths } from 'src/app/enums/storagePaths';
-import { product } from 'src/app/Interfaces/products';
+import { product } from 'src/app/interfaces/products';
 
 @Component({
   selector: 'app-producto',
@@ -38,7 +38,8 @@ export class ProductoPage implements OnInit
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async TomarFoto(index: number)
   {
