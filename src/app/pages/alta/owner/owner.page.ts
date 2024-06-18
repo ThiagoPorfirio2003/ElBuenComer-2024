@@ -99,6 +99,7 @@ export class OwnerPage implements OnInit
                     {
                       this.user.photoUrl = url;
                       console.log(this.user);
+                      this.user.id = userRegistrado.user.uid;
                       this.firebase.saveUser(enumCollectionNames.Employes,this.user,userRegistrado.user.uid)
                       .catch((error)=>{
                         let mensaje = this.utiles.translateAuthError(error);

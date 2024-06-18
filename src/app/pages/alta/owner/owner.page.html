@@ -32,7 +32,7 @@
       <ion-input mode="md" errorText="Falta contraseña" [(ngModel)]="this.registro.password" formControlName="contraseña" label-placement="floating" label="contraseña" type="password" [clearInput]="true"></ion-input>
       <ion-input mode="md" errorText=" Falta nombre" [(ngModel)]="this.user.name" formControlName="nombre"   minlength="1" maxlength="51" label-placement="floating" label="nombre" placeholder="juan" [clearInput]="true"></ion-input>
       <ion-input mode="md" errorText="Falta apellido "[(ngModel)]="this.user.surname" formControlName="apellido" minlength="1" maxlength="51" label-placement="floating" label="apellido" placeholder="Perez" [clearInput]="true"></ion-input>
-      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.dni" formControlName="dni" min="9999999" max="70000000" label-placement="floating" label="Dni" placeholder="00000000" type="number"><ion-icon slot="end" name="qr-code-outline"></ion-icon></ion-input>
+      <ion-input mode="md" errorText=" " [(ngModel)]="this.user.dni" formControlName="dni" min="9999999" max="70000000" label-placement="floating" label="Dni" placeholder="00000000" type="number"><ion-icon (click)="analyzeQR()" slot="end" name="qr-code-outline"></ion-icon></ion-input>
     
       @if(grupo.controls['dni'].touched)
       {

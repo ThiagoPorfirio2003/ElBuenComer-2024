@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { enumProfile } from 'src/app/enums/profile';
-import { message } from 'src/app/Interfaces/message';
+import { message } from 'src/app/interfaces/message';
 import { outPutResult, status } from 'src/app/interfaces/outPutResult';
 import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';

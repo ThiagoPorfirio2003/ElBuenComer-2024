@@ -6,7 +6,7 @@ import { userAccessData } from 'src/app/interfaces/user';
 import { UtilsService } from 'src/app/services/utils.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
 import { IonToastService } from 'src/app/services/ion-toast.service';
-import { message } from 'src/app/Interfaces/message';
+import { message } from '../../interfaces/message';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',

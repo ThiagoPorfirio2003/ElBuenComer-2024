@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, LoadingOptions } from '@ionic/angular';
 import Swal, { SweetAlertOptions } from 'sweetalert2'
-import { message } from '../Interfaces/message';
+import { message } from '../interfaces/message';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -145,4 +146,18 @@ export class UtilsService {
     return errorMessageTranslated;
   }
 
+  SendPushNotification(titulo: string, descripcion : string)
+  {
+    LocalNotifications.schedule(
+      {
+        notifications: [
+          {
+            id: 1,
+            title: titulo,
+            body: descripcion
+          }
+        ]
+      }
+    )
+  }
 }
