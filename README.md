@@ -9,6 +9,11 @@
 
 ## Tareas individuales
 
+| 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
+| :---:        |     :---:      |         :---: |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
+
 <!--
 ### 🎅 Porfirio Thiago Lisandro
 
@@ -56,8 +61,3 @@
     - Fecha de finalización: 14/6
 
   -->
-| TITULO|
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
