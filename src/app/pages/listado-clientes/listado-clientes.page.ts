@@ -26,6 +26,7 @@ export class ListadoClientesPage implements OnInit
           this.clientes.push(item);
         }
       })
+      this.util.SendPushNotification("Nuevo Cliente", "Un nuevo cliente esta esperando a ser registrado");
     })
     
   }
@@ -42,13 +43,25 @@ export class ListadoClientesPage implements OnInit
 
   Permitir(cliente : any)
   {
-    cliente.state = enumClientState.Accepted;
-    this.firebase.saveUser(enumCollectionNames.Clients,cliente,cliente.id)
+    this.cambiar("Aceptar Cliente","Estas seguro de querer aceptar al cliente: " + cliente.name, enumClientState.Accepted, cliente);
   }
 
   Denegar(cliente : any)
   {
-    cliente.state = enumClientState.Rejected;
-    this.firebase.saveUser(enumCollectionNames.Clients,cliente,cliente.id)
+    this.cambiar("Denegar Cliente","Estas seguro de querer denegar al cliente: " + cliente.name, enumClientState.Rejected, cliente);
+  }
+
+  private cambiar(title : string, text : string, estado : enumClientState, cliente : any)
+  {
+    this.util.showSweet({title: title, text: text, 
+      cancelButtonText:"no, cambie de opinion", confirmButtonText: "Estoy seguro" })
+    .then((result)=>
+    {
+      if(result)
+      {
+        cliente.state = estado;
+        this.firebase.saveUser(enumCollectionNames.Clients,cliente,cliente.id)
+      }
+    })
   }
 }
