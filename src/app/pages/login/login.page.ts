@@ -12,7 +12,8 @@ import { message } from 'src/app/Interfaces/message';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage
+{
   loginForm: FormGroup;
   constructor(  
     private router: Router,
@@ -26,9 +27,6 @@ export class LoginPage implements OnInit {
         password: new FormControl('', [Validators.required,Validators.minLength(6)]),
       })
      }
-
-  ngOnInit() {
-  }
 
   async login() {
     await this.ionLoaderService.simpleLoader();

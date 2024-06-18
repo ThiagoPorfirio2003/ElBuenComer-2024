@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +12,25 @@ export class HeaderComponent
 {
   @Input({required: true}) title! : string;
 
-  constructor(private loginService:AuthService, private router: Router ) 
+  constructor(private authService:AuthService, private router: Router,
+    private utilsService : UtilsService) 
   { 
     
   }
-  logout(){
-    this.loginService.logOut().then(() => {
-      this.router.navigate(['/login']);
-    });
+
+  logout()
+  {
+    this.utilsService.showSweet({title:'¿Seguro que desea salír?',
+      showDenyButton: true, denyButtonText: 'No',
+      confirmButtonText: 'Sí'})
+      .then((result)=>
+      {
+        if(result.isConfirmed)
+        {
+          this.authService.logOut();
+          this.utilsService.changeRoute('/login')
+        } 
+      })
   }
 
 }
