@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { employe, userAccessData } from 'src/app/Interfaces/user';
+import { employe, userAccessData } from 'src/app/interfaces/user';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
