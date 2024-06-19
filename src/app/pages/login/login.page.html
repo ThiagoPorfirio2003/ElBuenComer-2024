@@ -7,15 +7,17 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
+
 <ion-content>
   <div id="header">
     <div id="app-bar">
       <div id="logo">
-        <img alt="icono" src="../../assets/images/LogoEmpresa.png" />
+        <img alt="icono" src="../../assets/icon/icon.png" />
       </div>
       <div></div>
     </div>
   </div>
+  
   <div class="wrapper">
     <ion-card class="form-wrapper">
       <ion-card-content>
@@ -34,14 +36,13 @@
               color="danger"
               class="text-danger custom-text-size"
               *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched"
-              >EL <strong>Correo Electrónico</strong> es requerido.
+              >EL <strong>Correo</strong> es requerido.
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched"
               class="text-danger custom-text-size"
-              >EL <strong>Correo Electrónico</strong> no tiene un formato
-              correcto
+              >EL <strong>Correo</strong> no tiene un formato correcto
             </ion-text>
           </div>
           <div class="size-input">
@@ -73,27 +74,12 @@
             ><strong>Iniciar</strong>
           </ion-button>
         </form>
-
       </ion-card-content>
     </ion-card>
-    <div class="line-text">
-      <span class="lines"></span>
-      <span class="text">o conectarse usando</span>
-    </div>
-    <div class="avatar-container">
-      <ion-avatar (click)="loginDirect('duenio@gmail.com', '123456')">
-        <img alt="Img-duenio" src="../../assets/icon/icon-duenio.png" />
-        <p align="center" class="avatar-text">DUEÑO</p>
-      </ion-avatar>
-      <ion-avatar (click)="loginDirect('supervisor@gmail.com', '123456')">
-        <img alt="Img-supervisor" src="../../assets/icon/icon-supervisor.png" />
-        <p align="center" class="avatar-text">SUPERVISOR</p>
-      </ion-avatar>
-    </div>
   </div>
-
+  
   <ion-fab slot="fixed" vertical="top" horizontal="start">
-    <ion-fab-button size="small">
+    <ion-fab-button class="custom-fab-button">
       <img alt="empleados" src="../../assets/icon/Icon-empleado.png" />
     </ion-fab-button>
     <ion-fab-list side="bottom">
@@ -121,6 +107,19 @@
         </ion-avatar>
         <ion-label>MEITRE</ion-label>
       </ion-chip>
+      <ion-chip (click)="loginDirect('supervisor@gmail.com', '123456')" class="custom-chip">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+        </ion-avatar>
+        <ion-label>SUPERVISOR</ion-label>
+      </ion-chip>
+      <ion-chip (click)="loginDirect('duenio@gmail.com', '123456')" class="custom-chip">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+        </ion-avatar>
+        <ion-label>DUEÑO</ion-label>
+      </ion-chip>
     </ion-fab-list>
   </ion-fab>
+
 </ion-content>

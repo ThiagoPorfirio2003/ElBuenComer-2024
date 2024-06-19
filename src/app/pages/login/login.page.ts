@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { userAccessData } from 'src/app/interfaces/user';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -15,8 +14,7 @@ import { message } from 'src/app/interfaces/message';
 export class LoginPage
 {
   loginForm: FormGroup;
-  constructor(  
-    private router: Router,
+  constructor(
     private authService: AuthService,
     private utils: UtilsService,
     private ionLoaderService: IonLoaderService,
@@ -36,7 +34,8 @@ export class LoginPage
     };
     try {
       await this.authService.logIn(user);
-      this.router.navigate(['/home']);
+      this.loginForm.reset();
+      this.utils.changeRoute('/home')
     }catch (error) {
       //Funcionando! pero lo voy refactorizar mas adelante.
       if (error instanceof Error && 'code' in error) {
@@ -56,6 +55,6 @@ export class LoginPage
   }
 
   redirectToPage() {
-    this.router.navigate(['/alta-cliente']);
+    this.utils.changeRoute('/register-client')
   }
 }

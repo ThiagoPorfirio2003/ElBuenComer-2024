@@ -10,3 +10,8 @@ export interface userImage
 */
 
 //Despues interface productImage
+export interface IImagen{
+    img: string;
+    name: string;
+    exist: boolean;
+}

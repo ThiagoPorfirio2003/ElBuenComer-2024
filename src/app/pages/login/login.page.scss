@@ -2,33 +2,20 @@ ion-toolbar {
     --background: transparent !important;
     color: white;
     position: fixed;
+    
+    .my-button{
+      font-size: 25px;
+      font-weight: 700;
+      text-decoration: underline;
+    }
   }
-  
+ 
   ion-content {
     --background: #EDEDEF;
-    .menu-custom-style {
-      --width: 200px;
-      --ion-item-background: transparent;
-      --ion-item-padding-start: 0;
-      --ion-item-padding-end: 0;
-      --color: #fff;
-      --ion-item-color: #fff;
-      --ion-item-text-transform: none;
-      ion-content {
-        --background: #ff9900;
-      }
-    }
-    
-    .fab-name {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + 10px); /* Ajusta el valor de acuerdo a tus necesidades */
-      transform: translateY(-50%);
-      z-index: 2;
     }
     #header {
       height: 60vh;
-      background:url("../../../assets/images/login-fondo.png");
+      background:url("../../../assets/images/Login-fondo.png");
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -52,18 +39,29 @@ ion-toolbar {
     .wrapper {
       position: absolute;
       top: 45%;
-      left: 4%;
-      right: 4%;
+      left: 2%;
+      right: 2%;
   
       .form-wrapper {
         box-shadow: none;
         border-radius: 20px;
         background-color: white;
-        
+       
         .titulo-txt{
             color: #003049; 
             font-weight: bold; 
             padding: 8px;
+            font-size: 25px;
+        }
+
+        .size-input{
+          min-height: 80px;
+
+          .custom-text-size {
+            display: block;
+            font-size: 18px;
+            margin-top: 5px;
+          }
         }
         ion-item {
           --background: white;
@@ -75,12 +73,12 @@ ion-toolbar {
           border-radius: 5px;
           color: #003049;
           ion-icon {
-            font-size: 18px;
+            font-size: 30px;
             color: #003049;
           }
           ion-input {
             margin-left: 10px;
-            font-size: 14px;
+            font-size: 25px;
             color: #003049;
           }
         }
@@ -92,81 +90,34 @@ ion-toolbar {
           --border-radius: 40px !important;
         }
       }
-  
-      .line-text {
-        padding: 0 30px;
-        position: relative;
-        height: 20px;
-        margin-top: 30px;
-  
-        .lines {
-          height: 1px;
-          color: #003049;
-          background: #003049;
-          display: block;
-        }
-  
-        .text {
-          position: absolute;
-          top: -7px;
-          left: 50%;
-          transform: translateX(-50%);
-          color: #003049;
-          background: #e5e5e5;
-          padding: 0 16px;
-          font-size: 14px;
-          font-weight: 500;
-        }
-      }
     }
-    .avatar-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  
-      ion-avatar {
-        margin: 10px;
-        .avatar-text {
-          font-size: 9px;
-          color: #003049;
-          font-weight: 600;
-        }
-     
-      }
 
-    }
-    .mi-fab-boton {
-      width: 100px;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    // Botones flotante
+    ion-fab-button{
+      --background: rgba(8, 8, 8, 0.5);
+      border: 2px solid white;
+      border-radius: 50%;
+      --ion-background-color:white;
+      img{
+        color: white;
       }
-  
+    }
+    .custom-fab-button{
+      width: 70px;
+      height: 70px; 
     }
     .custom-chip {
-        font-size: 16px;
-        width: 150px;
-        height: 20px;
-        background: rgba(8, 8, 8, 0.5);
-        font-weight: 600;
-        border: 1px solid white;
-      }
-    ion-fab-button{
-        --background: transparent;
+      padding: 10px;
+      font-size: 22px;
+      width: 210px;
+      height: 45px;
+      background: rgba(8, 8, 8, 0.5);
+      font-weight: 600;
+      border: 2px solid white;
     }
-    .size-input{
-      min-height: 70px;
-    }
-    .custom-text-size {
-        display: block;
-        font-size: 12px;
-        margin-top: 5px;
-      }
     ion-label{
       color: white;
     }
-  }
+  
 
  

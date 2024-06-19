@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, signInAnonymously} from '@angular/fire/auth';
 import { baseUserData, client, completeUserData, employe, userAccessData } from '../interfaces/user';
 import { enumProfile } from '../enums/profile';
 
@@ -56,4 +56,17 @@ export class AuthService {
    {
       return (<baseUserData>this.logedUserData).profile;
    }
+
+   public async registerAnonymous(): Promise<User | null> {
+    try {
+      const userCredential = await signInAnonymously(this.auth);
+      const user = userCredential.user;
+      //this.isLogued = true; no esta logueado
+      return user;
+    } catch (error) {
+      console.error('Error registering anonymously:', error);
+      return null;
+    }
+  }
+
 }
