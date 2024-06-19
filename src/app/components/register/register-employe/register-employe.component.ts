@@ -5,7 +5,7 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { enumProfile } from 'src/app/enums/profile';
 import { message } from 'src/app/interfaces/message';
 import { outPutResult, status } from 'src/app/interfaces/outPutResult';
-import { baseUserData, client, completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
+import { baseUserData, completeUserData, employe, userAccessData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
