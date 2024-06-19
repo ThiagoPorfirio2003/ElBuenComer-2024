@@ -32,11 +32,13 @@
 
 ### Icono
 
-![Icono de la aplicación](src/assets/images/LogoApp.png){ .image25percent }
+![Icon_ElBuenComer (1)](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/10e928da-4c5b-429d-921e-94f63f7477d6)
+
 
 ### Splash Screen animado
 
-![Gif del Splash Screen animado](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/e015494b-ca4f-431f-a026-fecbde7a3b98)
+![ezgif-5-5f415f6893](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/5ce5b35d-85c8-47e7-a249-4c84919a4c8d)
+
 <!--
 ### 🎅 Porfirio Thiago Lisandro
 
