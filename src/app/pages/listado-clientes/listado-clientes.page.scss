@@ -1,0 +1,26 @@
+ion-col {
+    display: flex;
+    height: auto;
+    border: solid 1px #fff;
+    color: #fff;
+    text-align: center;
+    --ion-grid-column-padding: 3%,;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+button{
+    width: 60%;
+    height: 40%;
+}
+.botones
+{
+    flex-direction: column;
+    justify-content: space-around;
+}
+img{
+    padding: 5%;
+    height: 100%;
+    width: auto;
+    max-width: 100px;
+}

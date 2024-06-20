@@ -8,13 +8,12 @@ import { IonToastService } from 'src/app/services/ion-toast.service';
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
 })
-export class CameraComponent  implements OnInit {
+export class CameraComponent
+{
 
   @Input() imageObject!: IImagen;
   @Output() capturarImg = new EventEmitter<IImagen>()
   constructor(private ionToastService: IonToastService) {}
-
-  ngOnInit() {}
 
   async takePhoto() {
     try {

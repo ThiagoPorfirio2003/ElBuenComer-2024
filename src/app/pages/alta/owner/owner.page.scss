@@ -1,0 +1,75 @@
+.fondo
+{
+    display: flex;
+    overflow-y: scroll;
+    height: 100%;
+    background: #c1c76a;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.imagen
+{
+    height: 25%;
+    background: none;
+    width: 50%;
+}
+img
+{
+    height: 100%;
+    border-radius: 100%;
+    width: 100%;
+}
+
+.centro
+{
+    width: 85%;
+    height: auto;
+    border-radius: 30px;
+    display: flex;
+    background: white;
+    padding: 3% 3% 3% 3%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+form{
+    color: #616161;
+}
+
+ion-icon{
+    height: 20px;
+    width: 10%;
+}
+
+.ingresar
+{
+    background: #ff3f3f;
+    height: 9%;
+    font-size: xx-large;
+    border-radius: 35px;
+}
+
+.opciones
+{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background: #838383;
+}
+
+.opcion
+{
+    width: 100%;
+    padding: 4%;
+    border-radius: 20px;
+    background: none;
+}
+
+small
+{
+    color: red;
+}

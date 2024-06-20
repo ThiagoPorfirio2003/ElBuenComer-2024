@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
@@ -45,7 +46,7 @@ export class DataBaseService
   }
 
   
-  /*
+  //NO USAR MAS
   public saveData(collectionName : enumCollectionNames, data : any, id? : string)
   {
     let docData : DocumentReference<DocumentData, DocumentData>;
@@ -62,7 +63,6 @@ export class DataBaseService
     
     return setDoc(docData, data);
   }
-  */
 
   public saveClient(collectionName : enumCollectionNames, data : any, id : string)
   {
@@ -83,3 +83,4 @@ export class DataBaseService
   }
   */
 }
+

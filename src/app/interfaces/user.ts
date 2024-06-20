@@ -31,7 +31,12 @@ export interface client extends completeUserData
 {
     state : enumClientState;
 }
-//Supongo que el anomino no tienen que estar en pendiente de aprobacion, por que no es un cliente nuevo. 
+
+export interface anonimusClient extends baseUserData
+{
+    state : enumClientState;
+}
+
 export interface anonimus {
     id : string;
     name : string;

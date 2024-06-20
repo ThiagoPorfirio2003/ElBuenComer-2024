@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { getDownloadURL, ref, Storage, StorageReference, uploadBytes } from '@angular/fire/storage';
 import { Photo } from '@capacitor/camera';
@@ -16,6 +17,9 @@ export class StorageService {
     
   }          
 
+  /*
+  NO USAR
+  */
   public async savePhoto(photo : Photo, storagePath : enumStoragePaths, name : string) : Promise<string>
   {
     let imgRef : StorageReference;
@@ -49,7 +53,7 @@ export class StorageService {
       }
     });
   }
-  
+
   async uploadImageAndGetURL(imageObject: IImagen, storagePath : enumStoragePaths) {
     try {
       const imageBlob = await fetch(imageObject.img).then((response) => response.blob());
@@ -60,23 +64,7 @@ export class StorageService {
       throw new Error('Error al cargar la imagen: ' + error.message);
     }
   }
-
-  //public savePhotos
-
-  /*
-  private base64ToBlob(base64String: string, extension : string): Blob 
-  {
-    const byteCharacters = atob(base64String);
-    const byteNumbers = new Array(byteCharacters.length);
-
-    for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-
-    const byteArray = new Uint8Array(byteNumbers);
-    return new Blob([byteArray], { type: 'image/' + extension });
-  }*/
-
+  
   private dataURLToBlob(dataURL: string): Blob 
   {
     const [header, base64String] = dataURL.split(',');
