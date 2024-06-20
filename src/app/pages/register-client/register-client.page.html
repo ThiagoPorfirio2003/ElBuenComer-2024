@@ -8,13 +8,12 @@
 
 <ion-content>
   <div id="header"></div>
-  
-    <div class="container-img">
-      <app-camera [imageObject]="imageObject"></app-camera>
-    </div>
+  <!-- Captura la imagen con la camara devuelve una interfaces IImages -->
+  <div class="container-img">
+    <app-camera [imageObject]="imageObject" (capturarImg)="capturarImg($event)"></app-camera>
+  </div>
 
   <div class="wrapper">
-
     <ion-card class="form-wrapper">
       <ion-segment [(ngModel)]="segmentValue">
         <ion-segment-button value="clienteNuevo">
@@ -25,114 +24,104 @@
         </ion-segment-button>
       </ion-segment>
 
-      <div *ngIf="segmentValue === 'clienteNuevo'">
-        <form (ngSubmit)="onRegister()" [formGroup]="newClient">
-          <div class="ion-margin-bottom">
+      @if (segmentValue === 'clienteNuevo') {
+        <form [formGroup]="newClient">
+          <div class="size-input">
             <ion-item>
-              <ion-input
-                label="Nombre"
-                labelPlacement="floating"
+              <ion-input 
+                placeholder="Nombre" 
                 type="text"
                 name="name"
-                formControlName="name"
-              ></ion-input>
+                formControlName="name"/>
             </ion-item>
             <ion-text
               color="danger"
               *ngIf="newClient.get('name')?.hasError('required') && newClient.get('name')?.touched"
-              class="text-danger ion-text-center"
+              class="text-danger custom-text-size"
               >EL <strong>Nombre</strong> es requerido
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="newClient.get('name')?.hasError('minlength') && newClient.get('name')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>Nombre</strong> Debe ser mas de 3 caracteres
             </ion-text>
           </div>
-          <div class="ion-margin-bottom">
+
+          <div class="size-input">
             <ion-item>
               <ion-input
-                label="Apellido"
-                labelPlacement="floating"
+                placeholder="Apellido" 
                 type="text"
                 name="lastName"
-                formControlName="lastName"
-              ></ion-input>
+                formControlName="lastName"/>
             </ion-item>
             <ion-text
               color="danger"
               *ngIf="newClient.get('lastName')?.hasError('required') && newClient.get('lastName')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>Apellido</strong> es requerido
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="newClient.get('lastName')?.hasError('minlength') && newClient.get('lastName')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>Apellido</strong> Debe ser mas de 3 caracteres
             </ion-text>
           </div>
-          <div class="ion-margin-bottom">
+          <div class="size-input">
             <ion-item>
               <ion-input
-                label="DNI"
-                labelPlacement="floating"
+                placeholder="DNI" 
                 type="text"
                 name="dni"
                 formControlName="dni"
               ></ion-input>
+              <button class="buttonQR" (click)="analyzeQR()">
+                <ion-icon name="qr-code-outline"></ion-icon>
+              </button>
             </ion-item>
             <ion-text
               color="danger"
               *ngIf="newClient.get('dni')?.hasError('required') && newClient.get('dni')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>dni</strong> es requerido
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="newClient.get('dni')?.hasError('soloNumeros') && newClient.get('dni')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
             >
               EL <strong>dni</strong> Debe ser solo numero
             </ion-text>
           </div>
-          <!-- En procesos -->
-
-            <button class="buttonQR" (click)="leerDNI()">
-              Escanner DNI
-              <ion-icon name="qr-code-outline"></ion-icon>
-            </button>
-
-
-          <div class="ion-margin-bottom">
+          <div class="size-input">
             <ion-item>
               <ion-input
-                label="Correo electrónico"
-                labelPlacement="floating"
+                placeholder="Correo electrónico" 
                 type="email"
                 name="email"
                 formControlName="email"
               ></ion-input>
+              
             </ion-item>
             <ion-text
               color="danger"
               *ngIf="newClient.get('email')?.hasError('required') && newClient.get('email')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>correo</strong> es requerido
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="newClient.get('email')?.hasError('email') && newClient.get('email')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >EL <strong>correo</strong> no tiene un formato correcto
             </ion-text>
           </div>
-          <div class="ion-margin-bottom">
+          <div class="size-input">
             <ion-item>
               <ion-input
-                label="Contraseña"
-                labelPlacement="floating"
+                placeholder="Contraseña" 
                 type="password"
                 name="password"
                 formControlName="password"
@@ -142,59 +131,60 @@
             <ion-text
               color="danger"
               *ngIf="newClient.get('password')?.hasError('required') && newClient.get('password')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >La <strong>contraseña</strong> es requerido
             </ion-text>
             <ion-text
               color="danger"
               *ngIf="newClient.get('password')?.hasError('minlength') && newClient.get('password')?.touched"
-              class="text-danger"
+              class="text-danger custom-text-size"
               >La <strong>cotraseña</strong> debe ser mas de 6 caracteres
             </ion-text>
           </div>
 
+          <ion-button 
+            type="button" 
+            color="danger" 
+            [disabled]="!newClient.valid || !imageObject.exist" 
+            (click)="onRegister()">
+            <strong>Registrar</strong>
+          </ion-button>
+        </form>
+      }
+
+      @if (segmentValue === 'anonimo') {
+        <form [formGroup]="anonymous">
+          <div class="size-input">
+            <ion-item>
+              <ion-input
+                placeholder="Nombre" 
+                type="text"
+                name="name"
+                formControlName="name"
+              />
+            </ion-item>
+            <ion-text
+              color="danger"
+              *ngIf="anonymous.get('name')?.hasError('required') && anonymous.get('name')?.touched"
+              class="text-danger custom-text-size"
+              >EL <strong>Nombre</strong> es requerido
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="anonymous.get('name')?.hasError('minlength') && anonymous.get('name')?.touched"
+              class="text-danger custom-text-size"
+              >EL <strong>Nombre</strong> Debe ser mas de 3 caracteres
+            </ion-text>
+          </div>
           <ion-button
-            type="submit"
-            [disabled]="!newClient.valid"
-            ><strong>Registrar</strong></ion-button
-          >
+            type="button"
+            color="danger"
+            [disabled]="!this.anonymous.valid || !this.imageObject.exist"
+            (click)="onRegister()"
+            ><strong>Registrar</strong>
+          </ion-button>
         </form>
-      </div>
-      <div *ngIf="segmentValue === 'anonimo'">
-        <form (ngSubmit)="onRegister()" [formGroup]="anonymous">
-          <ion-list>
-            <div class="ion-margin-bottom">
-              <ion-item>
-                <ion-input
-                  label="Nombre"
-                  labelPlacement="floating"
-                  type="text"
-                  name="name"
-                  formControlName="name"
-                ></ion-input>
-              </ion-item>
-              <ion-text
-                color="danger"
-                *ngIf="anonymous.get('name')?.hasError('required') && anonymous.get('name')?.touched"
-                class="text-danger"
-                >EL <strong>Nombre</strong> es requerido
-              </ion-text>
-              <ion-text
-                color="danger"
-                *ngIf="anonymous.get('name')?.hasError('minlength') && anonymous.get('name')?.touched"
-                class="text-danger"
-                >EL <strong>Nombre</strong> Debe ser mas de 3 caracteres
-              </ion-text>
-            </div>
-            <ion-button
-              type="submit"
-              [disabled]="!anonymous.valid"
-              ><strong>Registrar</strong>
-            </ion-button>
-          </ion-list>
-        </form>
-      </div>
+      }
     </ion-card>
   </div>
-
 </ion-content>

@@ -56,6 +56,12 @@ export class DataBaseService
     return setDoc(docData, data);
   }
 
+  public saveClient(collectionName : enumCollectionNames, data : any, id : string)
+  {
+    const docRef = doc(this.firestore, collectionName, id); 
+    return setDoc(docRef, data);
+  }
+
   /*
   public saveImgData(collectionName : enumCollectionNames, img : userImage)
   {

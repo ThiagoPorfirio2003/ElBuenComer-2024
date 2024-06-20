@@ -2,14 +2,14 @@
 // http://ionicframework.com/docs/theming/
 :root
 {
-    //Aca van los estilos globales
-    //#B47C16
-    --ion-color-red: #d62828;
-    --ion-color-red-rgb: 214,40,40;
-    --ion-color-red-contrast: #ffffff;
-    --ion-color-red-contrast-rgb: 255,255,255;
-    --ion-color-red-shade: #bc2323;
-    --ion-color-red-tint: #da3e3e;
+    //Color=danger
+	--ion-color-danger: #d62828;
+	--ion-color-danger-rgb: 214,40,40;
+	--ion-color-danger-contrast: #ffffff;
+	--ion-color-danger-contrast-rgb: 255,255,255;
+	--ion-color-danger-shade: #bc2323;
+	--ion-color-danger-tint: #da3e3e;
+
     .full-screen
     {
         width: 100%;

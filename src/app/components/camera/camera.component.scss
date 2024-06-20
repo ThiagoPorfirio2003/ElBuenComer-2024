@@ -13,6 +13,21 @@
         object-fit: cover;
       }
     }
+       .cam-img{
+      left: 80%;
+      transform: translate(-50%, -90%);
+      background-color: #EDEDEF ;
+      color: black;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      ion-icon {
+        font-size: 25px;
+      }
+    }
     ion-chip{
       background-color: rgba(8, 11, 26, 0.314);
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
@@ -6,8 +6,13 @@ import { IonLoaderService } from 'src/app/services/ion-loader.service';
 import { IonToastService } from 'src/app/services/ion-toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
-import { userAccessData } from 'src/app/interfaces/user';
-import { IImagen } from 'src/app/interfaces/image';
+import { anonimus, client, completeUserData, userAccessData } from 'src/app/interfaces/user';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+import IImagen from 'src/app/interfaces/image';
+import { StorageService } from 'src/app/services/storage.service';
+import { enumProfile } from 'src/app/enums/profile';
+import { enumClientState } from 'src/app/enums/clientState';
+import { enumStoragePaths } from 'src/app/enums/storagePaths';
 
 @Component({
   selector: 'app-register-client',
@@ -15,24 +20,24 @@ import { IImagen } from 'src/app/interfaces/image';
   styleUrls: ['./register-client.page.scss'],
 })
 export class RegisterClientPage implements OnInit {
-
   public newClient: FormGroup;
   public anonymous: FormGroup;
   segmentValue: string = 'clienteNuevo';
 
   imageObject: IImagen = {
-    img: '../../../assets/icon/icon_empleado.png',
+    img: '../../../assets/images/usuario.png',
     name: '',
     exist: false,
   };
-  
+
   constructor(
     private fb: FormBuilder,
     private ionToastService: IonToastService,
     private dataBase: DataBaseService,
     private ionLoaderService: IonLoaderService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private storageService: StorageService
   ) {
     this.newClient = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -49,18 +54,17 @@ export class RegisterClientPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       img: [''],
-      enabled: ['Pendiente'],
-      profile: ['cliente'],
     });
     this.anonymous = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      img: [''],
-      profile: ['anonimo'],
+      img: ['']
     });
   }
 
-  ngOnInit() {
-    //this.scannerService.init();
+  ngOnInit() {}
+
+  capturarImg(data: IImagen) {
+    this.imageObject = data;
   }
 
   validateNumber(control: AbstractControl): object | null {
@@ -74,84 +78,86 @@ export class RegisterClientPage implements OnInit {
 
   async onRegister() {
     try {
-      //continuar con la camara generar un componente generico.
-      this.ionLoaderService.simpleLoader();
-      // const downloadURL = await this.uploadImageAndGetURL(this.imageObject);
+      await this.ionLoaderService.simpleLoader();
+      const downloadURL = await this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users);
       (this.segmentValue === 'clienteNuevo')
-        ? this.registerCustomer(this.newClient, "downloadURL")
-        : this.registerAnonimous(this.anonymous, "downloadURL");
+        ? this.registerCustomer(this.newClient, downloadURL)
+        : this.registerAnonimous(this.anonymous,downloadURL);
     } catch (error: any) {
       const message = error.message || 'Error al subir la imagen';
       this.ionToastService.showToastError(message);
     } finally {
+      this.resetForm()
       this.ionLoaderService.dismissLoader();
     }
   }
-  private async registerAnonimous(formGroup: FormGroup, downloadURL: string) {
-    try{
-      formGroup.patchValue({ img: downloadURL });
-      const anonimousData :any = formGroup.value;
-      const userAnonimous = await this.auth.registerAnonymous();
-      console.log(userAnonimous)
-      await this.dataBase.saveData(enumCollectionNames.Anonymous, anonimousData, userAnonimous?.uid);
-      formGroup.reset();
+  
+  private async registerAnonimous(formGroup: FormGroup, photoUrl: string) {
+    const anonimousData :anonimus = this.getAnonymus(formGroup,photoUrl);
+    const userAnonimous = await this.auth.registerAnonymous();
+    if(userAnonimous != null){
+      anonimousData.id = userAnonimous.user.uid;
+      await this.dataBase.saveClient(enumCollectionNames.Anonymous, anonimousData, anonimousData.id);
       this.router.navigate(['/home']);
-    }catch(error:any){
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("errorCode: ",errorCode);
-      console.log("errorMessage: ",errorMessage);
     }
   }
 
   private async registerCustomer(formGroup: FormGroup, downloadURL: string) {
-    formGroup.patchValue({ img: downloadURL });
-    const customerData:any = formGroup.value;
-    await this.auth.register(customerData as userAccessData);
-    await this.dataBase.saveData(enumCollectionNames.Clients, customerData, customerData.email);
-    formGroup.reset();
+    const customerData: client= this.getClient(formGroup,downloadURL);
+    const userAccessData: userAccessData = this.getuserAccessData(formGroup);
+    await this.auth.register(userAccessData);
+    this.dataBase.saveClient(enumCollectionNames.Clients, customerData, customerData.email);
     this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
     this.router.navigate(['/login']);
   }
 
-  // async uploadImageAndGetURL(imageObject: ICamera) {
-  //   try {
-  //     const imageBlob = await fetch(imageObject.img).then((response) =>
-  //       response.blob()
-  //     );
-  //     const imgRef = ref(this.storage, `images/${imageObject.name}`);
-  //     await uploadBytes(imgRef, imageBlob);
-  //     return getDownloadURL(imgRef);
-  //   } catch (error: any) {
-  //     throw new Error('Error al cargar la imagen: ' + error.message);
-  //   }
-  // }
+  analyzeQR()
+  {
+    CapacitorBarcodeScanner.scanBarcode({hint: 2, cameraDirection: 1,scanOrientation: 1})
+    .then((value)=>
+    {
+      const dniRed : Array<string> = value.ScanResult.split('@');
+      const controls = this.newClient.controls;
+      controls['name'].setValue(dniRed[2]);
+      controls['lastName'].setValue(dniRed[1]);
+      controls['dni'].setValue(parseInt(dniRed[4]));
+    });
+  }
+  
+  getClient(newClient:FormGroup, photoUrl:string): client {
+    const data: client= {
+      id : newClient.get('email')?.value,
+      name : newClient.get('name')?.value,
+      email : newClient.get('email')?.value,
+      profile : enumProfile.Client,
+      photoUrl,
+      surname : newClient.get('lastName')?.value,
+      dni : newClient.get('dni')?.value,
+      state: enumClientState.AwaitingApproval,
+    }
+    return data
+  }
 
-  leerDNI() {
-    /*
-    this.scannerService.scan()
-      .then(barcodes => {
-        if (barcodes && barcodes.length > 0) {
-          const firstBarcode = barcodes[0];
-          const rawValue = firstBarcode.rawValue;
-          const parts = rawValue.split('@');
-          const lastName = parts[1];
-          const name = parts[2];
-          const dni = parts[4];
-          this.newClient.patchValue({
-            name: name,
-            lastName: lastName,
-            dni: dni,
-          });
-          this.ionToastService.showToastSuccess('Datos recuperados con éxito');
-        } else {
-          this.ionToastService.showToastError('No se encontraron códigos de barras');
-        }
-      })
-      .catch(error => {
-        console.error('Error al escanear:', error);
-        this.ionToastService.showToastError('Error al escanear el DNI');
-      });
-      ;*/
+  getuserAccessData(newClient: FormGroup): userAccessData {
+    const userAccessData: userAccessData = {
+      email: newClient.get('email')?.value,
+      password : newClient.get('password')?.value,
+    }
+    return userAccessData;
+  }
+
+  getAnonymus(anonymous: FormGroup,photoUrl:string): anonimus{
+    const data :anonimus = {
+      id : "",
+      name : anonymous.get('name')?.value!,
+      profile : enumProfile.AnonimusClient,
+      photoUrl,
+    };
+    return data
+  }
+
+  resetForm(){
+    this.anonymous.reset();
+    this.newClient.reset();
   }
 }
