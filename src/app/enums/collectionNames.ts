@@ -4,6 +4,7 @@ export enum enumCollectionNames
     Employes = 'employes',
     Clients = 'clients',
     Products = 'products',
+    Anonymous = 'anonymous',
 
     UserImages = 'userImages',
     EmployeImages = 'employeImages',

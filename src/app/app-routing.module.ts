@@ -10,7 +10,6 @@ const routes: Routes = [
     path: 'splash-screen',
     loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
-
   {
     path: 'client-home',
     loadChildren: () => import('./pages/home/client-home/client-home.module').then( m => m.ClientHomePageModule)
@@ -31,16 +30,26 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'register-client',
+    loadChildren: () => import('./pages/register-client/register-client.module').then( m => m.RegisterClientPageModule)
+  },
+  {
     path: 'owner',
     loadChildren: () => import('./pages/alta/owner/owner.module').then( m => m.OwnerPageModule)
   },
   {
     path: 'producto',
     loadChildren: () => import('./pages/alta/producto/producto.module').then( m => m.ProductoPageModule)
-  },  {
+  },
+  {
     path: 'listado-clientes',
     loadChildren: () => import('./pages/listado-clientes/listado-clientes.module').then( m => m.ListadoClientesPageModule)
   },
+  {
+    path: 'register-client',
+    loadChildren: () => import('./pages/register-client/register-client.module').then( m => m.RegisterClientPageModule)
+  }
+
 
 
 

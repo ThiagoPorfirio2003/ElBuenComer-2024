@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { getDownloadURL, ref, Storage, StorageReference, uploadBytes } from '@angular/fire/storage';
 import { Photo } from '@capacitor/camera';
 import { enumStoragePaths } from '../enums/storagePaths';
+import IImagen from '../interfaces/image';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ export class StorageService {
       }
     });
   }
-
+  
   //public savePhotos
 
   /*
