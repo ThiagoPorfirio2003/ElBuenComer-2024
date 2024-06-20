@@ -1,3 +1,6 @@
+/*
+IGNORAR
+*/
 export interface status
 {
     errorCode? : string;
