@@ -1,4 +1,4 @@
-package io.ionic.elbuencomer;
+package io.ionic.BuenComer;
 
 import com.getcapacitor.BridgeActivity;
 
