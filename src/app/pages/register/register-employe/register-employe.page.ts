@@ -1,3 +1,6 @@
+/*
+IGNORAR
+*/
 
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -325,7 +328,7 @@ export class RegisterEmployePage
 
   public takeImg()
   {
-    this.saveAppState
+    this.saveAppState();
 
     Camera.getPhoto({
       quality: 90,
@@ -350,12 +353,12 @@ export class RegisterEmployePage
     };
   }
 
-  private restoreAppState() {
+  private restoreAppState() 
+  {
     console.log(this.appStateBeforeCamera);
     this.authService.changeCurrentUser(this.appStateBeforeCamera.authUser, this.appStateBeforeCamera.myUser);
     this.utilsService.changeRoute(this.appStateBeforeCamera.route);
-    this.registerForm.setValue(this.appStateBeforeCamera.formValues)
-    
+    this.registerForm.setValue(this.appStateBeforeCamera.formValues);  
   }
 
   public analyzeQR()

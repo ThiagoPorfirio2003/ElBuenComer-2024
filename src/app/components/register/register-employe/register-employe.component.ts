@@ -1,3 +1,6 @@
+/*
+IGNORAR
+*/
 
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

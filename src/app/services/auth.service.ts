@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-import { anonimusClient, baseUserData, completeUserData, employe, userAccessData } from '../interfaces/user';
+import { Auth, createUserWithEmailAndPassword, signInAnonymously, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { baseUserData, completeUserData, employe, userAccessData } from '../interfaces/user';
 import { enumProfile } from '../enums/profile';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { enumProfile } from '../enums/profile';
 })
 export class AuthService {
 
-  public logedUserData! : baseUserData;
+  public userData! : baseUserData;
   public isLogued : boolean;
 
    constructor(private auth : Auth) 
@@ -21,7 +21,7 @@ export class AuthService {
    */
    public logUserData(userLogedData : any)
    {
-     this.logedUserData = userLogedData;
+     this.userData = userLogedData;
      this.isLogued = true;
    }
 
@@ -49,9 +49,22 @@ export class AuthService {
    public changeCurrentUser(authUser : User, userData : any)
    {
     this.auth.updateCurrentUser(authUser);
-    this.logedUserData = userData;
+    this.userData = userData;
    }
 
+   public registerAnonymous() {
+    return signInAnonymously(this.auth);
+   }
+
+   public onAuthStateAnonymous(){
+      // return onAuthStateChanged(this.auth, (user) => {
+      //   if(user){
+      //     const uid = user.uid;
+      //   }else{
+      //     console.log("error, anonimos")
+      //   }
+      // });
+   }
    /*
    public getProfileTransformed<T extends completeUserData | employe | anonimusClient>() : T
    {

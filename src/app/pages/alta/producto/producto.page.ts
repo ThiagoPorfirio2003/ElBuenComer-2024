@@ -14,7 +14,7 @@ import { product } from 'src/app/interfaces/products';
   templateUrl: './producto.page.html',
   styleUrls: ['./producto.page.scss'],
 })
-export class ProductoPage implements OnInit 
+export class ProductoPage  
 {
   public arrayFotosMostrar : Array<string>;
   public producto : product;
@@ -36,9 +36,6 @@ export class ProductoPage implements OnInit
       precio :["",[Validators.required,Validators.min(1)]],
       tiempo :["",[Validators.required,Validators.min(1)]]
     });
-  }
-
-  ngOnInit() {
   }
 
   async TomarFoto(index: number)

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
-import { anonimusClient } from 'src/app/interfaces/prueba';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -38,8 +37,6 @@ export class SplashScreenPage{
                 this.centerClass = 'slide-in-left';
                 this.footerClass = 'slide-in-bottom';
               }, 2700)
-
-              let a : anonimusClient = {} as anonimusClient;
 
               setTimeout(() => 
               {

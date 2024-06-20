@@ -1,3 +1,6 @@
+/*
+IGNORAR
+*/
 
 import { Component, OnInit } from '@angular/core';
 import { Photo } from '@capacitor/camera';
@@ -31,7 +34,7 @@ export class RegisterPage
     this.appState = {
       route: this.utilsService.getRoute(), 
       authUser : this.authService.getAuthUser(),
-      logedUserData : this.authService.logedUserData,
+      userData : this.authService.userData,
       //formValues : this.registerForm.value
       registerToShow : 0
     };
@@ -46,7 +49,7 @@ export class RegisterPage
   public restoreAppState()
   {
     console.log(this.appState);
-    this.authService.changeCurrentUser(this.appState.authUser, this.appState.logedUserData);
+    this.authService.changeCurrentUser(this.appState.authUser, this.appState.userData);
     this.utilsService.changeRoute(this.appState.route);
     this.registerToShow = this.appState.registerToShow;
     this.canShowRegister = true;

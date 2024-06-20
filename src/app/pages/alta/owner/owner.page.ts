@@ -15,7 +15,7 @@ import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
   templateUrl: './owner.page.html',
   styleUrls: ['./owner.page.scss'],
 })
-export class OwnerPage implements OnInit 
+export class OwnerPage 
 {
   private image : any = null;
   public path : string = "../../../../assets/icon/icon.png";
@@ -37,8 +37,6 @@ export class OwnerPage implements OnInit
       cuil :["",[Validators.required]],
     });
   }
-
-  ngOnInit() {}
 
 
   Tipo(id : number)

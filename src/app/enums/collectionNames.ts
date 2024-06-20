@@ -4,12 +4,15 @@ export enum enumCollectionNames
     Employes = 'employes',
     Clients = 'clients',
     Products = 'products',
+    Anonymous = 'anonymous',
 
     UserImages = 'userImages',
     EmployeImages = 'employeImages',
     ClientImage = 'clientImages',
-    ProductImages = 'productImages'
+    ProductImages = 'productImages',
 
+    WaitingRoom = 'waitingRoom',
+    ChatRoom = 'chatRoom'
 }
 
 /*

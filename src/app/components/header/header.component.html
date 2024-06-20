@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
@@ -7,9 +7,8 @@
     <ion-title class="ion-text-center">{{this.title}}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button fill="solid" color="primary" (click)="logout()">
+      <ion-button fill="solid" (click)="logout()">
         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-
       </ion-button>    
     </ion-buttons>
   </ion-toolbar>

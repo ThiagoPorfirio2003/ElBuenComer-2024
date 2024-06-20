@@ -1,0 +1,17 @@
+<div class="container-img" (click)="takePhoto()">
+  <div class="circular-container">
+    <ion-img
+      alt="icono"
+      [src]="imageObject.img"
+      alt="imageObject.name"
+      *ngIf="imageObject"
+    ></ion-img>
+  </div>
+  <!-- <div class="cam-img">
+    <ion-icon name="camera"></ion-icon>
+  </div> -->
+  <ion-chip color="dark">
+    <ion-icon name="camera"></ion-icon>
+    <ion-label>Tomar Foto</ion-label>
+  </ion-chip>
+</div>

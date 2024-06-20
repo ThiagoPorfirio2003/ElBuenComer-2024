@@ -27,6 +27,11 @@ export interface employe extends completeUserData
     cuil : string;
 }
 
+export interface client extends completeUserData
+{
+    state : enumClientState;
+}
+
 export interface anonimusClient extends baseUserData
 {
     state : enumClientState;
