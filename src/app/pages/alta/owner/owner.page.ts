@@ -5,10 +5,10 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { StorageService } from 'src/app/services/storage.service';
 import { enumStoragePaths } from 'src/app/enums/storagePaths';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-owner',
@@ -165,19 +165,12 @@ export class OwnerPage implements OnInit
     .then((value)=>
     {
       const dniRed : Array<string> = value.ScanResult.split('@');
-      const controls = this.grupo.controls;
       const CUIL_complete : number = parseInt(dniRed[8]);
 
       this.user.name = dniRed[2];
       this.user.surname = dniRed[1];
       this.user.dni = dniRed[4];
       this.user.cuil = Math.floor(CUIL_complete / 10) + "-" + dniRed[4] + "-" + CUIL_complete % 10
-      
-      /*controls['surname'].setValue(dniRed[1]);
-      controls['name'].setValue(dniRed[2]);
-      controls['CUIL_Start'].setValue(Math.floor(CUIL_complete / 10));
-      controls['DNI'].setValue(parseInt(dniRed[4]));
-      controls['CUIL_End'].setValue(CUIL_complete % 10);*/
     })
   }
 
@@ -203,4 +196,18 @@ export class OwnerPage implements OnInit
     return retorno;
   }
 
+  qr()
+  {
+    this.utiles.detectarQR("mesa").then((objet)=>
+    {
+      if(objet.return)
+      {
+        alert(objet.valor);
+      }
+      else
+      {
+        alert(objet.valor);
+      }
+    })
+  }
 }
