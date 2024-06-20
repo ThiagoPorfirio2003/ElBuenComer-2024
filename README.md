@@ -1,13 +1,46 @@
-# El buen comer
+# El buen comer 🍽️
 
-## Integrantes del equipo "El buen comer"
- - Porfirio Thiago Lisandro (Alfa)
- - Huallpa Wilson (Beta)
- - Racioppi Mauro (Gamma)
+## Integrantes del equipo 🏭
+ - Porfirio Thiago Lisandro (Alfa) 🎅
+ - Huallpa Wilson (Beta) 🧙
+ - Racioppi Mauro (Gamma) 🧛
 
-## Tareas a desarrollar
+## Ramas 🌿
 
-#### Porfirio Thiago Lisandro
+  - 🌲 Main 
+  - 🎅 develop-thiagop
+  - 🧙 develop-wilsonh
+  - 🧛 develop-mauror
+
+## Tareas 🧱
+
+### Individuales 👨‍🦱
+
+| 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
+| :---:        |     :---:      |         :---: |
+| ✔️ Creación y vinculación con el proyecto de Firebase | ⚠️ Creación del login | ✔️ Creación del icono de la app |
+| ⏳ Interacción con el proyecto de Firebase | ⚠️ Creación del alta para el usuario de tipo cliente | ⚠️ Creación del listado de clientes pendientes de aprobación |
+| ✔️ Creación Splash Screen animado y estático | ⏳ Creación del método para enviar correos automático | ⚠️ Creación push notificación genérico |
+| ⚠️ Creación de escáner QR DNI genérico | 
+
+### Grupales 👨‍👩‍👦
+
+  - 📁 Creación de la estructura de datos y archivos
+  - 🧰 Creación de métodos de utilería
+
+## Demostraciones
+
+### Icono
+
+![Icon_ElBuenComer (1)](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/10e928da-4c5b-429d-921e-94f63f7477d6)
+
+
+### Splash Screen animado
+
+![ezgif-5-5f415f6893](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/5ce5b35d-85c8-47e7-a249-4c84919a4c8d)
+
+<!--
+### 🎅 Porfirio Thiago Lisandro
 
 **Rama:** develop-thiagop
 
@@ -24,7 +57,7 @@
     - Fecha de finalización: A definir
   
 
-#### Huallpa Wilson
+### 🧙 Huallpa Wilson
 
 **Rama:** develop-wilsonh
 
@@ -36,7 +69,7 @@
     - Fecha de inicio: 14/6
     - Fecha de finalización: A definir 
 
-### Racioppi Mauro
+### 🧛 Racioppi Mauro
 
 **Rama:** develop-mauror
 
@@ -51,3 +84,5 @@
  - Creación del **alta de productos**
     - Fecha de inicio: 12/6
     - Fecha de finalización: 14/6
+
+  -->
