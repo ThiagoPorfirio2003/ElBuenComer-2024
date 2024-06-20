@@ -87,7 +87,7 @@ export class RegisterClientPage implements OnInit {
       const message = error.message || 'Error al subir la imagen';
       this.ionToastService.showToastError(message);
     } finally {
-      this.resetForm()
+      this.resetFormImg()
       this.ionLoaderService.dismissLoader();
     }
   }
@@ -156,8 +156,13 @@ export class RegisterClientPage implements OnInit {
     return data
   }
 
-  resetForm(){
+  resetFormImg(){
     this.anonymous.reset();
     this.newClient.reset();
+    this.imageObject = {
+      img: '../../../assets/images/usuario.png',
+      name: '',
+      exist: false,
+    };
   }
 }
