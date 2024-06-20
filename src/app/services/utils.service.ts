@@ -4,6 +4,7 @@ import { LoadingController, LoadingOptions } from '@ionic/angular';
 import Swal, { SweetAlertOptions } from 'sweetalert2'
 import { message } from '../interfaces/message';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 
 @Injectable({
   providedIn: 'root'
