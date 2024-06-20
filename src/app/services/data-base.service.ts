@@ -32,15 +32,20 @@ export class DataBaseService
     return getDoc(doc(this.firestore, collectionName, idDoc));
   }
 
-  /*
   public saveUser(nombreCollection : enumCollectionNames, user : any, uid : string)
   {
     setDoc(doc(this.firestore, nombreCollection, uid), user)
 
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
-  */
 
+  public deleteData(collectionName : enumCollectionNames, id : string)
+  {
+    deleteDoc(doc(this.firestore, collectionName, id))
+  }
+
+  
+  /*
   public saveData(collectionName : enumCollectionNames, data : any, id? : string)
   {
     let docData : DocumentReference<DocumentData, DocumentData>;
@@ -57,11 +62,7 @@ export class DataBaseService
     
     return setDoc(docData, data);
   }
-
-  public deleteData(collectionName : enumCollectionNames, id : string)
-  {
-    deleteDoc(doc(this.firestore, collectionName, id))
-  }
+  */
 
   /*
   public saveImgData(collectionName : enumCollectionNames, img : userImage)
