@@ -6,7 +6,7 @@ import { IonLoaderService } from 'src/app/services/ion-loader.service';
 import { IonToastService } from 'src/app/services/ion-toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
-import { anonimus, client, completeUserData, userAccessData } from 'src/app/interfaces/user';
+import { anonimusClient, client, completeUserData, userAccessData } from 'src/app/interfaces/user';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import IImagen from 'src/app/interfaces/image';
 import { StorageService } from 'src/app/services/storage.service';
@@ -93,22 +93,26 @@ export class RegisterClientPage implements OnInit {
   }
   
   private async registerAnonimous(formGroup: FormGroup, photoUrl: string) {
-    const anonimousData :anonimus = this.getAnonymus(formGroup,photoUrl);
+    const anonimousData :anonimusClient = this.getAnonymus(formGroup,photoUrl);
     const userAnonimous = await this.auth.registerAnonymous();
     if(userAnonimous != null){
       anonimousData.id = userAnonimous.user.uid;
-      await this.dataBase.saveClient(enumCollectionNames.Anonymous, anonimousData, anonimousData.id);
-      this.router.navigate(['/home']);
+      await this.dataBase.saveUser(enumCollectionNames.Clients, anonimousData, anonimousData.id);
+      this.router.navigate(['/client-home']);
     }
   }
 
   private async registerCustomer(formGroup: FormGroup, downloadURL: string) {
     const customerData: client= this.getClient(formGroup,downloadURL);
     const userAccessData: userAccessData = this.getuserAccessData(formGroup);
-    await this.auth.register(userAccessData);
-    this.dataBase.saveClient(enumCollectionNames.Clients, customerData, customerData.email);
-    this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
-    this.router.navigate(['/login']);
+    const result = this.auth.register(userAccessData);
+    if(result != null ){
+      let user = (await result).user;
+      customerData.id = user.uid;
+      this.dataBase.saveUser(enumCollectionNames.Clients, customerData, user.uid);
+      this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
+      this.router.navigate(['/login']);
+    }
   }
 
   analyzeQR()
@@ -146,12 +150,14 @@ export class RegisterClientPage implements OnInit {
     return userAccessData;
   }
 
-  getAnonymus(anonymous: FormGroup,photoUrl:string): anonimus{
-    const data :anonimus = {
+  getAnonymus(anonymous: FormGroup,photoUrl:string): anonimusClient{
+    const data :anonimusClient = {
       id : "",
       name : anonymous.get('name')?.value!,
+      email : "Email de prueba",
       profile : enumProfile.AnonimusClient,
       photoUrl,
+      state: enumClientState.AwaitingApproval,
     };
     return data
   }
