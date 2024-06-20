@@ -46,7 +46,7 @@ export class DataBaseService
   }
 
   
-  /*
+  //NO USAR MAS
   public saveData(collectionName : enumCollectionNames, data : any, id? : string)
   {
     let docData : DocumentReference<DocumentData, DocumentData>;
@@ -63,7 +63,6 @@ export class DataBaseService
     
     return setDoc(docData, data);
   }
-  */
 
   public saveClient(collectionName : enumCollectionNames, data : any, id : string)
   {

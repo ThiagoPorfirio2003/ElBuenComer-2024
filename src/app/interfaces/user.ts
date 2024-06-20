@@ -36,3 +36,10 @@ export interface anonimusClient extends baseUserData
 {
     state : enumClientState;
 }
+
+export interface anonimus {
+    id : string;
+    name : string;
+    profile : enumProfile;
+    photoUrl : string;
+}
