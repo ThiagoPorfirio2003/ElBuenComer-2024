@@ -9,8 +9,9 @@ export enum enumCollectionNames
     UserImages = 'userImages',
     EmployeImages = 'employeImages',
     ClientImage = 'clientImages',
-    ProductImages = 'productImages'
+    ProductImages = 'productImages',
 
+    WaitingRoom = 'waitingRoom'
 }
 
 /*

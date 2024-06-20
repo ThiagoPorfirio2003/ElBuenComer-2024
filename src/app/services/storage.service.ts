@@ -12,7 +12,9 @@ export class StorageService {
   private readonly IMGS_PATH : string = 'img/';
 
   constructor(private storage : Storage) 
-  {}          
+  {
+    
+  }          
 
   public async savePhoto(photo : Photo, storagePath : enumStoragePaths, name : string) : Promise<string>
   {

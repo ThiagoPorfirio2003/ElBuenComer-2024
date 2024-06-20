@@ -16,3 +16,12 @@
         height: 100%
     }
 }
+
+.ion-color-entryqr {
+	--ion-color-base: var(--ion-color-entryqr);
+	--ion-color-base-rgb: var(--ion-color-entryqr-rgb);
+	--ion-color-contrast: var(--ion-color-entryqr-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-entryqr-contrast-rgb);
+	--ion-color-shade: var(--ion-color-entryqr-shade);
+	--ion-color-tint: var(--ion-color-entryqr-tint);
+}

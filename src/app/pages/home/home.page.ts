@@ -9,5 +9,5 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomePage {
 
-  constructor(private loginService: AuthService, private router: Router) {}
+  constructor(private loginService: AuthService) {}
 }

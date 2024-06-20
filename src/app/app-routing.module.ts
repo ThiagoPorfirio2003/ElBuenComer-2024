@@ -14,15 +14,22 @@ const routes: Routes = [
     path: 'splash-screen',
     loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
+
+  {
+    path: 'client-home',
+    loadChildren: () => import('./pages/home/client-home/client-home.module').then( m => m.ClientHomePageModule)
+  },
   {
     path: '',
     redirectTo: 'splash-screen',
     pathMatch: 'full'
   },
+  /*
   {
     path: 'register-employe',
     loadChildren: () => import('./pages/register/register-employe/register-employe.module').then( m => m.RegisterEmployePageModule)
   },
+  */
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
