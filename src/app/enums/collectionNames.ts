@@ -11,7 +11,8 @@ export enum enumCollectionNames
     ClientImage = 'clientImages',
     ProductImages = 'productImages',
 
-    WaitingRoom = 'waitingRoom'
+    WaitingRoom = 'waitingRoom',
+    ChatRoom = 'chatRoom'
 }
 
 /*

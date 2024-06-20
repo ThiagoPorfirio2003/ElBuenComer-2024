@@ -36,4 +36,3 @@ export interface anonimusClient extends baseUserData
 {
     state : enumClientState;
 }
-
