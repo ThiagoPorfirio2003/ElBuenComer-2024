@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
@@ -13,13 +13,14 @@ import { StorageService } from 'src/app/services/storage.service';
 import { enumProfile } from 'src/app/enums/profile';
 import { enumClientState } from 'src/app/enums/clientState';
 import { enumStoragePaths } from 'src/app/enums/storagePaths';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-register-client',
   templateUrl: './register-client.page.html',
   styleUrls: ['./register-client.page.scss'],
 })
-export class RegisterClientPage implements OnInit {
+export class RegisterClientPage {
   public newClient: FormGroup;
   public anonymous: FormGroup;
   segmentValue: string = 'clienteNuevo';
@@ -37,20 +38,13 @@ export class RegisterClientPage implements OnInit {
     private ionLoaderService: IonLoaderService,
     private router: Router,
     private auth: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private utiles: UtilsService,
   ) {
     this.newClient = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
-      dni: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(7),
-          Validators.maxLength(8),
-          this.validateNumber,
-        ],
-      ],
+      dni: ['', [Validators.required, this.validateDni]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       img: [''],
@@ -61,60 +55,69 @@ export class RegisterClientPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   capturarImg(data: IImagen) {
     this.imageObject = data;
   }
 
-  validateNumber(control: AbstractControl): object | null {
-    const telefono = control.value;
-    const soloNumeros = /^\d+$/;
-    if (!soloNumeros.test(telefono)) {
-      return { soloNumeros: true };
-    }
-    return null;
+  validateDni(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const isValid = /^\d{8}$/.test(value);
+    return isValid ? null : { invalidDni: true };
   }
 
   async onRegister() {
-    try {
-      await this.ionLoaderService.simpleLoader();
-      const downloadURL = await this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users);
-      (this.segmentValue === 'clienteNuevo')
-        ? this.registerCustomer(this.newClient, downloadURL)
-        : this.registerAnonimous(this.anonymous,downloadURL);
-    } catch (error: any) {
-      const message = error.message || 'Error al subir la imagen';
-      this.ionToastService.showToastError(message);
-    } finally {
-      this.resetFormImg()
-      this.ionLoaderService.dismissLoader();
-    }
+      const loading = await this.utiles.getLoadingCtrl({spinner: 'circular'});
+      await loading.present();
+      if(this.segmentValue === 'clienteNuevo'){
+        const userAccessData: userAccessData = this.getuserAccessData(this.newClient);
+        this.auth.register(userAccessData).then((data)=> {
+          this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
+            const customerData: client= this.getClient(this.newClient,downloadURL,data.user.uid);
+            this.dataBase.saveUser(enumCollectionNames.Clients, customerData, data.user.uid).then(() => {
+              loading.dismiss();
+              this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
+              this.router.navigate(['/login']);
+            })
+            .catch((error)=>{
+              loading.dismiss();
+              let mensaje = this.utiles.translateAuthError(error.code);
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+            });
+          }).catch((error)=>{
+            loading.dismiss();
+            let mensaje = this.utiles.translateAuthError(error.code);
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+          });
+        }).catch((error)=>{
+          loading.dismiss();
+          let mensaje = this.utiles.translateAuthError(error.code);
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+        });
+      }else{
+        this.auth.registerAnonymous().then((data) => {
+          this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
+            const anonimousData :anonimusClient = this.getAnonymus(this.anonymous,downloadURL,data.user.uid);
+            this.dataBase.saveUser(enumCollectionNames.Clients, anonimousData, data.user.uid).then(() => {
+              loading.dismiss();
+              this.router.navigate(['/client-home']);
+            }).catch((error)=>{
+              loading.dismiss();
+              let mensaje = this.utiles.translateAuthError(error.code);
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+            });
+          }).catch((error)=>{
+            loading.dismiss();
+            let mensaje = this.utiles.translateAuthError(error.code);
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+          });
+        }).catch((error)=>{
+          loading.dismiss();
+          let mensaje = this.utiles.translateAuthError(error.code);
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+        });
+      }
   }
   
-  private async registerAnonimous(formGroup: FormGroup, photoUrl: string) {
-    const anonimousData :anonimusClient = this.getAnonymus(formGroup,photoUrl);
-    const userAnonimous = await this.auth.registerAnonymous();
-    if(userAnonimous != null){
-      anonimousData.id = userAnonimous.user.uid;
-      await this.dataBase.saveUser(enumCollectionNames.Clients, anonimousData, anonimousData.id);
-      this.router.navigate(['/client-home']);
-    }
-  }
-
-  private async registerCustomer(formGroup: FormGroup, downloadURL: string) {
-    const customerData: client= this.getClient(formGroup,downloadURL);
-    const userAccessData: userAccessData = this.getuserAccessData(formGroup);
-    const result = this.auth.register(userAccessData);
-    if(result != null ){
-      let user = (await result).user;
-      customerData.id = user.uid;
-      this.dataBase.saveUser(enumCollectionNames.Clients, customerData, user.uid);
-      this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
-      this.router.navigate(['/login']);
-    }
-  }
-
   analyzeQR()
   {
     CapacitorBarcodeScanner.scanBarcode({hint: 2, cameraDirection: 1,scanOrientation: 1})
@@ -128,9 +131,9 @@ export class RegisterClientPage implements OnInit {
     });
   }
   
-  getClient(newClient:FormGroup, photoUrl:string): client {
+  getClient(newClient:FormGroup, photoUrl:string, id:string): client {
     const data: client= {
-      id : newClient.get('email')?.value,
+      id,
       name : newClient.get('name')?.value,
       email : newClient.get('email')?.value,
       profile : enumProfile.Client,
@@ -150,9 +153,9 @@ export class RegisterClientPage implements OnInit {
     return userAccessData;
   }
 
-  getAnonymus(anonymous: FormGroup,photoUrl:string): anonimusClient{
+  getAnonymus(anonymous: FormGroup,photoUrl:string, id:string): anonimusClient{
     const data :anonimusClient = {
-      id : "",
+      id,
       name : anonymous.get('name')?.value!,
       email : "Email de prueba",
       profile : enumProfile.AnonimusClient,

@@ -88,6 +88,11 @@ export class UtilsService {
         errorMessageTranslated.content = 'La cuenta esta en espera de aprobación'
         break;
 
+      case "CR":
+        errorMessageTranslated.title = 'Cuenta rechazada'
+        errorMessageTranslated.content = 'Tu cuenta ha sido rechazada. Por favor, contacta al soporte para más información.'
+        break;
+
       case "NV": 
         errorMessageTranslated.title = 'Cuenta inválida'
         errorMessageTranslated.content = 'La cuenta no está verificada'

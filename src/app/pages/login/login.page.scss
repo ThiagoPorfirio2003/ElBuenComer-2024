@@ -1,123 +1,99 @@
 ion-toolbar {
-    --background: transparent !important;
-    color: white;
-    position: fixed;
-    
-    .my-button{
+  --background: transparent !important;
+  color: white;
+  position: fixed;
+
+  .my-button {
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+#logo {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 320px;
+  }
+}
+
+.wrapper {
+  .form-wrapper {
+    box-shadow: none;
+    border-radius: 20px;
+    background-color: white;
+    .titulo-txt {
+      color: #003049;
+      font-weight: bold;
+      padding: 8px;
       font-size: 25px;
-      font-weight: 700;
-      text-decoration: underline;
+    }
+
+    .size-input {
+      min-height: 80px;
+
+      .custom-text-size {
+        display: block;
+        font-size: 18px;
+        margin-top: 5px;
+      }
+    }
+    ion-item {
+      --background: white;
+      --padding-start: 10px;
+      --highlight-height: 0;
+      --border-width: 0;
+      --padding-top: 0;
+      --min-height: 40px;
+      border-radius: 5px;
+      color: #003049;
+      ion-icon {
+        font-size: 30px;
+        color: #003049;
+      }
+      ion-input {
+        margin-left: 10px;
+        font-size: 25px;
+        color: #003049;
+      }
+    }
+    ion-button {
+      --background: #d62828;
+      margin-top: 25px;
+      height: 58px;
+      width: 100%;
+      --border-radius: 40px !important;
     }
   }
- 
-  ion-content {
-    --background: #EDEDEF;
-    }
-    #header {
-      height: 60vh;
-      background:url("../../../assets/images/Login-fondo.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      color: #fff;
-      padding: 20px;
-      justify-content: center;
-      #app-bar {
-        #logo {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          img {
-            width: 270px;
-          }
-        }
-      }
-    }
-  
-    .wrapper {
-      position: absolute;
-      top: 45%;
-      left: 2%;
-      right: 2%;
-  
-      .form-wrapper {
-        box-shadow: none;
-        border-radius: 20px;
-        background-color: white;
-       
-        .titulo-txt{
-            color: #003049; 
-            font-weight: bold; 
-            padding: 8px;
-            font-size: 25px;
-        }
+}
 
-        .size-input{
-          min-height: 80px;
-
-          .custom-text-size {
-            display: block;
-            font-size: 18px;
-            margin-top: 5px;
-          }
-        }
-        ion-item {
-          --background: white;
-          --padding-start: 10px;
-          --highlight-height: 0;
-          --border-width: 0;
-          --padding-top: 0;
-          --min-height: 40px;
-          border-radius: 5px;
-          color: #003049;
-          ion-icon {
-            font-size: 30px;
-            color: #003049;
-          }
-          ion-input {
-            margin-left: 10px;
-            font-size: 25px;
-            color: #003049;
-          }
-        }
-        ion-button {
-          --background:#d62828;
-          margin-top: 25px;
-          height: 58px;
-          width: 100%;
-          --border-radius: 40px !important;
-        }
-      }
-    }
-
-    // Botones flotante
-    ion-fab-button{
-      --background: rgba(8, 8, 8, 0.5);
-      border: 2px solid white;
-      border-radius: 50%;
-      --ion-background-color:white;
-      img{
-        color: white;
-      }
-    }
-    .custom-fab-button{
-      width: 70px;
-      height: 70px; 
-    }
-    .custom-chip {
-      padding: 10px;
-      font-size: 22px;
-      width: 210px;
-      height: 45px;
-      background: rgba(8, 8, 8, 0.5);
-      font-weight: 600;
-      border: 2px solid white;
-    }
-    ion-label{
-      color: white;
-    }
-  
-
- 
+// Botones flotante
+ion-fab-button {
+  --background: rgba(8, 8, 8, 0.5);
+  border: 2px solid white;
+  border-radius: 50%;
+  --ion-background-color: white;
+  img {
+    color: white;
+  }
+}
+.custom-fab-button {
+  width: 70px;
+  height: 70px;
+}
+.custom-chip {
+  padding: 10px;
+  font-size: 22px;
+  width: 210px;
+  height: 45px;
+  background: rgba(8, 8, 8, 0.5);
+  font-weight: 600;
+  border: 2px solid white;
+}
+ion-label {
+  color: white;
+}

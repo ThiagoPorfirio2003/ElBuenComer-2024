@@ -9,117 +9,110 @@
 </ion-header>  
 
 <ion-content>
-  <div id="header">
-    <div id="app-bar">
-      <div id="logo">
-        <img alt="icono" src="../../assets/icon/icon.png" />
-      </div>
-      <div></div>
+  <div id="logo">
+      <img alt="icono" src="../../assets/icon/icon.png" />
+  </div>
+    <div class="wrapper">
+      <ion-card class="form-wrapper">
+        <ion-card-content>
+          <h2 align="center" class="titulo-txt">Iniciar sesión</h2>
+          <form [formGroup]="loginForm">
+            <div class="size-input">
+              <ion-item>
+                <ion-icon name="mail"></ion-icon>
+                <ion-input
+                  type="email"
+                  placeholder="Correo Electrónico"
+                  formControlName="email"
+                />
+              </ion-item>
+              <ion-text
+                color="danger"
+                class="text-danger custom-text-size"
+                *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched"
+                >EL <strong>Correo</strong> es requerido.
+              </ion-text>
+              <ion-text
+                color="danger"
+                *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched"
+                class="text-danger custom-text-size"
+                >EL <strong>Correo</strong> no tiene un formato correcto
+              </ion-text>
+            </div>
+            <div class="size-input">
+              <ion-item>
+                <ion-icon name="lock-closed"></ion-icon>
+                <ion-input
+                  type="password"
+                  placeholder="Contraseña"
+                  formControlName="password"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                color="danger"
+                *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+                class="text-danger custom-text-size"
+                >La <strong>contraseña</strong> es requerida
+              </ion-text>
+              <ion-text
+                color="danger"
+                *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched"
+                class="text-danger custom-text-size"
+                >La <strong>cotraseña</strong> debe ser mas de 6 caracteres
+              </ion-text>
+            </div>
+            <ion-button
+              (click)="login()"
+              type="submit"
+              [disabled]="!loginForm.valid"
+              ><strong>Iniciar</strong>
+            </ion-button>
+          </form>
+        </ion-card-content>
+      </ion-card>
     </div>
-  </div>
-  
-  <div class="wrapper">
-    <ion-card class="form-wrapper">
-      <ion-card-content>
-        <h2 align="center" class="titulo-txt">Iniciar sesión</h2>
-        <form [formGroup]="loginForm">
-          <div class="size-input">
-            <ion-item>
-              <ion-icon name="mail"></ion-icon>
-              <ion-input
-                type="email"
-                placeholder="Correo Electrónico"
-                formControlName="email"
-              />
-            </ion-item>
-            <ion-text
-              color="danger"
-              class="text-danger custom-text-size"
-              *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched"
-              >EL <strong>Correo</strong> es requerido.
-            </ion-text>
-            <ion-text
-              color="danger"
-              *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched"
-              class="text-danger custom-text-size"
-              >EL <strong>Correo</strong> no tiene un formato correcto
-            </ion-text>
-          </div>
-          <div class="size-input">
-            <ion-item>
-              <ion-icon name="lock-closed"></ion-icon>
-              <ion-input
-                type="password"
-                placeholder="Contraseña"
-                formControlName="password"
-              ></ion-input>
-            </ion-item>
-            <ion-text
-              color="danger"
-              *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
-              class="text-danger custom-text-size"
-              >La <strong>contraseña</strong> es requerida
-            </ion-text>
-            <ion-text
-              color="danger"
-              *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched"
-              class="text-danger custom-text-size"
-              >La <strong>cotraseña</strong> debe ser mas de 6 caracteres
-            </ion-text>
-          </div>
-          <ion-button
-            (click)="login()"
-            type="submit"
-            [disabled]="!loginForm.valid"
-            ><strong>Iniciar</strong>
-          </ion-button>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </div>
-  
-  <ion-fab slot="fixed" vertical="top" horizontal="start">
-    <ion-fab-button class="custom-fab-button">
-      <img alt="empleados" src="../../assets/icon/Icon-empleado.png" />
-    </ion-fab-button>
-    <ion-fab-list side="bottom">
-      <ion-chip (click)="loginDirect('jemmowugoittoi-5460@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>BARTENDER</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('frutreibugreiga-8565@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>COCINERO</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('luwougrimeye-6240@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>MOZO</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('kennugraukeno-3124@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>MEITRE</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('grareummucure-6124@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>SUPERVISOR</ion-label>
-      </ion-chip>
-      <ion-chip (click)="loginDirect('hoinaufolloitro-8390@yopmail.com', '123456')" class="custom-chip">
-        <ion-avatar>
-          <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
-        </ion-avatar>
-        <ion-label>DUEÑO</ion-label>
-      </ion-chip>
-    </ion-fab-list>
-  </ion-fab>
-
+    
+    <ion-fab slot="fixed" vertical="top" horizontal="start">
+      <ion-fab-button class="custom-fab-button">
+        <img alt="empleados" src="../../assets/icon/Icon-empleado.png" />
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-chip (click)="loginDirect('jemmowugoittoi-5460@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>BARTENDER</ion-label>
+        </ion-chip>
+        <ion-chip (click)="loginDirect('frutreibugreiga-8565@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>COCINERO</ion-label>
+        </ion-chip>
+        <ion-chip (click)="loginDirect('luwougrimeye-6240@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>MOZO</ion-label>
+        </ion-chip>
+        <ion-chip (click)="loginDirect('kennugraukeno-3124@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>MEITRE</ion-label>
+        </ion-chip>
+        <ion-chip (click)="loginDirect('grareummucure-6124@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>SUPERVISOR</ion-label>
+        </ion-chip>
+        <ion-chip (click)="loginDirect('hoinaufolloitro-8390@yopmail.com', '123456')" class="custom-chip">
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="../../assets/icon/Icon-empleado.png" />
+          </ion-avatar>
+          <ion-label>DUEÑO</ion-label>
+        </ion-chip>
+      </ion-fab-list>
+    </ion-fab>
 </ion-content>
