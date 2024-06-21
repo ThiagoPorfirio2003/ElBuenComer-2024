@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseApp } from '@angular/fire/app';
-import { Title } from '@angular/platform-browser';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { enumClientState } from 'src/app/enums/clientState';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
@@ -39,7 +37,6 @@ export class ListadoClientesPage implements OnInit
       }
     })
   }
-
 
   Permitir(cliente : any)
   {

@@ -48,7 +48,12 @@ const routes: Routes = [
   {
     path: 'register-client',
     loadChildren: () => import('./pages/register-client/register-client.module').then( m => m.RegisterClientPageModule)
+  },
+  {
+    path: 'waiter-home',
+    loadChildren: () => import('./pages/home/waiter-home/waiter-home.module').then( m => m.WaiterHomePageModule)
   }
+
 
 
 

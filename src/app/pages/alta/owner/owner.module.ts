@@ -14,7 +14,7 @@ import { OwnerPage } from './owner.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    OwnerPageRoutingModule
+    OwnerPageRoutingModule,
   ],
   declarations: [OwnerPage]
 })

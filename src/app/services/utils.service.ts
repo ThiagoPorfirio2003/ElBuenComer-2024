@@ -5,6 +5,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2'
 import { message } from '../interfaces/message';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+import { userAccessData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -165,5 +166,77 @@ export class UtilsService {
         ]
       }
     )
+  }
+
+  public ScanQR()
+  {
+    return CapacitorBarcodeScanner.scanBarcode({hint: 0, cameraDirection: 1,scanOrientation: 1})
+  }
+
+  public async detectarQR(tipo : string) : Promise<any>
+  {
+    let qrValue : string;
+    let error : any;
+    let object : any;
+
+    try
+    {
+      qrValue = (await this.ScanQR()).ScanResult;
+      let array = qrValue.split("-");
+      if(array[0] == tipo)
+      {
+        object = {retorno: true, valor: array[1]}
+      }
+      else
+      {
+        object = {retorno: false, valor: array[0]}
+      }
+    }
+    catch(e)
+    {
+      error = e
+    }
+
+    return new Promise((resolve, reject)=>
+    {
+      if(error)
+      {
+        reject(error)
+      }
+      else
+      {
+        resolve(object);
+      }
+    });
+  }
+
+  
+  private convertirAFechaCompleta(evento: any): Date {
+    const [dia, mes, año] = evento.fecha.split('/').map(Number);
+    const fecha = new Date(año, mes - 1, dia);
+    fecha.setMilliseconds(evento.hora);
+    return fecha;
+  }
+
+  public ordenar(a: any, b: any): number 
+  {
+    const fechaA = this.convertirAFechaCompleta(a);
+    const fechaB = this.convertirAFechaCompleta(b);
+    return fechaA.getTime() - fechaB.getTime();
+  }
+
+  public qr()
+  {
+    this.detectarQR("mesa").then((objet)=>
+    {
+      if(objet.return)
+      {
+        alert(objet.valor);
+      }
+      else
+      {
+        alert(objet.valor);
+      }
+    })
   }
 }
