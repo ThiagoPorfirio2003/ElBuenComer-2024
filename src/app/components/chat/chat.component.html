@@ -1,0 +1,34 @@
+<ion-content #content>
+  <div class="background">
+    <div class="mensajes">
+      <div *ngFor="let item of arrayMensajes">
+        <div *ngIf="item.person != this.mensaje.person; else elseBlock" class="centrar centrarTuyo">
+          <div class="chat chatTuyo">
+            <h5>{{item.person}}</h5>
+            <label class="mensaje">{{item.content}}</label>
+            <div class="smallDiv">
+              <small>{{item.fecha}} {{item.hora | hora}}</small>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div>
+            <div class="centrar centrarMio">
+              <div class="chat chatMio">
+                <label class="mensaje">{{item.content}}</label>
+                <div class="smallDiv">
+                  <small>{{item.fecha}} {{item.hora | hora}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div #scrollAnchor></div>
+    </div>
+    <div class="enviar">
+      <textarea id="input" [(ngModel)]="this.mensaje.content"  placeholder="Text"></textarea>
+      <button class="boton" (click)="this.Enviar()">Enviar</button>
+    </div>
+  </div>
+</ion-content>
