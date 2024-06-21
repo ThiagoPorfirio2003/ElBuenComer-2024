@@ -63,14 +63,14 @@ export class DataBaseService
 
     if(id)
     {
-      docData = doc(collection(this.firestore, collectionName, id)); 
+      docData = doc(this.firestore, collectionName, id); 
     }
     else
     {
-      docData = doc(collection(this.firestore, collectionName)); 
+      docData = doc(this.firestore, collectionName); 
       data.id = docData.id;
     }
-    
+
     return setDoc(docData, data);
   }
 

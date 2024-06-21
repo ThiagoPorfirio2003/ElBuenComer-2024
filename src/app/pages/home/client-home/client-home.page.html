@@ -6,15 +6,15 @@
       <div class="full-screen in-restaurant">
         @if (this.isInWaitingRoom) 
         {
-          <ion-button class="in-restaurant" (click)="this.isInWaitingRoom = false" color="light">
+          <ion-button class="in-restaurant" (click)="this.analiceQR()" color="light">
             <div class="no-big-img">
-              <h1>Vincunlar con la mesa: {{this.tableNumberToShow}}</h1>
-              <img class="no-big-img" src="../../../../assets//images/QR_In_Btn.png" alt="">
+              <h1>Vincular con la mesa: {{this.tableNumberToShow}}</h1>
+              <img class="no-big-img" src="../../../../assets/images/QR_In_Btn.png" alt="">
             </div>
           </ion-button>
         }
         @else {
-          <ion-button class="in-restaurant" (click)="this.isInWaitingRoom = true" color="light">
+          <ion-button class="in-restaurant" (click)="this.goInWaitingRoom()" color="light">
             <div>
               <h1>Pedir una mesa</h1>
               <img src="../../../../assets/images/table.png">
@@ -32,10 +32,10 @@
     }
     @else {
       <div class="full-screen entry">
-        <ion-button class="entry" (click)="this.isInRestaurant = true" color="entryqr">
+        <ion-button class="entry" (click)="this.analiceQR()" color="entryqr">
           <div>
             <h1>Entrar al local</h1>
-            <img src="../../../../assets//images/QR_In_Btn.png" alt="">
+            <img src="../../../../assets/images/QR_In_Btn.png" alt="">
           </div>
         </ion-button>
       </div>
