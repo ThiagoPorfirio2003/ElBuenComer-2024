@@ -14,6 +14,7 @@ import { enumProfile } from 'src/app/enums/profile';
 import { enumClientState } from 'src/app/enums/clientState';
 import { enumStoragePaths } from 'src/app/enums/storagePaths';
 import { UtilsService } from 'src/app/services/utils.service';
+import { message } from 'src/app/interfaces/message';
 
 @Component({
   selector: 'app-register-client',
@@ -72,10 +73,15 @@ export class RegisterClientPage {
         const userAccessData: userAccessData = this.getuserAccessData(this.newClient);
         this.auth.register(userAccessData).then((data)=> {
           this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
-            const customerData: client= this.getClient(this.newClient,downloadURL,data.user.uid);
+            const customerData: client= this.getClient(downloadURL,data.user.uid);
             this.dataBase.saveUser(enumCollectionNames.Clients, customerData, data.user.uid).then(() => {
               loading.dismiss();
-              this.ionToastService.showToastSuccess('Le haremos saber por correo electrónico una vez que su registro haya sido aprobado.');
+              this.resetFormImg();
+              let mensaje:message = {
+                title:"Registro Exitoso",
+                content: "Le haremos saber por correo electrónico una vez que su registro haya sido aprobado",
+              }
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"success"})
               this.router.navigate(['/login']);
             })
             .catch((error)=>{
@@ -96,9 +102,10 @@ export class RegisterClientPage {
       }else{
         this.auth.registerAnonymous().then((data) => {
           this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
-            const anonimousData :anonimusClient = this.getAnonymus(this.anonymous,downloadURL,data.user.uid);
+            const anonimousData :anonimusClient = this.getAnonymus(downloadURL,data.user.uid);
             this.dataBase.saveUser(enumCollectionNames.Clients, anonimousData, data.user.uid).then(() => {
               loading.dismiss();
+              this.resetFormImg();
               this.router.navigate(['/client-home']);
             }).catch((error)=>{
               loading.dismiss();
@@ -131,38 +138,35 @@ export class RegisterClientPage {
     });
   }
   
-  getClient(newClient:FormGroup, photoUrl:string, id:string): client {
-    const data: client= {
+  getClient(photoUrl:string, id:string): client {
+    return {
       id,
-      name : newClient.get('name')?.value,
-      email : newClient.get('email')?.value,
+      name : this.newClient.get('name')?.value,
+      email : this.newClient.get('email')?.value,
       profile : enumProfile.Client,
       photoUrl,
-      surname : newClient.get('lastName')?.value,
-      dni : newClient.get('dni')?.value,
+      surname : this.newClient.get('lastName')?.value,
+      dni : this.newClient.get('dni')?.value,
       state: enumClientState.AwaitingApproval,
     }
-    return data
   }
 
   getuserAccessData(newClient: FormGroup): userAccessData {
-    const userAccessData: userAccessData = {
+    return {
       email: newClient.get('email')?.value,
       password : newClient.get('password')?.value,
     }
-    return userAccessData;
   }
 
-  getAnonymus(anonymous: FormGroup,photoUrl:string, id:string): anonimusClient{
-    const data :anonimusClient = {
+  getAnonymus(photoUrl:string, id:string): anonimusClient{
+    return {
       id,
-      name : anonymous.get('name')?.value!,
+      name : this.anonymous.get('name')?.value!,
       email : "Email de prueba",
       profile : enumProfile.AnonimusClient,
       photoUrl,
-      state: enumClientState.AwaitingApproval,
+      state: enumClientState.Accepted,
     };
-    return data
   }
 
   resetFormImg(){
