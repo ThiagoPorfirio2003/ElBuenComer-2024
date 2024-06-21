@@ -1,0 +1,127 @@
+//----------------------HEADER---------------------------
+
+ion-icon{
+    color: white
+}
+
+ion-toolbar{
+    font-family: cursive;
+    --background: #5a189a;
+}
+
+.vuelta
+{
+    --border-radius: 50%;
+    --background: #1a0b33;
+}
+
+//---------------------------------BODY--------------------------------
+ion-content{
+    font-family: system-ui;
+}
+.background
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mensajes
+{
+    flex: 1; /* Esto asegura que tome todo el espacio disponible */
+    height: 90%;
+    display: flex;
+    padding: 3%;
+    background: #240046;
+    overflow-y: auto;
+    flex-direction: column;
+}
+//-------------------------------MENSAJES------------------------------------------
+.centrar
+{
+    padding-bottom: 2%;
+    display: flex;
+}
+.chat
+{
+    border: solid;
+    max-width: 100%;
+    padding: 1% 3%;
+    display: flex;
+    flex-direction: column;
+}
+.mensaje{
+    font-family: inherit;
+    line-height: normal;
+    margin-bottom: 3%;
+}
+.smallDiv
+{
+    display: flex;
+    justify-content: flex-end;
+}
+small
+{
+    color: black;
+    font-size: 69%;
+}
+//-----------------tuyo-------------------------
+.centrarTuyo
+{
+    justify-content: flex-start;
+}
+.chatTuyo
+{
+    border-radius: 0px 20px 20px 20px;
+    background: #8254ff;
+}
+
+h5{
+    color: black;
+    margin: 0px;
+}
+
+//---------mio-----------------------------
+.centrarMio
+{
+    justify-content: flex-end;
+}
+.chatMio
+{
+    border-radius: 25px 0% 15px 25px;
+    background: #7b2cbf;
+}
+
+//-----------------------------ingreso de mensaje-------------------------
+.boton{
+    font-family: cursive;
+    width: 14%;
+    border-radius: 40px;
+    background: #20143f;
+}
+.enviar
+{
+    background: #47126b;
+    height: 10%;
+    padding: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+textarea::-webkit-scrollbar
+{
+    display: none;
+    
+}
+
+textarea{
+    font-family: cursive;
+    font-size: larger;
+    padding-left: 2%;
+    background: #20143f;
+    width: 84%;
+    border-radius: 15px;
+}
