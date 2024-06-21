@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
+import { collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
 //import { userImage } from '../interfaces/image';
 import { baseUserData } from '../interfaces/user';
@@ -39,6 +39,16 @@ export class DataBaseService
 
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
+
+  public updateTableAvailability(isFree : boolean, id : string)
+  {
+    return updateDoc(doc(this.firestore, enumCollectionNames.Tables, id), {isFree: isFree});
+  }
+
+  public updateTableCurrentClient(idNewClient : string, id : string)
+  {
+    return updateDoc(doc(this.firestore, enumCollectionNames.Tables, id), {idCurrentClient: idNewClient});
+  } 
 
   public deleteData(collectionName : enumCollectionNames, id : string)
   {

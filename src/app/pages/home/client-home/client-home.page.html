@@ -1,29 +1,43 @@
 <app-header [title]="'El buen comer'"></app-header>
 
 <ion-content>
-  <div class="full-screen">
-    @if (this.isInWaitingRoom) 
+    @if (this.isInRestaurant) 
     {
-      <ion-button class="QR-btn" (click)="this.isInWaitingRoom = false" color="entryqr">
-        <div>
-          <h1>Sentarse</h1>
-          <ion-icon slot="end" name="qr-code-outline"></ion-icon>
-        </div>
-      </ion-button>
-
-      <ion-button class="survey-btn" (click)="true" expand="block" fill="solid" shape="round" color="entryqr">
-        <h1>Mirar encuestas</h1>
-      </ion-button>
-    }
-    @else {
-      <div class="no-QR-screen full-screen">
-        <ion-button class="QR-btn" (click)="this.isInWaitingRoom = true" color="entryqr">
+      <div class="full-screen in-restaurant">
+        @if (this.isInWaitingRoom) 
+        {
+          <ion-button class="in-restaurant" (click)="this.isInWaitingRoom = false" color="light">
+            <div class="no-big-img">
+              <h1>Vincunlar con la mesa: {{this.tableNumberToShow}}</h1>
+              <img class="no-big-img" src="../../../../assets//images/QR_In_Btn.png" alt="">
+            </div>
+          </ion-button>
+        }
+        @else {
+          <ion-button class="in-restaurant" (click)="this.isInWaitingRoom = true" color="light">
+            <div>
+              <h1>Pedir una mesa</h1>
+              <img src="../../../../assets/images/table.png">
+            </div>
+          </ion-button>
+        }
+  
+        <ion-button class="in-restaurant" (click)="true" color="brown">
           <div>
-            <h1>Entrar al local</h1>
-            <ion-icon slot="end" name="qr-code-outline"></ion-icon>
+            <h1>Mirar encuestas</h1>
+            <img src="../../../../assets/images/survey.png">
           </div>
         </ion-button>
       </div>
     }
-  </div>
+    @else {
+      <div class="full-screen entry">
+        <ion-button class="entry" (click)="this.isInRestaurant = true" color="entryqr">
+          <div>
+            <h1>Entrar al local</h1>
+            <img src="../../../../assets//images/QR_In_Btn.png" alt="">
+          </div>
+        </ion-button>
+      </div>
+    }
 </ion-content>

@@ -13,31 +13,46 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ClientHomePage   
 {
     public isInWaitingRoom : boolean;
+    public isInRestaurant : boolean;
+    public userTableNumber : number;
+    public tableNumberToShow : string;
 
     constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService) 
     { 
       this.isInWaitingRoom = false;
+      this.isInRestaurant = false;
+      this.userTableNumber = 0;
+      this.tableNumberToShow = 'Aun por asignar';
     }
 
-    public analiceQR(qrType : enumQR)
+    public analiceQR(QRValues : Array<string>)
     {
-      switch(qrType)
+      //Agregar la lectura del QR
+      switch(QRValues[0])
       {
         case enumQR.Entrada:
-          if(this.isInWaitingRoom)
+          if(this.isInRestaurant)
           {
             console.log('Fracaso');
           }
           else
           {
             console.log('Pudiste entrar al restaurant');
+            //this.goInRestaurant()
           }
           break;
           
         case enumQR.Mesa:
           if(this.isInWaitingRoom)
           {
-            console.log('PUDISTE TOMAR UNA MESA');
+            if(this.userTableNumber == parseInt(QRValues[1]))
+            {
+              console.log('PUDISTE TOMAR UNA MESA');
+            }
+            else
+            {
+              console.log('Esa mesa no es la tuya');
+            }
           }
           else
           {
@@ -57,6 +72,15 @@ export class ClientHomePage
       .then(()=>
       {
         this.isInWaitingRoom = true;
+      })
+    }
+
+    private goToTable(tableNumber : string)
+    {
+      this.dataBase.updateTableAvailability(false,tableNumber.toString())
+      .then(()=>
+      {
+        this.utilsService.changeRoute('RUTA DE LA PAGINA DE LA MESA')
       })
     }
 
