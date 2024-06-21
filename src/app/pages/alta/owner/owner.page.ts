@@ -193,19 +193,4 @@ export class OwnerPage
     }
     return retorno;
   }
-
-  qr()
-  {
-    this.utiles.detectarQR("mesa").then((objet)=>
-    {
-      if(objet.return)
-      {
-        alert(objet.valor);
-      }
-      else
-      {
-        alert(objet.valor);
-      }
-    })
-  }
 }

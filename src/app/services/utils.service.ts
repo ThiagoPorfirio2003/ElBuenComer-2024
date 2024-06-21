@@ -219,4 +219,19 @@ export class UtilsService {
     const fechaB = this.convertirAFechaCompleta(b);
     return fechaA.getTime() - fechaB.getTime();
   }
+
+  public qr()
+  {
+    this.detectarQR("mesa").then((objet)=>
+    {
+      if(objet.return)
+      {
+        alert(objet.valor);
+      }
+      else
+      {
+        alert(objet.valor);
+      }
+    })
+  }
 }

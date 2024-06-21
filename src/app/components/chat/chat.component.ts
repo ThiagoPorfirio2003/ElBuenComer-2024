@@ -39,7 +39,15 @@ export class ChatComponent  implements OnInit {
     {
       this.arrayMensajes = [...res];
       this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
-      
+      if(this.auth.userData.profile == enumProfile.Waiter)
+      {
+        let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
+        let emisor = ultimoMensaje.name.split("-");
+        if(emisor == "mesa")
+        {
+          this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje")
+        }
+      }
     });
   }
 
