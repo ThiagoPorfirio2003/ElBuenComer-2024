@@ -41,21 +41,21 @@ export class ListadoClientesPage implements OnInit
 
   Permitir(cliente : any)
   {
-    this.cambiar("Aceptar Cliente","Estas seguro de querer aceptar al cliente: " + cliente.name, enumClientState.Accepted, cliente, "Has sido Aceptado");
+    this.cambiar("Aceptar cliente","Estas seguro de querer aceptar al cliente: " + cliente.name, enumClientState.Accepted, cliente, "Has sido aceptado");
   }
 
   Denegar(cliente : any)
   {
-    this.cambiar("Denegar Cliente","Estas seguro de querer denegar al cliente: " + cliente.name, enumClientState.Rejected, cliente, "Has sido rechazado");
+    this.cambiar("Denegar cliente","Estas seguro de querer denegar al cliente: " + cliente.name, enumClientState.Rejected, cliente, "Has sido rechazado");
   }
 
   private cambiar(title : string, text : string, estado : enumClientState, cliente : any, mensajeMail : string)
   {
     this.util.showSweet({title: title, text: text, showCancelButton: true,
-      cancelButtonText:"no, cambie de opinion", confirmButtonText: "Estoy seguro" })
+      cancelButtonText:"No, cambie de opinión", confirmButtonText: "Estoy seguro" })
     .then((result)=>
     {
-      if(result)
+      if(result.isConfirmed)
       {
         cliente.state = estado;
         this.firebase.saveUser(enumCollectionNames.Clients,cliente,cliente.id)
