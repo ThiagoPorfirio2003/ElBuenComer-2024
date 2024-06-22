@@ -124,7 +124,7 @@ export class LoginPage {
           this.utiles.showSweet({
             titleText: mensaje.title,
             text: mensaje.content,
-            icon: 'error',
+            icon: 'warning',
           });
         }else if(state == enumClientState.Rejected){
           let mensaje = this.utiles.translateAuthError("CR");
