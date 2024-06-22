@@ -29,7 +29,8 @@ export class ListadoClientesPage implements OnInit
     
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     LocalNotifications.checkPermissions().then((permiso)=>{
       if(permiso.display != "granted")
       {
@@ -40,17 +41,17 @@ export class ListadoClientesPage implements OnInit
 
   Permitir(cliente : any)
   {
-    this.cambiar("Aceptar Cliente","Estas seguro de querer aceptar al cliente: " + cliente.name, enumClientState.Accepted, cliente);
+    this.cambiar("Aceptar Cliente","Estas seguro de querer aceptar al cliente: " + cliente.name, enumClientState.Accepted, cliente, "Has sido Aceptado");
   }
 
   Denegar(cliente : any)
   {
-    this.cambiar("Denegar Cliente","Estas seguro de querer denegar al cliente: " + cliente.name, enumClientState.Rejected, cliente);
+    this.cambiar("Denegar Cliente","Estas seguro de querer denegar al cliente: " + cliente.name, enumClientState.Rejected, cliente, "Has sido rechazado");
   }
 
-  private cambiar(title : string, text : string, estado : enumClientState, cliente : any)
+  private cambiar(title : string, text : string, estado : enumClientState, cliente : any, mensajeMail : string)
   {
-    this.util.showSweet({title: title, text: text, 
+    this.util.showSweet({title: title, text: text, showCancelButton: true,
       cancelButtonText:"no, cambie de opinion", confirmButtonText: "Estoy seguro" })
     .then((result)=>
     {
@@ -58,6 +59,7 @@ export class ListadoClientesPage implements OnInit
       {
         cliente.state = estado;
         this.firebase.saveUser(enumCollectionNames.Clients,cliente,cliente.id)
+        this.util.sendEmail(cliente.name, mensajeMail, cliente.email);
       }
     })
   }

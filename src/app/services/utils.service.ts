@@ -5,7 +5,6 @@ import Swal, { SweetAlertOptions } from 'sweetalert2'
 import { message } from '../interfaces/message';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
-import { userAccessData } from '../interfaces/user';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Injectable({
@@ -226,22 +225,7 @@ export class UtilsService {
     return fechaA.getTime() - fechaB.getTime();
   }
 
-  public qr()
-  {
-    this.detectarQR("mesa").then((objet)=>
-    {
-      if(objet.return)
-      {
-        alert(objet.valor);
-      }
-      else
-      {
-        alert(objet.valor);
-      }
-    })
-  }
-
-  sendEmail(to_name: string, message: string, reply_to:string) {
+  public sendEmail(to_name: string, message: string, reply_to:string) {
 
     let templateParam = { 
       from_name: "El Buen comer", 
