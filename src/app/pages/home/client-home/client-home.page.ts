@@ -104,7 +104,7 @@ export class ClientHomePage implements OnInit, OnDestroy
     public async goInWaitingRoom()
     {
       await this.loader.simpleLoader()
-      this.dataBase.saveData(enumCollectionNames.WaitingRoom, {}, this.auth.getAuthUser()!.uid)
+      this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id)
       .then(()=>
       {
         this.isInWaitingRoom = true;
