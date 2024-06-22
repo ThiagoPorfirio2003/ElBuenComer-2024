@@ -46,6 +46,7 @@ export class LoginPage {
           .then((doc) => {
             let userData = doc.data();
             loading.dismiss();
+            this.loginForm.reset();
             if (userData) {
               this.redirectToHomePages(userData);
             } else {
