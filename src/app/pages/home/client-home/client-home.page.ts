@@ -115,6 +115,7 @@ export class ClientHomePage implements OnInit, OnDestroy
     private async goToTable(tableNumber : number)
     {
       await this.loader.simpleLoader()
+      /*
       this.dataBase.updateTableAvailability(false,tableNumber.toString())
       .then(()=>
       {
@@ -124,6 +125,7 @@ export class ClientHomePage implements OnInit, OnDestroy
         this.utilsService.changeRoute('table')
       })
       .finally(()=> this.loader.dismissLoader())
+      */
     }
 
 }

@@ -16,11 +16,12 @@ export class TablePage implements OnInit, OnDestroy{
 
   private productSuscription! : Subscription;
   public products! : Array<product>;
+  public showChat : boolean;
 
   constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
     private loader : IonLoaderService) 
     { 
-
+      this.showChat = false;
     }
 
   ngOnInit(): void 
