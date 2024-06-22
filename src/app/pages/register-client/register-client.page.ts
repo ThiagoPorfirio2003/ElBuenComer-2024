@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
-import { IonLoaderService } from 'src/app/services/ion-loader.service';
-import { IonToastService } from 'src/app/services/ion-toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { anonimusClient, client, completeUserData, userAccessData } from 'src/app/interfaces/user';
@@ -34,9 +32,7 @@ export class RegisterClientPage {
 
   constructor(
     private fb: FormBuilder,
-    private ionToastService: IonToastService,
     private dataBase: DataBaseService,
-    private ionLoaderService: IonLoaderService,
     private router: Router,
     private auth: AuthService,
     private storageService: StorageService,

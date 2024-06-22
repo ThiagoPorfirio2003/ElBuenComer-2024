@@ -6,6 +6,7 @@ import { message } from '../interfaces/message';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 import { userAccessData } from '../interfaces/user';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Injectable({
   providedIn: 'root'
@@ -238,5 +239,17 @@ export class UtilsService {
         alert(objet.valor);
       }
     })
+  }
+
+  sendEmail(to_name: string, message: string, reply_to:string) {
+
+    let templateParam = { 
+      from_name: "El Buen comer", 
+      to_name, 
+      message, 
+      reply_to 
+    };
+
+    return emailjs.send('service_9cnyin3', 'template_rggb1ju',templateParam, 'VkJ1a516pN6FRGasD')
   }
 }
