@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { product } from 'src/app/interfaces/products';
@@ -12,7 +12,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
 })
-export class TablePage implements OnInit{
+export class TablePage implements OnInit, OnDestroy{
 
   private productSuscription! : Subscription;
   public products! : Array<product>;
@@ -30,5 +30,9 @@ export class TablePage implements OnInit{
     {
       this.products = products;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.productSuscription.unsubscribe();
   }
 }

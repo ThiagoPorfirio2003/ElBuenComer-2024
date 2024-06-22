@@ -1,50 +1,30 @@
 <app-header [title]="'Mesa'"></app-header>
 
 <ion-content>
-  <!-- 
-    <ion-card style="height: 40%;">
-    <div style="height: 50%; display: flex;flex-direction: row;overflow-x: scroll;">
-      @for (product of products; track $index) 
-      {
-        <img style="max-height: 100%; max-width: 100%;" [src]="product.photoUrl" alt="">
-      }
-      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
-      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
-      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
-    </div>
-
-
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
-  </ion-card>
-  -->
-
-  <!-- 
-  Imagen
-  Nombre
-  Precio
-  Tiempo de elaboracion
-  Descripcion
-  -->
   <div class="full-screen centrar-columna">
-
-    <div class="foodCard">
-      <div class="carrusel">
-        <img src="../../../../assets/images/usuario.png">
-      </div>
-  
-      <h1>Nombre</h1>
-      <h1>Precio</h1>
-      <h1>Tiempo de elaboracion</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor vitae expedita minus veniam alias nostrum qui, 
-        explicabo officia tempora sit harum provident impedit iure tenetur, in nam temporibus. Est, quam.</p>
-    </div>
     
+    <ion-button class="consultar-mozo" (click)="true" fill="solid" color="light">
+      <h1>Consultar al mozo</h1>
+      <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
+    </ion-button>
+
+    <div class="menu">
+        @for (product of products; track $index) 
+        {
+            <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
+              <div class="carrusel">
+                @for (foto of product.photoUrl; track $index) 
+                {
+                  <img [src]="foto">
+                }
+              </div>
+          
+              <h1>{{product.name}}</h1>
+              <h1>${{product.price}}</h1>
+              <h1>Elaboracion: {{product.time}} minuto/s</h1>
+              <p>{{product.description}}</p>
+            </div>
+        }
+    </div>
   </div>
 </ion-content>
