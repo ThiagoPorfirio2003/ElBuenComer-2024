@@ -1,7 +1,8 @@
 <app-header [title]="'El buen comer'"></app-header>
 
 <ion-content>
-    @if (this.isInRestaurant) 
+
+      @if (this.isInRestaurant) 
     {
       <div class="full-screen in-restaurant">
         @if (this.isInWaitingRoom) 
@@ -39,5 +40,7 @@
           </div>
         </ion-button>
       </div>
-    }
+    } 
+
+
 </ion-content>

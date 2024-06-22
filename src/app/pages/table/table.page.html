@@ -1,0 +1,25 @@
+<app-header [title]="'Mesa'"></app-header>
+
+<ion-content>
+  <ion-card style="height: 40%;">
+    <div style="height: 50%; display: flex;flex-direction: row;overflow-x: scroll;">
+      @for (product of products; track $index) 
+      {
+        <img style="max-height: 100%; max-width: 100%;" [src]="product.photoUrl" alt="">
+      }
+      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
+      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
+      <img style="max-height: 100%; max-width: 100%;" alt="Silhouette of mountains" src="../../../../assets/images/usuario.png" />
+    </div>
+
+
+    <ion-card-header>
+      <ion-card-title>Card Title</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
