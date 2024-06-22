@@ -51,7 +51,7 @@ export class ListadoClientesPage implements OnInit
 
   private cambiar(title : string, text : string, estado : enumClientState, cliente : any, mensajeMail : string)
   {
-    this.util.showSweet({title: title, text: text, 
+    this.util.showSweet({title: title, text: text, showCancelButton: true,
       cancelButtonText:"no, cambie de opinion", confirmButtonText: "Estoy seguro" })
     .then((result)=>
     {
