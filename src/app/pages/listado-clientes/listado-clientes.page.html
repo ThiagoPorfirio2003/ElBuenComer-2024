@@ -1,21 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>listadoClientes</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="Listado Clientes"></app-header>
 <ion-content [fullscreen]="true">
   <div>
     <ion-grid style="width: 100%;">  
       <ion-row style="background-color: #9d641d;">  
-        <ion-col>nombre</ion-col>  
-        <ion-col>estado</ion-col>  
-        <ion-col>acción</ion-col>  
+        <ion-col>Nombre</ion-col>  
+        <ion-col>Perfil</ion-col>  
+        <ion-col>Acción</ion-col>  
       </ion-row>  
       @for (item of this.clientes; track $index) 
       {
         <ion-row style="background-color: #636363;">  
-          <ion-col>{{item.name}} {{item.surname}}</ion-col>  
+          <ion-col>{{item.name | mayuscula}} {{item.surname | mayuscula}}</ion-col>  
           <ion-col><img src={{item.photoUrl}} alt=""></ion-col>    
           <ion-col class="botones">
             <button (click)="Permitir(item)" style="background-color: green;">Permitir</button>

@@ -100,13 +100,13 @@ export class LoginPage {
     const userProfile = data['profile'];
     switch (userProfile) {
       case enumProfile.Owner:
-        console.log('User is an Owner');
+        this.utiles.changeRoute('/listado-clientes');
         break;
       case enumProfile.Supervisor:
-        console.log('User is a Supervisor');
+        this.utiles.changeRoute('/listado-clientes');
         break;
       case enumProfile.Maitre:
-        console.log('User is a Maitre');
+        this.utiles.changeRoute('/maitre-home');
         break;
       case enumProfile.Waiter:
         console.log('User is a Waiter');
@@ -124,7 +124,7 @@ export class LoginPage {
           this.utiles.showSweet({
             titleText: mensaje.title,
             text: mensaje.content,
-            icon: 'error',
+            icon: 'warning',
           });
         }else if(state == enumClientState.Rejected){
           let mensaje = this.utiles.translateAuthError("CR");

@@ -52,17 +52,15 @@ const routes: Routes = [
   {
     path: 'waiter-home',
     loadChildren: () => import('./pages/home/waiter-home/waiter-home.module').then( m => m.WaiterHomePageModule)
-  },  {
+  },
+  {
     path: 'table',
     loadChildren: () => import('./pages/table/table.module').then( m => m.TablePageModule)
+  },
+  {
+    path: 'maitre-home',
+    loadChildren: () => import('./pages/home/maitre-home/maitre-home.module').then( m => m.MaitreHomePageModule)
   }
-
-
-
-
-
-
-
 ];
 
 @NgModule({
