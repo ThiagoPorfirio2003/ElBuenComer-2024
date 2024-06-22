@@ -27,6 +27,11 @@ export class DataBaseService
     return getDocs(query(this.getCollectionRef(enumCollectionNames.Users), where('dni','==', dni)));
   }
 
+  public getTableByClientId(idClient : string)
+  {
+    return getDocs(query(this.getCollectionRef(enumCollectionNames.Tables), where('idCurrentClient','==', idClient)));
+  }
+
   public getDocRef(collectionName : enumCollectionNames, idDoc : string)
   {
     return getDoc(doc(this.firestore, collectionName, idDoc));
