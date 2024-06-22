@@ -23,8 +23,7 @@ export class ClientHomePage implements OnInit, OnDestroy
     private tablesSuscription! : Subscription;
 
     constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
-      private loader : IonLoaderService
-    ) 
+      private loader : IonLoaderService) 
     { 
       this.isInWaitingRoom = false;
       this.isInRestaurant = false;
@@ -119,7 +118,10 @@ export class ClientHomePage implements OnInit, OnDestroy
       this.dataBase.updateTableAvailability(false,tableNumber.toString())
       .then(()=>
       {
+        this.userTable.isFree = false;
+        this.auth.userTable = this.userTable;
         this.loader.dismissLoader();
+        this.utilsService.changeRoute('table')
       })
       .finally(()=> this.loader.dismissLoader())
     }

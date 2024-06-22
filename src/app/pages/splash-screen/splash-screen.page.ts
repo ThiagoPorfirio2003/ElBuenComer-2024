@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -21,6 +21,7 @@ export class SplashScreenPage{
       this.centerClass = 'scale-out-horizontal';
       this.footerClass = 'scale-out-hor-right';
     }
+
 
     ionViewDidEnter()
     {
