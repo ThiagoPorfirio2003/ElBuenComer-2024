@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { ListadoClientesPageRoutingModule } from './listado-clientes-routing.module';
 
 import { ListadoClientesPage } from './listado-clientes.page';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
+import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListadoClientesPageRoutingModule
+    ListadoClientesPageRoutingModule,
+    SharedComponentsModule,
+    MayusculaPrimeraPipe
   ],
   declarations: [ListadoClientesPage]
 })
