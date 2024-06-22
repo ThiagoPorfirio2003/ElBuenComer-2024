@@ -1,7 +1,8 @@
 <app-header [title]="'Mesa'"></app-header>
 
 <ion-content>
-  <ion-card style="height: 40%;">
+  <!-- 
+    <ion-card style="height: 40%;">
     <div style="height: 50%; display: flex;flex-direction: row;overflow-x: scroll;">
       @for (product of products; track $index) 
       {
@@ -22,4 +23,28 @@
       Here's a small text description for the card content. Nothing more, nothing less.
     </ion-card-content>
   </ion-card>
+  -->
+
+  <!-- 
+  Imagen
+  Nombre
+  Precio
+  Tiempo de elaboracion
+  Descripcion
+  -->
+  <div class="full-screen centrar-columna">
+
+    <div class="foodCard">
+      <div class="carrusel">
+        <img src="../../../../assets/images/usuario.png">
+      </div>
+  
+      <h1>Nombre</h1>
+      <h1>Precio</h1>
+      <h1>Tiempo de elaboracion</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor vitae expedita minus veniam alias nostrum qui, 
+        explicabo officia tempora sit harum provident impedit iure tenetur, in nam temporibus. Est, quam.</p>
+    </div>
+    
+  </div>
 </ion-content>
