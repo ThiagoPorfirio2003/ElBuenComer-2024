@@ -40,7 +40,7 @@ export class TableListModalComponent implements OnInit {
           const loading = await this.util.getLoadingCtrl({spinner: 'circular'});
           await loading.present();
           this.firebase.updateTableCurrentClient(this.client.id,table.number.toString()).then(() => {
-            this.firebase.deleteData(enumCollectionNames.WaitingRoom, this.client.id);
+            //this.firebase.deleteData(enumCollectionNames.WaitingRoom, this.client.id);
             loading.dismiss();
             this.modalController.dismiss();
           }).catch((error)=>{

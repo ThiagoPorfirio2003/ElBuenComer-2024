@@ -1,7 +1,7 @@
 <app-header [title]="'Listado de Espera'"></app-header>
 
 <ion-content [fullscreen]="true" >
-  <ion-list class="home-list" color="danger">
+  <ion-list class="home-list custom-list" >
     <ion-item *ngFor="let client of clientes" (click)="openModal(client)" color="danger">
       <ion-avatar slot="start" class="avatar">
         <img [src]="client.photoUrl" alt="client.name">
