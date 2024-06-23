@@ -6,24 +6,28 @@ import { IonicModule } from '@ionic/angular';
 import { ChatComponent } from '../components/chat/chat.component';
 import { HoraPipe } from '../pipe/hora.pipe';
 import { FormsModule } from '@angular/forms';
-
+import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
+import { EnumtypePipe } from '../pipe/enumtype.pipe';
 @NgModule({
   declarations: [
     HeaderComponent,
     CameraComponent,
-    ChatComponent
+    ChatComponent,
+    TableListModalComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    HoraPipe
+    HoraPipe,
+    EnumtypePipe
   ],
   exports:
   [
     HeaderComponent,
     CameraComponent,
-    ChatComponent
+    ChatComponent,
+    TableListModalComponent
   ]
 })
 export class SharedComponentsModule { }

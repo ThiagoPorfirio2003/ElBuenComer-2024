@@ -8,6 +8,7 @@ import { TablePageRoutingModule } from './table-routing.module';
 
 import { TablePage } from './table.page';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
+import { AltaEncuestaComponent } from 'src/app/components/alta-encuesta/alta-encuesta.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedComponentsModule } from 'src/app/modules/shared-components.module
     TablePageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [TablePage]
+  declarations: [TablePage, AltaEncuestaComponent]
 })
 export class TablePageModule {}

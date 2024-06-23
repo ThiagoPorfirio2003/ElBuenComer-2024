@@ -1,28 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Lista de espera</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Listado de Espera'"></app-header>
 
-<ion-content [fullscreen]="true">
-  <!-- 
-    <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Lista de espera</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-list class="home-list">
-    {this.components.map(component => {
-      const href = component.id === 'tabs' ? '/component/tabs/music' : `/component/${component.id}`;
-
-      return (
-        <ion-item href={href}>
-          <ion-icon slot="start" icon={component.icon} class="component-icon component-icon-primary"></ion-icon>
-          <ion-label>{component.name}</ion-label>
-        </ion-item>
-      );
-    })}
+<ion-content [fullscreen]="true" >
+  <ion-list class="home-list custom-list" >
+    <ion-item *ngFor="let client of clientes" (click)="openModal(client)" color="danger">
+      <ion-avatar slot="start" class="avatar">
+        <img [src]="client.photoUrl" alt="client.name">
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <h2>{{ client.name }} {{ client.surname ? client.surname : '' }}</h2>
+      </ion-label>
+    </ion-item>
   </ion-list>
-  -->
-
 </ion-content>
