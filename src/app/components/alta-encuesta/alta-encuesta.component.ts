@@ -57,15 +57,30 @@ export class AltaEncuestaComponent  implements OnInit
     this.encuesta.foodTemperature = ev.target.value;
   }
 
-  Enviar()
+  async Enviar()
   {
     this.util.showSweet({title: "Encuesta", text: "Estas seguro de enviar esta encuesta?", showCancelButton: true,
       cancelButtonText:"No, cambie de opinión", confirmButtonText: "Estoy seguro" })
-    .then((result)=>
+    .then(async (result)=>
     {
       if(result.isConfirmed)
       {
-        //this.firebase.saveData(enumCollectionNames.);
+        let louding = await this.util.getLoadingCtrl({spinner: "circular"});
+        louding.present();
+        this.firebase.saveData(enumCollectionNames.Survey, this.encuesta)
+        .then(()=>{
+          this.util.showSweet({title: "Encuesta", text: "Su respuesta se ah guardado correctamente", })
+          louding.dismiss();
+        })
+        .catch((error)=>{
+          let mensaje = this.util.translateAuthError(error.code);
+          this.util.showSweet({
+            titleText: mensaje.title,
+            text: mensaje.content,
+            icon: 'error',
+          });
+          louding.dismiss();
+        })
       }
     })
   }
