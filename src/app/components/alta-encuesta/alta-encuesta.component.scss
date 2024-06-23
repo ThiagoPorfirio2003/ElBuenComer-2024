@@ -1,0 +1,44 @@
+ion-radio-group{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+ion-item {
+    width: 50%;
+    --background: #7b0000;
+    --border-style: none;
+}
+.background
+{
+    min-height: 650px;
+    min-width: 320px;
+    height: 100%;
+    overflow-x: auto;
+    width: 100%; 
+}
+.center
+{   
+    padding: 5%;
+    height: 100%;
+    background-color: #6217089e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+select{
+    width: 45%;
+}
+.temperatura{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.opciones{
+    display: flex;
+    flex-direction: column;
+}
+ion-range{
+    background: #7b0000;
+    padding: 0% 5%;
+}
