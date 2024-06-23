@@ -1,8 +1,7 @@
-<ion-content #content>
   <div class="background">
     <div class="mensajes">
       <div *ngFor="let item of arrayMensajes">
-        <div *ngIf="item.person != this.mensaje.person; else elseBlock" class="centrar centrarTuyo">
+        <div *ngIf="item.person !== this.mensaje.person; else elseBlock" class="centrar centrarTuyo">
           <div class="chat chatTuyo">
             <h5>{{item.person}}</h5>
             <label class="mensaje">{{item.content}}</label>
@@ -31,4 +30,3 @@
       <button class="boton" (click)="this.Enviar()">Enviar</button>
     </div>
   </div>
-</ion-content>
