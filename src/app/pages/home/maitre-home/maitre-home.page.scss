@@ -1,0 +1,21 @@
+
+.home-list {
+    margin: 16px;
+    border-radius: 22px;
+    ion-item {
+      --padding-start: 16px;
+      --inner-padding-end: 16px;
+    }
+  
+    ion-avatar {
+      --border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  
+    ion-label {
+      h2 {
+        font-weight: bold;
+      }
+    }
+  }

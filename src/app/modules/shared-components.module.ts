@@ -3,20 +3,25 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../components/header/header.component';
 import { CameraComponent } from '../components/camera/camera.component';
 import { IonicModule } from '@ionic/angular';
+import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
+import { EnumtypePipe } from '../pipe/enumtype.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    CameraComponent
+    CameraComponent,
+    TableListModalComponent
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    EnumtypePipe
   ],
   exports:
   [
     HeaderComponent,
-    CameraComponent
+    CameraComponent,
+    TableListModalComponent
   ]
 })
 export class SharedComponentsModule { }

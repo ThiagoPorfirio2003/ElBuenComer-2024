@@ -1,0 +1,32 @@
+ion-toolbar{
+    --background: #d62828;
+    --color: #fff;
+
+    ion-button{
+        --background: #d62828;
+    }
+}
+.content-title-client{
+    margin-top: 10px;
+    margin-bottom: 26px;
+
+    .divider {
+        border: none;
+        border-top: 2px solid #ffffff;
+        width: 80%;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    .title-client{
+        font-weight: 700;
+        padding: 10px;
+        color: #ffffff;
+    }
+}
+.list-custom{
+    margin: 16px;
+    border-radius: 22px;
+}
+
