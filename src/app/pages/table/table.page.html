@@ -1,19 +1,14 @@
 <app-header [title]="'Mesa'"></app-header>
 
 <ion-content>
- <!-- <div class="full-screen centrar-columna">
+<div class="full-screen centrar-columna">
     
     <ion-button class="consultar-mozo" (click)="true" fill="solid" color="light">
       <h1>Consultar al mozo</h1>
       <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
     </ion-button>
-<!-- (click)="this.showChat = !this.showChat" 
 
-    @if (this.showChat) 
-    {
-      <app-chat></app-chat>
-    }
-    @else {
+
       <div class="carta-frame">
           <ion-segment value="default">
             <ion-segment-button value="default" (click)="this.showAll()">
@@ -57,7 +52,7 @@
           }
         </div>
       </div>
-    }
+  
 
     <ion-modal #modal trigger="open-modal">
       <ng-template>
@@ -76,6 +71,6 @@
         <app-chat style="height: 100%;"></app-chat>
       </ng-template>
     </ion-modal>
-  </div>-->
+  </div>
   <app-alta-encuesta></app-alta-encuesta>
 </ion-content>
