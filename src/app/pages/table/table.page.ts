@@ -17,11 +17,15 @@ export class TablePage implements OnInit, OnDestroy{
   private productSuscription! : Subscription;
   public products! : Array<product>;
   public showChat : boolean;
+  public canShowFood : boolean;
+  public canShowDrink : boolean;
 
   constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
     private loader : IonLoaderService) 
     { 
       this.showChat = false;
+      this.canShowFood = true;
+      this.canShowDrink = true;
     }
 
   ngOnInit(): void 
@@ -35,5 +39,23 @@ export class TablePage implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.productSuscription.unsubscribe();
+  }
+
+  public showAll()
+  {
+    this.canShowFood = true;
+    this.canShowDrink = true;
+  }
+
+  public showFood()
+  {
+    this.canShowFood = true;
+    this.canShowDrink = false;
+  }
+
+  public showDrink()
+  {
+    this.canShowFood = false;
+    this.canShowDrink = true;
   }
 }
