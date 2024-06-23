@@ -1,0 +1,33 @@
+
+.home-list {
+    background-color: rgba(214, 40, 40, 0.7);
+    margin: 16px;
+    border-radius: 22px;
+    ion-item {
+      margin: 15px;
+      --padding-start: 16px;
+      --inner-padding-end: 16px;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 22px;
+    }
+  
+    ion-avatar {
+      --border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      img{
+        border: 2px solid #fff;
+        background-color: transparent;
+      }
+    }
+    ion-item::part(native) {
+      border-bottom: none;
+    }
+    ion-label {
+      h2 {
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+  }
