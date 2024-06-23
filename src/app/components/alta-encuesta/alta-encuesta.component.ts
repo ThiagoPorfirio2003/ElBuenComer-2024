@@ -67,7 +67,7 @@ export class AltaEncuestaComponent  implements OnInit
       {
         let louding = await this.util.getLoadingCtrl({spinner: "circular"});
         louding.present();
-        this.firebase.saveData(enumCollectionNames.Survey, this.encuesta)
+        this.firebase.saveData(enumCollectionNames.Surveys, this.encuesta)
         .then(()=>{
           this.util.showSweet({title: "Encuesta", text: "Su respuesta se ah guardado correctamente", })
           louding.dismiss();
