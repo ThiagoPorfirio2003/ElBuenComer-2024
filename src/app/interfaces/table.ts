@@ -1,3 +1,4 @@
+import { enumTableState } from "../enums/tableState";
 import { enumTypeTable } from "../enums/tableType";
 
 export interface Table
@@ -5,6 +6,6 @@ export interface Table
     number : number;
     type : enumTypeTable;
     peopleQuantity : number;
-    isFree : boolean;
+    state : enumTableState;
     idCurrentClient : string;
 }
