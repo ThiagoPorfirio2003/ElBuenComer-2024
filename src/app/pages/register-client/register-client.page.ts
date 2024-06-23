@@ -71,6 +71,7 @@ export class RegisterClientPage {
           this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
             const customerData: client= this.getClient(downloadURL,data.user.uid);
             this.dataBase.saveUser(enumCollectionNames.Clients, customerData, data.user.uid).then(() => {
+              this.auth.logUserData(customerData);
               loading.dismiss();
               this.resetFormImg();
               let mensaje:message = {
@@ -100,6 +101,7 @@ export class RegisterClientPage {
           this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
             const anonimousData :anonimusClient = this.getAnonymus(downloadURL,data.user.uid);
             this.dataBase.saveUser(enumCollectionNames.Clients, anonimousData, data.user.uid).then(() => {
+              this.auth.logUserData(anonimousData);
               loading.dismiss();
               this.resetFormImg();
               this.router.navigate(['/client-home']);
