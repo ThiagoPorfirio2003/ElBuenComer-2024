@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mesas Disponibles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="content-title-client">
+    <hr class="divider" />
+    <h1 align="center" class="title-client">Cliente: {{ client.name }}</h1>
+    <hr class="divider" />
+  </div>
+
+  <ion-list class="list-custom">
+    <ion-item *ngFor="let table of tables" (click)="assignTable(table)" color="warning">
+      <ion-label>
+        <h2><strong>Mesa {{ table.number }}</strong></h2>
+        <p>Tipo: {{ table.type | enumtype }} </p>
+        <p>Capacidad: {{ table.peopleQuantity }} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

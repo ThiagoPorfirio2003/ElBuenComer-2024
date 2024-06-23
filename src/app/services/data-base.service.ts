@@ -44,6 +44,7 @@ export class DataBaseService
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
 
+
   public updateTableAvailability(isFree : boolean, id : string)
   {
     return updateDoc(doc(this.firestore, enumCollectionNames.Tables, id), {isFree: isFree});
@@ -58,9 +59,8 @@ export class DataBaseService
   {
     deleteDoc(doc(this.firestore, collectionName, id))
   }
-
   
-  //NO USAR MAS
+  //AHORA SI SE PUEDE USAR
   public saveData(collectionName : enumCollectionNames, data : any, id? : string)
   {
     let docData : DocumentReference<DocumentData, DocumentData>;
@@ -71,7 +71,7 @@ export class DataBaseService
     }
     else
     {
-      docData = doc(this.firestore, collectionName); 
+      docData = doc(collection(this.firestore, collectionName)); 
       data.id = docData.id;
     }
 

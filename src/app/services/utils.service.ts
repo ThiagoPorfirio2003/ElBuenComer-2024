@@ -143,7 +143,10 @@ export class UtilsService {
       errorMessageTranslated.title = 'Cuil Invalido';
       errorMessageTranslated.content = 'El dni que ingreso no es el mimsmo que el del cuil'
       break;
-
+    case "MND":
+      errorMessageTranslated.title = 'Advertencia';
+      errorMessageTranslated.content = 'No hay mesas disponibles'
+      break;
       default:
         errorMessageTranslated.title = 'ERROR'
         errorMessageTranslated.content = 'Error inesperado';
