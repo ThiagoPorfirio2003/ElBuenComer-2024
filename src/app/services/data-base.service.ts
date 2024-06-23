@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { enumCollectionNames } from '../enums/collectionNames';
 //import { userImage } from '../interfaces/image';
-import { baseUserData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +25,11 @@ export class DataBaseService
   public getUserByDNI(dni : string)
   {
     return getDocs(query(this.getCollectionRef(enumCollectionNames.Users), where('dni','==', dni)));
+  }
+
+  public getTableByClientId(idClient : string)
+  {
+    return getDocs(query(this.getCollectionRef(enumCollectionNames.Tables), where('idCurrentClient','==', idClient)));
   }
 
   public getDocRef(collectionName : enumCollectionNames, idDoc : string)

@@ -13,7 +13,8 @@ export enum enumCollectionNames
     ProductImages = 'productImages',
 
     WaitingRoom = 'waitingRoom',
-    ChatRoom = 'chatRoom'
+    ChatRoom = 'chatRoom',
+    Survey = 'survey'
 }
 
 /*

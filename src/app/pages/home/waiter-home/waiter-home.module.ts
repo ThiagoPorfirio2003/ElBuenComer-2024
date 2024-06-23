@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { WaiterHomePageRoutingModule } from './waiter-home-routing.module';
 
 import { WaiterHomePage } from './waiter-home.page';
-import { ChatComponent } from 'src/app/components/chat/chat.component';
-import { HoraPipe } from 'src/app/pipe/hora.pipe';
+import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
 
 @NgModule({
   imports: [
@@ -16,8 +15,8 @@ import { HoraPipe } from 'src/app/pipe/hora.pipe';
     FormsModule,
     IonicModule,
     WaiterHomePageRoutingModule,
-    HoraPipe
+    SharedComponentsModule
   ],
-  declarations: [WaiterHomePage, ChatComponent]
+  declarations: [WaiterHomePage]
 })
 export class WaiterHomePageModule {}
