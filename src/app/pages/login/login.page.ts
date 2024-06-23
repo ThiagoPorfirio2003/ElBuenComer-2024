@@ -48,6 +48,7 @@ export class LoginPage {
             loading.dismiss();
             this.loginForm.reset();
             if (userData) {
+              this.authService.logUserData(userData);
               this.redirectToHomePages(userData);
             } else {
               this.authService.logOut();

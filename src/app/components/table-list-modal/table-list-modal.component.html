@@ -15,11 +15,11 @@
   </div>
 
   <ion-list class="list-custom">
-    <ion-item *ngFor="let table of tables" (click)="assignTable(table)">
+    <ion-item *ngFor="let table of tables" (click)="assignTable(table)" color="danger">
       <ion-label>
         <h2><strong>Mesa {{ table.number }}</strong></h2>
         <p>Tipo: {{ table.type | enumtype }} </p>
-        <p>Capacidad: {{ table.peopleQuantity }} personas</p>
+        <p>Capacidad: {{ table.peopleQuantity }} </p>
       </ion-label>
     </ion-item>
   </ion-list>

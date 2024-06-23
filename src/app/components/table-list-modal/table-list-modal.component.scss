@@ -28,5 +28,9 @@ ion-toolbar{
 .list-custom{
     margin: 16px;
     border-radius: 22px;
+    background-color: #d62828;
+    ion-item::part(native) {
+        border-bottom: 1px solid white;
+      }
 }
 

@@ -11,7 +11,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./table-list-modal.component.scss'],
 })
 export class TableListModalComponent implements OnInit {
-  @Input() tables!: Table[];
+  @Input() tables!: Array<any>;
   @Input() client!: any;
 
   constructor(
@@ -26,7 +26,7 @@ export class TableListModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  assignTable(table: Table) {
+  assignTable(table: any) {
     this.util
       .showSweet({
         title: 'Asignación de Mesa',
