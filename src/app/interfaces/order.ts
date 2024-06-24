@@ -5,13 +5,16 @@ export interface order
 {
     id : string;
     idTable : string;
-    products : Array<product>;
+    products : Array<productInOrder>;
     creationTime : number;
     price : number;
     state : orderState;
     barFinished : boolean;
     kitchenFinished : boolean;
 }
-/*
-id, productos : array<Productos>, tiempo estimado, idMesa, precioTotal, estadoPedido, barTerminado, cocinaTerminado
-*/
+
+export interface productInOrder
+{
+    product : product;
+    cuantity : number;
+}
