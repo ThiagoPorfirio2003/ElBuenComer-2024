@@ -19,3 +19,25 @@ ion-button.consultar-mozo
         --color: #fff;
     }
 }
+ion-col{
+    width: 33%;
+}
+
+.cuadro
+{
+    overflow-x: auto;
+    margin: 2%;
+}
+
+ion-grid{
+    width: auto;
+    padding: 0;
+}
+
+ion-row{
+    display: flex;
+    background-color: #9d641d;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 500px;
+}
