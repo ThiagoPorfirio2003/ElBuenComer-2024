@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { every } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumCustomerServiceQuality } from 'src/app/enums/customerServiceQuality';
 import { enumFoodTemperature } from 'src/app/enums/foodTemperature';
 import { enumLikedAspects } from 'src/app/enums/likedAspects';
 import { qualitySurvey } from 'src/app/interfaces/survey';
-import { baseUserData } from 'src/app/interfaces/user';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -35,7 +33,6 @@ export class AltaEncuestaComponent  implements OnInit
   handleRage(ev : any ) 
   {
     this.encuesta.overallQuality = ev.target.value;
-    console.log(this.encuesta.overallQuality);
   }
 
   ChechBoxEvent(numero : enumLikedAspects) 
@@ -49,7 +46,6 @@ export class AltaEncuestaComponent  implements OnInit
     {
       this.encuesta.mostLikedAspects.push(numero);
     }
-    console.log(this.encuesta.mostLikedAspects);
   }
 
   Select(ev : any)
