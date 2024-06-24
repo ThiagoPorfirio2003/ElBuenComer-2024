@@ -1,0 +1,21 @@
+ion-button.consultar-mozo
+{
+    width: 95%;
+    font-size: 30px;
+
+    h1{
+        text-transform: none;
+        font-size: 30px;
+        margin: 0px;
+    }
+}
+.modal-toolbar
+{
+    --background: #d62828;
+    --color: #fff;
+
+    ion-button{
+        --background: #d62828;
+        --color: #fff;
+    }
+}

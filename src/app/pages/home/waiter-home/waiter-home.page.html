@@ -1,5 +1,78 @@
 <app-header [title]="'Mozo'"></app-header>
 
+
 <ion-content>
- <app-chat></app-chat>
+    <ion-button class="consultar-mozo" id="open-modal" fill="solid" color="light">
+        <h1>Chat mesas</h1>
+        <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
+      </ion-button>
+      <div>
+        <ion-grid style="width: 100%;">  
+          <ion-row style="background-color: #9d641d;">  
+            <ion-col>Mesa</ion-col>  
+            <ion-col>Productos</ion-col>  
+            <ion-col>Tiempo Estimado</ion-col>  
+            <ion-col>Precio Total</ion-col>  
+            <ion-col>Estado pedido</ion-col>   
+          </ion-row>  
+          @for (item of this.arrayPedidos; track $index) 
+          {
+            <ion-row style="background-color: #636363;">  
+              <ion-col>{{item.name}}</ion-col>  
+              <ion-col><button id="open-productos">Ver Productos</button></ion-col>    
+              <ion-col>{{item.tiempo}}</ion-col>    
+              <ion-col>${{item.precio}}</ion-col>    
+              <ion-col class="botones">
+                @if(item.estado == "ParaAprobar")
+                {
+                    <button (click)="Aceptar(item)" style="background-color: green;">Aceptar</button>
+                    <button (click)="Eliminar(item)"  style="background-color: red;">Eliminar</button>
+                }
+                @else if(item.estado == "enPreparacion")
+                {
+                    <ion-col>{{item.estado}}</ion-col>  
+                }
+                @else if (item.estado == "terminado")
+                {
+                    <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">LLevar</button>
+                }
+              </ion-col>    
+            </ion-row>  
+            <ion-modal #modal trigger="open-productos">
+                <ng-template>
+                    <ion-header>
+                        <ion-toolbar class="modal-toolbar"> 
+                            <ion-buttons slot="start">
+                            <ion-button fill="solid" (click)="modal.dismiss()">
+                                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+                            </ion-button>
+                            </ion-buttons>
+                
+                            <ion-title style="text-align: end;">Productos</ion-title>
+                        </ion-toolbar>
+                    </ion-header>
+                        <!--FALATA COMPONENTE LISTA PRODUCTOS-->
+                </ng-template>
+            </ion-modal>
+          }
+        </ion-grid>  
+      </div>
+    <ion-modal #modal trigger="open-modal">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar class="modal-toolbar"> 
+              <ion-buttons slot="start">
+                <ion-button fill="solid" (click)="modal.dismiss()">
+                  <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+  
+              <ion-title style="text-align: end;">Chat</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          
+          <app-chat style="height: 100%;"></app-chat>
+        </ng-template>
+      </ion-modal>
+
 </ion-content>
