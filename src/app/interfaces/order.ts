@@ -15,5 +15,5 @@ export interface order
 
 export interface productInOrder extends product
 {
-    cuantity : number;
+    quantity : number;
 }
