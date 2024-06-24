@@ -32,6 +32,14 @@ export class ChatComponent  implements OnInit {
       {
         this.mensaje.person = this.auth.userData.name;
       }
+      else
+      {
+        this.auth.userData;
+        this.firebase.getTableByClientId(this.auth.userData.id).then((array)=>{
+          let mesa = array.docs[0].data();
+          this.mensaje.person = "mesa-" + mesa["number"];
+        })
+      }
     }
     this.firebase.getObservable(enumCollectionNames.ChatRoom)
     .subscribe((res)=>
