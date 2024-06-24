@@ -9,7 +9,7 @@
       <div style="max-width: 100%;">
         <div class="cuadro">
           <ion-grid style="width: 100%;">  
-            <ion-row style="background-color: #9d641d;">  
+            <ion-row style="background-color: #8d3400;">  
               <ion-col>Mesa</ion-col>  
               <ion-col>Productos</ion-col>  
               <ion-col>Tiempo Estimado</ion-col>  
@@ -21,7 +21,7 @@
               <ion-row style="background-color: #636363;">  
                 <ion-col>{{item.name}}</ion-col>  
                 <ion-col><button id="open-productos">Ver Productos</button></ion-col>    
-                <ion-col>{{item.tiempo}}</ion-col>    
+                <ion-col>{{item.tiempo}} minutos</ion-col>    
                 <ion-col>${{item.precio}}</ion-col>    
                 <ion-col class="botones">
                   @if(item.estado == "ParaAprobar")
