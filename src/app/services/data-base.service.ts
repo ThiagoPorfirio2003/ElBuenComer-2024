@@ -44,7 +44,6 @@ export class DataBaseService
     return setDoc(doc(this.firestore, enumCollectionNames.Users, uid), user);
   }
 
-
   public updateTableAvailability(isFree : boolean, id : string)
   {
     return updateDoc(doc(this.firestore, enumCollectionNames.Tables, id), {isFree: isFree});
