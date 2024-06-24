@@ -13,8 +13,7 @@ export interface order
     kitchenFinished : boolean;
 }
 
-export interface productInOrder
+export interface productInOrder extends product
 {
-    product : product;
     cuantity : number;
 }

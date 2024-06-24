@@ -70,16 +70,14 @@ export class TablePage implements OnInit, OnDestroy{
 
     productIndex = -0;
 
-    /*
-    for(let i : number = 0; i < this.products.length; i++) 
+    for(let i : number = 0; i < this.order.products.length; i++) 
     {
-      if(this.products[i] == productId)
+      if(this.order.products[i].product.id == productId)
       {
         productIndex = i;
         break;
       }
     }
-    */
 
     return productIndex;
   }
