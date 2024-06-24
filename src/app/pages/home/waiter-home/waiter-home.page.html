@@ -8,34 +8,37 @@
       </ion-button>
       <div style="max-width: 100%;">
         <div class="cuadro">
-          <ion-grid style="width: 100%;">  
+          <ion-grid fill="solid" style="width: 100%;">  
+            <ion-row style="background-color: #8d3400;">  
+              <ion-col><label style="font-size: x-large;">Pedidos</label></ion-col>     
+            </ion-row>  
             <ion-row style="background-color: #8d3400;">  
               <ion-col>Mesa</ion-col>  
               <ion-col>Productos</ion-col>  
-              <ion-col>Tiempo Estimado</ion-col>  
-              <ion-col>Precio Total</ion-col>  
+              <ion-col>Tiempo </ion-col>  
+              <ion-col>Precio total</ion-col>  
               <ion-col>Estado pedido</ion-col>   
             </ion-row>  
             @for (item of this.arrayPedidos; track $index) 
             {
               <ion-row style="background-color: #636363;">  
-                <ion-col>{{item.name}}</ion-col>  
-                <ion-col><button id="open-productos">Ver Productos</button></ion-col>    
-                <ion-col>{{item.tiempo}} minutos</ion-col>    
-                <ion-col>${{item.precio}}</ion-col>    
+                <ion-col>{{item.idTable}}</ion-col>  
+                <ion-col><button style="background-color: #a36900" id="open-productos">Ver productos</button></ion-col>    
+                <ion-col>{{item.creationTime}} minutos</ion-col>    
+                <ion-col>${{item.price}}</ion-col>    
                 <ion-col class="botones">
-                  @if(item.estado == "ParaAprobar")
+                  @if(item.state == 0)
                   {
                       <button (click)="Aceptar(item)" style="background-color: green;">Aceptar</button>
                       <button (click)="Eliminar(item)"  style="background-color: red;">Eliminar</button>
                   }
-                  @else if(item.estado == "enPreparacion")
+                  @else if(item.state == 2)
                   {
-                      <ion-col>{{item.estado}}</ion-col>  
+                    <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">Llevar</button>
                   }
-                  @else if (item.estado == "terminado")
+                  @else
                   {
-                      <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">LLevar</button>
+                    {{item.state|estadoPedido }}  
                   }
                 </ion-col>    
               </ion-row>  
@@ -58,6 +61,30 @@
             }
           </ion-grid>  
         </div>
+       <!-- <div class="cuadro">
+          <ion-grid fill="solid" style="width: 100%;">  
+            <ion-row style="background-color: #8d3400;">  
+              <ion-col><label style="font-size: x-large;">Pagos</label></ion-col>     
+            </ion-row>  
+            <ion-row style="background-color: #8d3400;">  
+              <ion-col>Mesa</ion-col>   
+              <ion-col>Precio total</ion-col>  
+              <ion-col>Propina</ion-col>  
+              <ion-col>Acción</ion-col>   
+            </ion-row>  
+            @for (item of this.arrayPagos; track $index) 
+            {
+              <ion-row style="background-color: #636363;">  
+                <ion-col>{{item.idTable}}</ion-col>   
+                <ion-col>${{item.price}}</ion-col>    
+                <ion-col>${{item.propina}}</ion-col>    
+                <ion-col class="botones">
+                    <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Aceptar</button>
+                </ion-col>    
+              </ion-row>  
+            }
+          </ion-grid>  
+        </div>-->
       </div>
     <ion-modal #modal trigger="open-modal">
         <ng-template>
