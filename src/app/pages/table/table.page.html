@@ -3,11 +3,10 @@
 <ion-content>
 <div class="full-screen centrar-columna">
     
-    <ion-button class="consultar-mozo" (click)="this.showChat = !this.showChat" fill="solid" color="light">
+    <ion-button class="consultar-mozo" id="open-modal" fill="solid" color="light">
       <h1>Consultar al mozo</h1>
       <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
     </ion-button>
-
 
       <div class="carta-frame">
           <ion-segment value="default">
@@ -52,7 +51,6 @@
           }
         </div>
       </div>
-  
 
     <ion-modal #modal trigger="open-modal">
       <ng-template>
@@ -72,5 +70,4 @@
       </ng-template>
     </ion-modal>
   </div>
-  <app-alta-encuesta></app-alta-encuesta>
 </ion-content>
