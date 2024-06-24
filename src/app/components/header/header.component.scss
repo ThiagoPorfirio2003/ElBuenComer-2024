@@ -2,8 +2,15 @@ ion-toolbar{
     --background: #d62828;
     --color: #fff;
 
-    ion-button{
-        --background: #d62828;
-        --color: #fff;
+    ion-buttons{
+        ion-button{
+            --background: #d62828;
+            --color: #fff;
+
+            ion-icon{
+                --color: #fff;
+            }
+        }
     }
+
 }

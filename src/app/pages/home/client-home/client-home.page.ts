@@ -103,13 +103,29 @@ export class ClientHomePage implements OnInit, OnDestroy
 
     public async goInWaitingRoom()
     {
-      await this.loader.simpleLoader()
+      try
+      {
+        await this.loader.simpleLoader()
+        await this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id);
+        this.isInWaitingRoom = true
+      }
+      catch(e)
+      {
+        
+      }
+      finally
+      {
+        this.loader.dismissLoader();
+      }
+
+      /*
       this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id)
       .then(()=>
       {
         this.isInWaitingRoom = true;
       })
       .finally(()=> this.loader.dismissLoader())
+      */
     }
 
     private async goToTable(tableNumber : number)
