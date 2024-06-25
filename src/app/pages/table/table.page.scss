@@ -208,3 +208,46 @@ div.foodCard
         --color: #fff;
     }
 }
+
+h1.orderPrice
+{
+    font-size: 100px;
+    color: #ccff33;
+    margin: 0px;
+    text-align: center;
+}
+
+/*
+div.orderItem
+{
+    display: flex;
+    flex-direction: row;
+
+    h3.productName{
+        justify-self: start;
+    }
+
+    h3.productCuantity
+    {
+        justify-self: end;
+    }
+}
+*/
+div.order
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+
+    div.name
+    {
+        background-color: red;
+    }
+
+    div.cuantity
+    {
+        background-color: #ccff33;
+    }
+}
