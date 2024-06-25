@@ -60,7 +60,15 @@ const routes: Routes = [
   {
     path: 'maitre-home',
     loadChildren: () => import('./pages/home/maitre-home/maitre-home.module').then( m => m.MaitreHomePageModule)
+  },  {
+    path: 'chef-home',
+    loadChildren: () => import('./pages/home/chef-home/chef-home.module').then( m => m.ChefHomePageModule)
+  },
+  {
+    path: 'bartender-home',
+    loadChildren: () => import('./pages/home/bartender-home/bartender-home.module').then( m => m.BartenderHomePageModule)
   }
+
 ];
 
 @NgModule({

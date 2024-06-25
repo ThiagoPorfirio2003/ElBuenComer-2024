@@ -1,0 +1,32 @@
+ion-button {
+  --background: #0d6759;
+  --border-radius: 22px !important;
+  color: white;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.centered-button {
+  display: flex;
+  align-items: center;
+}
+
+.style-card{
+    box-shadow: none;
+    //border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid white;
+}
+i
+.style-fondo{
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+.item-fondo {
+    --background: rgba(127, 16, 16, 0.8) !important;
+}

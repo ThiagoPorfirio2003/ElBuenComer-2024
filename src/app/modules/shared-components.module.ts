@@ -8,6 +8,7 @@ import { HoraPipe } from '../pipe/hora.pipe';
 import { FormsModule } from '@angular/forms';
 import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
 import { EnumtypePipe } from '../pipe/enumtype.pipe';
+import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -20,7 +21,8 @@ import { EnumtypePipe } from '../pipe/enumtype.pipe';
     IonicModule,
     FormsModule,
     HoraPipe,
-    EnumtypePipe
+    EnumtypePipe,
+    MayusculaPrimeraPipe
   ],
   exports:
   [

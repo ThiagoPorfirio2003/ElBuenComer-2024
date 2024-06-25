@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { baseUserData, userAccessData } from 'src/app/interfaces/user';
+import { userAccessData } from 'src/app/interfaces/user';
 import { UtilsService } from 'src/app/services/utils.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
@@ -113,10 +113,10 @@ export class LoginPage {
         console.log('User is a Waiter');
         break;
       case enumProfile.Chef:
-        console.log('User is a Chef');
+        this.utiles.changeRoute('/chef-home');
         break;
       case enumProfile.Bartender:
-        console.log('User is a Bartender');
+        this.utiles.changeRoute('/bartender-home');
         break;
       case enumProfile.Client:
         const state = data['state'];
@@ -137,9 +137,6 @@ export class LoginPage {
         }else{
           this.utiles.changeRoute('/client-home')
         }
-        break;
-      case enumProfile.AnonimusClient:
-        console.log('User is a anonimo');
         break;
     }
   }
