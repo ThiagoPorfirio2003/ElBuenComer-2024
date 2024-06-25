@@ -6,6 +6,7 @@ ion-toolbar{
         --background: #d62828;
     }
 }
+  
 .content-title-client{
     margin-top: 10px;
     margin-bottom: 26px;
@@ -26,11 +27,20 @@ ion-toolbar{
     }
 }
 .list-custom{
+    background-color: rgba(153, 88, 42, 0.7);
     margin: 16px;
     border-radius: 22px;
-    background-color: #f77f00;
+    border: 1px solid #fff;
+    ion-item {
+        margin: 15px;
+        --padding-start: 16px;
+        --inner-padding-end: 16px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 22px;
+      }
     ion-item::part(native) {
-        border-bottom: 1px solid white;
+        border-bottom: none;
       }
 }
 

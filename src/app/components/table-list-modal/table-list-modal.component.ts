@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
+import { enumTableState } from 'src/app/enums/tableState';
 import { Table } from 'src/app/interfaces/table';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -26,7 +27,7 @@ export class TableListModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  assignTable(table: any) {
+  assignTable(table: Table) {
     this.util
       .showSweet({
         title: 'Asignación de Mesa',
@@ -39,7 +40,9 @@ export class TableListModalComponent implements OnInit {
         if (result.isConfirmed) {
           const loading = await this.util.getLoadingCtrl({spinner: 'circular'});
           await loading.present();
-          this.firebase.updateTableCurrentClient(this.client.id,table.number.toString()).then(() => {
+          table.idCurrentClient = this.client.id;
+          table.state = enumTableState.Reserved;
+          this.firebase.saveData(enumCollectionNames.Tables,table,table.number.toString()).then(() => {
             //this.firebase.deleteData(enumCollectionNames.WaitingRoom, this.client.id);
             loading.dismiss();
             this.modalController.dismiss();
