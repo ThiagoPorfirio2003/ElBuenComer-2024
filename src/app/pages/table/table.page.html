@@ -3,63 +3,121 @@
 <ion-content>
   <div class="full-screen centrar-columna">
     
-    <h1 class="orderPrice">${{this.orderPrice}}</h1>
-
-    <div class="carta-frame">
-        <ion-segment value="default">
-          <ion-segment-button value="default" (click)="this.showAll()">
-            <ion-label>Todo</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="food" (click)="this.showFood()">
-            <ion-label>Comidas</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="drink" (click)="this.showDrink()">
-            <ion-label>Bebidas</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-        
-      <div class="carta">
-        @for (product of this.productsToShow; track $index) 
-        {
-          @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood))
-          {
-            <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
-              <div class="carrusel">
-                @for (foto of product.photoUrl; track $index) 
-                {
-                  <img [src]="foto">
-                }
-              </div>
-          
-              <h1 class="info-color-1">{{product.name}}</h1>
-              <h1 class="info-color-2">${{product.price}}</h1>
-              <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
-              <p class="info-color-2">{{product.description}}</p>
-
-              <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
-                <h1>Pedir +1</h1>
-              </ion-button>
-            
-              <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
-                <h1>Sacar -1</h1>
-              </ion-button>
-            </div>
-          }
-        }
+    <!-- Si la mesa ya tiene un pedido asignado -->
+    @if (this.hasOrder) 
+    { 
+      <div class="frame-estado-pedido">
+        <h2 class="text">Estado del pedido:</h2>
+        <h1 class="estado-pedido">{{this.order.state}}</h1>
       </div>
-    </div>
 
-    <ion-button class="consultar-mozo" id="order-modal" fill="solid" color="light">
-      <h1>Revisar pedido</h1>
-      <ion-icon slot="start" name="pizza-outline"></ion-icon>
-    </ion-button>
+      <!-- El estado del pedido es distinto a Accepted-->
+      @if(this.order.state !== 4)
+      {
+        <ion-button class="analyze-qr" (click)="this.updateOrderState()" color="entryqr">
+          <div>
+            <h1>Actualizar estado del pedido</h1>
+            <img src="../../../../assets/images/QR_In_Btn.png" alt="">
+          </div>
+        </ion-button>
+      }
+      @else {
+        <ion-button class="pay-qr" (click)="this.payOrder()" color="green">
+          <div>
+            <h1>Pagar</h1>
+            <img src="../../../../assets/images/QR_In_Btn.png" alt="">
+          </div>
+        </ion-button>
+      }
 
-    <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
-      <h1>Consultar al mozo</h1>
-      <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
-    </ion-button>
+      <!-- En este if debe ir si el estadoPedido != ForApproval-->
+      @if (this.order.state !== 0) 
+      {
+        <ion-button class="consultar-mozo" id="survey-list-modal" fill="solid" color="orange">
+          <h1>Ver encuestas</h1>
+          <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
+        </ion-button>
+
+        <!-- Si la encuesta no fue realizada-->
+        @if (!this.surveyIsCompleted) 
+        {
+          <ion-button class="consultar-mozo" id="survey-form-modal" fill="solid" color="orange">
+            <h1>Realizar encuesta</h1>
+            <ion-icon slot="end" name="help-circle-outline"></ion-icon>
+          </ion-button>
+        }
+
+        <!-- Si el mozo ya confirmo que entrego el pedido-->
+        @if (this.order.state === 3) 
+        {
+          <ion-button class="mucho-texto" fill="solid" color="green">
+            <h1>He recibido el pedido</h1>
+            <ion-icon slot="end" name="bag-outline"></ion-icon>
+          </ion-button>
+        }
+      }
+
+    } @else {
+      <h1 class="orderPrice">${{this.orderPrice}}</h1>
+      <h2 class="order-time">Tiempo de espera: {{this.cookingTime}} minuto/s</h2>
+  
+      <div class="carta-frame">
+          <ion-segment value="default">
+            <ion-segment-button value="default" (click)="this.showAll()">
+              <ion-label>Todo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="food" (click)="this.showFood()">
+              <ion-label>Comidas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="drink" (click)="this.showDrink()">
+              <ion-label>Bebidas</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          
+        <div class="carta">
+          @for (product of this.productsToShow; track $index) 
+          {
+            @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood))
+            {
+              <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
+                <div class="carrusel">
+                  @for (foto of product.photoUrl; track $index) 
+                  {
+                    <img [src]="foto">
+                  }
+                </div>
+            
+                <h1 class="info-color-1">{{product.name}}</h1>
+                <h1 class="info-color-2">${{product.price}}</h1>
+                <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
+                <p class="info-color-2">{{product.description}}</p>
+  
+                <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
+                  <h1>Pedir +1</h1>
+                </ion-button>
+              
+                <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
+                  <h1>Sacar -1</h1>
+                </ion-button>
+              </div>
+            }
+          }
+        </div>
+      </div>
+  
+      <div class="btn-group">
+        <ion-button class="consultar-mozo" id="order-modal" fill="solid" color="light">
+          <h1>Revisar pedido</h1>
+          <ion-icon slot="start" name="pizza-outline"></ion-icon>
+        </ion-button>
+    
+        <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
+          <h1>Consultar al mozo</h1>
+          <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>        
+        </ion-button>
+      </div>
+    }
   </div>
-
 
   <ion-modal #chatModal trigger="chat-modal">
     <ng-template>
@@ -89,40 +147,36 @@
               </ion-button>
             </ion-buttons>
 
-            <ion-title style="text-align: center;">Pedido</ion-title>
-
-            <ion-buttons slot="end">
-              <ion-button fill="solid" (click)="orderModal.dismiss()">
-                Confirmar
-              </ion-button>
-            </ion-buttons>
+            <ion-title style="text-align: end;">Pedido</ion-title>
           </ion-toolbar>
         </ion-header>
 
         <ion-content>
           <h1 class="orderPrice">${{this.orderPrice}}</h1>
 
-            <div class="order">
-              @for (product of this.productsSelected; track $index) 
-              {
-                <h3>
-                  {{product.name}}
-                </h3>
-                
-                <h3>
-                  X {{product.quantity}}
-                </h3>
-              }
-            </div>
+          <div style="display: flex; width: 100%;justify-content: center;">
+            <ion-button (click)="this.confirmOrder()" class="consultar-mozo" fill="solid" color="light">
+              <h1>Confirmar</h1>
+              <ion-icon slot="end" name="bag-check-outline"></ion-icon>
+            </ion-button>
+          </div>
 
-                <!-- 
-                    <ion-item lines="full">
-                  <div class="orderItem">
-                    <h3 class="productName">{{product.name}}</h3>
-                    <h3 class="productCuantity">{{product.cuantity}}</h3>
-                  </div>
-                </ion-item>
-                -->
+          <div class="order">
+
+            <h2 class="nameSize name">Productos</h2>
+            <h2 class="quantitySize quantity">Cantidad</h2>
+
+            @for (product of this.productsSelected; track $index) 
+            {
+              <h3 [className]="$index % 2 === 0? 'nameSize nameDark' : 'nameSize nameLight'">
+                {{product.name}}
+              </h3>
+              
+              <h3 [className]="$index % 2 === 0? 'quantitySize quantityDark' : 'quantitySize quantityLight'">
+                x {{product.quantity}}
+              </h3>
+            }
+          </div>
         </ion-content>
       </ng-template>
     </ion-modal>

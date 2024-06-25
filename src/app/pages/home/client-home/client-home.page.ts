@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumQR } from 'src/app/enums/QR';
+import { enumTableState } from 'src/app/enums/tableState';
 import { Table } from 'src/app/interfaces/table';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
@@ -36,7 +37,6 @@ export class ClientHomePage implements OnInit, OnDestroy
       .subscribe((redTables : Array<any>)=>
       {
         const tables : Array<Table> = redTables;
-        console.log(tables)
 
         for(let i : number = 0;i < tables.length;i++)
         {
@@ -45,6 +45,7 @@ export class ClientHomePage implements OnInit, OnDestroy
           {
             this.userTable = tables[i];
             this.tableNumberToShow = this.userTable.number.toString();
+            this.tablesSuscription.unsubscribe();
             break;
           }
         }
@@ -52,8 +53,12 @@ export class ClientHomePage implements OnInit, OnDestroy
 
     }
 
-    public ngOnDestroy(): void {
-      this.tablesSuscription.unsubscribe();
+    public ngOnDestroy(): void 
+    {
+      if(!this.tablesSuscription.closed)
+      {
+        this.tablesSuscription.unsubscribe();
+      }
     }
 
     public async analiceQR()
@@ -81,7 +86,7 @@ export class ClientHomePage implements OnInit, OnDestroy
             {
               if(this.userTable.number == parseInt(QRValues[1]))
               {
-                this.goToTable(this.userTable.number);
+                this.goToTable();
               }
               else
               {
@@ -117,31 +122,26 @@ export class ClientHomePage implements OnInit, OnDestroy
       {
         this.loader.dismissLoader();
       }
-
-      /*
-      this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id)
-      .then(()=>
-      {
-        this.isInWaitingRoom = true;
-      })
-      .finally(()=> this.loader.dismissLoader())
-      */
     }
 
-    private async goToTable(tableNumber : number)
+    private async goToTable()
     {
       await this.loader.simpleLoader()
-      /*
-      this.dataBase.updateTableAvailability(false,tableNumber.toString())
+
+      this.userTable.state = enumTableState.InUse;
+
+      this.dataBase.updateData(enumCollectionNames.Tables, this.userTable, this.userTable.number.toString())
       .then(()=>
       {
-        this.userTable.isFree = false;
         this.auth.userTable = this.userTable;
         this.loader.dismissLoader();
-        this.utilsService.changeRoute('table')
+        this.utilsService.changeRoute('table');
       })
-      .finally(()=> this.loader.dismissLoader())
-      */
+      .catch(()=> 
+      {
+        this.userTable.state = enumTableState.Reserved;
+        this.loader.dismissLoader();
+      })
     }
 
 }

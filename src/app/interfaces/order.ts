@@ -4,7 +4,7 @@ import { product } from "./products";
 export interface order
 {
     id : string;
-    idTable : string;
+    numberTable : number;
     products : Array<productInOrder>;
     creationTime : number;
     price : number;
