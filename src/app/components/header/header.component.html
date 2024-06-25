@@ -1,12 +1,11 @@
 <ion-header>
   <ion-toolbar>
-
-    <ion-title class="ion-text-center">{{this.title}}</ion-title>
-
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button fill="solid" (click)="logout()">
         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
       </ion-button>    
     </ion-buttons>
+
+    <ion-title class="ion-text-end">{{this.title}}</ion-title>
   </ion-toolbar>
 </ion-header>

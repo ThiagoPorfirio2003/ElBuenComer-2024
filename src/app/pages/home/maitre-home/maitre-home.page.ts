@@ -17,7 +17,7 @@ export class MaitreHomePage implements OnInit {
   public mesasDisponibles : Array<any> = [];
 
   constructor( private modalController: ModalController, private utiles: UtilsService, private firebase: DataBaseService ) {
-    this.firebase.getObservable(enumCollectionNames.Clients).subscribe((clientes)=>{
+    this.firebase.getObservable(enumCollectionNames.WaitingRoom).subscribe((clientes)=>{
         this.clientes = clientes;
         const mensaje = `Se ha añadido un nuevo cliente a la lista de espera para asignación de mesa`;
         this.utiles.SendPushNotification("Nuevo Cliente Asignado", mensaje);
@@ -25,7 +25,7 @@ export class MaitreHomePage implements OnInit {
     this.firebase.getObservable(enumCollectionNames.Tables).subscribe((tables)=>{
         this.mesasDisponibles = [];
         tables.forEach((item)=>{
-          if(item["idCurrentClient"] == "") {
+          if(item["idCurrentClient"] == "" && item["state"] == 0) {
             this.mesasDisponibles.push(item);
           }});
         });

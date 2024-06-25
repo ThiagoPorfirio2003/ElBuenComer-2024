@@ -1,73 +1,129 @@
 <app-header [title]="'Mesa'"></app-header>
 
 <ion-content>
-<div class="full-screen centrar-columna">
+  <div class="full-screen centrar-columna">
     
-    <ion-button class="consultar-mozo" id="open-modal" fill="solid" color="light">
+    <h1 class="orderPrice">${{this.orderPrice}}</h1>
+
+    <div class="carta-frame">
+        <ion-segment value="default">
+          <ion-segment-button value="default" (click)="this.showAll()">
+            <ion-label>Todo</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="food" (click)="this.showFood()">
+            <ion-label>Comidas</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="drink" (click)="this.showDrink()">
+            <ion-label>Bebidas</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        
+      <div class="carta">
+        @for (product of this.productsToShow; track $index) 
+        {
+          @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood))
+          {
+            <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
+              <div class="carrusel">
+                @for (foto of product.photoUrl; track $index) 
+                {
+                  <img [src]="foto">
+                }
+              </div>
+          
+              <h1 class="info-color-1">{{product.name}}</h1>
+              <h1 class="info-color-2">${{product.price}}</h1>
+              <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
+              <p class="info-color-2">{{product.description}}</p>
+
+              <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
+                <h1>Pedir +1</h1>
+              </ion-button>
+            
+              <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
+                <h1>Sacar -1</h1>
+              </ion-button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <ion-button class="consultar-mozo" id="order-modal" fill="solid" color="light">
+      <h1>Revisar pedido</h1>
+      <ion-icon slot="start" name="pizza-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
       <h1>Consultar al mozo</h1>
       <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
     </ion-button>
+  </div>
 
-      <div class="carta-frame">
-          <ion-segment value="default">
-            <ion-segment-button value="default" (click)="this.showAll()">
-              <ion-label>Todo</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="food" (click)="this.showFood()">
-              <ion-label>Comidas</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="drink" (click)="this.showDrink()">
-              <ion-label>Bebidas</ion-label>
-            </ion-segment-button>
-          </ion-segment>
-          
-        <div class="carta">
-          @for (product of products; track $index) 
-          {
-            @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood))
-            {
-              <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
-                <div class="carrusel">
-                  @for (foto of product.photoUrl; track $index) 
-                  {
-                    <img [src]="foto">
-                  }
-                </div>
-            
-                <h1 class="info-color-1">{{product.name}}</h1>
-                <h1 class="info-color-2">${{product.price}}</h1>
-                <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
-                <p class="info-color-2">{{product.description}}</p>
 
-                <ion-button (click)="true" expand="block" fill="solid" color="success">
-                  <h1>Pedir +1</h1>
-                </ion-button>
-              
-                <ion-button (click)="true" expand="block" fill="solid" color="danger">
-                  <h1>Sacar -1</h1>
-                </ion-button>
-              </div>
-            }
-          }
-        </div>
-      </div>
+  <ion-modal #chatModal trigger="chat-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar"> 
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="chatModal.dismiss()">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
 
-    <ion-modal #modal trigger="open-modal">
+          <ion-title style="text-align: end;">Chat</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <app-chat style="height: 100%;"></app-chat>
+    </ng-template>
+  </ion-modal>
+  
+  <ion-modal #orderModal trigger="order-modal">
       <ng-template>
         <ion-header>
-          <ion-toolbar class="modal-toolbar"> 
+          <ion-toolbar class="modal-toolbar">
             <ion-buttons slot="start">
-              <ion-button fill="solid" (click)="modal.dismiss()">
+              <ion-button fill="solid" (click)="orderModal.dismiss()">
                 <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
               </ion-button>
             </ion-buttons>
 
-            <ion-title style="text-align: end;">Chat</ion-title>
+            <ion-title style="text-align: center;">Pedido</ion-title>
+
+            <ion-buttons slot="end">
+              <ion-button fill="solid" (click)="orderModal.dismiss()">
+                Confirmar
+              </ion-button>
+            </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        
-        <app-chat style="height: 100%;"></app-chat>
+
+        <ion-content>
+          <h1 class="orderPrice">${{this.orderPrice}}</h1>
+
+            <div class="order">
+              @for (product of this.productsSelected; track $index) 
+              {
+                <h3>
+                  {{product.name}}
+                </h3>
+                
+                <h3>
+                  X {{product.quantity}}
+                </h3>
+              }
+            </div>
+
+                <!-- 
+                    <ion-item lines="full">
+                  <div class="orderItem">
+                    <h3 class="productName">{{product.name}}</h3>
+                    <h3 class="productCuantity">{{product.cuantity}}</h3>
+                  </div>
+                </ion-item>
+                -->
+        </ion-content>
       </ng-template>
     </ion-modal>
-  </div>
 </ion-content>
