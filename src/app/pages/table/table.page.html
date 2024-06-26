@@ -14,7 +14,7 @@
       </div>
 
       <!-- El estado del pedido es distinto a Accepted-->
-      @if( true || this.order.state !== 4)
+      @if( false || this.order.state !== 4)
       {
         <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
           <div>
@@ -24,7 +24,7 @@
         </ion-button>
       }
       @else {
-        <ion-button class="pay-qr" (click)="this.payOrder()" color="green">
+        <ion-button class="pay-qr" (click)="this.showBill()" color="green">
           <div>
             <h1>Pagar</h1>
             <img src="../../../../assets/images/QR_In_Btn.png" alt="">
@@ -33,7 +33,7 @@
       }
 
       <!-- En este if debe ir si el estadoPedido != ForApproval-->
-      @if ( true || this.order.state !== 0) 
+      @if ( false || this.order.state !== 0) 
       {
         <ion-button class="consultar-mozo" id="survey-list-modal" fill="solid" color="orange">
           <h1>Ver encuestas</h1>
@@ -50,7 +50,7 @@
         }
 
         <!-- Si el mozo ya confirmo que entrego el pedido-->
-        @if ( true || this.order.state === 3) 
+        @if ( false || this.order.state === 3) 
         {
           <ion-button (click)="this.markOrderAsReceived()" class="mucho-texto" fill="solid" color="green">
             <h1>He recibido el pedido</h1>
@@ -164,7 +164,7 @@
           </ion-button>
         </div>
 
-        <div style="height: 50%;">
+        <div class="product-list-frame-large">
           <app-bought-products-list [productsToShow]="this.productsSelected" [showPrice]="true"></app-bought-products-list>
         </div>
       </ion-content>
@@ -207,6 +207,42 @@
       </ion-header>
 
       <ion-content>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="this.showPayModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-title style="text-align: start;">Pago</ion-title>
+        </ion-toolbar>
+
+        <ion-buttons slot="start">
+          <ion-button fill="solid" (click)="this.showPayModal =false">
+            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-header>
+
+      <ion-content>
+        <div class="full-screen bill-frame">
+
+          <div class="product-list-frame-small">
+            <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
+          </div>
+
+          <div class="bill">
+            <h2 class="products-title">Productos</h2> <h2 class="products-price">${{this.bill.subTotal}}</h2>
+            <h2 class="tip-title">Propina</h2> <h2 class="tip-price">${{this.bill.tip}}</h2>
+            <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
+          </div>
+
+          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
+            <h1>Pagar</h1>
+            <ion-icon slot="end" name="cash-outline"></ion-icon>        
+          </ion-button>
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
