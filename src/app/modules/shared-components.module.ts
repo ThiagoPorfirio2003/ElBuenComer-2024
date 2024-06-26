@@ -9,12 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
 import { EnumtypePipe } from '../pipe/enumtype.pipe';
 import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
+import { GraphicCommentsComponent } from '../components/graphic-comments/graphic-comments.component';
 @NgModule({
   declarations: [
     HeaderComponent,
     CameraComponent,
     ChatComponent,
-    TableListModalComponent
+    TableListModalComponent,
+    GraphicCommentsComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
     HeaderComponent,
     CameraComponent,
     ChatComponent,
-    TableListModalComponent
+    TableListModalComponent,
+    GraphicCommentsComponent
   ]
 })
 export class SharedComponentsModule { }

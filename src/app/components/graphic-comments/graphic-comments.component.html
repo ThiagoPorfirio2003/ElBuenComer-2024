@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Encuesta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="width: 80%; margin-left: auto; margin-right: auto;">
+    <ion-button class="btn-comentario">
+      Comentarios
+      <ion-icon slot="end" name="chatbox-ellipses-outline"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="card-container">
+    <ion-card class="custom-card">
+      <ion-card-header>
+        <ion-card-subtitle>GRAFICO DE BARRA</ion-card-subtitle>
+        <ion-card-title>Servicio al Cliente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #acquisitionsChart></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="custom-card">
+      <ion-card-header>
+        <ion-card-subtitle>GRAFICO DE TORTA</ion-card-subtitle>
+        <ion-card-title>Aspecto que mas gusto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #pieChart></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="custom-card">
+      <ion-card-header>
+        <ion-card-subtitle>GRAFICO DE LINEAL</ion-card-subtitle>
+        <ion-card-title>Temperatura de la comida</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineChart></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

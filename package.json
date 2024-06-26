@@ -33,6 +33,7 @@
     "@capacitor/splash-screen": "^6.0.0",
     "@emailjs/browser": "^4.3.3",
     "@ionic/angular": "^8.0.0",
+    "chart.js": "^4.4.3",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.10.8",
