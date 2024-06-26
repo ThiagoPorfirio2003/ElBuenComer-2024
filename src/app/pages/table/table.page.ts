@@ -4,9 +4,9 @@ import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
 import { enumQR } from 'src/app/enums/QR';
 import { enumTableState } from 'src/app/enums/tableState';
+import { bill } from 'src/app/interfaces/bill';
 import { order, productInOrder } from 'src/app/interfaces/order';
 import { product } from 'src/app/interfaces/products';
-import { Table } from 'src/app/interfaces/table';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
@@ -28,10 +28,14 @@ export class TablePage implements OnInit, OnDestroy{
   public foodsSelected : Array<productInOrder>;
   public drinksSelected : Array<productInOrder>;
   public cookingTime : number;
+
+  public title : string;
   
   public order! : order;
   public hasOrder : boolean;
   public surveyIsCompleted : boolean;
+  public showPayModal : boolean;
+  public bill! : bill;
 
   constructor(public auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
     private loader : IonLoaderService) 
@@ -46,6 +50,8 @@ export class TablePage implements OnInit, OnDestroy{
       this.cookingTime = 0;
       this.hasOrder = false;
       this.surveyIsCompleted = false; 
+      this.title = 'Menú';
+      this.showPayModal = false;
     }
 
   ngOnInit(): void 
@@ -203,13 +209,13 @@ export class TablePage implements OnInit, OnDestroy{
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable : this.auth.userTable.number,
+          numberTable :  this.auth.userTable.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,
           state : orderState.ForApproval,
-          barFinished : this.drinksSelected.length > 0 ? false : true,
-          kitchenFinished : this.foodsSelected.length > 0 ? false : true,
+          barFinished : true,
+          kitchenFinished : true,
         }
 
         this.auth.userTable.state = enumTableState.withOrder;
@@ -218,7 +224,8 @@ export class TablePage implements OnInit, OnDestroy{
         this.productSuscription.unsubscribe();
         this.hasOrder = true;
 
-        this.dataBase.updateData(enumCollectionNames.Tables, this.auth.userTable, this.auth.userTable.number.toString())
+        this.title = 'Pedido'
+       this.dataBase.updateData(enumCollectionNames.Tables, this.auth.userTable, this.auth.userTable.number.toString())
       }
       catch(e)
       {
@@ -231,11 +238,11 @@ export class TablePage implements OnInit, OnDestroy{
     }
     else
     {
-      this.utilsService.showSweet({title:'Error', text: 'El pedido esta vacio', icon: 'error'})
+      this.utilsService.showSweet({title:'Error', text: 'El pedido esta vacío', icon: 'error'})
     }
   }
 
-  public async updateOrderState()
+  public async checkOrderState()
   {
     try
     {
@@ -258,7 +265,7 @@ export class TablePage implements OnInit, OnDestroy{
       }
       else
       {
-        this.utilsService.showSweet({title: 'Error', text: 'El QR es invalido o pertenece a otra mesa'})
+        this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa'})
       }
     }
     catch(e)
@@ -271,19 +278,102 @@ export class TablePage implements OnInit, OnDestroy{
     }
   }
 
-  public payOrder()
+  public async showBill()
   {
     try
     {
+    const scanValue = await this.utilsService.detectarQR(enumQR.Propina);
 
+      if(scanValue.retorno)
+      {
+        const tipPercentage : number = parseInt(scanValue.valor);
+        let subTotal : number;
+        let tip : number;
+        let bill : bill;
+
+        subTotal = 0;
+
+        this.productsSelected.forEach((product)=>
+        {
+          subTotal+= product.price * product.quantity;
+        })
+
+        tip = tipPercentage * subTotal / 100;
+
+        bill = {
+          id : '',
+          idOrder : this.order.id,
+          idClient : this.auth.userData.id,
+          products : this.productsSelected,
+          subTotal : subTotal,
+          tip : tip,
+          total: tip + subTotal
+        }
+
+        this.bill = bill;
+        this.showPayModal = true;
+      }
+      else
+      {
+        this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa'})
+      }
     }
-    catch
+    catch(e)
     {
-
+      console.log(e);
     }
     finally
     {
+      this.loader.dismissLoader();
+    }
+  }
 
+  public async markOrderAsReceived()
+  {
+    try
+    {
+      await this.loader.simpleLoader();
+      this.order.state = orderState.Accepted;
+      this.dataBase.updateData(enumCollectionNames.Orders, this.order, this.order.id);
+    }
+    catch(e)
+    {
+      this.order.state = orderState.GivingOut;
+      console.log(e)
+    }
+    finally
+    {
+      this.loader.dismissLoader();
+    }
+  }
+
+  public async payBill()
+  {
+    try
+    {
+      await this.loader.simpleLoader();
+      const newORder : order = 
+      {
+        id : this.order.id,
+        numberTable : this.order.numberTable,
+        products : this.order.products,
+        creationTime : this.order.creationTime,
+        price : this.order.price,
+        state : orderState.PaidAccepted,
+        barFinished : true,
+        kitchenFinished : true
+      }
+
+      await this.dataBase.updateData(enumCollectionNames.Orders, newORder, this.order.id);
+      this.order.state = orderState.Paid;
+    }
+    catch(e)
+    {
+      this.order.state = orderState.Accepted
+    }
+    finally
+    {
+      this.loader.dismissLoader();
     }
   }
 }

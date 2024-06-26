@@ -1,0 +1,134 @@
+div.order,div.order-price
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows:  repeat(auto-fill, 40px);
+    overflow-y: scroll;
+
+    h2,h3
+    {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2
+    {
+        margin: 0px;
+        font-size: X-large;
+        color: #000;
+    }
+
+    h3
+    {
+        margin: 0px;
+        font-size: large;
+    }
+
+    h2.name
+    {
+        background-color: #90e0ef;
+    }
+
+    h2.quantity
+    {
+        background-color: #48cae4;
+    }
+
+
+    h2.nameSize,h3.nameSize
+    {
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+
+    h2.quantitySize,h3.quantitySize
+    {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+    h3.nameDark
+    {
+        color: #fff;
+        background-color: #582f0e;
+    }
+
+    h3.quantityDark
+    {
+        color: #fff;
+        background-color: #7f4f24;
+    }
+
+    h3.nameLight
+    {
+        color: #000;
+        background-color: #bb9457;
+    }
+
+    h3.quantityLight
+    {
+        color: #000;
+        background-color: #b76935;
+    }
+}
+
+div.order-price
+{
+    h2
+    {
+        margin: 0px;
+        font-size: X-large;
+        color: #000;
+    }
+
+    h3
+    {
+        margin: 0px;
+        font-size: large;
+    }
+
+    h2.price
+    {
+        background-color: #0077b6;
+        color: #fff;
+    }
+
+//Del 1 al 3, del 3 al 5, y 1 para el que quede
+
+    h3.priceDark
+    {
+        background-color: #008000;
+        color: #fff;
+    }
+
+    h3.priceLight
+    {
+        background-color: #70e000;
+        color: #000;
+    }
+
+    h2.nameSize,h3.nameSize
+    {
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+
+    h2.quantitySize,h3.quantitySize
+    {
+        padding: 0px 5px 0px 5px;
+        grid-column-start: 4;
+        grid-column-end: 5;
+    }
+
+    h2.priceSize,h3.priceSize
+    {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+}

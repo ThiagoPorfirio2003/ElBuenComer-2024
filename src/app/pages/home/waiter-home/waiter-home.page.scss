@@ -1,0 +1,56 @@
+ion-button.consultar-mozo
+{
+    width: 95%;
+    font-size: 30px;
+
+    h1{
+        text-transform: none;
+        font-size: 30px;
+        margin: 0px;
+    }
+}
+.modal-toolbar
+{
+    --background: #d62828;
+    --color: #fff;
+
+    ion-button{
+        --background: #d62828;
+        --color: #fff;
+    }
+}
+ion-col{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px;
+}
+
+.botones{
+    justify-content: space-around;
+}
+
+button{
+    padding: 3%;
+}
+
+.cuadro
+{
+    overflow-x: auto;
+    margin: 2%;
+}
+
+ion-grid{
+    width: auto;
+    padding: 0;
+    border: solid 1px;
+}
+
+ion-row{
+    display: flex;
+    background-color: #9d641d;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 200%;
+}

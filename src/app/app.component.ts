@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent 
 {
-  constructor() 
+  constructor(private router : Router) 
   {
   }
 }
