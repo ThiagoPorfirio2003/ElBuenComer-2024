@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { Subscription } from 'rxjs';
 import { enumClientState } from 'src/app/enums/clientState';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { DataBaseService } from 'src/app/services/data-base.service';
@@ -10,13 +11,16 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './listado-clientes.page.html',
   styleUrls: ['./listado-clientes.page.scss'],
 })
-export class ListadoClientesPage implements OnInit 
+export class ListadoClientesPage implements OnInit, OnDestroy
 {
   public clientes : Array<any> = []; 
+  private flag : Boolean = false;
+  private cantidad : number = 0
+  private subscripcion : Subscription;
 
   constructor(private util : UtilsService, private firebase : DataBaseService) 
   {
-    this.firebase.getObservable(enumCollectionNames.Clients).subscribe((clientes)=>{
+      this.subscripcion =  this.firebase.getObservable(enumCollectionNames.Clients).subscribe((clientes)=>{
       this.clientes = [];
       clientes.forEach((item)=>{
         if(item["state"]== enumClientState.AwaitingApproval)
@@ -24,9 +28,26 @@ export class ListadoClientesPage implements OnInit
           this.clientes.push(item);
         }
       })
-      this.util.SendPushNotification("Nuevo Cliente", "Un nuevo cliente esta esperando a ser registrado");
+
+      if(this.flag)
+      {
+        if(this.clientes.length > this.cantidad)
+        {
+          this.util.SendPushNotification("Nuevo Cliente", "Un nuevo cliente esta esperando a ser registrado");
+        }
+      }
+      else
+      {
+        this.flag = true;
+      }
+      this.cantidad = this.clientes.length;
     })
     
+  }
+  
+  ngOnDestroy(): void 
+  {
+    this.subscripcion.unsubscribe()
   }
 
   ngOnInit() 
