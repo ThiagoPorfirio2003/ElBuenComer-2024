@@ -8,12 +8,14 @@ import { HoraPipe } from '../pipe/hora.pipe';
 import { FormsModule } from '@angular/forms';
 import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
 import { EnumtypePipe } from '../pipe/enumtype.pipe';
+import { BoughtProductsListComponent } from '../components/bought-products-list/bought-products-list.component';
 @NgModule({
   declarations: [
     HeaderComponent,
     CameraComponent,
     ChatComponent,
-    TableListModalComponent
+    TableListModalComponent,
+    BoughtProductsListComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { EnumtypePipe } from '../pipe/enumtype.pipe';
     HeaderComponent,
     CameraComponent,
     ChatComponent,
-    TableListModalComponent
+    TableListModalComponent,
+    BoughtProductsListComponent
   ]
 })
 export class SharedComponentsModule { }

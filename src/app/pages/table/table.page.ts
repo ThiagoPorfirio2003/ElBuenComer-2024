@@ -6,7 +6,6 @@ import { enumQR } from 'src/app/enums/QR';
 import { enumTableState } from 'src/app/enums/tableState';
 import { order, productInOrder } from 'src/app/interfaces/order';
 import { product } from 'src/app/interfaces/products';
-import { Table } from 'src/app/interfaces/table';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
@@ -28,6 +27,8 @@ export class TablePage implements OnInit, OnDestroy{
   public foodsSelected : Array<productInOrder>;
   public drinksSelected : Array<productInOrder>;
   public cookingTime : number;
+
+  public title : string;
   
   public order! : order;
   public hasOrder : boolean;
@@ -46,6 +47,7 @@ export class TablePage implements OnInit, OnDestroy{
       this.cookingTime = 0;
       this.hasOrder = false;
       this.surveyIsCompleted = false; 
+      this.title = 'Menú';
     }
 
   ngOnInit(): void 
@@ -218,6 +220,7 @@ export class TablePage implements OnInit, OnDestroy{
         this.productSuscription.unsubscribe();
         this.hasOrder = true;
 
+        this.title = 'Pedido'
         this.dataBase.updateData(enumCollectionNames.Tables, this.auth.userTable, this.auth.userTable.number.toString())
       }
       catch(e)
@@ -235,7 +238,7 @@ export class TablePage implements OnInit, OnDestroy{
     }
   }
 
-  public async updateOrderState()
+  public async checkOrderState()
   {
     try
     {
@@ -284,6 +287,25 @@ export class TablePage implements OnInit, OnDestroy{
     finally
     {
 
+    }
+  }
+
+  public async markOrderAsReceived()
+  {
+    try
+    {
+      await this.loader.simpleLoader();
+      this.order.state = orderState.Accepted;
+      this.dataBase.updateData(enumCollectionNames.Orders, this.order, this.order.id);
+    }
+    catch(e)
+    {
+      this.order.state = orderState.GivingOut;
+      console.log(e)
+    }
+    finally
+    {
+      this.loader.dismissLoader();
     }
   }
 }

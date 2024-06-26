@@ -1,22 +1,24 @@
-<app-header [title]="'Mesa'"></app-header>
+<app-header [title]="this.title"></app-header>
 
 <ion-content>
   <div class="full-screen centrar-columna">
     
     <!-- Si la mesa ya tiene un pedido asignado -->
-    @if (this.hasOrder) 
+    @if (false || this.hasOrder) 
     { 
       <div class="frame-estado-pedido">
-        <h2 class="text">Estado del pedido:</h2>
-        <h1 class="estado-pedido">{{this.order.state}}</h1>
+        <!-- <h2 class="text">Estado del pedido:</h2> -->
+        <h1 class="estado-pedido">ESTADO</h1>
+        <!--         <h1 class="estado-pedido">{{this.order.state}}</h1>
+ -->
       </div>
 
       <!-- El estado del pedido es distinto a Accepted-->
-      @if(this.order.state !== 4)
+      @if( true || this.order.state !== 4)
       {
-        <ion-button class="analyze-qr" (click)="this.updateOrderState()" color="entryqr">
+        <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
           <div>
-            <h1>Actualizar estado del pedido</h1>
+            <h1>Actualizar estado</h1>
             <img src="../../../../assets/images/QR_In_Btn.png" alt="">
           </div>
         </ion-button>
@@ -31,7 +33,7 @@
       }
 
       <!-- En este if debe ir si el estadoPedido != ForApproval-->
-      @if (this.order.state !== 0) 
+      @if ( true || this.order.state !== 0) 
       {
         <ion-button class="consultar-mozo" id="survey-list-modal" fill="solid" color="orange">
           <h1>Ver encuestas</h1>
@@ -48,9 +50,9 @@
         }
 
         <!-- Si el mozo ya confirmo que entrego el pedido-->
-        @if (this.order.state === 3) 
+        @if ( true || this.order.state === 3) 
         {
-          <ion-button class="mucho-texto" fill="solid" color="green">
+          <ion-button (click)="this.markOrderAsReceived()" class="mucho-texto" fill="solid" color="green">
             <h1>He recibido el pedido</h1>
             <ion-icon slot="end" name="bag-outline"></ion-icon>
           </ion-button>
@@ -119,6 +121,7 @@
     }
   </div>
 
+
   <ion-modal #chatModal trigger="chat-modal">
     <ng-template>
       <ion-header>
@@ -138,46 +141,73 @@
   </ion-modal>
   
   <ion-modal #orderModal trigger="order-modal">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar class="modal-toolbar">
-            <ion-buttons slot="start">
-              <ion-button fill="solid" (click)="orderModal.dismiss()">
-                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-
-            <ion-title style="text-align: end;">Pedido</ion-title>
-          </ion-toolbar>
-        </ion-header>
-
-        <ion-content>
-          <h1 class="orderPrice">${{this.orderPrice}}</h1>
-
-          <div style="display: flex; width: 100%;justify-content: center;">
-            <ion-button (click)="this.confirmOrder()" class="consultar-mozo" fill="solid" color="light">
-              <h1>Confirmar</h1>
-              <ion-icon slot="end" name="bag-check-outline"></ion-icon>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="orderModal.dismiss()">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
             </ion-button>
-          </div>
+          </ion-buttons>
 
-          <div class="order">
+          <ion-title style="text-align: end;">Pedido</ion-title>
+        </ion-toolbar>
+      </ion-header>
 
-            <h2 class="nameSize name">Productos</h2>
-            <h2 class="quantitySize quantity">Cantidad</h2>
+      <ion-content>
+        <h1 class="orderPrice">${{this.orderPrice}}</h1>
 
-            @for (product of this.productsSelected; track $index) 
-            {
-              <h3 [className]="$index % 2 === 0? 'nameSize nameDark' : 'nameSize nameLight'">
-                {{product.name}}
-              </h3>
-              
-              <h3 [className]="$index % 2 === 0? 'quantitySize quantityDark' : 'quantitySize quantityLight'">
-                x {{product.quantity}}
-              </h3>
-            }
-          </div>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+        <div style="display: flex; width: 100%;justify-content: center;">
+          <ion-button (click)="this.confirmOrder()" class="consultar-mozo" fill="solid" color="light">
+            <h1>Confirmar</h1>
+            <ion-icon slot="end" name="bag-check-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <div style="height: 50%;">
+          <app-bought-products-list [productsToShow]="this.productsSelected" [showPrice]="true"></app-bought-products-list>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+    
+  <ion-modal #surveyFormModal trigger="survey-form-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="surveyFormModal.dismiss()">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title style="text-align: end;">Encuesta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <app-alta-encuesta></app-alta-encuesta>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+        <!-- survey-list-modal -->
+  <ion-modal #surveyListModal trigger="survey-list-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="surveyListModal.dismiss()">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title style="text-align: end;">Reseñas</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

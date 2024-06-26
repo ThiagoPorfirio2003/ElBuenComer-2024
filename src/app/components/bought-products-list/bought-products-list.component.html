@@ -1,0 +1,29 @@
+<div class="order" [className]="this.showPrice ? 'order-price' : 'order'">
+
+  <h2 class="nameSize name">Productos</h2>
+
+  <h2 class="quantitySize quantity">Cantidad</h2>
+
+  @if (this.showPrice) 
+  {
+    <h2 class="priceSize price">Precio</h2>
+  }
+
+  @for (product of this.productsToShow; track $index) 
+  {
+    <h3 [className]="$index % 2 === 0? 'nameSize nameDark' : 'nameSize nameLight'">
+      {{product.name}}
+    </h3>
+
+    <h3 [className]="$index % 2 === 0? 'quantitySize quantityDark' : 'quantitySize quantityLight'">
+      x {{product.quantity}}
+    </h3>
+
+    @if(this.showPrice) 
+    { 
+      <h3 [className]="$index % 2 === 0? 'priceSize priceDark' : 'priceSize priceLight'">
+        ${{product.price}} C/u
+      </h3>
+    }
+  }
+</div>>
