@@ -36,6 +36,10 @@
                   {
                     <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">Llevar</button>
                   }
+                  @else if(item.state == 5)
+                  {
+                    <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Connfirmar pago</button>
+                  }
                   @else
                   {
                     {{item.state|estadoPedido }}  

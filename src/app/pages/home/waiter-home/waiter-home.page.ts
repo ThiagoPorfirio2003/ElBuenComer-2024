@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { elementAt } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
+import { enumTableState } from 'src/app/enums/tableState';
 import { order } from 'src/app/interfaces/order';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -78,8 +79,16 @@ export class WaiterHomePage implements OnInit
     this.firebase.saveData(enumCollectionNames.Orders,pedido,pedido.id)
   }
 
-  /*AceptarPaga(paga : order)
+  AceptarPaga(pedido : order)
   {
-
-  }*/
+    this.firebase.deleteData(enumCollectionNames.Orders,pedido.id);
+    this.firebase.getDocRef(enumCollectionNames.Tables, pedido.numberTable.toString()).then((retorno)=>{
+      let mesa = retorno.data();
+      console.log(mesa)
+      mesa!["idCurrentClient"] = "";
+      mesa!["state"] = enumTableState.Free;
+      console.log(mesa)
+      this.firebase.saveData(enumCollectionNames.Tables,mesa,mesa!["number"].toString());
+    })
+  }
 }
