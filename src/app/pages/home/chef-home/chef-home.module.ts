@@ -8,6 +8,7 @@ import { ChefHomePageRoutingModule } from './chef-home-routing.module';
 
 import { ChefHomePage } from './chef-home.page';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
+import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedComponentsModule } from 'src/app/modules/shared-components.module
     FormsModule,
     IonicModule,
     ChefHomePageRoutingModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    MayusculaPrimeraPipe
   ],
   declarations: [ChefHomePage]
 })

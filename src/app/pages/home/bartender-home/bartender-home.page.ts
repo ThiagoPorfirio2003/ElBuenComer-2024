@@ -11,101 +11,101 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./bartender-home.page.scss'],
 })
 export class BartenderHomePage {
-  ordersAux: order[] = [
-    {
-      id: '1',
-      numberTable: 4,
-      products: [
-        {
-          id: '1',
-          name: 'Cerveza',
-          description: 'Cerveza artesanal',
-          time: 10,
-          price: 5,
-          isFood: false,
-          photoUrl: [
-            'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
-          ],
-          quantity: 2,
-        },
-        {
-          id: '2',
-          name: 'hamburguesa',
-          description: 'comida ',
-          time: 10,
-          price: 5,
-          isFood: true,
-          photoUrl: [
-            'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
-          ],
-          quantity: 2,
-        },
-      ],
-      creationTime: Date.now(),
-      price: 10,
-      state: orderState.InPreparation,
-      barFinished: false,
-      kitchenFinished: false,
-    },
-    {
-      id: '2',
-      numberTable: 6,
-      products: [
-        {
-          id: '3',
-          name: 'Hamburguesa',
-          description: 'Hamburguesa de carne',
-          time: 15,
-          price: 8,
-          isFood: true,
-          photoUrl: [
-            'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
-          ],
-          quantity: 1,
-        },
-        {
-          id: '7',
-          name: 'papas',
-          description: 'papas fritas',
-          time: 15,
-          price: 8,
-          isFood: true,
-          photoUrl: [
-            'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
-          ],
-          quantity: 1,
-        },
-      ],
-      creationTime: Date.now(),
-      price: 8,
-      state: orderState.InPreparation,
-      barFinished: true,
-      kitchenFinished: false,
-    },
-    {
-      id: '3',
-      numberTable: 8,
-      products: [
-        {
-          id: '4',
-          name: 'Café',
-          description: 'Café negro',
-          time: 5,
-          price: 3,
-          isFood: false,
-          photoUrl: [
-            'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
-          ],
-          quantity: 1,
-        },
-      ],
-      creationTime: Date.now(),
-      price: 3,
-      state: orderState.InPreparation,
-      barFinished: false,
-      kitchenFinished: true,
-    },
-  ];
+  // ordersAux: order[] = [
+  //   {
+  //     id: '1',
+  //     numberTable: 4,
+  //     products: [
+  //       {
+  //         id: '1',
+  //         name: 'Cerveza',
+  //         description: 'Cerveza artesanal',
+  //         time: 10,
+  //         price: 5,
+  //         isFood: false,
+  //         photoUrl: [
+  //           'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
+  //         ],
+  //         quantity: 2,
+  //       },
+  //       {
+  //         id: '2',
+  //         name: 'hamburguesa',
+  //         description: 'comida ',
+  //         time: 10,
+  //         price: 5,
+  //         isFood: true,
+  //         photoUrl: [
+  //           'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
+  //         ],
+  //         quantity: 2,
+  //       },
+  //     ],
+  //     creationTime: Date.now(),
+  //     price: 10,
+  //     state: orderState.InPreparation,
+  //     barFinished: false,
+  //     kitchenFinished: false,
+  //   },
+  //   {
+  //     id: '2',
+  //     numberTable: 6,
+  //     products: [
+  //       {
+  //         id: '3',
+  //         name: 'Hamburguesa',
+  //         description: 'Hamburguesa de carne',
+  //         time: 15,
+  //         price: 8,
+  //         isFood: true,
+  //         photoUrl: [
+  //           'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
+  //         ],
+  //         quantity: 1,
+  //       },
+  //       {
+  //         id: '7',
+  //         name: 'papas',
+  //         description: 'papas fritas',
+  //         time: 15,
+  //         price: 8,
+  //         isFood: true,
+  //         photoUrl: [
+  //           'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
+  //         ],
+  //         quantity: 1,
+  //       },
+  //     ],
+  //     creationTime: Date.now(),
+  //     price: 8,
+  //     state: orderState.InPreparation,
+  //     barFinished: true,
+  //     kitchenFinished: false,
+  //   },
+  //   {
+  //     id: '3',
+  //     numberTable: 8,
+  //     products: [
+  //       {
+  //         id: '4',
+  //         name: 'Café',
+  //         description: 'Café negro',
+  //         time: 5,
+  //         price: 3,
+  //         isFood: false,
+  //         photoUrl: [
+  //           'https://firebasestorage.googleapis.com/v0/b/elbuencomer-dff17.appspot.com/o/img%2Fproducts%2Fcostilla%20de%20cerdo0.1719015681138?alt=media&token=4c73e4e2-ec12-4384-a4a2-50699cb57983',
+  //         ],
+  //         quantity: 1,
+  //       },
+  //     ],
+  //     creationTime: Date.now(),
+  //     price: 3,
+  //     state: orderState.InPreparation,
+  //     barFinished: false,
+  //     kitchenFinished: true,
+  //   },
+  // ];
   public orders: Array<any> = [];
   constructor(private firebase: DataBaseService, private utils: UtilsService) {
     // this.ordersAux.forEach(order => {
@@ -129,8 +129,7 @@ export class BartenderHomePage {
             this.orders.push(item);
           }
         });
-        const mensaje = `Se ha añadido un nuevo pedido a la lista de espera en preparacion`;
-        this.utils.SendPushNotification('Nuevo Pedido', mensaje);
+        this.utils.SendPushNotification('Nuevo Pedido', `Se ha añadido un nuevo pedido a la lista de espera en preparacion`);
       });
   }
 
@@ -149,8 +148,8 @@ export class BartenderHomePage {
             spinner: 'circular',
           });
           await loading.present();
-          order.barFinished = true;
-          if(order.kitchenFinished == true && order.barFinished == true){
+          order.barFinished == true 
+          if(order.kitchenFinished && order.barFinished){
             order.state = orderState.Finished;
           }
           this.firebase.updateData(enumCollectionNames.Orders,order, order.id)

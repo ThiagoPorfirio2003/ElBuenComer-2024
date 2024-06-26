@@ -1,5 +1,10 @@
 <app-header [title]="'Listado de Pedidos'"></app-header>
 <ion-content [fullscreen]="true">
+  <div class="content-title">
+    <hr class="divider" />
+    <h1 align="center" class="title">BAR</h1>
+    <hr class="divider" />
+  </div>
   @for(order of orders; track order){
     <ion-card class="style-card">
       <ion-card-header>
