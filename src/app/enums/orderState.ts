@@ -4,5 +4,7 @@ export enum orderState
     InPreparation,
     Finished,
     GivingOut,
-    Accepted
+    Accepted,
+    Paid,
+    PaidAccepted
 }

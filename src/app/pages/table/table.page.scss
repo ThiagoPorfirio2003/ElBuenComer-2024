@@ -1,4 +1,4 @@
-ion-button.consultar-mozo
+ion-button.consultar-mozo, ion-button.mucho-texto
 {
     width: 95%;
     font-size: 30px;
@@ -9,6 +9,15 @@ ion-button.consultar-mozo
         margin: 0px;
     }
 }
+
+ion-button.mucho-texto
+{
+    h1
+    {
+        font-size: 25px;
+    }
+}
+
 
 div.drinkCard
 {
@@ -209,14 +218,6 @@ div.foodCard
     }
 }
 
-h1.orderPrice
-{
-    font-size: 100px;
-    color: #ccff33;
-    margin: 0px;
-    text-align: center;
-}
-
 /*
 div.orderItem
 {
@@ -233,21 +234,179 @@ div.orderItem
     }
 }
 */
-div.order
+
+h1.orderPrice
+{
+    font-size: 100px;
+    color: #ccff33;
+    margin: 0px;
+    text-align: center;
+}
+
+h2.order-time
+{
+    color: #ccff33;
+    margin: 0px;
+    text-align: center;
+}
+
+.btn-group
 {
     width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
+    ion-button{
+        width: 45%;
+        margin: 0px;
 
-    div.name
+        h1{
+            font-size: 15px;
+        }
+    }
+}
+
+.centrar-columna
+{
+    justify-content: space-evenly;
+}
+
+ion-button.analyze-qr, ion-button.pay-qr
+{
+    width: 90%;
+    //height: 60%;
+    background:#000;
+    margin: 0px;
+    border: solid #000 15px;
+    --border-radius: 50px;
+    border-radius: 50px;
+
+    div{
+        height: 95%;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+
+        h1{
+           margin: 0px;
+           font-size: 25px; 
+           text-transform: none;
+           margin-bottom: 5%;
+        }
+
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            margin-bottom: 9%;
+        }
+    }
+}
+
+ion-button.pay-qr
+{
+    div{
+        h1{
+           margin: 0px;
+           font-size: 40px; 
+           text-transform: none;
+           margin-bottom: 5%;
+        }
+    }
+}
+
+div.frame-estado-pedido
+{
+    width: 95%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #ffe6a7;
+    border: solid #000 5px;
+
+    h1,h2
     {
-        background-color: red;
+        margin: 0px;
     }
 
-    div.cuantity
+    h2.text
     {
-        background-color: #ccff33;
+        font-size: 30px;
     }
+
+    h1.estado-pedido
+    {
+        font-size: 45px;
+        color: #38b000;
+    }
+}
+
+.bill-frame
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    .bill
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3,1fr);
+        width: 100%;
+
+        h2
+        {
+            margin: 0px;
+            text-align: center;
+        }
+    
+        h2.products-title{
+            background-color: #70e000;
+            color: #000;
+        }
+    
+        h2.tip-title{
+            background-color: #38b000;
+            color: #000;
+        }
+    
+        h2.total-title{
+            background-color: #008000;
+            color: #fff;
+        }
+    
+        h2.products-price{
+            background-color: #eeef20;
+            color: #000;
+        }
+    
+        h2.tip-price{
+            background-color: #d4d700;
+            color: #000;
+        }
+    
+        h2.total-price{
+            background-color: #007f5f;
+            color: #fff;
+        }
+    }
+}
+
+.product-list-frame-large
+{
+    display: flex;
+    height: 52%;
+}
+
+.product-list-frame-small
+{
+    display: flex;
+    height: 35%;
 }
