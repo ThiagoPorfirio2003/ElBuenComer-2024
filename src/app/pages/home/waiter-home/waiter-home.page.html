@@ -8,7 +8,7 @@
       </ion-button>
       <div style="max-width: 100%;">
         <div class="cuadro">
-          <ion-grid fill="solid" style="width: 100%;">  
+          <ion-grid fill="solid" style="width: 100%; color: white;">  
             <ion-row style="background-color: #8d3400;">  
               <ion-col><label style="font-size: x-large;">Pedidos</label></ion-col>     
             </ion-row>  
@@ -22,8 +22,8 @@
             @for (item of this.arrayPedidos; track $index) 
             {
               <ion-row style="background-color: #636363;">  
-                <ion-col>{{item.idTable}}</ion-col>  
-                <ion-col><button style="background-color: #a36900" id="open-productos">Ver productos</button></ion-col>    
+                <ion-col>{{item.numberTable}}</ion-col>  
+                <ion-col><button style="background-color: #a36900" id="open-productos {{$index}}">Ver productos</button></ion-col>    
                 <ion-col>{{item.creationTime}} minutos</ion-col>    
                 <ion-col>${{item.price}}</ion-col>    
                 <ion-col class="botones">
@@ -42,7 +42,7 @@
                   }
                 </ion-col>    
               </ion-row>  
-              <ion-modal #modal trigger="open-productos">
+              <ion-modal #modal trigger="open-productos {{$index}}">
                   <ng-template>
                       <ion-header>
                           <ion-toolbar class="modal-toolbar"> 
@@ -55,7 +55,7 @@
                               <ion-title style="text-align: end;">Productos</ion-title>
                           </ion-toolbar>
                       </ion-header>
-                          <!--FALATA COMPONENTE LISTA PRODUCTOS-->
+                      <app-bought-products-list style="height: 100%; width: 100%;" [productsToShow]="item.products" [showPrice]="false"></app-bought-products-list>
                   </ng-template>
               </ion-modal>
             }

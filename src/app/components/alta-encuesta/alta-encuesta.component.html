@@ -23,7 +23,7 @@
     </div>
     <div class="temperatura">
       <label>Cual fue la temperatura de la comida?</label>
-      <select placeholder="----" (change)="Select($event)">
+      <select style="background-color: #313131;" placeholder="----" (change)="Select($event)">
         <option value="0">Frío</option>
         <option selected value="1">Correcto</option>
         <option value="2">Caliente</option>
@@ -43,8 +43,8 @@
     </div>
     <div class="opciones">
       <label>Déjanos tu opinión</label>
-      <textarea [(ngModel)]="this.encuesta.comment"></textarea>
+      <textarea style="background-color: #313131;" [(ngModel)]="this.encuesta.comment"></textarea>
     </div>
-    <button style="height: 5%;" (click)="Enviar()">Enviar</button>
+    <button style="height: 5%; background-color: #313131;" (click)="Enviar()">Enviar</button>
   </div>
 </div>
