@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { elementAt } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, elementAt } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
 import { enumTableState } from 'src/app/enums/tableState';
@@ -12,15 +12,17 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './waiter-home.page.html',
   styleUrls: ['./waiter-home.page.scss'],
 })
-export class WaiterHomePage implements OnInit 
+export class WaiterHomePage implements OnInit , OnDestroy
 {
+  private flag : boolean = false;
+  private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
-  public arrayPagos : Array<any> = [];
+  private subscripcion : Subscription | undefined;
   constructor(private firebase: DataBaseService, private util : UtilsService) { }
 
   ngOnInit() 
   {
-    this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
+      this.subscripcion = this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
       this.arrayPedidos = [];
       this.arrayPedidos = [...ordenes];
       this.arrayPedidos.forEach((pedido)=>
@@ -30,8 +32,24 @@ export class WaiterHomePage implements OnInit
             pedido.state = orderState.Finished;
           }
       })
-      this.util.SendPushNotification("Nuevo Pedido", "Una mesa ah hecho un nuevo pedido");
+      if(this.flag)
+      {
+        if(this.arrayPedidos.length > this.cantidad)
+        {
+          this.util.SendPushNotification("Nuevo Pedido", "Una mesa ah hecho un nuevo pedido");
+        }
+      }
+      else
+      {
+        this.flag = true;
+      }
+      this.cantidad = this.arrayPedidos.length;
     })
+  }
+
+  ngOnDestroy(): void 
+  {
+    this.subscripcion!.unsubscribe();
   }
 
   Aceptar(pedido : order)
