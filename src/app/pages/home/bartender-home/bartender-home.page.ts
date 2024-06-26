@@ -14,7 +14,7 @@ export class BartenderHomePage {
   ordersAux: order[] = [
     {
       id: '1',
-      idTable: '4',
+      numberTable: 4,
       products: [
         {
           id: '1',
@@ -49,7 +49,7 @@ export class BartenderHomePage {
     },
     {
       id: '2',
-      idTable: '6',
+      numberTable: 6,
       products: [
         {
           id: '3',
@@ -84,7 +84,7 @@ export class BartenderHomePage {
     },
     {
       id: '3',
-      idTable: '8',
+      numberTable: 8,
       products: [
         {
           id: '4',
@@ -136,7 +136,7 @@ export class BartenderHomePage {
     this.utils
       .showSweet({
         title: 'AFinalización de Pedido',
-        text:'¿Desea confirmar la finalización del pedido para la mesa ' + order.idTable + '?',
+        text:'¿Desea confirmar la finalización del pedido para la mesa ' + order.numberTable.toString() + '?',
         showCancelButton: true,
         cancelButtonText: 'No, aún no está listo',
         confirmButtonText: 'Sí, finalizar pedido',
