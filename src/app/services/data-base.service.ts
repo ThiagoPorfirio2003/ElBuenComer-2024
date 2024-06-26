@@ -32,6 +32,11 @@ export class DataBaseService
     return getDocs(query(this.getCollectionRef(enumCollectionNames.Tables), where('idCurrentClient','==', idClient)));
   }
 
+  public getNextId(collectionName : enumCollectionNames)
+  {
+    return doc(collection(this.firestore, collectionName)).id;
+  }
+
   public getDocRef(collectionName : enumCollectionNames, idDoc : string)
   {
     return getDoc(doc(this.firestore, collectionName, idDoc));
@@ -56,7 +61,7 @@ export class DataBaseService
 
   public deleteData(collectionName : enumCollectionNames, id : string)
   {
-    deleteDoc(doc(this.firestore, collectionName, id))
+    return deleteDoc(doc(this.firestore, collectionName, id))
   }
   
   //AHORA SI SE PUEDE USAR
@@ -75,6 +80,16 @@ export class DataBaseService
     }
 
     return setDoc(docData, data);
+  }
+
+  public updateData(collectionName : enumCollectionNames, data : any, id : string)
+  {
+    return updateDoc(doc(this.firestore, collectionName, id), data);
+  }
+
+  public getDataById(collectionName : enumCollectionNames, id : string)
+  {
+    return getDocs(query(this.getCollectionRef(collectionName), where('id','==', id)));
   }
 
   /*
