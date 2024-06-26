@@ -22,7 +22,8 @@ export class WaiterHomePage implements OnInit
     this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
       this.arrayPedidos = [];
       this.arrayPedidos = [...ordenes];
-      this.arrayPedidos.forEach((pedido)=>{
+      this.arrayPedidos.forEach((pedido)=>
+      {
         if(pedido.state == orderState.InPreparation && (pedido.kitchenFinished && pedido.barFinished))
           {
             pedido.state = orderState.Finished;
