@@ -15,7 +15,7 @@
   </div>
 
   <ion-list class="list-custom">
-    <ion-item *ngFor="let table of tables" (click)="assignTable(table)" color="warning">
+    <ion-item *ngFor="let table of tables" (click)="assignTable(table)" color="brown">
       <ion-label>
         <h2><strong>Mesa {{ table.number }}</strong></h2>
         <p>Tipo: {{ table.type | enumtype }} </p>

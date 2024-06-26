@@ -1,0 +1,41 @@
+<app-header [title]="'Listado de Pedidos'"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="content-title">
+    <hr class="divider" />
+    <h1 align="center" class="title">BAR</h1>
+    <hr class="divider" />
+  </div>
+  @for(order of orders; track order){
+    <ion-card class="style-card">
+      <ion-card-header>
+        <ion-card-title class="title-container">
+          Mesa {{ order.numberTable }}
+          <ion-button fill="clear" class="centered-button" (click)="finalizeOrder(order)">
+            Finalizar
+          </ion-button>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group #accordionGroup>
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Detalle del Pedido</ion-label>
+            </ion-item>
+            @for(product of order.products; track product){ 
+              @if(!product.isFood){
+                <div class="ion-padding style-fondo" slot="content">
+                  <ion-item class="item-fondo">
+                    <ion-thumbnail slot="start">
+                      <img [alt]="product.name" [src]="product.photoUrl[0]" />
+                    </ion-thumbnail>
+                    <ion-label>{{ product.name | mayuscula}} - x{{product.quantity}}</ion-label>
+                  </ion-item>
+                </div>
+              } 
+            }
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>
