@@ -15,7 +15,8 @@ export enum enumCollectionNames
     WaitingRoom = 'waitingRoom',
     ChatRoom = 'chatRoom',
     Surveys = 'surveys',
-    Orders = 'orders'
+    Orders = 'orders',
+    Tokens = 'tokens'
 }
 
 /*

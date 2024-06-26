@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400140358689",
+    "project_id": "elbuencomer-dff17",
+    "storage_bucket": "elbuencomer-dff17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400140358689:android:fe7ae335155131006cbf60",
+        "android_client_info": {
+          "package_name": "io.ionic.BuenComer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx7LI34MDZ5ZRDglLjq4Sr03NkoacsUWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
