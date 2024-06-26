@@ -13,7 +13,7 @@
     height: 90%;
     display: flex;
     padding: 3%;
-    background: #240046;
+    background: #6a040f;
     overflow-y: auto;
     flex-direction: column;
 }
@@ -35,6 +35,7 @@
     font-family: inherit;
     line-height: normal;
     margin-bottom: 3%;
+    color: black;
 }
 .smallDiv
 {
@@ -54,7 +55,7 @@ small
 .chatTuyo
 {
     border-radius: 0px 20px 20px 20px;
-    background: #8254ff;
+    background: #ff4800;
 }
 
 h5{
@@ -70,7 +71,8 @@ h5{
 .chatMio
 {
     border-radius: 25px 0% 15px 25px;
-    background: #7b2cbf;
+    background: #ffb600;
+    ;
 }
 
 //-----------------------------ingreso de mensaje-------------------------
@@ -78,11 +80,11 @@ h5{
     font-family: cursive;
     width: 14%;
     border-radius: 40px;
-    background: #20143f;
+    background: #370617;
 }
 .enviar
 {
-    background: #47126b;
+    background: #512323;
     height: 10%;
     padding: 2%;
     width: 100%;
@@ -101,7 +103,7 @@ textarea{
     font-family: cursive;
     font-size: larger;
     padding-left: 2%;
-    background: #20143f;
+    background: #370617;
     width: 84%;
     border-radius: 15px;
 }
