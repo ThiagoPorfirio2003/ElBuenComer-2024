@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { TableListModalComponent } from '../components/table-list-modal/table-list-modal.component';
 import { EnumtypePipe } from '../pipe/enumtype.pipe';
 import { BoughtProductsListComponent } from '../components/bought-products-list/bought-products-list.component';
+import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta.component';
 @NgModule({
   declarations: [
     HeaderComponent,
     CameraComponent,
     ChatComponent,
     TableListModalComponent,
-    BoughtProductsListComponent
+    BoughtProductsListComponent,
+    AltaEncuestaComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { BoughtProductsListComponent } from '../components/bought-products-list/
     CameraComponent,
     ChatComponent,
     TableListModalComponent,
-    BoughtProductsListComponent
+    BoughtProductsListComponent,
+    AltaEncuestaComponent
   ]
 })
 export class SharedComponentsModule { }

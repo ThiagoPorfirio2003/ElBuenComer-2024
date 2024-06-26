@@ -31,7 +31,7 @@ export class DataBaseService
   {
     return getDocs(query(this.getCollectionRef(enumCollectionNames.Tables), where('idCurrentClient','==', idClient)));
   }
-
+  
   public getNextId(collectionName : enumCollectionNames)
   {
     return doc(collection(this.firestore, collectionName)).id;

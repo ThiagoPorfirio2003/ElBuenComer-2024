@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TablePageRoutingModule } from './table-routing.module';
+import { OrderPageRoutingModule } from './order-routing.module';
 
-import { TablePage } from './table.page';
+import { OrderPage } from './order.page';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
 import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
 
@@ -15,10 +15,10 @@ import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
     CommonModule,
     FormsModule,
     IonicModule,
-    TablePageRoutingModule,
+    OrderPageRoutingModule,
     SharedComponentsModule,
-    MayusculaPrimeraPipe
+    MayusculaPrimeraPipe,
   ],
-  declarations: [TablePage]
+  declarations: [OrderPage]
 })
-export class TablePageModule {}
+export class OrderPageModule {}

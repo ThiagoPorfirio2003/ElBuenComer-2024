@@ -209,13 +209,13 @@ export class TablePage implements OnInit, OnDestroy{
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable : 1,//this.auth.userTable.number,
+          numberTable :  this.auth.userTable.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,
           state : orderState.ForApproval,
-          barFinished : this.drinksSelected.length > 0 ? false : true,
-          kitchenFinished : this.foodsSelected.length > 0 ? false : true,
+          barFinished : true,
+          kitchenFinished : true,
         }
 
         this.auth.userTable.state = enumTableState.withOrder;
