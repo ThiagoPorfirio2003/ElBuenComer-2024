@@ -30,7 +30,7 @@ export class CameraComponent {
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
       });
-
+      this.restoreAppState()
       const imageUri = image.webPath;
       if (imageUri) {
         const imageName = new Date().getTime().toString();
@@ -44,8 +44,6 @@ export class CameraComponent {
     } catch (error) {
       const message = 'Se canceló la captura de la foto';
       this.ionToastService.showToastError(message);
-    } finally{
-      this.restoreAppState()
     }
   }
   
