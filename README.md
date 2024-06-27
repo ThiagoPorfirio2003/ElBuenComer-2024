@@ -21,10 +21,10 @@
 | ✔️ Creación y vinculación con el proyecto de Firebase | ⚠️ Creación del login | ✔️ Creación del icono de la app |
 | ⏳ Interacción con el proyecto de Firebase | ⚠️ Creación del alta para el usuario de tipo cliente | ⚠️ Creación del listado de clientes pendientes de aprobación |
 | ✔️ Creación Splash Screen animado y estático | ⏳ Creación del método para enviar correos automático | ⚠️ Creación push notificación genérico |
-| ⚠️ Creación de escáner QR DNI genérico | || ||
-| Creación del QR para entrar al local ⚠️ | | Creación del QR de la propina ⚠️ | | Creación del QR de cada mesa ⚠️ | 
-| Creación de la interfaz de usuario del cliente en la sala de espera ⚠️ | | Creación del login ⚠️ | | Creación del listado de pedidos del mozo ⚠️ | 
-| Creación de la lógica pago del pedido por parte del cliente ⚠️ | | Creación del método para enviar correos automático ⚠️ | | Creación de un metodo generico para hacer un push notification ⚠️ | 
+| ⚠️ Creación de escáner QR DNI genérico |
+| Creación del QR para entrar al local ⚠️ | Creación del QR de la propina ⚠️ | Creación del QR de cada mesa ⚠️ | 
+| Creación de la interfaz de usuario del cliente en la sala de espera ⚠️ | Creación del login ⚠️ | Creación del listado de pedidos del mozo ⚠️ | 
+| Creación de la lógica pago del pedido por parte del cliente ⚠️ | Creación del método para enviar correos automático ⚠️ |  Creación de un metodo generico para hacer un push notification ⚠️ | 
 
 <!--
 Thiago:
