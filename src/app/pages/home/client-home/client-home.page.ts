@@ -83,23 +83,30 @@ export class ClientHomePage implements OnInit, OnDestroy
           case enumQR.Mesa:
             if(this.isInWaitingRoom)
             {
-              if(this.userTable.number == parseInt(QRValues[1]))
+              if(this.userTable == undefined)
               {
-                this.goToTable();
+                this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error'})
               }
               else
               {
-                this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error'})
+                if(this.userTable.number == parseInt(QRValues[1]))
+                {
+                  this.goToTable();
+                }
+                else
+                {
+                  this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error'})
+                }
               }
             }
             else
             {
-              this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error'});
+              this.utilsService.showSweet({title:'QR inválido', text: 'QR inválido',icon: 'error'});
             }
             break;
   
           default: 
-            console.log(QRValues);
+            this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error'});
             break;
         }
       })

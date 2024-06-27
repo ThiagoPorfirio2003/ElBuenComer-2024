@@ -172,7 +172,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable :  0,//this.auth.userTable.number,
+          numberTable : this.tableManagementService.table.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,

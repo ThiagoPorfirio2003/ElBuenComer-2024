@@ -149,7 +149,7 @@ export class OrderPage{
       {
         await this.loader.simpleLoader();
         this.tableManagementService.order.state = orderState.Accepted;
-        this.databaseService.updateData(enumCollectionNames.Orders, this.tableManagementService.order.state, this.tableManagementService.order.id);
+        this.databaseService.updateData(enumCollectionNames.Orders, this.tableManagementService.order, this.tableManagementService.order.id);
       }
       catch(e)
       {

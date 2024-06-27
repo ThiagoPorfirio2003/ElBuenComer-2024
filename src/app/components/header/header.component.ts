@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { TableManagementService } from 'src/app/services/table-management.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class HeaderComponent
   @Input({required: true}) title! : string;
 
   constructor(private authService:AuthService, private router: Router,
-    private utilsService : UtilsService) 
+    private utilsService : UtilsService,
+    private tableManagement : TableManagementService) 
   { 
     
   }
@@ -28,7 +30,8 @@ export class HeaderComponent
         if(result.isConfirmed)
         {
           this.authService.logOut();
-          this.utilsService.changeRoute('/login')
+          this.tableManagement.isInRestaurant = false;
+          this.utilsService.changeRoute('/login');
         } 
       })
   }
