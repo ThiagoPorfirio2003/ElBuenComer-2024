@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInAnonymously, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
-import { baseUserData, completeUserData, employe, userAccessData } from '../interfaces/user';
-import { enumProfile } from '../enums/profile';
-import { Table } from '../interfaces/table';
+import { baseUserData, userAccessData } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +9,6 @@ export class AuthService {
 
   public userData! : baseUserData;
   public isLogued : boolean;
-  public userTable! : Table;
 
    constructor(private auth : Auth) 
    { 

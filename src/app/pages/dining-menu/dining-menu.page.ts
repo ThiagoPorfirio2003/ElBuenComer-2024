@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { IonModal } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
@@ -160,7 +161,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     }
   }  
 
-  public async confirmOrder()
+  public async confirmOrder(modal : IonModal)
   {
     if(this.productsSelected.length > 0)
     {
@@ -171,7 +172,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable :  this.auth.userTable.number,
+          numberTable :  0,//this.auth.userTable.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,
@@ -187,11 +188,13 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         const promises : Array<Promise<void>>= new Array<Promise<void>>();
 
         promises.push(this.dataBase.saveData(enumCollectionNames.Orders, order));
-        promises.push(this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagementService.table, this.auth.userTable.number.toString()));
+        promises.push(this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagementService.table, this.tableManagementService.table.number.toString()));
 
-        Promise.all(promises);    
+        await Promise.all(promises);    
 
-        this.utilsService.changeRoute('ACA VA LA RUTA DEL ORDER')
+        this.utilsService.changeRoute('/order')
+        
+        modal.dismiss()
       }
       catch(e)
       {

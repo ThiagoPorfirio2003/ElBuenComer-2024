@@ -7,6 +7,7 @@ import { Table } from 'src/app/interfaces/table';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
+import { TableManagementService } from 'src/app/services/table-management.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -17,17 +18,15 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ClientHomePage implements OnInit, OnDestroy
 {
     public isInWaitingRoom : boolean;
-    public isInRestaurant : boolean;
     public userTable! : Table;
     public tableNumberToShow : string;
 
     private tablesSuscription! : Subscription;
 
     constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
-      private loader : IonLoaderService) 
+      private loader : IonLoaderService, public tableManagement : TableManagementService) 
     { 
       this.isInWaitingRoom = false;
-      this.isInRestaurant = false;
       this.tableNumberToShow = 'Aun por asignar';
     }
 
@@ -71,13 +70,13 @@ export class ClientHomePage implements OnInit, OnDestroy
         switch(QRValues[0])
         {
           case enumQR.Entrada:
-            if(this.isInRestaurant)
+            if(this.tableManagement.isInRestaurant)
             {
               this.utilsService.showSweet({title:'Error', text: 'Ya estás adentro del local',icon: 'error'})
             }
             else
             {
-              this.isInRestaurant = true;
+              this.tableManagement.isInRestaurant = true;
             }
             break;
             
@@ -133,9 +132,10 @@ export class ClientHomePage implements OnInit, OnDestroy
       this.dataBase.updateData(enumCollectionNames.Tables, this.userTable, this.userTable.number.toString())
       .then(()=>
       {
-        this.auth.userTable = this.userTable;
+        //this.auth.userTable = this.userTable;
+        this.tableManagement.table = this.userTable;
         this.loader.dismissLoader();
-        this.utilsService.changeRoute('table');
+        this.utilsService.changeRoute('/dining-menu');
       })
       .catch(()=> 
       {

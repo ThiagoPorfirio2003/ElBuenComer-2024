@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonModal } from '@ionic/angular';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
 import { enumQR } from 'src/app/enums/QR';
@@ -18,7 +19,6 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class OrderPage{
 
   public surveyIsCompleted : boolean;
-  public showPayModal : boolean;
   public bill! : bill;
 
   constructor(public utilsService : UtilsService, 
@@ -28,7 +28,6 @@ export class OrderPage{
     private loader : IonLoaderService)
     { 
       this.surveyIsCompleted = false;
-      this.showPayModal = false;
     }
 
     public async checkOrderState()
@@ -45,13 +44,34 @@ export class OrderPage{
         
           if(redOrder.size == 0)
           {
-            console.log('Tu pedido ha sido cancelado')
+            this.utilsService.showSweet({title: 'Cancelado', text: 'Tu pedido ha sido cancelado', confirmButtonText: 'Volver al menú', 
+              allowOutsideClick: false, icon: 'warning'})
+              .then((value)=>
+              {
+                this.utilsService.changeRoute('/dining-menu');
+              })
           }
           else
           {
             if(redOrder.size == 1)
             {
-              this.tableManagementService.order = redOrder.docs[0].data() as order;
+              const orderRed : order = redOrder.docs[0].data() as order;
+              
+              if(orderRed.state == orderState.PaidAccepted)
+              {
+                this.loader.dismissLoader();
+
+                this.utilsService.showSweet({title: 'Pago aceptado', text: 'La mesa ya no le pertenece',
+                  confirmButtonText: 'Aceptar', allowOutsideClick : false})
+                  .then(()=>
+                  {
+                    this.utilsService.changeRoute('client-home');
+                  })
+              }
+              else
+              {
+                this.tableManagementService.order = orderRed;
+              }
             }
             else
             {
@@ -107,7 +127,6 @@ export class OrderPage{
           }
   
           this.bill = bill;
-          this.showPayModal = true;
         }
         else
         {
@@ -143,36 +162,34 @@ export class OrderPage{
       }
     }
   
-    public async payBill()
+    public async payBill(modal : IonModal)
     {
-      /*
       try
       {
         await this.loader.simpleLoader();
         const newORder : order = 
         {
-          id : this.order.id,
-          numberTable : this.order.numberTable,
-          products : this.order.products,
-          creationTime : this.order.creationTime,
-          price : this.order.price,
+          id : this.tableManagementService.order.id,
+          numberTable : this.tableManagementService.order.numberTable,
+          products : this.tableManagementService.order.products,
+          creationTime : this.tableManagementService.order.creationTime,
+          price : this.tableManagementService.order.price,
           state : orderState.PaidAccepted,
           barFinished : true,
           kitchenFinished : true
         }
   
-        await this.dataBase.updateData(enumCollectionNames.Orders, newORder, this.order.id);
-        this.order.state = orderState.Paid;
+        await this.databaseService.updateData(enumCollectionNames.Orders, newORder, this.tableManagementService.order.id);
+        this.tableManagementService.order.state = orderState.Paid;
+        modal.dismiss()
       }
       catch(e)
       {
-        this.order.state = orderState.Accepted
+        this.tableManagementService.order.state = orderState.Accepted
       }
       finally
       {
         this.loader.dismissLoader();
       }
-      */
     }
-
 }

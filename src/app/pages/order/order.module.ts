@@ -8,7 +8,7 @@ import { OrderPageRoutingModule } from './order-routing.module';
 
 import { OrderPage } from './order.page';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
-import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
+import { EstadoPedidoPipe } from 'src/app/pipe/estado-pedido.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
     IonicModule,
     OrderPageRoutingModule,
     SharedComponentsModule,
-    MayusculaPrimeraPipe,
+    EstadoPedidoPipe
   ],
   declarations: [OrderPage]
 })

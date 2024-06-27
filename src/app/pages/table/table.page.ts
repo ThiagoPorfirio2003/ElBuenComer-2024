@@ -19,6 +19,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class TablePage implements OnInit, OnDestroy{
 
+  /*
+  Cerrar el modal cuando confirma el pedido
+  */
   private productSuscription! : Subscription;
   public productsToShow! : Array<product>;
   public canShowFood : boolean;
@@ -209,7 +212,7 @@ export class TablePage implements OnInit, OnDestroy{
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable :  this.auth.userTable.number,
+          numberTable :  0,//this.auth.userTable.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,
@@ -218,14 +221,14 @@ export class TablePage implements OnInit, OnDestroy{
           kitchenFinished : true,
         }
 
-        this.auth.userTable.state = enumTableState.withOrder;
+       // this.auth.userTable.state = enumTableState.withOrder;
         this.dataBase.saveData(enumCollectionNames.Orders, order)
         this.order = order;
         this.productSuscription.unsubscribe();
         this.hasOrder = true;
 
         this.title = 'Pedido'
-       this.dataBase.updateData(enumCollectionNames.Tables, this.auth.userTable, this.auth.userTable.number.toString())
+       //this.dataBase.updateData(enumCollectionNames.Tables, this.auth.userTable, this.auth.userTable.number.toString())
       }
       catch(e)
       {
@@ -248,6 +251,7 @@ export class TablePage implements OnInit, OnDestroy{
     {
       const scanValue = await this.utilsService.detectarQR(enumQR.Mesa);
 
+      /*
       if(scanValue.retorno && scanValue.valor == this.auth.userTable.number)
       {
         await this.loader.simpleLoader();
@@ -267,6 +271,7 @@ export class TablePage implements OnInit, OnDestroy{
       {
         this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa'})
       }
+      */
     }
     catch(e)
     {

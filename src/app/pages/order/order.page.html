@@ -5,7 +5,7 @@
     <div class="frame-estado-pedido">
       <!-- <h2 class="text">Estado del pedido:</h2> -->
       <h1 class="estado-pedido">Estado</h1>
-      <h1 class="estado-pedido">{{this.tableManagementService.order.state }}</h1>
+      <!-- <h1 class="estado-pedido">{{this.tableManagementService.order.state | estadoPedido}}</h1> -->
     </div>
 
     <!-- El estado del pedido es distinto a Accepted-->
@@ -19,13 +19,19 @@
       </ion-button>
     }
     @else {
-      <ion-button class="pay-qr" (click)="this.showBill()" color="green">
+      <ion-button class="pay-qr" id="bill-modal" color="green">
         <div>
           <h1>Pagar</h1>
           <img src="../../../../assets/images/QR_In_Btn.png" alt="">
         </div>
       </ion-button>
     }
+
+    <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
+      <h1>Consultar al mozo</h1>
+      <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>        
+    </ion-button>
+    
 
     <!-- En este if debe ir si el estadoPedido != ForApproval-->
     @if ( false || this.tableManagementService.order.state !== 0) 
@@ -36,7 +42,7 @@
       </ion-button>
 
       <!-- Si la encuesta no fue realizada-->
-      @if (!this.surveyIsCompleted) 
+      @if ( false || !this.surveyIsCompleted) 
       {
         <ion-button class="consultar-mozo" id="survey-form-modal" fill="solid" color="orange">
           <h1>Realizar encuesta</h1>
@@ -95,7 +101,7 @@
     </ng-template>
   </ion-modal>
 
-  <ion-modal [isOpen]="this.showPayModal">
+  <ion-modal #billModal trigger="bill-modal">
     <ng-template>
       <ion-header>
         <ion-toolbar class="modal-toolbar">
@@ -103,7 +109,7 @@
         </ion-toolbar>
 
         <ion-buttons slot="start">
-          <ion-button fill="solid" (click)="this.showPayModal =false">
+          <ion-button fill="solid" (click)="billModal">
             <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -122,12 +128,30 @@
             <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
           </div>
 
-          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
+          <ion-button (click)="this.payBill(billModal)" class="consultar-mozo" fill="solid" color="green">
             <h1>Pagar</h1>
             <ion-icon slot="end" name="cash-outline"></ion-icon>        
           </ion-button>
         </div>
       </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #chatModal trigger="chat-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar"> 
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="chatModal.dismiss()">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title style="text-align: end;">Chat</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <app-chat style="height: 100%;"></app-chat>
     </ng-template>
   </ion-modal>
 </ion-content>

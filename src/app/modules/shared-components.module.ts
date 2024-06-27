@@ -11,6 +11,7 @@ import { EnumtypePipe } from '../pipe/enumtype.pipe';
 import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
 import { BoughtProductsListComponent } from '../components/bought-products-list/bought-products-list.component';
 import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta.component';
+import { EstadoPedidoPipe } from '../pipe/estado-pedido.pipe';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -26,7 +27,8 @@ import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta
     FormsModule,
     HoraPipe,
     EnumtypePipe,
-    MayusculaPrimeraPipe
+    MayusculaPrimeraPipe,
+    EstadoPedidoPipe
   ],
   exports:
   [

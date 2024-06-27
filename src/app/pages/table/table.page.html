@@ -9,7 +9,7 @@
       <div class="frame-estado-pedido">
         <!-- <h2 class="text">Estado del pedido:</h2> -->
         <h1 class="estado-pedido">Estado</h1>
-        <h1 class="estado-pedido">{{this.order.state}}</h1>
+        <h1 class="estado-pedido">{{this.order.state | estadoPedido}}</h1>
       </div>
 
       <!-- El estado del pedido es distinto a Accepted-->
@@ -91,7 +91,7 @@
                 <h1 class="info-color-1">{{product.name | mayuscula}}</h1>
                 <h1 class="info-color-2">${{product.price}}</h1>
                 <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
-                <p class="info-color-2">{{product.description | mayuscula  }}</p>
+                <p class="info-color-2">{{product.description | mayuscula }}</p>
   
                 <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
                   <h1>Pedir +1</h1>
