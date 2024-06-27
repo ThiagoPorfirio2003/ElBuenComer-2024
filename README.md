@@ -16,6 +16,8 @@
 
 ### Individuales 👨‍🦱
 
+
+
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
 | :---:        |     :---:      |         :---: |
 | Creación del QR para entrar al local ⚠️ | Creación del QR de la propina ⚠️ | Creación del QR de cada mesa ⚠️ | 
@@ -30,12 +32,22 @@
 |  Creación de la interfaz de usuario para cuando el cliente tiene un pedido realizado ⚠️ |   Creación del listado de pedidos del bar ⚠️ | Creación del listado de clientes pendientes de aprobación ⚠️|
 | Creación y vinculación con el proyecto de Firebase ✔️ | Creación del alta para el usuario de tipo cliente ⚠️ | Envió del correo al cliente informando sobre su rechazo o aprobación ⚠️ |
 | Interacción con el proyecto de Firebase ⏳ | Creación del alta para el usuario de tipo cliente anónimo ⚠️ | Envió del correo al cliente informando sobre su rechazo o aprobación ⚠️ |
-<!--
-| ✔️ Creación y vinculación con el proyecto de Firebase | ⚠️ Creación del login | ✔️ Creación del icono de la app |
-| ⏳ Interacción con el proyecto de Firebase | ⚠️ Creación del alta para el usuario de tipo cliente | ⚠️ Creación del listado de clientes pendientes de aprobación |
-| ✔️ Creación Splash Screen animado y estático | ⏳ Creación del método para enviar correos automático | ⚠️ Creación push notificación genérico |
-| ⚠️ Creación de escáner QR DNI genérico |
--->
+
+### Grupales 👨‍👩‍👦
+
+  - 📁 Creación de la estructura de datos y archivos
+  - 🧰 Creación de métodos de utilería
+  - 🌐 Creación scaner qr
+
+## Demostraciones
+
+### Icono
+
+![Icon_ElBuenComer (1)](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/10e928da-4c5b-429d-921e-94f63f7477d6)
+
+### Splash Screen animado
+
+![ezgif-5-5f415f6893](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/5ce5b35d-85c8-47e7-a249-4c84919a4c8d)
 
 <!--
 Thiago:
@@ -93,67 +105,3 @@ Mauro
   Terminado
   //Creación del icono de la app
 -->
-### Grupales 👨‍👩‍👦
-
-  - 📁 Creación de la estructura de datos y archivos
-  - 🧰 Creación de métodos de utilería
-  - 🌐 Creación scaner qr
-
-## Demostraciones
-
-### Icono
-
-![Icon_ElBuenComer (1)](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/10e928da-4c5b-429d-921e-94f63f7477d6)
-
-
-### Splash Screen animado
-
-![ezgif-5-5f415f6893](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/5ce5b35d-85c8-47e7-a249-4c84919a4c8d)
-
-<!--
-### 🎅 Porfirio Thiago Lisandro
-
-**Rama:** develop-thiagop
-
- - Creación del **splash estático y animado**
-    - Fecha de inicio: 10/6
-    - Fecha de finalización: 11/6 
- 
- - Creación del **alta de empleados**
-    - Fecha de inicio: 12/6
-    - Fecha de finalización: A definir
-       
- - Creación del **alta de mesa**
-    - Fecha de inicio: 17/6
-    - Fecha de finalización: A definir
-  
-
-### 🧙 Huallpa Wilson
-
-**Rama:** develop-wilsonh
-
- - Creación del **inicio de sesión**
-    - Fecha de inicio: 10/6
-    - Fecha de finalización: 11/6 
- 
- - Creación del **alta de clientes**
-    - Fecha de inicio: 14/6
-    - Fecha de finalización: A definir 
-
-### 🧛 Racioppi Mauro
-
-**Rama:** develop-mauror
-
- - Creación del **logo de la app y la empresa**
-    - Fecha de inicio: 7/6
-    - Fecha de finalización: 8/6 
-
- - Creación del **alta de dueño / supervisor**
-    - Fecha de inicio: 10/6
-    - Fecha de finalización: 14/6
-      
- - Creación del **alta de productos**
-    - Fecha de inicio: 12/6
-    - Fecha de finalización: 14/6
-
-  -->
