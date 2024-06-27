@@ -4,6 +4,10 @@ ion-button {
   color: white;
 }
 
+ion-card-title{
+  color: white;
+}
+
 .content-title{
   margin-top: 10px;
   margin-bottom: 26px;
@@ -17,7 +21,7 @@ ion-button {
       margin-right: auto;
     }
 
-  .title{
+  .title {
       font-weight: 700;
       padding: 10px;
       color: #ffffff;
@@ -38,15 +42,12 @@ ion-button {
 
 .style-card{
     box-shadow: none;
-    //border-radius: 20px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid white;
 }
-i
-.style-fondo{
-    background: rgba(0, 0, 0, 0.8) !important;
-}
+
 .item-fondo {
     --background: rgba(127, 16, 16, 0.8) !important;
+    color: #ffffff;
 }

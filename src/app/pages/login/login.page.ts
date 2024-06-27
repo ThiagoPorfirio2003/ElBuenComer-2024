@@ -115,7 +115,7 @@ export class LoginPage {
         this.utiles.changeRoute('/maitre-home');
         break;
       case enumProfile.Waiter:
-        console.log('User is a Waiter');
+        this.utiles.changeRoute('/waiter-home');
         break;
       case enumProfile.Chef:
         this.utiles.changeRoute('/chef-home');

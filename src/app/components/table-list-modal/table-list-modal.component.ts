@@ -43,7 +43,7 @@ export class TableListModalComponent implements OnInit {
           table.idCurrentClient = this.client.id;
           table.state = enumTableState.Reserved;
           this.firebase.saveData(enumCollectionNames.Tables,table,table.number.toString()).then(() => {
-            //this.firebase.deleteData(enumCollectionNames.WaitingRoom, this.client.id);
+            this.firebase.deleteData(enumCollectionNames.WaitingRoom, this.client.id);
             loading.dismiss();
             this.modalController.dismiss();
           }).catch((error)=>{

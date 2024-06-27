@@ -12,6 +12,7 @@ import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
 import { BoughtProductsListComponent } from '../components/bought-products-list/bought-products-list.component';
 import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta.component';
 import { GraphicCommentsComponent } from '../components/graphic-comments/graphic-comments.component';
+import { GraphicComponent } from '../components/graphic/graphic.component';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -20,7 +21,8 @@ import { GraphicCommentsComponent } from '../components/graphic-comments/graphic
     TableListModalComponent,
     BoughtProductsListComponent,
     AltaEncuestaComponent,
-    GraphicCommentsComponent
+    GraphicCommentsComponent,
+    GraphicComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { GraphicCommentsComponent } from '../components/graphic-comments/graphic
     TableListModalComponent,
     BoughtProductsListComponent,
     AltaEncuestaComponent,
-    GraphicCommentsComponent
+    GraphicCommentsComponent,
+    GraphicComponent
   ]
 })
 export class SharedComponentsModule { }
