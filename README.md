@@ -15,7 +15,9 @@
 ## Tareas 🧱
 
 ### Individuales 👨‍🦱
-
+  - ⏳: Pendiente a hacer o haciéndose
+  - ⚠️: Terminado pero en revisión
+  - ✔️: Terminado y aceptado
 
 
 | 🎅 Porfirio Thiago Lisandro | 🧙 Huallpa Wilson | 🧛 Racioppi Mauro |
