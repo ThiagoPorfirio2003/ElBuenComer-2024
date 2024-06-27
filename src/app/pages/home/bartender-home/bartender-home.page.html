@@ -23,7 +23,7 @@
             </ion-item>
             @for(product of order.products; track product){ 
               @if(!product.isFood){
-                <div class="ion-padding style-fondo" slot="content">
+                <div class="ion-padding" slot="content" style="background: black;">
                   <ion-item class="item-fondo">
                     <ion-thumbnail slot="start">
                       <img [alt]="product.name" [src]="product.photoUrl[0]" />

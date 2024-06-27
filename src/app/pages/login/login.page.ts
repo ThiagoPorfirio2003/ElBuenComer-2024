@@ -12,6 +12,10 @@ import { DataBaseService } from 'src/app/services/data-base.service';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumProfile } from 'src/app/enums/profile';
 import { enumClientState } from 'src/app/enums/clientState';
+//prueba
+import { ModalController } from '@ionic/angular';
+import { GraphicCommentsComponent } from 'src/app/components/graphic-comments/graphic-comments.component';
+
 
 @Component({
   selector: 'app-login',
@@ -24,7 +28,8 @@ export class LoginPage {
     private authService: AuthService,
     private utiles: UtilsService,
     private fb: FormBuilder,
-    private dataBaseService: DataBaseService
+    private dataBaseService: DataBaseService,
+    private modalController: ModalController
   ) {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -110,7 +115,7 @@ export class LoginPage {
         this.utiles.changeRoute('/maitre-home');
         break;
       case enumProfile.Waiter:
-        console.log('User is a Waiter');
+        this.utiles.changeRoute('/waiter-home');
         break;
       case enumProfile.Chef:
         this.utiles.changeRoute('/chef-home');
@@ -139,5 +144,10 @@ export class LoginPage {
         }
         break;
     }
+  }
+  //prueba
+  async openModal() {
+    const modal = await this.modalController.create({component: GraphicCommentsComponent});
+    return await modal.present();
   }
 }
