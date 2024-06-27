@@ -24,20 +24,21 @@
 | ⚠️ Creación de escáner QR DNI genérico |
 | Creación del QR para entrar al local ⚠️ | Creación del QR de la propina ⚠️ | Creación del QR de cada mesa ⚠️ | 
 | Creación de la interfaz de usuario del cliente en la sala de espera ⚠️ | Creación del login ⚠️ | Creación del listado de pedidos del mozo ⚠️ | 
-| Creación de la lógica pago del pedido por parte del cliente ⚠️ | Creación del método para enviar correos automático ⚠️ |  Creación de un metodo generico para hacer un push notification ⚠️ | 
-
+| Creación de escáner QR DNI ⚠️ | Creación del método para enviar correos automático ⚠️ |  Creación de un metodo generico para hacer un push notification ⚠️ | 
+| Enviar una notificación al mozo cuando el pedido se terminó de hacer en la cocina y el bar ⏳ | Enviar notificación a la cocina y bar cuando se hace un pedido ⚠️ |  Enviar notificación al dueño/supervisor cuando se registra un nuevo cliente pendiente de aprobación ⚠️ |
+| Creación de la lógica pago del pedido por parte del cliente ⚠️| Enviar una notificación al maitre para avisarle que hay un nuevo cliente en la lista de espera ⚠️ | Creación de la lógica de pago del pedido por parte del mozo ⚠️ | 
 <!--
 Thiago:
   Para hacer
-  Enviar una notificación al mozo cuando el pedido se terminó de hacer en la cocina y el bar
+  //Enviar una notificación al mozo cuando el pedido se terminó de hacer en la cocina y el bar
 
   Haciendo
   Interacción con el proyecto de Firebase
 
   En revision
   //Creación del QR para entrar al local
-  Creación de escáner QR DNI
-  //Creación de la lógica pago del pedido por parte del cliente ⚠
+  //Creación de escáner QR DNI
+  //Creación de la lógica pago del pedido por parte del cliente 
   Creación de la interfaz de usuario para cuando el cliente está creando su pedido
   Creación de la interfaz de usuario para cuando el cliente tiene un pedido realizado
   //Creación de la interfaz de usuario del cliente en la sala de espera
@@ -53,10 +54,10 @@ Wilson
   Creación del listado de encuestas previas
 
   Revision
-  Enviar notificación a la cocina y bar cuando se hace un pedido
+  //Enviar notificación a la cocina y bar cuando se hace un pedido
   Creación del listado de pedidos de la cocina
   Creación del listado de pedidos del bar
-  Enviar una notificación al maitre para avisarle que hay un nuevo cliente en la lista de espera
+  //Enviar una notificación al maitre para avisarle que hay un nuevo cliente en la lista de espera
   El maitre le asigna una mesa a los clientes que están en la lista de espera
   Creación de lista de espera de clientes
   //Creación del método para enviar correos automático
@@ -70,12 +71,12 @@ Mauro
   //Creación de un metodo generico para hacer un push notification
   //Creación del QR de cada mesa 
   //Creación del listado de pedidos del mozo
-  Creación de la lógica de pago del pedido por parte del mozo
+  //Creación de la lógica de pago del pedido por parte del mozo
   Envió del correo al cliente informando sobre su rechazo o aprobación
   Creación del listado de clientes pendientes de aprobación
   Creación de el alta de la encuesta
   Creación del QR de cada mesa
-  Enviar notificación al dueño/supervisor cuando se registra un nuevo cliente pendiente de aprobación
+  //Enviar notificación al dueño/supervisor cuando se registra un nuevo cliente pendiente de aprobación
   Creación de la sala de chat entre la mesa y los mozos
   Enviar una notificación a todos los mozos cuando una mesa haya enviado un mensaje
 
