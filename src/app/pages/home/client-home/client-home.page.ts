@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { GraphicCommentsComponent } from 'src/app/components/graphic-comments/graphic-comments.component';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumQR } from 'src/app/enums/QR';
 import { enumTableState } from 'src/app/enums/tableState';
@@ -24,7 +26,8 @@ export class ClientHomePage implements OnInit, OnDestroy
     private tablesSuscription! : Subscription;
 
     constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
-      private loader : IonLoaderService, public tableManagement : TableManagementService) 
+      private loader : IonLoaderService, public tableManagement : TableManagementService,
+      private modalController: ModalController) 
     { 
       this.isInWaitingRoom = false;
       this.tableNumberToShow = 'Aun por asignar';
@@ -151,4 +154,8 @@ export class ClientHomePage implements OnInit, OnDestroy
       })
     }
 
+    async openSurvey() {
+      const modal = await this.modalController.create({component: GraphicCommentsComponent});
+      return await modal.present();
+    }
 }
