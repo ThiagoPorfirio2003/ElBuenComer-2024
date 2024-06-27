@@ -56,6 +56,10 @@ export class RegisterClientPage {
     this.imageObject = data;
   }
 
+  capturarForm(data:FormGroup ){
+    this.anonymous = data;
+  }
+
   validateDni(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
     const isValid = /^\d{8}$/.test(value);
