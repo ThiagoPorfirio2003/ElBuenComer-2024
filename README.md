@@ -21,6 +21,7 @@
 | Creación del QR para entrar al local ⚠️ | Creación del QR de la propina ⚠️ | Creación del QR de cada mesa ⚠️ | 
 | Creación de la interfaz de usuario del cliente en la sala de espera ⚠️ | Creación del login ⚠️ | Creación del listado de pedidos del mozo ⚠️ | 
 | Creación de escáner QR DNI ⚠️ | Creación del método para enviar correos automático ⚠️ |  Creación de un metodo generico para hacer un push notification ⚠️ | 
+| Enviar una notificación al mozo cuando el pedido se terminó de hacer en la cocina y el bar ⏳ | Enviar notificación a la cocina y bar cuando se hace un pedido ⚠️ |  Enviar notificación al dueño/supervisor cuando se registra un nuevo cliente pendiente de aprobación ⚠️ |
 
 <!--
 | ✔️ Creación y vinculación con el proyecto de Firebase | ⚠️ Creación del login | ✔️ Creación del icono de la app |
