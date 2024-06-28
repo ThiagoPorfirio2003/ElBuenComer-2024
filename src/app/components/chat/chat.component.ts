@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, input } from '@angular/core';
 import { IonContent } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumProfile } from 'src/app/enums/profile';
 import { chat } from 'src/app/interfaces/chat';
@@ -14,12 +15,11 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ChatComponent  implements OnInit {
 
-  
   @ViewChild(IonContent, { static: false }) content!: IonContent;
   @ViewChild('scrollAnchor', { static: false }) private scrollAnchor!: ElementRef;
 
   public mensaje: chat = {} as chat;
-  public arrayMensajes :Array<any> =  [];
+  @Input() arrayMensajes :Array<any> =  [];
 
   constructor( public util : UtilsService, private firebase: DataBaseService, private auth: AuthService) 
   { 
@@ -43,21 +43,6 @@ export class ChatComponent  implements OnInit {
         })
       }
     }
-    this.firebase.getObservable(enumCollectionNames.ChatRoom)
-    .subscribe((res)=>
-    {
-      this.arrayMensajes = [...res];
-      this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
-      if(this.auth.userData.profile == enumProfile.Waiter)
-      {
-        let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
-        let emisor = ultimoMensaje.name.split("-");
-        if(emisor == "mesa")
-        {
-          this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje");
-        }
-      }
-    });
   }
 
   public Enviar() 
