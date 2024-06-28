@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ModalController } from '@ionic/angular';
+import { ChatModalComponent } from 'src/app/components/modals/chat-modal/chat-modal.component';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
 import { enumQR } from 'src/app/enums/QR';
@@ -20,6 +21,10 @@ export class OrderPage{
 
   public surveyIsCompleted : boolean;
   public bill! : bill;
+  public canShowChatModal : boolean;
+  public canShowSurveyListModal : boolean;
+  public canShowSurveyFormModal : boolean;
+  public canShowBillModal : boolean;
 
   constructor(public utilsService : UtilsService, 
     private databaseService : DataBaseService, 
@@ -28,6 +33,10 @@ export class OrderPage{
     private loader : IonLoaderService)
     { 
       this.surveyIsCompleted = false;
+      this.canShowChatModal = false;
+      this.canShowSurveyListModal = false;
+      this.canShowSurveyFormModal = false;
+      this.canShowBillModal = false;
     }
 
     public async checkOrderState()
@@ -127,6 +136,7 @@ export class OrderPage{
           }
   
           this.bill = bill;
+          this.canShowBillModal = true;
         }
         else
         {
@@ -162,7 +172,7 @@ export class OrderPage{
       }
     }
   
-    public async payBill(modal : IonModal)
+    public async payBill()
     {
       try
       {
@@ -181,7 +191,7 @@ export class OrderPage{
   
         await this.databaseService.updateData(enumCollectionNames.Orders, newORder, this.tableManagementService.order.id);
         this.tableManagementService.order.state = orderState.Paid;
-        modal.dismiss()
+        this.canShowBillModal = false;
       }
       catch(e)
       {

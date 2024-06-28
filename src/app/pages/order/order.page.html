@@ -19,127 +19,33 @@
       </ion-button>
     }
     @else {
-      <ion-button class="pay-qr" id="bill-modal" color="green">
+      <ion-button class="pay-qr" (click)="this.showBill()" color="green">
         <div>
           <h1>Pagar</h1>
           <img src="../../../../assets/images/QR_In_Btn.png" alt="">
         </div>
       </ion-button>
-
-      <ion-modal #billModal trigger="bill-modal">
-        <ng-template>
-          <ion-header>
-            <ion-toolbar class="modal-toolbar">
-              <ion-title style="text-align: start;">Pago</ion-title>
-            </ion-toolbar>
-    
-            <ion-buttons slot="start">
-              <ion-button fill="solid" (click)="billModal">
-                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-header>
-    
-          <ion-content>
-            <div class="full-screen bill-frame">
-    
-              <div class="product-list-frame-small">
-                <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
-              </div>
-    
-              <div class="bill">
-                <h2 class="products-title">Productos</h2> <h2 class="products-price">${{this.bill.subTotal}}</h2>
-                <h2 class="tip-title">Propina</h2> <h2 class="tip-price">${{this.bill.tip}}</h2>
-                <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
-              </div>
-    
-              <ion-button (click)="this.payBill(billModal)" class="consultar-mozo" fill="solid" color="green">
-                <h1>Pagar</h1>
-                <ion-icon slot="end" name="cash-outline"></ion-icon>        
-              </ion-button>
-            </div>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
     }
 
-    <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
+    <ion-button class="consultar-mozo" (click)="this.canShowChatModal = true" fill="solid" color="light">
       <h1>Consultar al mozo</h1>
       <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>        
     </ion-button>
-    
-    <ion-modal #chatModal trigger="chat-modal">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar class="modal-toolbar"> 
-            <ion-buttons slot="start">
-              <ion-button fill="solid" (click)="chatModal.dismiss()">
-                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-  
-            <ion-title style="text-align: end;">Chat</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        
-        <app-chat style="height: 100%;"></app-chat>
-      </ng-template>
-    </ion-modal>
 
     <!-- En este if debe ir si el estadoPedido != ForApproval-->
     @if (this.tableManagementService.order.state !== 0) 
     {
-      <ion-button class="consultar-mozo" id="survey-list-modal" fill="solid" color="orange">
+      <ion-button class="consultar-mozo" (click)="this.canShowSurveyListModal = true" fill="solid" color="orange">
         <h1>Ver encuestas</h1>
         <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
       </ion-button>
-
-      <ion-modal #surveyListModal trigger="survey-list-modal">
-        <ng-template>
-          <ion-header>
-            <ion-toolbar class="modal-toolbar">
-              <ion-buttons slot="start">
-                <ion-button fill="solid" (click)="surveyListModal.dismiss()">
-                  <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-    
-              <ion-title style="text-align: end;">Reseñas</ion-title>
-            </ion-toolbar>
-          </ion-header>
-    
-          <ion-content>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
-
       <!-- Si la encuesta no fue realizada-->
       @if (!this.surveyIsCompleted) 
       {
-        <ion-button class="consultar-mozo" id="survey-form-modal" fill="solid" color="orange">
+        <ion-button class="consultar-mozo" (click)="this.canShowSurveyFormModal = true" fill="solid" color="orange">
           <h1>Realizar encuesta</h1>
           <ion-icon slot="end" name="help-circle-outline"></ion-icon>
         </ion-button>
-
-        <ion-modal #surveyFormModal trigger="survey-form-modal">
-          <ng-template>
-            <ion-header>
-              <ion-toolbar class="modal-toolbar">
-                <ion-buttons slot="start">
-                  <ion-button fill="solid" (click)="surveyFormModal.dismiss()">
-                    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-      
-                <ion-title style="text-align: end;">Encuesta</ion-title>
-              </ion-toolbar>
-            </ion-header>
-      
-            <ion-content>
-              <app-alta-encuesta></app-alta-encuesta>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
       }
 
       <!-- Si el mozo ya confirmo que entrego el pedido-->
@@ -153,6 +59,96 @@
     }
   </div>
   
-        <!-- survey-list-modal -->
+  <ion-modal #chatModal [isOpen]="this.canShowChatModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar"> 
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="this.canShowChatModal = false">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
 
+          <ion-title style="text-align: end;">Chat</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <app-chat style="height: 100%;"></app-chat>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #surveyListModal [isOpen]="this.canShowSurveyListModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="this.canShowSurveyListModal = false">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title style="text-align: end;">Reseñas</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #surveyFormModal [isOpen]="this.canShowSurveyFormModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="this.canShowSurveyFormModal = false">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title style="text-align: end;">Encuesta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <app-alta-encuesta></app-alta-encuesta>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #billModal [isOpen]="this.canShowBillModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal-toolbar">
+          <ion-title style="text-align: start;">Pago</ion-title>
+        </ion-toolbar>
+
+        <ion-buttons slot="start">
+          <ion-button fill="solid" (click)="this.canShowBillModal = false">
+            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-header>
+
+      <ion-content>
+        <div class="full-screen bill-frame">
+
+          <div class="product-list-frame-small">
+            <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
+          </div>
+
+          <div class="bill">
+            <h2 class="products-title">Productos</h2> <h2 class="products-price">${{this.bill.subTotal}}</h2>
+            <h2 class="tip-title">Propina</h2> <h2 class="tip-price">${{this.bill.tip}}</h2>
+            <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
+          </div>
+
+          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
+            <h1>Pagar</h1>
+            <ion-icon slot="end" name="cash-outline"></ion-icon>        
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
