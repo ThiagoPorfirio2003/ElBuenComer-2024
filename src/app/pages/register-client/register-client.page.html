@@ -12,7 +12,7 @@
     <app-camera
       [imageObject]="imageObject"
       (capturarImg)="capturarImg($event)"
-      [registerForm]="newClient"
+      [registerForm]="(segmentValue =='clienteNuevo') ? newClient : anonymous"
       (carturaForm)="capturarForm($event)"
     ></app-camera>
   </div>
