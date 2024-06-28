@@ -207,7 +207,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     }
     else
     {
-      this.utilsService.showSweet({title:'Error', text: 'El pedido esta vacío', icon: 'error'})
+      this.utilsService.showSweet({title:'Error', text: 'El pedido esta vacío', icon: 'error', confirmButtonText: 'Entendido'})
     }
   }
 }
