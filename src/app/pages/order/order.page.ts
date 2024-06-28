@@ -184,7 +184,7 @@ export class OrderPage{
           products : this.tableManagementService.order.products,
           creationTime : this.tableManagementService.order.creationTime,
           price : this.tableManagementService.order.price,
-          state : orderState.PaidAccepted,
+          state : orderState.Paid,
           barFinished : true,
           kitchenFinished : true
         }
