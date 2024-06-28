@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumProfile } from 'src/app/enums/profile';
@@ -14,7 +14,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ChatComponent  implements OnInit {
 
+  
   @ViewChild(IonContent, { static: false }) content!: IonContent;
+  @ViewChild('scrollAnchor', { static: false }) private scrollAnchor!: ElementRef;
 
   public mensaje: chat = {} as chat;
   public arrayMensajes :Array<any> =  [];
@@ -52,7 +54,7 @@ export class ChatComponent  implements OnInit {
         let emisor = ultimoMensaje.name.split("-");
         if(emisor == "mesa")
         {
-          this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje")
+          this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje");
         }
       }
     });

@@ -8,8 +8,8 @@ export class MayusculaPrimeraPipe implements PipeTransform {
 
   transform(value: string, ...args: unknown[]): unknown 
   {
-    value = value.toLowerCase()
-    value[0].toUpperCase()
+    value = value.toLowerCase();
+    value = value.charAt(0).toUpperCase() + value.slice(1);
     return value;
   }
 

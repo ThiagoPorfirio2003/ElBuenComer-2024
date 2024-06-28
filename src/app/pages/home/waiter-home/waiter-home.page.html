@@ -2,6 +2,7 @@
 
 
 <ion-content>
+  <div class="background">
     <ion-button class="consultar-mozo" id="open-modal" fill="solid" color="light">
         <h1>Chat mesas</h1>
         <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
@@ -65,30 +66,6 @@
             }
           </ion-grid>  
         </div>
-       <!-- <div class="cuadro">
-          <ion-grid fill="solid" style="width: 100%;">  
-            <ion-row style="background-color: #8d3400;">  
-              <ion-col><label style="font-size: x-large;">Pagos</label></ion-col>     
-            </ion-row>  
-            <ion-row style="background-color: #8d3400;">  
-              <ion-col>Mesa</ion-col>   
-              <ion-col>Precio total</ion-col>  
-              <ion-col>Propina</ion-col>  
-              <ion-col>Acción</ion-col>   
-            </ion-row>  
-            @for (item of this.arrayPagos; track $index) 
-            {
-              <ion-row style="background-color: #636363;">  
-                <ion-col>{{item.idTable}}</ion-col>   
-                <ion-col>${{item.price}}</ion-col>    
-                <ion-col>${{item.propina}}</ion-col>    
-                <ion-col class="botones">
-                    <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Aceptar</button>
-                </ion-col>    
-              </ion-row>  
-            }
-          </ion-grid>  
-        </div>-->
       </div>
     <ion-modal #modal trigger="open-modal">
         <ng-template>
@@ -103,9 +80,11 @@
               <ion-title style="text-align: end;">Chat</ion-title>
             </ion-toolbar>
           </ion-header>
-          
-          <app-chat style="height: 100%;"></app-chat>
+          <ion-content>
+            <app-chat style="height: 100%;"></app-chat>
+
+          </ion-content>
         </ng-template>
       </ion-modal>
-
+  </div>
 </ion-content>
