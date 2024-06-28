@@ -10,15 +10,21 @@ import { DataBaseService } from 'src/app/services/data-base.service';
 })
 
 export class GraphicCommentsComponent {
+  
   buttonText: string = 'Comentarios';
   iconName: string = 'chatbox-ellipses-outline';
   public surveys: Array<any> = [];
 
-  constructor( private modalController: ModalController,private firebase: DataBaseService ) {
-    this.firebase.getObservable(enumCollectionNames.Surveys).subscribe((encuestas) => {
-      this.surveys = [];
-      this.surveys = encuestas;
-    });
+  constructor(
+    private modalController: ModalController,
+    private firebase: DataBaseService
+  ) {
+    this.firebase
+      .getObservable(enumCollectionNames.Surveys)
+      .subscribe((encuestas) => {
+        this.surveys = [];
+        this.surveys = encuestas;
+      });
   }
 
   closeModal() {

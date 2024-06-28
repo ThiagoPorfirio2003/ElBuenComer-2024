@@ -1,10 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
-import { enumCustomerServiceQuality } from 'src/app/enums/customerServiceQuality';
-import { enumFoodTemperature } from 'src/app/enums/foodTemperature';
-import { enumLikedAspects } from 'src/app/enums/likedAspects';
-import { qualitySurvey } from 'src/app/interfaces/survey';
 import { DataBaseService } from 'src/app/services/data-base.service';
 
 @Component({
@@ -13,16 +9,17 @@ import { DataBaseService } from 'src/app/services/data-base.service';
   styleUrls: ['./graphic.component.scss'],
 })
 export class GraphicComponent {
-  @ViewChild('acquisitionsChart', { static: true })
-  acquisitionsChart!: ElementRef<HTMLCanvasElement>;
+  
+  @ViewChild('barChart', { static: true })
+  barChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('pieChart', { static: true })
   pieChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('lineChart', { static: true })
   lineChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('polarAreaChart', { static: true })
   polarAreaChart!: ElementRef<HTMLCanvasElement>;
-  //public surveys : Array<any> = [];
   public surveys: Array<any> = [];
+
   constructor(private firebase: DataBaseService) {
     this.firebase
       .getObservable(enumCollectionNames.Surveys)
@@ -41,20 +38,30 @@ export class GraphicComponent {
   }
 
   createCustomerServiceChart() {
-    const colors = this.generateRandomColors(this.surveys.length);
+    const colors = this.generateRandomColors(5);
+    const labels = ["Muy mala", "Mala", "Decente", "Buena", "Muy buena"];
+    const counts = [0, 0, 0, 0, 0];
+    
+    this.surveys.forEach(survey => {
+      counts[survey.customerService]++;
+    });
+
+    const filteredLabels = labels.filter((_, index) => counts[index] > 0);
+    const filteredCounts = counts.filter(count => count > 0);
+
     const data = {
-      labels: Object.values(enumCustomerServiceQuality),
+      labels: filteredLabels,
       datasets: [
         {
           label: 'Calidad del servicio al cliente',
-          data: this.surveys.map((survey) => survey.customerService),
+          data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
         },
       ],
     };
-    new Chart(this.acquisitionsChart.nativeElement, {
+    new Chart(this.barChart.nativeElement, {
       type: 'bar',
       data: data,
       options: {
@@ -86,13 +93,23 @@ export class GraphicComponent {
   }
 
   createFoodTemperatureChart() {
-    const colors = this.generateRandomColors(this.surveys.length);
+    const colors = this.generateRandomColors(3);
+    const labels = ["Frío", "Correcto", "Caliente"];
+    const counts = [0, 0, 0];
+    
+    this.surveys.forEach(survey => {
+      counts[survey.foodTemperature]++;
+    });
+
+    const filteredLabels = labels.filter((_, index) => counts[index] > 0);
+    const filteredCounts = counts.filter(count => count > 0);
+
     const data = {
-      labels: Object.values(enumFoodTemperature),
+      labels: filteredLabels,
       datasets: [
         {
           label: 'Temperatura de los alimentos',
-          data: this.surveys.map((survey) => survey.foodTemperature),
+          data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1,
@@ -104,20 +121,6 @@ export class GraphicComponent {
       type: 'pie',
       data: data,
       options: {
-        scales: {
-          x: {
-            beginAtZero: true,
-            ticks: {
-              color: 'white',
-            },
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: 'white',
-            },
-          },
-        },
         responsive: true,
         plugins: {
           legend: {
@@ -131,28 +134,22 @@ export class GraphicComponent {
     });
   }
 
-  createMostLikedAspectsChart() {
+  createOverallQualityChart() {
     const colors = this.generateRandomColors(this.surveys.length);
-    const aspectCounts = Object.values(enumLikedAspects).reduce(
-      (counts: any, aspect) => {
-        counts[aspect] = 0;
-        return counts;
-      },
-      {}
-    );
-
-    this.surveys.forEach((survey) => {
-      survey.mostLikedAspects.forEach((aspect: any) => {
-        aspectCounts[aspect]++;
-      });
+    const labels: string[] = [];
+    const counts: number[] = [];
+    
+    this.surveys.forEach((survey, index) => {
+      labels.push("Encuesta " + (index + 1));
+      counts.push(survey.overallQuality);
     });
 
     const data = {
-      labels: Object.keys(aspectCounts),
+      labels: labels,
       datasets: [
         {
           label: 'Aspectos más gustados',
-          data: Object.values(aspectCounts),
+          data: counts,
           backgroundColor: colors,
           borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -185,7 +182,6 @@ export class GraphicComponent {
         },
         responsive: true,
         plugins: {
-          
           legend: {
             position: 'top',
             labels: {
@@ -197,15 +193,26 @@ export class GraphicComponent {
     });
   }
 
-  createOverallQualityChart() {
-    const colors = this.generateRandomColors(this.surveys.length);
+  createMostLikedAspectsChart() {
+    const colors = this.generateRandomColors(5);
+    const labels = ["Tiempo de espera para la comida", "Tiempo de espera para obtener la tabla", "Calidad de la comida", "Decoración", "Música"];
+    const counts = [0, 0, 0, 0, 0];
+    
+    this.surveys.forEach(survey => {
+      survey.mostLikedAspects.forEach((item:any) => {
+        counts[item]++;
+      });
+    });
 
+    const filteredLabels = labels.filter((_, index) => counts[index] > 0);
+    const filteredCounts = counts.filter(count => count > 0);
+    
     const data = {
-      labels: this.surveys.map((_, index) => `Survey ${index + 1}`),
+      labels: filteredLabels,
       datasets: [
         {
           label: 'Calidad general',
-          data: this.surveys.map((survey) => survey.overallQuality),
+          data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(255, 206, 86, 1)',
           borderWidth: 1,
@@ -217,20 +224,6 @@ export class GraphicComponent {
       type: 'polarArea',
       data: data,
       options: {
-        scales: {
-          x: {
-            beginAtZero: true,
-            ticks: {
-              color: 'white',
-            },
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: 'white',
-            },
-          },
-        },
         responsive: true,
         plugins: {
           legend: {
@@ -243,7 +236,8 @@ export class GraphicComponent {
       },
     });
   }
-  generateRandomColors(numColors:number) {
+ 
+  generateRandomColors(numColors: number) {
     const colors = [];
     for (let i = 0; i < numColors; i++) {
       const red = Math.floor(Math.random() * 256);
@@ -253,5 +247,4 @@ export class GraphicComponent {
     }
     return colors;
   }
-  
 }

@@ -44,6 +44,7 @@ export class RegisterClientPage {
       dni: ['', [Validators.required, this.validateDni]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      password02: ['', [Validators.required, Validators.minLength(6)]],
       img: [''],
     });
     this.anonymous = this.fb.group({
@@ -67,9 +68,18 @@ export class RegisterClientPage {
   }
 
   async onRegister() {
+
       const loading = await this.utiles.getLoadingCtrl({spinner: 'circular'});
+
       await loading.present();
       if(this.segmentValue === 'clienteNuevo'){
+
+        if(this.confirmPassword()){
+          loading.dismiss();
+          this.utiles.showSweet({titleText:"Error",text:"Las contraseñas no coinciden",icon:"error"});
+          return;
+        }
+       
         const userAccessData: userAccessData = this.getuserAccessData(this.newClient);
         this.auth.register(userAccessData).then((data)=> {
           this.storageService.uploadImageAndGetURL(this.imageObject, enumStoragePaths.Users).then((downloadURL)=> {
@@ -178,5 +188,10 @@ export class RegisterClientPage {
       name: '',
       exist: false,
     };
+  }
+  confirmPassword():boolean{
+    const password = this.newClient.get('password')?.value;
+    const password02 = this.newClient.get('password02')?.value;
+    return password != password02;
   }
 }

@@ -18,8 +18,8 @@
     <app-graphic></app-graphic>
   }@else{
     <div class="full-height-div">
-      <h2>Comentarios</h2>
-      <ion-list>
+      <h2 class="comments-title">Comentarios</h2>
+      <ion-list> 
         @for(survey of surveys; track survey){
           @if(survey.comment != ''){
           <ion-item>

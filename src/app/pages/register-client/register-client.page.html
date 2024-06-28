@@ -146,6 +146,30 @@
           </ion-text>
         </div>
 
+        <div class="size-input">
+          <ion-item>
+            <ion-input
+              placeholder="Repita la contraseña"
+              type="password"
+              name="password02"
+              formControlName="password02"
+              required
+            ></ion-input>
+          </ion-item>
+          <ion-text
+            color="danger"
+            *ngIf="newClient.get('password02')?.hasError('required') && newClient.get('password02')?.touched"
+            class="text-danger custom-text-size"
+            >La <strong>contraseña</strong> es requerido
+          </ion-text>
+          <ion-text
+            color="danger"
+            *ngIf="newClient.get('password02')?.hasError('minlength') && newClient.get('password02')?.touched"
+            class="text-danger custom-text-size"
+            >La <strong>cotraseña</strong> debe ser mas de 6 caracteres
+          </ion-text>
+        </div>
+
         <ion-button
           type="button"
           color="danger"
