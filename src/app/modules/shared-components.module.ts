@@ -14,6 +14,7 @@ import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta
 import { GraphicCommentsComponent } from '../components/graphic-comments/graphic-comments.component';
 import { GraphicComponent } from '../components/graphic/graphic.component';
 import { EstadoPedidoPipe } from '../pipe/estado-pedido.pipe';
+import { ChatModalComponent } from '../components/modals/chat-modal/chat-modal.component';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -23,7 +24,8 @@ import { EstadoPedidoPipe } from '../pipe/estado-pedido.pipe';
     BoughtProductsListComponent,
     AltaEncuestaComponent,
     GraphicCommentsComponent,
-    GraphicComponent
+    GraphicComponent,
+    ChatModalComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { EstadoPedidoPipe } from '../pipe/estado-pedido.pipe';
     BoughtProductsListComponent,
     AltaEncuestaComponent,
     GraphicCommentsComponent,
-    GraphicComponent
+    GraphicComponent,
+    ChatModalComponent
   ]
 })
 export class SharedComponentsModule { }

@@ -1,0 +1,17 @@
+<ion-modal #chatModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar class="modal-toolbar"> 
+        <ion-buttons slot="start">
+          <ion-button fill="solid" (click)="chatModal.dismiss()">
+            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title style="text-align: end;">Chat</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <app-chat style="height: 100%;"></app-chat>
+  </ng-template>
+</ion-modal>
