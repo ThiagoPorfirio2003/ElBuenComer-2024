@@ -10,6 +10,7 @@ import { DataBaseService } from 'src/app/services/data-base.service';
 })
 
 export class GraphicCommentsComponent {
+  
   buttonText: string = 'Comentarios';
   iconName: string = 'chatbox-ellipses-outline';
   public surveys: Array<any> = [];
