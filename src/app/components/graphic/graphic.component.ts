@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumCustomerServiceQuality } from 'src/app/enums/customerServiceQuality';
 import { enumFoodTemperature } from 'src/app/enums/foodTemperature';
 import { enumLikedAspects } from 'src/app/enums/likedAspects';
-import { qualitySurvey } from 'src/app/interfaces/survey';
 import { DataBaseService } from 'src/app/services/data-base.service';
 
 @Component({
@@ -21,8 +20,8 @@ export class GraphicComponent {
   lineChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('polarAreaChart', { static: true })
   polarAreaChart!: ElementRef<HTMLCanvasElement>;
-  //public surveys : Array<any> = [];
   public surveys: Array<any> = [];
+
   constructor(private firebase: DataBaseService) {
     this.firebase
       .getObservable(enumCollectionNames.Surveys)
@@ -185,7 +184,6 @@ export class GraphicComponent {
         },
         responsive: true,
         plugins: {
-          
           legend: {
             position: 'top',
             labels: {
@@ -243,7 +241,7 @@ export class GraphicComponent {
       },
     });
   }
-  generateRandomColors(numColors:number) {
+  generateRandomColors(numColors: number) {
     const colors = [];
     for (let i = 0; i < numColors; i++) {
       const red = Math.floor(Math.random() * 256);
@@ -253,5 +251,4 @@ export class GraphicComponent {
     }
     return colors;
   }
-  
 }
