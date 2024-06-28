@@ -58,7 +58,11 @@ export class RegisterClientPage {
   }
 
   capturarForm(data:FormGroup ){
-    this.anonymous = data;
+    if(this.segmentValue == 'clienteNuevo'){
+      this.newClient = data;
+    }else{
+      this.anonymous = data;
+    }
   }
 
   validateDni(control: AbstractControl): ValidationErrors | null {
