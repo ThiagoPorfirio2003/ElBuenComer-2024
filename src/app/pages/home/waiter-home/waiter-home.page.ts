@@ -18,6 +18,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
   private subscripcion : Subscription | undefined;
+
   constructor(private firebase: DataBaseService, private util : UtilsService) { }
 
   ngOnInit() 
@@ -30,6 +31,10 @@ export class WaiterHomePage implements OnInit , OnDestroy
         if(pedido.state == orderState.InPreparation && (pedido.kitchenFinished && pedido.barFinished))
           {
             pedido.state = orderState.Finished;
+            if(this.flag)
+            {
+              this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
+            }
           }
       })
       if(this.flag)
@@ -37,7 +42,21 @@ export class WaiterHomePage implements OnInit , OnDestroy
         if(this.arrayPedidos.length > this.cantidad)
         {
           this.util.SendPushNotification("Nuevo Pedido", "Una mesa ah hecho un nuevo pedido");
+        }/*
+        else
+        {
+          const backupQuantity : number = this.cantidad;
+          const backUpOrders : Array<order> = Array.from(this.arrayPedidos.values()) as Array<order>;
+
+          if(backUpOrders.length == backupQuantity)
+          {
+            for(let i : number = 0; i < backupQuantity; i++)
+            {
+
+            }
+          }
         }
+        */
       }
       else
       {

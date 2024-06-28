@@ -8,8 +8,16 @@
       <h1 class="estado-pedido">{{this.tableManagementService.order.state | estadoPedido}}</h1>
     </div>
 
+    <ion-button class="pay-qr" (click)="this.showBill()" color="green">
+      <div>
+        <h1>Pagar</h1>
+        <img src="../../../../assets/images/QR_In_Btn.png" alt="">
+      </div>
+    </ion-button>
+
     <!-- El estado del pedido es distinto a Accepted-->
-    @if(this.tableManagementService.order.state !== 4)
+     <!-- 
+        @if(this.tableManagementService.order.state !== 4)
     {
       <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
         <div>
@@ -26,6 +34,8 @@
         </div>
       </ion-button>
     }
+    -->
+
 
     <ion-button class="consultar-mozo" (click)="this.canShowChatModal = true" fill="solid" color="light">
       <h1>Consultar al mozo</h1>
@@ -33,14 +43,14 @@
     </ion-button>
 
     <!-- En este if debe ir si el estadoPedido != ForApproval-->
-    @if (this.tableManagementService.order.state !== 0) 
+    @if (true || this.tableManagementService.order.state !== 0) 
     {
       <ion-button class="consultar-mozo" (click)="this.canShowSurveyListModal = true" fill="solid" color="orange">
         <h1>Ver encuestas</h1>
         <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
       </ion-button>
       <!-- Si la encuesta no fue realizada-->
-      @if (!this.surveyIsCompleted) 
+      @if (true || !this.surveyIsCompleted) 
       {
         <ion-button class="consultar-mozo" (click)="this.canShowSurveyFormModal = true" fill="solid" color="orange">
           <h1>Realizar encuesta</h1>
@@ -49,7 +59,7 @@
       }
 
       <!-- Si el mozo ya confirmo que entrego el pedido-->
-      @if (this.tableManagementService.order.state === 3) 
+      @if (true || this.tableManagementService.order.state === 3) 
       {
         <ion-button (click)="this.markOrderAsReceived()" class="mucho-texto" fill="solid" color="green">
           <h1>He recibido el pedido</h1>
@@ -111,7 +121,7 @@
       </ion-header>
 
       <ion-content>
-        <app-alta-encuesta></app-alta-encuesta>
+        <app-alta-encuesta (newItemEvent)="this.acceptSurvey($event)"></app-alta-encuesta>
       </ion-content>
     </ng-template>
   </ion-modal>
@@ -120,14 +130,14 @@
     <ng-template>
       <ion-header>
         <ion-toolbar class="modal-toolbar">
-          <ion-title style="text-align: start;">Pago</ion-title>
-        </ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="this.canShowBillModal = false">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
 
-        <ion-buttons slot="start">
-          <ion-button fill="solid" (click)="this.canShowBillModal = false">
-            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+          <ion-title style="text-align: end;">Pago</ion-title>
+        </ion-toolbar>
       </ion-header>
 
       <ion-content>

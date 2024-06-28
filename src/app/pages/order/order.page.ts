@@ -107,11 +107,11 @@ export class OrderPage{
     {
       try
       {
-      const scanValue = await this.utilsService.detectarQR(enumQR.Propina);
+      //const scanValue = await this.utilsService.detectarQR(enumQR.Propina);
   
-        if(scanValue.retorno)
+        if(true)// || scanValue.retorno)
         {
-          const tipPercentage : number = parseInt(scanValue.valor);
+          const tipPercentage : number = 25//parseInt(scanValue.valor);
           let subTotal : number;
           let tip : number;
           let bill : bill;
@@ -128,7 +128,7 @@ export class OrderPage{
           bill = {
             id : '',
             idOrder : this.tableManagementService.order.id,
-            idClient : this.authService.userData.id,
+            idClient : '',//this.authService.userData.id,
             products : this.tableManagementService.order.products,
             subTotal : subTotal,
             tip : tip,
@@ -202,4 +202,10 @@ export class OrderPage{
         this.loader.dismissLoader();
       }
     }
+
+    public acceptSurvey(v : boolean)
+    {
+      this.canShowSurveyFormModal = false;
+      this.surveyIsCompleted = true;
+    } 
 }
