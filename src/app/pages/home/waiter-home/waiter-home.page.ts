@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, elementAt } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
+import { enumProfile } from 'src/app/enums/profile';
 import { enumTableState } from 'src/app/enums/tableState';
 import { order } from 'src/app/interfaces/order';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -17,13 +19,15 @@ export class WaiterHomePage implements OnInit , OnDestroy
   private flag : boolean = false;
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
-  private subscripcion : Subscription | undefined;
+  public arrayMensajes : Array<any> = [];
+  private subscripcionPedidos : Subscription | undefined;
+  private subscripcionMensajes : Subscription | undefined;
 
-  constructor(private firebase: DataBaseService, private util : UtilsService) { }
+  constructor(private firebase: DataBaseService, private util : UtilsService,private auth: AuthService) { }
 
   ngOnInit() 
   {
-      this.subscripcion = this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
+      this.subscripcionPedidos = this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
       this.arrayPedidos = [];
       this.arrayPedidos = [...ordenes];
       this.arrayPedidos.forEach((pedido)=>
@@ -63,12 +67,35 @@ export class WaiterHomePage implements OnInit , OnDestroy
         this.flag = true;
       }
       this.cantidad = this.arrayPedidos.length;
+      this.subscripcionMensajes = this.firebase.getObservable(enumCollectionNames.ChatRoom)
+      .subscribe((res)=>
+      {
+        this.arrayMensajes = [...res];
+        this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
+        if(this.auth.userData.profile == enumProfile.Waiter)
+        {
+          if(this.flag)
+          {
+            let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
+            let emisor = ultimoMensaje.person.split("-");
+            if(emisor[0] == "mesa")
+            {
+              this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje");
+            }
+          }
+          else
+          {
+            this.flag = true;
+          }
+        }
+      });
     })
   }
 
   ngOnDestroy(): void 
   {
-    this.subscripcion!.unsubscribe();
+    this.subscripcionPedidos!.unsubscribe();
+    this.subscripcionMensajes!.unsubscribe();
   }
 
   Aceptar(pedido : order)
