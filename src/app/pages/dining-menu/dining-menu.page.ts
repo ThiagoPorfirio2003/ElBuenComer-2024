@@ -28,6 +28,9 @@ export class DiningMenuPage implements OnInit, OnDestroy {
   public productsSelected : Array<productInOrder>;
   public cookingTime : number;
 
+  public messages : Array<any>;
+  public messagesSus! : Subscription;
+
   //Recorrer el array de productosElegidos para saber si hay una comida o bebida
   constructor(public auth: AuthService, 
     private dataBase : DataBaseService,
@@ -41,6 +44,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
       this.orderPrice = 0;
       this.productsSelected = new Array<productInOrder>();
       this.cookingTime = 0;
+      this.messages = new Array<any>();
     }
 
   ngOnInit() 
@@ -50,6 +54,12 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     {
       this.productsToShow = products;
     })
+
+    this.messagesSus = this.dataBase.getObservable(enumCollectionNames.ChatRoom)
+    .subscribe((messages)=>
+    {
+      this.messages = messages
+    })
   }
 
   ngOnDestroy(): void {
@@ -57,6 +67,8 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     {
       this.productSuscription.unsubscribe();
     }
+
+    this.messagesSus.unsubscribe();
   }
 
   public showAllProducts()

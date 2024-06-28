@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonModal, ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { ChatModalComponent } from 'src/app/components/modals/chat-modal/chat-modal.component';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
@@ -17,7 +18,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './order.page.html',
   styleUrls: ['./order.page.scss'],
 })
-export class OrderPage{
+export class OrderPage implements OnInit, OnDestroy{
 
   public surveyIsCompleted : boolean;
   public bill! : bill;
@@ -25,6 +26,9 @@ export class OrderPage{
   public canShowSurveyListModal : boolean;
   public canShowSurveyFormModal : boolean;
   public canShowBillModal : boolean;
+
+  public messages : Array<any>;
+  public messagesSus! : Subscription;
 
   constructor(public utilsService : UtilsService, 
     private databaseService : DataBaseService, 
@@ -37,7 +41,21 @@ export class OrderPage{
       this.canShowSurveyListModal = false;
       this.canShowSurveyFormModal = false;
       this.canShowBillModal = false;
+      this.messages = new Array<any>();
     }
+
+    ngOnInit() 
+    {
+      this.messagesSus = this.databaseService.getObservable(enumCollectionNames.ChatRoom)
+      .subscribe((messages)=>
+      {
+        this.messages = messages
+      })
+    }
+
+  ngOnDestroy(): void {
+    this.messagesSus.unsubscribe();
+  }
 
     public async checkOrderState()
     {
