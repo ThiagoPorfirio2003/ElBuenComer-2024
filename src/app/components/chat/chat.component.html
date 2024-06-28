@@ -4,8 +4,8 @@
     <div *ngFor="let item of arrayMensajes">
       <div *ngIf="item.person != this.mensaje.person; else elseBlock" class="centrar centrarTuyo">
         <div class="chat chatTuyo">
-          <h5>{{item.person}}</h5>
-          <label class="mensaje">{{item.content}}</label>
+          <h5>{{item.person | mayuscula}}</h5>
+          <label class="mensaje">{{item.content | mayuscula}}</label>
           <div class="smallDiv">
             <small>{{item.fecha}} {{item.hora | hora}}</small>
           </div>
@@ -15,7 +15,7 @@
         <div>
           <div class="centrar centrarMio">
             <div class="chat chatMio">
-              <label class="mensaje">{{item.content}}</label>
+              <label class="mensaje">{{item.content | mayuscula}}</label>
               <div class="smallDiv">
                 <small>{{item.fecha}} {{item.hora | hora}}</small>
               </div>
@@ -27,7 +27,7 @@
     <div #scrollAnchor></div>
   </div>
   <div class="enviar">
-    <textarea id="input" [(ngModel)]="this.mensaje.content"  placeholder="Text"></textarea>
+    <textarea id="input" [(ngModel)]="this.mensaje.content"  placeholder="Mensaje"></textarea>
     <button class="boton" (click)="this.Enviar()">Enviar</button>
   </div>
 </div>
