@@ -272,3 +272,16 @@ h2.order-time
 {
     justify-content: space-evenly;
 }
+
+.centrar
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-list-frame-large
+{
+    height: inherit;
+    width: 100%;
+}

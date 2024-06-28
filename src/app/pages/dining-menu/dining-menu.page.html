@@ -95,18 +95,19 @@
       </ion-header>
 
       <ion-content>
-        <h1 class="orderPrice">${{this.orderPrice}}</h1>
+        <div class="full-screen centrar">
+          <h1 class="orderPrice">${{this.orderPrice}}</h1>
 
-        <div style="display: flex; width: 100%;justify-content: center;">
-          <ion-button (click)="this.confirmOrder(orderModal)" class="consultar-mozo" fill="solid" color="light">
-            <h1>Confirmar</h1>
-            <ion-icon slot="end" name="bag-check-outline"></ion-icon>
-          </ion-button>
+            <ion-button (click)="this.confirmOrder(orderModal)" class="consultar-mozo" fill="solid" color="light">
+              <h1>Confirmar</h1>
+              <ion-icon slot="end" name="bag-check-outline"></ion-icon>
+            </ion-button>
+  
+          <div class="product-list-frame-large">
+            <app-bought-products-list [productsToShow]="this.productsSelected" [showPrice]="true"></app-bought-products-list>
+          </div>
         </div>
 
-        <div class="product-list-frame-large">
-          <app-bought-products-list [productsToShow]="this.productsSelected" [showPrice]="true"></app-bought-products-list>
-        </div>
       </ion-content>
     </ng-template>
   </ion-modal>

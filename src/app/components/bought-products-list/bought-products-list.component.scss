@@ -4,7 +4,7 @@ div.order,div.order-price
     height: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows:  repeat(auto-fill, 40px);
+    grid-template-rows:  repeat(auto-fill, 50px);
     overflow-y: scroll;
 
     h2,h3
@@ -38,19 +38,6 @@ div.order,div.order-price
         background-color: #48cae4;
     }
 
-
-    h2.nameSize,h3.nameSize
-    {
-        grid-column-start: 1;
-        grid-column-end: 5;
-    }
-
-    h2.quantitySize,h3.quantitySize
-    {
-        grid-column-start: 5;
-        grid-column-end: 7;
-    }
-
     h3.nameDark
     {
         color: #fff;
@@ -73,6 +60,21 @@ div.order,div.order-price
     {
         color: #000;
         background-color: #b76935;
+    }
+}
+
+div.order
+{
+    h2.nameSize,h3.nameSize
+    {
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+
+    h2.quantitySize,h3.quantitySize
+    {
+        grid-column-start: 5;
+        grid-column-end: 7;
     }
 }
 
