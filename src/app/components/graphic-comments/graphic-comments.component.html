@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Encuesta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-btn">
+    <ion-button class="btn-style" (click)="toggleTextAndIcon()" >
+      {{buttonText}}
+      <ion-icon [name]="iconName" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+  @if(buttonText == 'Comentarios'){
+    <app-graphic></app-graphic>
+  }@else{
+    <div class="full-height-div">
+      <h2>Comentarios</h2>
+      <ion-list>
+        @for(survey of surveys; track survey){
+          @if(survey.comment != ''){
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>{{ survey.comment }}</ion-label>
+          </ion-item>
+          }
+        }
+      </ion-list>
+    </div>
+  }
+</ion-content>
+

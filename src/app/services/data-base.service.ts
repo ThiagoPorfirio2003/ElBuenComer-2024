@@ -92,6 +92,12 @@ export class DataBaseService
     return getDocs(query(this.getCollectionRef(collectionName), where('id','==', id)));
   }
 
+  public getTokenByValue(value : string)
+  {
+    return getDocs(query(this.getCollectionRef(enumCollectionNames.Tables), where('value','==', value)));
+
+  }
+
   /*
   public saveImgData(collectionName : enumCollectionNames, img : userImage)
   {

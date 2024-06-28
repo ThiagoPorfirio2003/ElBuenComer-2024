@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { GraphicCommentsComponent } from 'src/app/components/graphic-comments/graphic-comments.component';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumQR } from 'src/app/enums/QR';
 import { enumTableState } from 'src/app/enums/tableState';
@@ -7,6 +9,7 @@ import { Table } from 'src/app/interfaces/table';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
+import { TableManagementService } from 'src/app/services/table-management.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -17,17 +20,16 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ClientHomePage implements OnInit, OnDestroy
 {
     public isInWaitingRoom : boolean;
-    public isInRestaurant : boolean;
     public userTable! : Table;
     public tableNumberToShow : string;
 
     private tablesSuscription! : Subscription;
 
     constructor(private auth: AuthService, private dataBase : DataBaseService, private utilsService : UtilsService,
-      private loader : IonLoaderService) 
+      private loader : IonLoaderService, public tableManagement : TableManagementService,
+      private modalController: ModalController) 
     { 
       this.isInWaitingRoom = false;
-      this.isInRestaurant = false;
       this.tableNumberToShow = 'Aun por asignar';
     }
 
@@ -71,36 +73,43 @@ export class ClientHomePage implements OnInit, OnDestroy
         switch(QRValues[0])
         {
           case enumQR.Entrada:
-            if(this.isInRestaurant)
+            if(this.tableManagement.isInRestaurant)
             {
               this.utilsService.showSweet({title:'Error', text: 'Ya estás adentro del local',icon: 'error'})
             }
             else
             {
-              this.isInRestaurant = true;
+              this.tableManagement.isInRestaurant = true;
             }
             break;
             
           case enumQR.Mesa:
             if(this.isInWaitingRoom)
             {
-              if(this.userTable.number == parseInt(QRValues[1]))
+              if(this.userTable == undefined)
               {
-                this.goToTable();
+                this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error'})
               }
               else
               {
-                this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error'})
+                if(this.userTable.number == parseInt(QRValues[1]))
+                {
+                  this.goToTable();
+                }
+                else
+                {
+                  this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error'})
+                }
               }
             }
             else
             {
-              this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error'});
+              this.utilsService.showSweet({title:'QR inválido', text: 'QR inválido',icon: 'error'});
             }
             break;
   
           default: 
-            console.log(QRValues);
+            this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error'});
             break;
         }
       })
@@ -133,9 +142,10 @@ export class ClientHomePage implements OnInit, OnDestroy
       this.dataBase.updateData(enumCollectionNames.Tables, this.userTable, this.userTable.number.toString())
       .then(()=>
       {
-        this.auth.userTable = this.userTable;
+        //this.auth.userTable = this.userTable;
+        this.tableManagement.table = this.userTable;
         this.loader.dismissLoader();
-        this.utilsService.changeRoute('table');
+        this.utilsService.changeRoute('/dining-menu');
       })
       .catch(()=> 
       {
@@ -144,4 +154,8 @@ export class ClientHomePage implements OnInit, OnDestroy
       })
     }
 
+    async openSurvey() {
+      const modal = await this.modalController.create({component: GraphicCommentsComponent});
+      return await modal.present();
+    }
 }

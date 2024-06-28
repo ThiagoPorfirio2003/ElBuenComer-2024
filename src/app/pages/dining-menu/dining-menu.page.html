@@ -33,7 +33,7 @@
           
               <h1 class="info-color-1">{{product.name | mayuscula}}</h1>
               <h1 class="info-color-2">${{product.price}}</h1>
-              <h1 class="info-color-1">Elaboracion: {{product.time}} minuto/s</h1>
+              <h1 class="info-color-1">Elaboración: {{product.time}} minuto/s</h1>
               <p class="info-color-2">{{product.description | mayuscula  }}</p>
 
               <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
@@ -98,7 +98,7 @@
         <h1 class="orderPrice">${{this.orderPrice}}</h1>
 
         <div style="display: flex; width: 100%;justify-content: center;">
-          <ion-button (click)="this.confirmOrder()" class="consultar-mozo" fill="solid" color="light">
+          <ion-button (click)="this.confirmOrder(orderModal)" class="consultar-mozo" fill="solid" color="light">
             <h1>Confirmar</h1>
             <ion-icon slot="end" name="bag-check-outline"></ion-icon>
           </ion-button>

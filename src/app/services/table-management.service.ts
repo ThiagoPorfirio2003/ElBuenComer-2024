@@ -9,9 +9,10 @@ export class TableManagementService {
 
   public table! : Table;
   public order! : order;
+  public isInRestaurant : boolean;
 
   constructor() 
   { 
-
+    this.isInRestaurant = false;
   }
 }

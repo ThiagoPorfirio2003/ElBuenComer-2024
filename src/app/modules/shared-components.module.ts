@@ -11,6 +11,9 @@ import { EnumtypePipe } from '../pipe/enumtype.pipe';
 import { MayusculaPrimeraPipe } from '../pipe/mayuscula-primera.pipe';
 import { BoughtProductsListComponent } from '../components/bought-products-list/bought-products-list.component';
 import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta.component';
+import { GraphicCommentsComponent } from '../components/graphic-comments/graphic-comments.component';
+import { GraphicComponent } from '../components/graphic/graphic.component';
+import { EstadoPedidoPipe } from '../pipe/estado-pedido.pipe';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,7 +21,9 @@ import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta
     ChatComponent,
     TableListModalComponent,
     BoughtProductsListComponent,
-    AltaEncuestaComponent
+    AltaEncuestaComponent,
+    GraphicCommentsComponent,
+    GraphicComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +31,8 @@ import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta
     FormsModule,
     HoraPipe,
     EnumtypePipe,
-    MayusculaPrimeraPipe
+    MayusculaPrimeraPipe,
+    EstadoPedidoPipe
   ],
   exports:
   [
@@ -35,7 +41,9 @@ import { AltaEncuestaComponent } from '../components/alta-encuesta/alta-encuesta
     ChatComponent,
     TableListModalComponent,
     BoughtProductsListComponent,
-    AltaEncuestaComponent
+    AltaEncuestaComponent,
+    GraphicCommentsComponent,
+    GraphicComponent
   ]
 })
 export class SharedComponentsModule { }

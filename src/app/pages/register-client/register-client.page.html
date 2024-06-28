@@ -8,9 +8,12 @@
 
 <ion-content>
   <div class="container-img">
+    
     <app-camera
       [imageObject]="imageObject"
       (capturarImg)="capturarImg($event)"
+      [registerForm]="newClient"
+      (carturaForm)="capturarForm($event)"
     ></app-camera>
   </div>
 

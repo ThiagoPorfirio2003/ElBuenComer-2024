@@ -9,6 +9,7 @@ import { TablePageRoutingModule } from './table-routing.module';
 import { TablePage } from './table.page';
 import { SharedComponentsModule } from 'src/app/modules/shared-components.module';
 import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
+import { EstadoPedidoPipe } from 'src/app/pipe/estado-pedido.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MayusculaPrimeraPipe } from 'src/app/pipe/mayuscula-primera.pipe';
     IonicModule,
     TablePageRoutingModule,
     SharedComponentsModule,
-    MayusculaPrimeraPipe
+    MayusculaPrimeraPipe,
+    EstadoPedidoPipe
   ],
   declarations: [TablePage]
 })
