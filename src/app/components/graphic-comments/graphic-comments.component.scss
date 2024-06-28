@@ -6,10 +6,12 @@ ion-toolbar{
         --background: #d62828;
     }
 }
+
 .content-btn {
-  width: 80%; 
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 16px;
 }
 
 .btn-style {
@@ -29,7 +31,7 @@ ion-toolbar{
 }
 
 .full-height-div {
-  margin: 10px;
+  margin: 16px 10px;
   height: 85%;
   display: flex;
   flex-direction: column;
@@ -39,17 +41,14 @@ ion-toolbar{
   border: 1px solid #fff;
 }
 
-ion-list {
-  overflow-y: auto;
-  flex-grow: 1;
-}
-
 .comments-title {
   text-align: center;
   width: 100%;
 }
 
-.comments-list {
+ion-list {
+  overflow-y: auto;
+  flex-grow: 1;
   background-color: rgb(24, 24, 24);
   border-bottom-left-radius:22px;
   border-bottom-right-radius:22px;
@@ -57,6 +56,7 @@ ion-list {
   ion-icon{
     margin-right: 8px;
     padding: 0;
+    color: #fff;
   }
 
   ion-item {

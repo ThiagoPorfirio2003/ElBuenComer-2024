@@ -8,6 +8,7 @@ import { DataBaseService } from 'src/app/services/data-base.service';
   templateUrl: './graphic-comments.component.html',
   styleUrls: ['./graphic-comments.component.scss'],
 })
+
 export class GraphicCommentsComponent {
   buttonText: string = 'Comentarios';
   iconName: string = 'chatbox-ellipses-outline';
