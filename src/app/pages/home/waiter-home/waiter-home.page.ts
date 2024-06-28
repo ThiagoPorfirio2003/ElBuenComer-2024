@@ -16,6 +16,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class WaiterHomePage implements OnInit , OnDestroy
 {
+  private flagM : boolean = false;
   private flag : boolean = false;
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
@@ -74,7 +75,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
         this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
         if(this.auth.userData.profile == enumProfile.Waiter)
         {
-          if(this.flag)
+          if(this.flagM)
           {
             let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
             let emisor = ultimoMensaje.person.split("-");
@@ -85,7 +86,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
           }
           else
           {
-            this.flag = true;
+            this.flagM = true;
           }
         }
       });
