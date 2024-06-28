@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, input } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, input } from '@angular/core';
 import { IonContent } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
@@ -13,7 +13,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent  implements OnInit {
+export class ChatComponent  implements OnInit, OnChanges {
 
   @ViewChild(IonContent, { static: false }) content!: IonContent;
   @ViewChild('scrollAnchor', { static: false }) private scrollAnchor!: ElementRef;
@@ -23,6 +23,10 @@ export class ChatComponent  implements OnInit {
 
   constructor( public util : UtilsService, private firebase: DataBaseService, private auth: AuthService) 
   { 
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
   }
 
   ngOnInit() 
