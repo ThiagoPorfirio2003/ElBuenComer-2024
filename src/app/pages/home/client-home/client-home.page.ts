@@ -75,7 +75,7 @@ export class ClientHomePage implements OnInit, OnDestroy
           case enumQR.Entrada:
             if(this.tableManagement.isInRestaurant)
             {
-              this.utilsService.showSweet({title:'Error', text: 'Ya estás adentro del local',icon: 'error'})
+              this.utilsService.showSweet({title:'Error', text: 'Ya estás adentro del local',icon: 'error', confirmButtonText: 'Entendido'})
             }
             else
             {
@@ -88,7 +88,7 @@ export class ClientHomePage implements OnInit, OnDestroy
             {
               if(this.userTable == undefined)
               {
-                this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error'})
+                this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error', confirmButtonText: 'Entendido'})
               }
               else
               {
@@ -98,18 +98,18 @@ export class ClientHomePage implements OnInit, OnDestroy
                 }
                 else
                 {
-                  this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error'})
+                  this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error', confirmButtonText: 'Entendido'})
                 }
               }
             }
             else
             {
-              this.utilsService.showSweet({title:'QR inválido', text: 'QR inválido',icon: 'error'});
+              this.utilsService.showSweet({title:'QR inválido', text: 'QR inválido',icon: 'error', confirmButtonText: 'Entendido'});
             }
             break;
   
           default: 
-            this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error'});
+            this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error', confirmButtonText: 'Entendido'});
             break;
         }
       })

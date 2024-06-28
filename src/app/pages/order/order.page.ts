@@ -70,7 +70,7 @@ export class OrderPage{
               {
                 this.loader.dismissLoader();
 
-                this.utilsService.showSweet({title: 'Pago aceptado', text: 'La mesa ya no le pertenece',
+                this.utilsService.showSweet({title: 'Pago aceptado', text: 'La mesa ya no le pertenece', icon: 'success',
                   confirmButtonText: 'Aceptar', allowOutsideClick : false})
                   .then(()=>
                   {
@@ -90,7 +90,7 @@ export class OrderPage{
         }
         else
         {
-          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa'})
+          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa', icon: 'warning', confirmButtonText: 'Entendido'})
         }
       }
       catch(e)
@@ -140,7 +140,7 @@ export class OrderPage{
         }
         else
         {
-          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa'})
+          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa', icon: 'warning', confirmButtonText: 'Entendido'})
         }
       }
       catch(e)
