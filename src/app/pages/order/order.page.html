@@ -9,6 +9,7 @@
     </div>
 
     <!-- El estado del pedido es distinto a Accepted-->
+
     @if(this.tableManagementService.order.state !== 4)
     {
       <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
@@ -111,7 +112,7 @@
       </ion-header>
 
       <ion-content>
-        <app-alta-encuesta></app-alta-encuesta>
+        <app-alta-encuesta (newItemEvent)="this.acceptSurvey($event)"></app-alta-encuesta>
       </ion-content>
     </ng-template>
   </ion-modal>
@@ -120,14 +121,14 @@
     <ng-template>
       <ion-header>
         <ion-toolbar class="modal-toolbar">
-          <ion-title style="text-align: start;">Pago</ion-title>
-        </ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button fill="solid" (click)="this.canShowBillModal = false">
+              <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
 
-        <ion-buttons slot="start">
-          <ion-button fill="solid" (click)="this.canShowBillModal = false">
-            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+          <ion-title style="text-align: end;">Pago</ion-title>
+        </ion-toolbar>
       </ion-header>
 
       <ion-content>

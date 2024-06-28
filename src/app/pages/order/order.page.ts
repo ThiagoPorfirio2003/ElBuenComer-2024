@@ -202,4 +202,10 @@ export class OrderPage{
         this.loader.dismissLoader();
       }
     }
+
+    public acceptSurvey(v : boolean)
+    {
+      this.canShowSurveyFormModal = false;
+      this.surveyIsCompleted = true;
+    } 
 }
