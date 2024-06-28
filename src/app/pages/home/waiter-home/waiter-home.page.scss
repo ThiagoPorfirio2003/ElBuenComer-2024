@@ -27,6 +27,14 @@ ion-col{
     border: solid 1px;
 }
 
+.background
+{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .botones{
     justify-content: space-around;
 }
