@@ -172,7 +172,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         const order : order =
         {
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
-          numberTable : 0,//this.tableManagementService.table.number,
+          numberTable : this.tableManagementService.table.number,
           products : this.productsSelected,
           creationTime : this.cookingTime,
           price : this.orderPrice,
@@ -181,16 +181,16 @@ export class DiningMenuPage implements OnInit, OnDestroy {
           kitchenFinished : true,
         }
 
-        //this.tableManagementService.table.state = enumTableState.withOrder;
+        this.tableManagementService.table.state = enumTableState.withOrder;
         this.tableManagementService.order = order
         this.productSuscription.unsubscribe();
 
         const promises : Array<Promise<void>>= new Array<Promise<void>>();
 
-        //promises.push(this.dataBase.saveData(enumCollectionNames.Orders, order));
-        //promises.push(this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagementService.table, this.tableManagementService.table.number.toString()));
+        promises.push(this.dataBase.saveData(enumCollectionNames.Orders, order));
+        promises.push(this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagementService.table, this.tableManagementService.table.number.toString()));
 
-        //await Promise.all(promises);    
+        await Promise.all(promises);    
 
         this.utilsService.changeRoute('/order')
         

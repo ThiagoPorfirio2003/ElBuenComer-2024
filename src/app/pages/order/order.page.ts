@@ -107,11 +107,11 @@ export class OrderPage{
     {
       try
       {
-      //const scanValue = await this.utilsService.detectarQR(enumQR.Propina);
+      const scanValue = await this.utilsService.detectarQR(enumQR.Propina);
   
-        if(true)// || scanValue.retorno)
+        if(scanValue.retorno)
         {
-          const tipPercentage : number = 25//parseInt(scanValue.valor);
+          const tipPercentage : number = parseInt(scanValue.valor);
           let subTotal : number;
           let tip : number;
           let bill : bill;
@@ -128,7 +128,7 @@ export class OrderPage{
           bill = {
             id : '',
             idOrder : this.tableManagementService.order.id,
-            idClient : '',//this.authService.userData.id,
+            idClient : this.authService.userData.id,
             products : this.tableManagementService.order.products,
             subTotal : subTotal,
             tip : tip,
