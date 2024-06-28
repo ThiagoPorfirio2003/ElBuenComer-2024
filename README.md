@@ -39,7 +39,7 @@
 
   - 📁 Creación de la estructura de datos y archivos
   - 🧰 Creación de métodos de utilería
-  - 🌐 Creación scaner qr
+  - 🌐 Creación escáner QR
 
 ## Demostraciones
 
