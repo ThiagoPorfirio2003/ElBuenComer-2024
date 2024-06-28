@@ -33,7 +33,7 @@ export class ListadoClientesPage implements OnInit, OnDestroy
       {
         if(this.clientes.length > this.cantidad)
         {
-          this.util.SendPushNotification("Nuevo Cliente", "Un nuevo cliente esta esperando a ser aceptado");
+          this.util.SendPushNotification("Nuevo Cliente", "Un nuevo cliente está esperando a ser aceptado");
         }
       }
       else
