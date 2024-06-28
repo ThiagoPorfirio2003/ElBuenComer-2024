@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { enumCustomerServiceQuality } from 'src/app/enums/customerServiceQuality';
 import { enumFoodTemperature } from 'src/app/enums/foodTemperature';
@@ -14,6 +14,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class AltaEncuestaComponent  implements OnInit 
 {
+  @Output() newItemEvent = new EventEmitter<boolean>(); 
   public encuesta : qualitySurvey = {} as qualitySurvey;
 
   constructor(private firebase : DataBaseService, private util : UtilsService) {
@@ -65,7 +66,8 @@ export class AltaEncuestaComponent  implements OnInit
         louding.present();
         this.firebase.saveData(enumCollectionNames.Surveys, this.encuesta)
         .then(()=>{
-          this.util.showSweet({title: "Encuesta", text: "Su respuesta se ah guardado correctamente", })
+          this.util.showSweet({title: "Encuesta", text: "Su respuesta ha sido guardada correctamente", })
+          this.newItemEvent.emit(true);
           louding.dismiss();
         })
         .catch((error)=>{
