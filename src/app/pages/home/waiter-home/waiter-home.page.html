@@ -22,7 +22,7 @@
             </ion-row>  
             @for (item of this.arrayPedidos; track $index) 
             {
-              @if (item.state == 8) 
+              @if (item.state != 8) 
               {
                 <ion-row style="background-color: #636363;">  
                   <ion-col>{{item.numberTable}}</ion-col>  
