@@ -83,7 +83,7 @@ export class ChefHomePage implements OnInit, OnDestroy {
             order.state = orderState.Finished;
           }
           this.firebase
-            .saveData(enumCollectionNames.Orders, order, order.id)
+            .updateData(enumCollectionNames.Orders, order, order.id)
             .then(() => {
               loading.dismiss();
             })
