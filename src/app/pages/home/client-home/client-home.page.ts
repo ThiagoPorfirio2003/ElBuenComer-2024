@@ -104,7 +104,7 @@ export class ClientHomePage implements OnInit, OnDestroy
             }
             else
             {
-              this.utilsService.showSweet({title:'QR inválido', text: 'QR inválido',icon: 'error', confirmButtonText: 'Entendido'});
+              this.utilsService.showSweet({title:'Acceso denegado', text: 'No podés vincularte con una mesa sin estar en la sala de espera',icon: 'error', confirmButtonText: 'Entendido'});
             }
             break;
   

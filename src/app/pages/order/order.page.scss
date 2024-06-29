@@ -166,3 +166,22 @@ ion-button.mucho-texto
     height: inherit;
     width: 100%;
 }
+
+div.frame-esperando-pagar
+{
+    width: 95%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #ccff33;
+    border: solid #000 5px;
+
+    h1
+    {
+        margin: 0px;
+        font-size: 45px;
+        color: #000;
+    }
+}

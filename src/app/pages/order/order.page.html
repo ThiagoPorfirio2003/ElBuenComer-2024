@@ -10,7 +10,7 @@
 
     <!-- El estado del pedido es distinto a Accepted-->
 
-    @if(this.tableManagementService.order.state !== 4)
+    @if(this.tableManagementService.order.state < 4 && this.tableManagementService.order.state > 6)
     {
       <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
         <div>
@@ -20,12 +20,27 @@
       </ion-button>
     }
     @else {
-      <ion-button class="pay-qr" (click)="this.showBill()" color="green">
-        <div>
-          <h1>Pagar</h1>
-          <img src="../../../../assets/images/QR_In_Btn.png" alt="">
-        </div>
-      </ion-button>
+      
+      @switch (this.tableManagementService.order.state) 
+      {
+        @case (4) 
+        {
+        <!-- Mostrar boton para pedir pagar que cambia el estado a 5 -->
+          <div class="frame-esperando-pagar">
+            <h1>En cualquier momento un mozo le permitira pagar</h1>
+          </div>  
+        }
+
+        @case (6) 
+        {
+          <ion-button class="pay-qr" (click)="this.showBill()" color="green">
+            <div>
+              <h1>Pagar</h1>
+              <img src="../../../../assets/images/QR_In_Btn.png" alt="">
+            </div>
+          </ion-button>
+        }
+      }
     }
 
     <ion-button class="consultar-mozo" (click)="this.canShowChatModal = true" fill="solid" color="light">
@@ -36,13 +51,15 @@
     <!-- En este if debe ir si el estadoPedido != ForApproval-->
     @if (this.tableManagementService.order.state !== 0) 
     {
-      <ion-button class="consultar-mozo" (click)="this.canShowSurveyListModal = true" fill="solid" color="orange">
-        <h1>Ver encuestas</h1>
-        <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
-      </ion-button>
+
       <!-- Si la encuesta no fue realizada-->
-      @if (!this.surveyIsCompleted) 
+      @if (this.surveyIsCompleted) 
       {
+        <ion-button class="consultar-mozo" (click)="this.canShowSurveyListModal = true" fill="solid" color="orange">
+          <h1>Ver encuestas</h1>
+          <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
+        </ion-button>
+      } @else {
         <ion-button class="consultar-mozo" (click)="this.canShowSurveyFormModal = true" fill="solid" color="orange">
           <h1>Realizar encuesta</h1>
           <ion-icon slot="end" name="help-circle-outline"></ion-icon>

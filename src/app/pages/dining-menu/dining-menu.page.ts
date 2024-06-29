@@ -24,9 +24,9 @@ export class DiningMenuPage implements OnInit, OnDestroy {
   public productsToShow! : Array<product>;
   public canShowFood : boolean;
   public canShowDrink : boolean;
-  public orderPrice : number;
-  public productsSelected : Array<productInOrder>;
-  public cookingTime : number;
+  public orderPrice! : number;
+  public productsSelected! : Array<productInOrder>;
+  public cookingTime! : number;
 
   public messages : Array<any>;
   public messagesSus! : Subscription;
@@ -41,9 +41,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
       this.canShowFood = true;
       this.canShowDrink = true;
 
-      this.orderPrice = 0;
-      this.productsSelected = new Array<productInOrder>();
-      this.cookingTime = 0;
+      this.resetData()
       this.messages = new Array<any>();
     }
 
@@ -69,6 +67,13 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     }
 
     this.messagesSus.unsubscribe();
+  }
+
+  private resetData()
+  {
+    this.productsSelected = [];
+    this.orderPrice = 0;
+    this.cookingTime = 0;
   }
 
   public showAllProducts()
@@ -207,6 +212,10 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         this.utilsService.changeRoute('/order')
         
         modal.dismiss()
+        .then(()=>
+        {
+          this.resetData();
+        })
       }
       catch(e)
       {

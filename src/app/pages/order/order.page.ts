@@ -88,7 +88,7 @@ export class OrderPage implements OnInit, OnDestroy{
               {
                 this.loader.dismissLoader();
 
-                this.utilsService.showSweet({title: 'Pago aceptado', text: 'La mesa ya no le pertenece', icon: 'success',
+                this.utilsService.showSweet({title: 'Pago aceptado', text: 'La mesa ya no te pertenece', icon: 'success',
                   confirmButtonText: 'Aceptar', allowOutsideClick : false})
                   .then(()=>
                   {
