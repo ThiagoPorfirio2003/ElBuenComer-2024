@@ -18,6 +18,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
 {
   private flagM : boolean = false;
   private flag : boolean = false;
+  private flagT : boolean = false;
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
   public arrayMensajes : Array<any> = [];
@@ -34,15 +35,13 @@ export class WaiterHomePage implements OnInit , OnDestroy
       this.arrayPedidos = [...ordenes];
       this.arrayPedidos.forEach((pedido)=>
       {
-        if(pedido.state == orderState.InPreparation && (pedido.kitchenFinished && pedido.barFinished))
-          {
-            pedido.state = orderState.Finished;
-            if(this.flag)
-            {
-              this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
-            }
-          }
-      })
+        if(pedido.state == orderState.Finished && this.flagT)
+        {
+          this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
+          this.flagT = false;
+        }
+      });
+      this.flagT= true;
       if(this.flag)
       {
         if(this.arrayPedidos.length > this.cantidad)
