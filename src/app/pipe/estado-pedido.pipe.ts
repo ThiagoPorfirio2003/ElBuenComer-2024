@@ -32,6 +32,12 @@ export class EstadoPedidoPipe implements PipeTransform {
       case orderState.PaidAccepted:
         estado = "Pago Confirmado";
       break
+      case orderState.canPay:
+        estado = "Esperando pago";
+      break
+      case orderState.wantToPay:
+        estado = "Quiere pagar";
+      break
     }
     return estado
   }
