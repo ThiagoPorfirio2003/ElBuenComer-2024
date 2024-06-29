@@ -71,7 +71,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
 
   private resetData()
   {
-    this.productsSelected = [];
+    this.productsSelected = new Array<productInOrder>();
     this.orderPrice = 0;
     this.cookingTime = 0;
   }
@@ -188,6 +188,7 @@ export class DiningMenuPage implements OnInit, OnDestroy {
 
         const order : order =
         {
+          //Quizas el error es que no existe la coleccion de pedidos
           id: this.dataBase.getNextId(enumCollectionNames.Orders),
           numberTable : this.tableManagementService.table.number,
           products : this.productsSelected,
@@ -199,12 +200,13 @@ export class DiningMenuPage implements OnInit, OnDestroy {
         }
 
         this.tableManagementService.table.state = enumTableState.withOrder;
-        this.tableManagementService.order = order
+        this.tableManagementService.loadOrder(order)
+        //this.tableManagementService.order = order
         this.productSuscription.unsubscribe();
 
         const promises : Array<Promise<void>>= new Array<Promise<void>>();
 
-        promises.push(this.dataBase.saveData(enumCollectionNames.Orders, order));
+        promises.push(this.dataBase.saveData(enumCollectionNames.Orders, this.tableManagementService.order, this.tableManagementService.order.id));
         promises.push(this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagementService.table, this.tableManagementService.table.number.toString()));
 
         await Promise.all(promises);    

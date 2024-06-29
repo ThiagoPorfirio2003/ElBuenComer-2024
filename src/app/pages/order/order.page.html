@@ -63,7 +63,7 @@
       <!-- Si la encuesta no fue realizada-->
       @if (this.surveyIsCompleted) 
       {
-        <ion-button class="consultar-mozo" (click)="this.canShowSurveyListModal = true" fill="solid" color="orange">
+        <ion-button class="consultar-mozo" (click)="this.openListSurveys()" fill="solid" color="orange">
           <h1>Ver encuestas</h1>
           <ion-icon slot="end" name="file-tray-full-outline"></ion-icon>        
         </ion-button>
@@ -107,7 +107,8 @@
 
   <ion-modal #surveyListModal [isOpen]="this.canShowSurveyListModal">
     <ng-template>
-      <ion-header>
+      <!-- 
+            <ion-header>
         <ion-toolbar class="modal-toolbar">
           <ion-buttons slot="start">
             <ion-button fill="solid" (click)="this.canShowSurveyListModal = false">
@@ -118,6 +119,7 @@
           <ion-title style="text-align: end;">Reseñas</ion-title>
         </ion-toolbar>
       </ion-header>
+      -->
 
       <ion-content>
         <app-graphic-comments></app-graphic-comments>
@@ -162,9 +164,10 @@
       <ion-content>
         <div class="full-screen bill-frame">
 
-          <div class="product-list-frame-small">
-            <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
-          </div>
+          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
+            <h1>Pagar</h1>
+            <ion-icon slot="end" name="cash-outline"></ion-icon>        
+          </ion-button>
 
           <div class="bill">
             <h2 class="products-title">Productos</h2> <h2 class="products-price">${{this.bill.subTotal}}</h2>
@@ -172,10 +175,9 @@
             <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
           </div>
 
-          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
-            <h1>Pagar</h1>
-            <ion-icon slot="end" name="cash-outline"></ion-icon>        
-          </ion-button>
+          <div class="product-list-frame-small">
+            <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
+          </div>
         </div>
       </ion-content>
     </ng-template>

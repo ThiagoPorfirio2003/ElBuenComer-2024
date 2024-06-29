@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonModal, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { GraphicCommentsComponent } from 'src/app/components/graphic-comments/graphic-comments.component';
 import { ChatModalComponent } from 'src/app/components/modals/chat-modal/chat-modal.component';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
 import { orderState } from 'src/app/enums/orderState';
@@ -37,7 +38,8 @@ export class OrderPage implements OnInit, OnDestroy{
     private databaseService : DataBaseService, 
     private authService : AuthService,
     public tableManagementService : TableManagementService,
-    private loader : IonLoaderService)
+    private loader : IonLoaderService,
+    private modalControler : ModalController)
     { 
       this.surveyIsCompleted = false;
       this.canShowChatModal = false;
@@ -58,7 +60,8 @@ export class OrderPage implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.messagesSus.unsubscribe();
-    if(this.ordersSus.closed)
+    
+    if(this.ordersSus != undefined && !this.ordersSus.closed)
     {
       this.ordersSus.unsubscribe();
     }
@@ -82,6 +85,7 @@ export class OrderPage implements OnInit, OnDestroy{
               allowOutsideClick: false, icon: 'warning'})
               .then((value)=>
               {
+                this.tableManagementService.resetInsideFlagsFlags();
                 this.utilsService.changeRoute('/dining-menu');
               })
           }
@@ -99,8 +103,8 @@ export class OrderPage implements OnInit, OnDestroy{
                   confirmButtonText: 'Aceptar', allowOutsideClick : false})
                   .then(()=>
                   {
-                    this.tableManagementService.isInWaitingRoom = false;
-                    this.utilsService.changeRoute('client-home');
+                    this.tableManagementService.resetInsideFlagsFlags();
+                    this.utilsService.changeRoute('/client-home');
                   })
               }
               else
@@ -166,7 +170,7 @@ export class OrderPage implements OnInit, OnDestroy{
         }
         else
         {
-          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o pertenece a otra mesa', icon: 'warning', confirmButtonText: 'Entendido'})
+          this.utilsService.showSweet({title: 'Error', text: 'El QR es inválido o no es el correspondiente a la propina', icon: 'warning', confirmButtonText: 'Entendido'})
         }
       }
       catch(e)
@@ -260,5 +264,11 @@ export class OrderPage implements OnInit, OnDestroy{
         }
       }
     })
+  }
+
+  public async openListSurveys()
+  {
+    const modal = await this.modalControler.create({component: GraphicCommentsComponent})
+    return await modal.present();
   }
 }

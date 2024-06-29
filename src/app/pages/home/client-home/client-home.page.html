@@ -7,10 +7,21 @@
       <div class="full-screen in-restaurant">
         @if (this.tableManagement.isInWaitingRoom) 
         {
-          <ion-button class="in-restaurant" (click)="this.analiceQR()" color="light">
-            <div class="no-big-img">
-              <h1>Vincular con la mesa: {{this.tableNumberToShow}}</h1>
-              <img class="no-big-img" src="../../../../assets/images/QR_In_Btn.png" alt="">
+          <ion-button class="btn-scan-table" (click)="this.analiceQR()" color="light">
+            <div>
+              <h2>Vincular con la mesa:</h2>
+              @if (!this.tableManagement.hasTable) 
+              {
+                <h1>{{this.tableNumberToShow}}</h1>
+              }
+              
+              <div [className]="this.tableManagement.hasTable ? 'grid' : 'no-big-img'">
+                @if (this.tableManagement.hasTable) 
+                {
+                  <h1>{{this.tableNumberToShow}}</h1>
+                }
+                <img src="../../../../assets/images/QR_In_Btn.png" alt="">
+              </div>
             </div>
           </ion-button>
         }

@@ -17,9 +17,9 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './client-home.page.html',
   styleUrls: ['./client-home.page.scss'],
 })
-export class ClientHomePage implements OnInit, OnDestroy
+export class ClientHomePage implements OnDestroy
 {
-    public userTable! : Table;
+    //public userTable! : Table;
     public tableNumberToShow : string;
 
     private tablesSuscription! : Subscription;
@@ -31,31 +31,10 @@ export class ClientHomePage implements OnInit, OnDestroy
       this.tableNumberToShow = 'Aun por asignar';
     }
 
-    public ngOnInit(): void 
-    {
-      this.tablesSuscription = this.dataBase.getObservable(enumCollectionNames.Tables)
-      .subscribe((redTables : Array<any>)=>
-      {
-        const tables : Array<Table> = redTables;
-
-        for(let i : number = 0;i < tables.length;i++)
-        {
-          
-          if(tables[i].idCurrentClient === this.auth.getAuthUser()!.uid)
-          {
-            this.userTable = tables[i];
-            this.tableNumberToShow = this.userTable.number.toString();
-            this.tablesSuscription.unsubscribe();
-            break;
-          }
-        }
-      })
-
-    }
 
     public ngOnDestroy(): void 
     {
-      if(!this.tablesSuscription.closed)
+      if(this.tablesSuscription != undefined && !this.tablesSuscription.closed)
       {
         this.tablesSuscription.unsubscribe();
       }
@@ -84,6 +63,23 @@ export class ClientHomePage implements OnInit, OnDestroy
           case enumQR.Mesa:
             if(this.tableManagement.isInWaitingRoom)
             {
+              if(this.tableManagement.hasTable)
+              {
+                if(this.tableManagement.table.number == parseInt(QRValues[1]))
+                {
+                  this.goToTable();
+                }
+                else
+                {
+                  this.utilsService.showSweet({title:'Mesa inválida', text: 'Tu mesa es la ' + this.tableManagement.table.number, icon: 'error', confirmButtonText: 'Entendido'})
+                }
+              }
+              else
+              {
+                this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error', confirmButtonText: 'Entendido'})
+              }
+
+              /*
               if(this.userTable == undefined)
               {
                 this.utilsService.showSweet({title:'QR inválido', text: 'Aún no se te ha asignado ninguna mesa',icon: 'error', confirmButtonText: 'Entendido'})
@@ -96,9 +92,9 @@ export class ClientHomePage implements OnInit, OnDestroy
                 }
                 else
                 {
-                  this.utilsService.showSweet({title:'Error', text: 'Esta mesa no es tuya',icon: 'error', confirmButtonText: 'Entendido'})
+                  this.utilsService.showSweet({title:'Mesa invalida', text: 'Tu mesa es la ' + this.userTable.number,icon: 'error', confirmButtonText: 'Entendido'})
                 }
-              }
+              }*/
             }
             else
             {
@@ -107,7 +103,7 @@ export class ClientHomePage implements OnInit, OnDestroy
             break;
   
           default: 
-            this.utilsService.showSweet({title:'Error', text: 'QR inválido',icon: 'error', confirmButtonText: 'Entendido'});
+            this.utilsService.showSweet({title:'QR inválido', text: 'No sirve de nada la propina ahora',icon: 'error', confirmButtonText: 'Entendido'});
             break;
         }
       })
@@ -120,6 +116,26 @@ export class ClientHomePage implements OnInit, OnDestroy
         await this.loader.simpleLoader()
         await this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id);
         this.tableManagement.isInWaitingRoom = true
+
+        this.tablesSuscription = this.dataBase.getObservable(enumCollectionNames.Tables)
+        .subscribe((redTables : Array<any>)=>
+        {
+          const tables : Array<Table> = redTables;
+  
+          this.tableNumberToShow = 'Aun por asignar';
+
+          for(let i : number = 0;i < tables.length;i++)
+          {
+            if(tables[i].idCurrentClient === this.auth.getAuthUser()!.uid)
+            {
+              this.tableManagement.loadTable(tables[i]);
+              this.tableNumberToShow = tables[i].number.toString();
+              this.tablesSuscription.unsubscribe();
+              break;
+            }
+          }
+        })
+  
       }
       catch(e)
       {
@@ -135,19 +151,19 @@ export class ClientHomePage implements OnInit, OnDestroy
     {
       await this.loader.simpleLoader()
 
-      this.userTable.state = enumTableState.InUse;
+      this.tableManagement.table.state = enumTableState.InUse;
 
-      this.dataBase.updateData(enumCollectionNames.Tables, this.userTable, this.userTable.number.toString())
+      this.dataBase.updateData(enumCollectionNames.Tables, this.tableManagement.table, this.tableManagement.table.number.toString())
       .then(()=>
       {
         //this.auth.userTable = this.userTable;
-        this.tableManagement.table = this.userTable;
         this.loader.dismissLoader();
         this.utilsService.changeRoute('/dining-menu');
       })
       .catch(()=> 
       {
-        this.userTable.state = enumTableState.Reserved;
+        //this.userTable.state = enumTableState.Reserved;
+        this.tableManagement.table.state = enumTableState.Reserved;
         this.loader.dismissLoader();
       })
     }

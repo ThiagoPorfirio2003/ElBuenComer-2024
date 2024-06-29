@@ -30,7 +30,7 @@ export class HeaderComponent
         if(result.isConfirmed)
         {
           this.authService.logOut();
-          this.tableManagement.isInRestaurant = false;
+          this.tableManagement.resetInsideFlagsFlags();
           this.utilsService.changeRoute('/login');
         } 
       })

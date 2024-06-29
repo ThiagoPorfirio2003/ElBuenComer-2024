@@ -36,7 +36,7 @@ ion-button.entry
 
 div.in-restaurant
 {
-    ion-button.in-restaurant{
+    ion-button.in-restaurant, ion-button.btn-scan-table{
         width: 100%;
         height: 50%;
         margin: 0px;
@@ -62,6 +62,24 @@ div.in-restaurant
                 max-height: 100%;
             }
         }
+    }
+
+    ion-button.btn-scan-table{
+
+        h1,h2
+        {
+            margin: 0px;
+        }
+
+        h1
+        {
+            color: #004e89;
+        }
+
+        h2,h1
+        {
+            font-size: 28px;
+        }
 
         div.no-big-img
         {
@@ -71,7 +89,27 @@ div.in-restaurant
                 max-height: 80%;
             }
 
-            justify-content: space-between;
+            //justify-content: space-between;
+        }
+
+        div.grid
+        {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+
+            img
+            {
+                grid-column-start: 2;
+                grid-column-end: -1;
+
+                max-width: 95%;
+                max-height: 100%;
+            }
+
+            h1{
+                font-size: 200px;
+            }
         }
     }
 }
