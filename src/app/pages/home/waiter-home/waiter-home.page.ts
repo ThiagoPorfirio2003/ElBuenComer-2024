@@ -19,6 +19,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
   private flagM : boolean = false;
   private flag : boolean = false;
   private flagT : boolean = false;
+  private flagP : boolean = false;
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
   public arrayMensajes : Array<any> = [];
@@ -38,30 +39,20 @@ export class WaiterHomePage implements OnInit , OnDestroy
         if(pedido.state == orderState.Finished && this.flagT)
         {
           this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
-          this.flagT = false;
+        }
+        else if(pedido.state == orderState.wantToPay && this.flagP)
+        {
+          this.util.SendPushNotification('Solicitan Pago', 'La mesa ' + pedido.numberTable + ' esta solicitando el pago')
         }
       });
       this.flagT= true;
+      this.flagP= true;
       if(this.flag)
       {
         if(this.arrayPedidos.length > this.cantidad)
         {
           this.util.SendPushNotification("Nuevo Pedido", "Una mesa ah hecho un nuevo pedido");
-        }/*
-        else
-        {
-          const backupQuantity : number = this.cantidad;
-          const backUpOrders : Array<order> = Array.from(this.arrayPedidos.values()) as Array<order>;
-
-          if(backUpOrders.length == backupQuantity)
-          {
-            for(let i : number = 0; i < backupQuantity; i++)
-            {
-
-            }
-          }
         }
-        */
       }
       else
       {
