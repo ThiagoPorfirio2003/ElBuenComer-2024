@@ -1,8 +1,8 @@
 
 
   <div  class="background">
-    <div class="mensajes">
-      <div *ngFor="let item of arrayMensajes">
+    <div class="mensajes" id="contenedor-message">
+      <div *ngFor="let item of arrayMensajes" class="message">
         <div *ngIf="item.person != this.mensaje.person; else elseBlock" class="centrar centrarTuyo">
           <div class="chat chatTuyo">
             <h5>{{item.person | mayuscula}}</h5>

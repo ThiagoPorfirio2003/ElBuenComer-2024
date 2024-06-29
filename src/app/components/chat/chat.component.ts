@@ -27,6 +27,9 @@ export class ChatComponent  implements OnInit, OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
+    setTimeout(() => {
+      this.scrollToTheLastElementByClassName();
+    }, 100);
   }
 
   ngOnInit() 
@@ -56,5 +59,17 @@ export class ChatComponent  implements OnInit, OnChanges {
     this.mensaje.hora = Date.now();
     this.firebase.saveData(enumCollectionNames.ChatRoom,this.mensaje);
     this.mensaje.content = "";
+    this.scrollToTheLastElementByClassName();
   }
+
+  scrollToTheLastElementByClassName() {
+    const elements = document.getElementsByClassName('message');
+    if (elements.length > 0) {
+      const lastElement: any = elements[elements.length - 1];
+      const toppos = lastElement.offsetTop;
+      //@ts-ignore
+      document.getElementById('contenedor-message').scrollTop = toppos;
+    }
+  }
+
 }
