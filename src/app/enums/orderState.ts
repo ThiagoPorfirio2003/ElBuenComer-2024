@@ -5,6 +5,8 @@ export enum orderState
     Finished,
     GivingOut,
     Accepted,
+    wantToPay,
+    canPay,
     Paid,
     PaidAccepted
 }
