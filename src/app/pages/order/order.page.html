@@ -10,7 +10,7 @@
 
     <!-- El estado del pedido es distinto a Accepted-->
 
-    @if(this.tableManagementService.order.state < 4 && this.tableManagementService.order.state > 6)
+    @if(this.tableManagementService.order.state < 4 || this.tableManagementService.order.state > 6)
     {
       <ion-button class="analyze-qr" (click)="this.checkOrderState()" color="entryqr">
         <div>
