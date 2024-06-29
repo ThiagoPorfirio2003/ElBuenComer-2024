@@ -78,12 +78,12 @@ export class ChefHomePage implements OnInit, OnDestroy {
             spinner: 'circular',
           });
           await loading.present();
-          order.kitchenFinished == true;
+          order.kitchenFinished = true;
           if (order.kitchenFinished && order.barFinished) {
             order.state = orderState.Finished;
           }
           this.firebase
-            .updateData(enumCollectionNames.Orders, order, order.id)
+            .saveData(enumCollectionNames.Orders, order, order.id)
             .then(() => {
               loading.dismiss();
             })

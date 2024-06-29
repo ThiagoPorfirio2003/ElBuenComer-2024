@@ -77,7 +77,7 @@ export class BartenderHomePage implements OnInit, OnDestroy {
             spinner: 'circular',
           });
           await loading.present();
-          order.barFinished == true;
+          order.barFinished = true;
           if (order.kitchenFinished && order.barFinished) {
             order.state = orderState.Finished;
           }
