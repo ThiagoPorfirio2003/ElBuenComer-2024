@@ -146,7 +146,8 @@ export class WaiterHomePage implements OnInit , OnDestroy
 
   AceptarPaga(pedido : order)
   {
-    this.firebase.deleteData(enumCollectionNames.Orders,pedido.id);
+    pedido.state = orderState.PaidAccepted;
+    this.firebase.saveData(enumCollectionNames.Orders,pedido,pedido.id);
     this.firebase.getDocRef(enumCollectionNames.Tables, pedido.numberTable.toString()).then((retorno)=>{
       let mesa = retorno.data();
       console.log(mesa)

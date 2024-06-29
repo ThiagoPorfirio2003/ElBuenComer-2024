@@ -22,47 +22,50 @@
             </ion-row>  
             @for (item of this.arrayPedidos; track $index) 
             {
-              <ion-row style="background-color: #636363;">  
-                <ion-col>{{item.numberTable}}</ion-col>  
-                <ion-col><button style="background-color: #a36900" id="open-productos {{$index}}">Ver productos</button></ion-col>    
-                <ion-col>{{item.creationTime}} minutos</ion-col>    
-                <ion-col>${{item.price}}</ion-col>    
-                <ion-col class="botones">
-                  @if(item.state == 0)
-                  {
-                      <button (click)="Aceptar(item)" style="background-color: green;">Aceptar</button>
-                      <button (click)="Eliminar(item)"  style="background-color: red;">Eliminar</button>
-                  }
-                  @else if(item.state == 2)
-                  {
-                    <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">Llevar</button>
-                  }
-                  @else if(item.state == 5)
-                  {
-                    <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Connfirmar pago</button>
-                  }
-                  @else
-                  {
-                    {{item.state|estadoPedido }}  
-                  }
-                </ion-col>    
-              </ion-row>  
-              <ion-modal #modal trigger="open-productos {{$index}}">
-                  <ng-template>
-                      <ion-header>
-                          <ion-toolbar class="modal-toolbar"> 
-                              <ion-buttons slot="start">
-                              <ion-button fill="solid" (click)="modal.dismiss()">
-                                  <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-                              </ion-button>
-                              </ion-buttons>
-                  
-                              <ion-title style="text-align: end;">Productos</ion-title>
-                          </ion-toolbar>
-                      </ion-header>
-                      <app-bought-products-list style="height: 100%; width: 100%;" [productsToShow]="item.products" [showPrice]="false"></app-bought-products-list>
-                  </ng-template>
-              </ion-modal>
+              @if (item.state == 6) 
+              {
+                <ion-row style="background-color: #636363;">  
+                  <ion-col>{{item.numberTable}}</ion-col>  
+                  <ion-col><button style="background-color: #a36900" id="open-productos {{$index}}">Ver productos</button></ion-col>    
+                  <ion-col>{{item.creationTime}} minutos</ion-col>    
+                  <ion-col>${{item.price}}</ion-col>    
+                  <ion-col class="botones">
+                    @if(item.state == 0)
+                    {
+                        <button (click)="Aceptar(item)" style="background-color: green;">Aceptar</button>
+                        <button (click)="Eliminar(item)"  style="background-color: red;">Eliminar</button>
+                    }
+                    @else if(item.state == 2)
+                    {
+                      <button (click)="Llevar(item)" style="background-color: rgb(22, 22, 94);">Llevar</button>
+                    }
+                    @else if(item.state == 5)
+                    {
+                      <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Connfirmar pago</button>
+                    }
+                    @else
+                    {
+                      {{item.state|estadoPedido }}  
+                    }
+                  </ion-col>    
+                </ion-row>  
+                <ion-modal #modal trigger="open-productos {{$index}}">
+                    <ng-template>
+                        <ion-header>
+                            <ion-toolbar class="modal-toolbar"> 
+                                <ion-buttons slot="start">
+                                <ion-button fill="solid" (click)="modal.dismiss()">
+                                    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+                                </ion-button>
+                                </ion-buttons>
+                    
+                                <ion-title style="text-align: end;">Productos</ion-title>
+                            </ion-toolbar>
+                        </ion-header>
+                        <app-bought-products-list style="height: 100%; width: 100%;" [productsToShow]="item.products" [showPrice]="false"></app-bought-products-list>
+                    </ng-template>
+                </ion-modal>
+              }
             }
           </ion-grid>  
         </div>
