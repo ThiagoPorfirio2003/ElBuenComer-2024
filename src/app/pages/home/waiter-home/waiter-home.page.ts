@@ -147,5 +147,12 @@ export class WaiterHomePage implements OnInit , OnDestroy
       console.log(mesa)
       this.firebase.saveData(enumCollectionNames.Tables,mesa,mesa!["number"].toString());
     })
+    
+  }
+  
+  HabilitarPago(pedido : order)
+  {
+    pedido.state = orderState.canPay;
+    this.firebase.saveData(enumCollectionNames.Orders,pedido,pedido.id);
   }
 }
