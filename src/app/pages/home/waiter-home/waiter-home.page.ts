@@ -18,6 +18,7 @@ export class WaiterHomePage implements OnInit , OnDestroy
 {
   private flagM : boolean = false;
   private flag : boolean = false;
+  private flagT : boolean = false;
   private cantidad : number = 0;
   public arrayPedidos : Array<any> = [];
   public arrayMensajes : Array<any> = [];
@@ -28,20 +29,19 @@ export class WaiterHomePage implements OnInit , OnDestroy
 
   ngOnInit() 
   {
-      this.subscripcionPedidos = this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>{
+    this.subscripcionPedidos = this.firebase.getObservable(enumCollectionNames.Orders).subscribe((ordenes)=>
+    {
       this.arrayPedidos = [];
       this.arrayPedidos = [...ordenes];
       this.arrayPedidos.forEach((pedido)=>
       {
-        if(pedido.state == orderState.InPreparation && (pedido.kitchenFinished && pedido.barFinished))
-          {
-            pedido.state = orderState.Finished;
-            if(this.flag)
-            {
-              this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
-            }
-          }
-      })
+        if(pedido.state == orderState.Finished && this.flagT)
+        {
+          this.util.SendPushNotification('Pedido finalizado', 'El pedido de la mesa ' + pedido.numberTable + ' ya se puede entregar')
+          this.flagT = false;
+        }
+      });
+      this.flagT= true;
       if(this.flag)
       {
         if(this.arrayPedidos.length > this.cantidad)
@@ -68,29 +68,29 @@ export class WaiterHomePage implements OnInit , OnDestroy
         this.flag = true;
       }
       this.cantidad = this.arrayPedidos.length;
-      this.subscripcionMensajes = this.firebase.getObservable(enumCollectionNames.ChatRoom)
-      .subscribe((res)=>
+    })
+    this.subscripcionMensajes = this.firebase.getObservable(enumCollectionNames.ChatRoom)
+    .subscribe((res)=>
+    {
+      this.arrayMensajes = [...res];
+      this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
+      if(this.auth.userData.profile == enumProfile.Waiter)
       {
-        this.arrayMensajes = [...res];
-        this.arrayMensajes.sort((a, b) => this.util.ordenar(a, b));
-        if(this.auth.userData.profile == enumProfile.Waiter)
+        if(this.flagM)
         {
-          if(this.flagM)
+          let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
+          let emisor = ultimoMensaje.person.split("-");
+          if(emisor[0] == "mesa")
           {
-            let ultimoMensaje= this.arrayMensajes[this.arrayMensajes.length-1];
-            let emisor = ultimoMensaje.person.split("-");
-            if(emisor[0] == "mesa")
-            {
-              this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje");
-            }
-          }
-          else
-          {
-            this.flagM = true;
+            this.util.SendPushNotification("Nuevo mensaje", "Una mesa dejo un mensaje");
           }
         }
-      });
-    })
+        else
+        {
+          this.flagM = true;
+        }
+      }
+    });
   }
 
   ngOnDestroy(): void 
