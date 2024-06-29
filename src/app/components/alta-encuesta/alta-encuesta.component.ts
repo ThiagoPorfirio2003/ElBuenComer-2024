@@ -66,7 +66,7 @@ export class AltaEncuestaComponent  implements OnInit
         louding.present();
         this.firebase.saveData(enumCollectionNames.Surveys, this.encuesta)
         .then(()=>{
-          this.util.showSweet({title: "Encuesta", text: "Su respuesta ha sido guardada correctamente", })
+          this.util.showSweet({title: "Encuesta", text: "Su respuesta ha sido guardada correctamente", icon: "success", confirmButtonText:"Aceptar" })
           this.newItemEvent.emit(true);
           louding.dismiss();
         })
