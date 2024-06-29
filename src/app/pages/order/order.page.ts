@@ -99,6 +99,7 @@ export class OrderPage implements OnInit, OnDestroy{
                   confirmButtonText: 'Aceptar', allowOutsideClick : false})
                   .then(()=>
                   {
+                    this.tableManagementService.isInWaitingRoom = false;
                     this.utilsService.changeRoute('client-home');
                   })
               }

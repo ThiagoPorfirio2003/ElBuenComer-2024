@@ -5,7 +5,7 @@
       @if (this.tableManagement.isInRestaurant) 
     {
       <div class="full-screen in-restaurant">
-        @if (this.isInWaitingRoom) 
+        @if (this.tableManagement.isInWaitingRoom) 
         {
           <ion-button class="in-restaurant" (click)="this.analiceQR()" color="light">
             <div class="no-big-img">

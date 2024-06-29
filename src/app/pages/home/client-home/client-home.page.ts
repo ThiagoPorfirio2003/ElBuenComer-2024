@@ -19,7 +19,6 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ClientHomePage implements OnInit, OnDestroy
 {
-    public isInWaitingRoom : boolean;
     public userTable! : Table;
     public tableNumberToShow : string;
 
@@ -29,7 +28,6 @@ export class ClientHomePage implements OnInit, OnDestroy
       private loader : IonLoaderService, public tableManagement : TableManagementService,
       private modalController: ModalController) 
     { 
-      this.isInWaitingRoom = false;
       this.tableNumberToShow = 'Aun por asignar';
     }
 
@@ -84,7 +82,7 @@ export class ClientHomePage implements OnInit, OnDestroy
             break;
             
           case enumQR.Mesa:
-            if(this.isInWaitingRoom)
+            if(this.tableManagement.isInWaitingRoom)
             {
               if(this.userTable == undefined)
               {
@@ -121,7 +119,7 @@ export class ClientHomePage implements OnInit, OnDestroy
       {
         await this.loader.simpleLoader()
         await this.dataBase.saveData(enumCollectionNames.WaitingRoom, this.auth.userData, this.auth.userData.id);
-        this.isInWaitingRoom = true
+        this.tableManagement.isInWaitingRoom = true
       }
       catch(e)
       {
