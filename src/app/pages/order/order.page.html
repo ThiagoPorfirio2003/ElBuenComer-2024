@@ -25,14 +25,22 @@
       {
         @case (4) 
         {
-        <!-- Mostrar boton para pedir pagar que cambia el estado a 5 -->
+          <ion-button class="consultar-mozo" (click)="this.canShowChatModal = true" fill="solid" color="green">
+            <h1>Pedir la cuenta</h1>
+            <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>        
+          </ion-button>
+        }
+
+        @case (5) 
+        {
           <div class="frame-esperando-pagar">
-            <h1>En cualquier momento un mozo le permitira pagar</h1>
+            <h1>En cualquier momento un mozo le traerá la cuenta</h1>
           </div>  
         }
 
         @case (6) 
         {
+        <!-- Mostrar boton para pedir pagar que cambia el estado a 5 -->
           <ion-button class="pay-qr" (click)="this.showBill()" color="green">
             <div>
               <h1>Pagar</h1>

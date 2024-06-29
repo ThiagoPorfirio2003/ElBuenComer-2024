@@ -30,6 +30,9 @@ export class OrderPage implements OnInit, OnDestroy{
   public messages : Array<any>;
   public messagesSus! : Subscription;
 
+  public orders! : Array<order>
+  public ordersSus! : Subscription;
+
   constructor(public utilsService : UtilsService, 
     private databaseService : DataBaseService, 
     private authService : AuthService,
@@ -55,6 +58,10 @@ export class OrderPage implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.messagesSus.unsubscribe();
+    if(this.ordersSus.closed)
+    {
+      this.ordersSus.unsubscribe();
+    }
   }
 
     public async checkOrderState()
@@ -225,5 +232,32 @@ export class OrderPage implements OnInit, OnDestroy{
     {
       this.canShowSurveyFormModal = false;
       this.surveyIsCompleted = true;
-    } 
+    }
+    
+    
+  public async pedirQR()
+  {
+    this.tableManagementService.order.state = orderState.wantToPay;
+
+    await this.databaseService.saveData(enumCollectionNames.Orders, this.tableManagementService.order, this.tableManagementService.order.id)
+
+    this.ordersSus = this.databaseService.getObservable(enumCollectionNames.Orders)
+    .subscribe((orders)=>
+    {
+      const redOrders : Array<order> = orders as Array<order>;
+
+      for(let i : number = 0; i< redOrders.length; i++)
+      {
+        if(redOrders[i].id == this.tableManagementService.order.id)
+        {
+          if(redOrders[i].state == orderState.canPay)
+          {
+            this.tableManagementService.order.state = orderState.canPay;
+            this.ordersSus.unsubscribe();
+          }
+          break;
+        }
+      }
+    })
+  }
 }
