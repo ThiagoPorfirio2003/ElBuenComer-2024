@@ -235,7 +235,7 @@ export class OrderPage implements OnInit, OnDestroy{
     }
     
     
-  public async pedirQR()
+  public async pedirCuenta()
   {
     this.tableManagementService.order.state = orderState.wantToPay;
 
