@@ -22,7 +22,7 @@
             </ion-row>  
             @for (item of this.arrayPedidos; track $index) 
             {
-              @if (item.state == 6) 
+              @if (item.state == 8) 
               {
                 <ion-row style="background-color: #636363;">  
                   <ion-col>{{item.numberTable}}</ion-col>  
@@ -41,7 +41,11 @@
                     }
                     @else if(item.state == 5)
                     {
-                      <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Connfirmar pago</button>
+                      <button (click)="HabilitarPago(item)" style="background-color: rgb(22, 22, 94);">Habilitar pago</button>
+                    }
+                    @else if(item.state == 7)
+                    {
+                      <button (click)="AceptarPaga(item)" style="background-color: rgb(22, 22, 94);">Aceptar Pago</button>
                     }
                     @else
                     {
