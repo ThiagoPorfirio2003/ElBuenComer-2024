@@ -135,7 +135,7 @@ export class GraphicComponent {
     const counts: number[] = [];
     
     this.surveys.forEach((survey, index) => {
-      labels.push((index + 1).toString());
+      labels.push("E-"+ (index + 1));
       counts.push(survey.overallQuality);
     });
 
