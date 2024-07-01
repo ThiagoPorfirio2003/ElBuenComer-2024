@@ -1,7 +1,39 @@
 <app-header [title]="'Menú'"></app-header>
 
 <ion-content>
-  <div class="full-screen centrar-columna">
+  <ion-segment value="default">
+    <ion-segment-button value="default" (click)="this.showAllProducts()">
+      <ion-label>Todo</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="food" (click)="this.showFood()">
+      <ion-label>Comidas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="drink" (click)="this.showDrink()">
+      <ion-label>Bebidas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  @for (product of this.productsToShow; track $index) { 
+    @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood)) {
+      <ion-card>
+        <img
+          alt="Silhouette of mountains"
+          [src]="product.photoUrl[0]"
+        />
+        <ion-card-header>
+          <ion-card-title>{{product.name | mayuscula}}</ion-card-title>
+          <ion-card-subtitle>${{product.price}}</ion-card-subtitle>
+        </ion-card-header>
+       
+        <ion-card-content>
+          <h1>Elaboración: {{product.time}} minuto/s</h1>
+          <p>{{product.description | mayuscula  }}</p>
+       
+        </ion-card-content>
+      </ion-card>
+    }
+  }
+  <!-- <div class="full-screen centrar-columna">
     <h1 class="orderPrice">${{this.orderPrice}}</h1>
     <h2 class="order-time">Tiempo de espera: {{this.cookingTime}} minuto/s</h2>
   
@@ -46,6 +78,7 @@
             </div>
           }
         }
+
       </div>
     </div>
   
@@ -61,27 +94,59 @@
       </ion-button>
     </div>
   </div>
+  </div>
+   -->
+</ion-content>
 
+<ion-footer>
+  <ion-toolbar class="custom-footer">
+    <h1 align="center">${{this.orderPrice}}</h1>
+    <h3 align="center">Tiempo de espera: {{this.cookingTime}} minuto/s</h3>
+    <div class="btn-group">
+      <ion-button
+        class="consultar-mozo"
+        id="order-modal"
+        fill="solid"
+        color="light"
+      >
+        <h1>Revisar pedido</h1>
+        <ion-icon slot="start" name="pizza-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button
+        class="consultar-mozo"
+        id="chat-modal"
+        fill="solid"
+        color="light"
+      >
+        <h1>Consultar al mozo</h1>
+        <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
   <ion-modal #chatModal trigger="chat-modal">
     <ng-template>
       <ion-header>
-        <ion-toolbar class="modal-toolbar"> 
+        <ion-toolbar class="modal-toolbar">
           <ion-buttons slot="start">
             <ion-button fill="solid" (click)="chatModal.dismiss()">
               <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
 
-          <ion-title style="text-align: end;">Chat</ion-title>
+          <ion-title style="text-align: end">Chat</ion-title>
         </ion-toolbar>
       </ion-header>
-      
+
       <ion-content>
-        <app-chat [arrayMensajes]="this.messages"  style="height: 100%;"></app-chat>
+        <app-chat
+          [arrayMensajes]="this.messages"
+          style="height: 100%"
+        ></app-chat>
       </ion-content>
     </ng-template>
   </ion-modal>
-  
+
   <ion-modal #orderModal trigger="order-modal">
     <ng-template>
       <ion-header>
@@ -92,7 +157,7 @@
             </ion-button>
           </ion-buttons>
 
-          <ion-title style="text-align: end;">Pedido</ion-title>
+          <ion-title style="text-align: end">Pedido</ion-title>
         </ion-toolbar>
       </ion-header>
 
@@ -100,17 +165,24 @@
         <div class="full-screen centrar">
           <h1 class="orderPrice">${{this.orderPrice}}</h1>
 
-            <ion-button (click)="this.confirmOrder(orderModal)" class="consultar-mozo" fill="solid" color="light">
-              <h1>Confirmar</h1>
-              <ion-icon slot="end" name="bag-check-outline"></ion-icon>
-            </ion-button>
-  
+          <ion-button
+            (click)="this.confirmOrder(orderModal)"
+            class="consultar-mozo"
+            fill="solid"
+            color="light"
+          >
+            <h1>Confirmar</h1>
+            <ion-icon slot="end" name="bag-check-outline"></ion-icon>
+          </ion-button>
+
           <div class="product-list-frame-large">
-            <app-bought-products-list [productsToShow]="this.productsSelected" [showPrice]="true"></app-bought-products-list>
+            <app-bought-products-list
+              [productsToShow]="this.productsSelected"
+              [showPrice]="true"
+            ></app-bought-products-list>
           </div>
         </div>
-
       </ion-content>
     </ng-template>
   </ion-modal>
-</ion-content>
+</ion-footer>

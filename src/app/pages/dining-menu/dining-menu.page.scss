@@ -34,7 +34,7 @@ div.drinkCard
     {
         grid-row-start: 1;
         grid-row-end: -1;
-
+        border-radius: 16px;
         display: flex;
         flex-direction: column;
         overflow-x: auto;
@@ -88,6 +88,8 @@ div.foodCard
     background-color: aliceblue;
     width: 100%;
     display: grid;
+    margin: 5px;
+    border-radius: 16px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     box-sizing: border-box;
@@ -162,7 +164,7 @@ div.foodCard
 {
     width: 100%;
     height: 70%;
-
+    padding: 12px;
     .btn-group
     {
         width: 100%;
@@ -170,15 +172,33 @@ div.foodCard
     }
 
     ion-segment {
-        --background: #a7c957;
-    }
-
-    ion-segment-button {
-        --indicator-color: #000;
-        --color: #fff;
-        --color-checked: #000;
-        --indicator-height: 4px;
+        --background: #4a3333;
+        border-radius: 40px;
+        margin-top: 5px;
+        height: 58px;
+        margin-bottom: 8px;
+        ion-segment-button {
+          --color-checked: none;
+          --background-checked: #ca221f;
+          border-radius: 40px;
+        }
+        ion-label {
+          color: #ffffff !important;
+          font-weight: 700;
+        }
       }
+
+
+    // ion-segment {
+    //     --background: #a7c957;
+    // }
+
+    // ion-segment-button {
+    //     --indicator-color: #000;
+    //     --color: #fff;
+    //     --color-checked: #000;
+    //     --indicator-height: 4px;
+    //   }
       
 
     .carta
@@ -189,21 +209,21 @@ div.foodCard
         flex-direction: column;
         overflow-y: auto;
 
-        h1
-        {
-            width: 100%;
-            height: 100%;
-            margin: 0px;
-            display: flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-        }
+        // h1
+        // {
+        //     width: 100%;
+        //     height: 100%;
+        //     margin: 0px;
+        //     display: flex;
+        //     text-align: center;
+        //     justify-content: center;
+        //     align-items: center;
+        // }
 
-        p{
-            margin: 0px;
-            height: 100%;
-        }
+        // p{
+        //     margin: 0px;
+        //     height: 100%;
+        // }
     }
 }
 
@@ -237,16 +257,16 @@ div.orderItem
 
 h1.orderPrice
 {
-    font-size: 100px;
-    color: #ccff33;
+    font-size: 80px;
+    color: #ffffff;
     margin: 0px;
     text-align: center;
 }
 
-h2.order-time
+h3.order-time
 {
-    color: #ccff33;
-    margin: 0px;
+    color: #ffffff;
+    display: flex;
     text-align: center;
 }
 
@@ -256,6 +276,8 @@ h2.order-time
     height: auto;
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
     justify-content: space-evenly;
 
     ion-button{
@@ -285,3 +307,23 @@ h2.order-time
     height: inherit;
     width: 100%;
 }
+
+
+.fixed-header {
+    position: fixed;
+    padding: 8px;
+    background-color: #590f0c;
+    z-index: 10;
+    border-bottom-right-radius: 42px;
+    border-bottom-left-radius: 42px;
+  }
+
+  .content-listCard {
+    margin-top: 255px;
+  }
+
+  .custom-footer {
+    border-top: 1px solid white;
+    --background: #590f0c; /* Cambia esto por el color de fondo que prefieras */
+    color: #ffffff; /* Cambia esto por el color del texto que prefieras */
+  }
