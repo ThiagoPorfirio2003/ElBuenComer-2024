@@ -53,7 +53,6 @@ export class GraphicComponent {
       labels: filteredLabels,
       datasets: [
         {
-          label: 'Calidad del servicio al cliente',
           data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(75, 192, 192, 1)',
@@ -82,10 +81,7 @@ export class GraphicComponent {
         responsive: true,
         plugins: {
           legend: {
-            position: 'top',
-            labels: {
-              color: 'white',
-            },
+            display:false,
           },
         },
       },
@@ -108,7 +104,6 @@ export class GraphicComponent {
       labels: filteredLabels,
       datasets: [
         {
-          label: 'Temperatura de los alimentos',
           data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(54, 162, 235, 1)',
@@ -140,7 +135,7 @@ export class GraphicComponent {
     const counts: number[] = [];
     
     this.surveys.forEach((survey, index) => {
-      labels.push("Encuesta " + (index + 1));
+      labels.push((index + 1).toString());
       counts.push(survey.overallQuality);
     });
 
@@ -148,7 +143,6 @@ export class GraphicComponent {
       labels: labels,
       datasets: [
         {
-          label: 'Aspectos más gustados',
           data: counts,
           backgroundColor: colors,
           borderColor: [
@@ -183,10 +177,7 @@ export class GraphicComponent {
         responsive: true,
         plugins: {
           legend: {
-            position: 'top',
-            labels: {
-              color: 'white',
-            },
+            display:false,
           },
         },
       },
@@ -211,7 +202,6 @@ export class GraphicComponent {
       labels: filteredLabels,
       datasets: [
         {
-          label: 'Calidad general',
           data: filteredCounts,
           backgroundColor: colors,
           borderColor: 'rgba(255, 206, 86, 1)',
@@ -233,7 +223,17 @@ export class GraphicComponent {
             },
           },
         },
-      },
+        scales: {
+          r: {
+            pointLabels: {
+              display: false, 
+            },
+            ticks: {
+              display: false, 
+            },
+          },
+        }
+      }
     });
   }
  
