@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { enumCollectionNames } from 'src/app/enums/collectionNames';
@@ -11,6 +11,10 @@ import { DataBaseService } from 'src/app/services/data-base.service';
 import { IonLoaderService } from 'src/app/services/ion-loader.service';
 import { TableManagementService } from 'src/app/services/table-management.service';
 import { UtilsService } from 'src/app/services/utils.service';
+
+import { register } from 'swiper/element/bundle';
+register();
+
 
 @Component({
   selector: 'app-dining-menu',
