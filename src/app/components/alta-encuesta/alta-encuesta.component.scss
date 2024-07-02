@@ -9,10 +9,13 @@ ion-item {
     --background: #7b0000;
     --border-style: none;
 }
+ion-checkbox {
+    --size: 30px;
+  }
 .background
 {
     color: white;
-    min-height: 650px;
+    min-height: 700px;
     min-width: 320px;
     height: 100%;
     overflow-x: auto;
@@ -29,10 +32,12 @@ ion-item {
 }
 select{
     width: 45%;
+    height: 90%;
 }
 .temperatura{
     display: flex;
-    flex-direction: row;
+    height: 10%;
+    flex-direction: column;
     justify-content: space-around;
 }
 .opciones{
@@ -42,4 +47,7 @@ select{
 ion-range{
     background: #7b0000;
     padding: 0% 5%;
+    height: 73%;
+    --knob-size: 40px;
+    --bar-height: 8px;
 }
