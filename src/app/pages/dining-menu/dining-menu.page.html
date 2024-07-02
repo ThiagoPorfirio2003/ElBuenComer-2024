@@ -15,93 +15,99 @@
 
   @for (product of this.productsToShow; track $index) { 
     @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood)) {
-      <ion-card>
-        <img
-          alt="Silhouette of mountains"
-          [src]="product.photoUrl[0]"
-        />
-        <ion-card-header>
-          <ion-card-title>{{product.name | mayuscula}}</ion-card-title>
-          <ion-card-subtitle>${{product.price}}</ion-card-subtitle>
-        </ion-card-header>
-       
-        <ion-card-content>
-          <h1>Elaboración: {{product.time}} minuto/s</h1>
-          <p>{{product.description | mayuscula  }}</p>
-       
-        </ion-card-content>
-      </ion-card>
+      @if(product.isFood){
+        <ion-card>
+          <swiper-container style="background: #1e1e1e">
+            @for (foto of product.photoUrl; track $index) 
+            {
+              <swiper-slide><img [src]="foto" style="object-fit: cover; height: 100%; width: 100%; max-height: 220px;"/></swiper-slide>
+            }
+          </swiper-container>
+          <ion-card-header>
+            <ion-card-title style="font-weight: 700;">{{product.name | mayuscula}}</ion-card-title>
+          </ion-card-header>
+         
+          <ion-card-content>
+            <h2>Precio: ${{product.price}}</h2>
+            <div style="display: flex; align-items: center;">
+              <ion-icon name="stopwatch-outline" style="font-size: 30px; margin-right: 5px;"></ion-icon>
+              <h2>{{product.time}} minuto/s</h2>
+            </div>
+            <h2>{{product.description | mayuscula}}</h2>
+          </ion-card-content>
+          
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6>
+                <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
+                 +1
+                </ion-button>
+              </ion-col>
+              <ion-col col-6>
+                <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
+                 -1
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      }@else{
+        <ion-card>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-auto size="3"> 
+                <swiper-container>
+                  @for (foto of product.photoUrl; track $index) 
+                  {
+                    <swiper-slide><img [src]="foto" class="product-image"/></swiper-slide>
+                  }
+                </swiper-container>
+              </ion-col>
+              <ion-col> 
+                <ion-card-header>
+                  <ion-card-title>{{product.name | mayuscula}}</ion-card-title>
+                </ion-card-header>
+        
+                <ion-card-content>
+                  <h2>Precio: ${{product.price}}</h2>
+                  <div style="display: flex; align-items: center;">
+                    <ion-icon name="stopwatch-outline" style="font-size: 30px; margin-right: 5px;"></ion-icon>
+                    <h2>{{product.time}} minuto/s</h2>
+                  </div>
+                  <h2>{{product.description | mayuscula}}</h2>
+
+                </ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-6>
+                      <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
+                        +1
+                      </ion-button>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
+                        -1
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      }
     }
   }
-  <!-- <div class="full-screen centrar-columna">
-    <h1 class="orderPrice">${{this.orderPrice}}</h1>
-    <h2 class="order-time">Tiempo de espera: {{this.cookingTime}} minuto/s</h2>
-  
-    <div class="carta-frame">
-      <ion-segment value="default">
-        <ion-segment-button value="default" (click)="this.showAllProducts()">
-          <ion-label>Todo</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="food" (click)="this.showFood()">
-          <ion-label>Comidas</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="drink" (click)="this.showDrink()">
-          <ion-label>Bebidas</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-        
-      <div class="carta">
-        @for (product of this.productsToShow; track $index) 
-        {
-          @if((this.canShowDrink && !product.isFood) || (this.canShowFood && product.isFood))
-          {
-            <div [className]="product.isFood ? 'foodCard' : 'drinkCard'">
-              <div class="carrusel">
-                @for (foto of product.photoUrl; track $index) 
-                {
-                  <img [src]="foto">
-                }
-              </div>
-          
-              <h1 class="info-color-1">{{product.name | mayuscula}}</h1>
-              <h1 class="info-color-2">${{product.price}}</h1>
-              <h1 class="info-color-1">Elaboración: {{product.time}} minuto/s</h1>
-              <p class="info-color-2">{{product.description | mayuscula  }}</p>
-
-              <ion-button (click)="this.addProduct(product)" expand="block" fill="solid" color="success">
-                <h1>Pedir +1</h1>
-              </ion-button>
-            
-              <ion-button (click)="this.deleteProduct(product)" expand="block" fill="solid" color="danger">
-                <h1>Sacar -1</h1>
-              </ion-button>
-            </div>
-          }
-        }
-
-      </div>
-    </div>
-  
-    <div class="btn-group">
-      <ion-button class="consultar-mozo" id="order-modal" fill="solid" color="light">
-        <h1>Revisar pedido</h1>
-        <ion-icon slot="start" name="pizza-outline"></ion-icon>
-      </ion-button>
-
-      <ion-button class="consultar-mozo" id="chat-modal" fill="solid" color="light">
-        <h1>Consultar al mozo</h1>
-        <ion-icon slot="end" name="chatbubbles-outline"></ion-icon>        
-      </ion-button>
-    </div>
-  </div>
-  </div>
-   -->
 </ion-content>
 
 <ion-footer>
   <ion-toolbar class="custom-footer">
-    <h1 align="center">${{this.orderPrice}}</h1>
-    <h3 align="center">Tiempo de espera: {{this.cookingTime}} minuto/s</h3>
+    <p align="center" style="font-size: 80px; margin: 0; margin-top:5px;">${{this.orderPrice}}</p>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <ion-icon name="stopwatch-outline" style="font-size: 30px; margin-right: 5px;"></ion-icon>
+      <h3>{{this.cookingTime}} minuto/s</h3>
+    </div>
+
     <div class="btn-group">
       <ion-button
         class="consultar-mozo"
