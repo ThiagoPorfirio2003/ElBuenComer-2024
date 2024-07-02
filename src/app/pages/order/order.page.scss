@@ -108,7 +108,7 @@ ion-button.mucho-texto
         --color: #fff;
     }
 }
-
+/*
 .bill-frame
 {
     display: flex;
@@ -165,6 +165,73 @@ ion-button.mucho-texto
 {
     height: inherit;
     width: 100%;
+}
+*/
+.bill-frame
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    ion-button{
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+    .bill
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        width: 95%;
+        border: solid 4px #f48c06;
+        border-radius: 7px;
+        margin-bottom: 5%;
+
+        h2
+        {
+            margin: 0px;
+            text-align: center;
+            font-size: 2rem;
+        }
+    
+        h2.products-title{
+            background-color: #70e000;
+            color: #000;
+        }
+    
+        h2.tip-title{
+            background-color: #38b000;
+            color: #000;
+        }
+    
+        h2.total-title{
+            background-color: #008000;
+            color: #fff;
+        }
+    
+        h2.products-price{
+            background-color: #eeef20;
+            color: #000;
+        }
+    
+        h2.tip-price{
+            background-color: #d4d700;
+            color: #000;
+        }
+    
+        h2.total-price{
+            background-color: #007f5f;
+            color: #fff;
+        }
+    }
+}
+
+.product-list-frame-small
+{
+    height: inherit;
+    width: 95%;
 }
 
 div.frame-esperando-pagar

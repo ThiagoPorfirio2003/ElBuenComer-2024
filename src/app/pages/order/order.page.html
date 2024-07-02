@@ -162,7 +162,8 @@
       </ion-header>
 
       <ion-content>
-        <div class="full-screen bill-frame">
+        <!-- 
+                <div class="full-screen bill-frame">
 
           <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
             <h1>Pagar</h1>
@@ -175,6 +176,24 @@
             <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
           </div>
 
+          <div class="product-list-frame-small">
+            <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
+          </div>
+        </div>
+        -->
+        <div class="full-screen bill-frame">
+
+          <ion-button (click)="true" class="consultar-mozo" fill="solid" color="green">
+            <h1>Pagar</h1>
+            <ion-icon slot="end" name="cash-outline"></ion-icon>        
+          </ion-button>
+      
+          <div class="bill">
+            <h2 class="products-title">Productos</h2> <h2 class="products-price">${{this.bill.subTotal}}</h2>
+            <h2 class="tip-title">Propina</h2> <h2 class="tip-price">${{this.bill.tip}}</h2>
+            <h2 class="total-title">Total</h2> <h2 class="total-price">${{this.bill.total}}</h2>
+          </div>
+      
           <div class="product-list-frame-small">
             <app-bought-products-list [productsToShow]="this.bill.products" [showPrice]="true"></app-bought-products-list>
           </div>

@@ -32,6 +32,14 @@ export class DiningMenuPage implements OnInit, OnDestroy {
   public messagesSus! : Subscription;
 
   //Recorrer el array de productosElegidos para saber si hay una comida o bebida
+
+  /*
+  public products : Array<productInOrder>;
+  public tip : number;
+  public subTotal : number;
+  public total : number;
+  */
+
   constructor(public auth: AuthService, 
     private dataBase : DataBaseService,
     private utilsService : UtilsService,
@@ -43,6 +51,13 @@ export class DiningMenuPage implements OnInit, OnDestroy {
 
       this.resetData()
       this.messages = new Array<any>();
+      /*
+      this.products = new Array<productInOrder>();
+
+      this.tip = 0;
+      this.subTotal = 0;
+      this.total = 0;
+      */
     }
 
   ngOnInit() 
@@ -51,6 +66,28 @@ export class DiningMenuPage implements OnInit, OnDestroy {
     .subscribe((products : Array<any>)=>
     {
       this.productsToShow = products;
+      /*
+      for(let i : number = 0  ; i < this.productsToShow.length; i++)
+      {
+        const p = this.productsToShow[i];
+
+        this.subTotal += p.price;
+
+        this.products.push({
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          time: p.time,
+          price: p.price,
+          isFood: p.isFood,
+          photoUrl: p.photoUrl,
+          quantity: i + 1
+        })
+      }
+      */
+
+      //this.tip = this.subTotal * 20 /100;
+      //this.total = this.tip + this.subTotal;
     })
 
     this.messagesSus = this.dataBase.getObservable(enumCollectionNames.ChatRoom)
