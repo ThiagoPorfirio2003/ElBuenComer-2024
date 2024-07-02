@@ -14,6 +14,8 @@
 
 ## Tareas 🧱
 
+### Trello: https://trello.com/b/YYU379c1/el-buen-comer
+
 ### Individuales 👨‍🦱
   - ⏳: Pendiente a hacer o haciéndose
   - ⚠️: Terminado pero en revisión
