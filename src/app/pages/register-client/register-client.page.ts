@@ -80,7 +80,7 @@ export class RegisterClientPage {
 
         if(this.confirmPassword()){
           loading.dismiss();
-          this.utiles.showSweet({titleText:"Error",text:"Las contraseñas no coinciden",icon:"error"});
+          this.utiles.showSweet({titleText:"Error",text:"Las contraseñas no coinciden",icon:"error", confirmButtonText: 'Entendido'});
           return;
         }
        
@@ -95,23 +95,23 @@ export class RegisterClientPage {
                 title:"Registro Exitoso",
                 content: "Le haremos saber por correo electrónico una vez que su registro haya sido aprobado",
               }
-              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"success"})
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"success",confirmButtonText: 'Entendido'})
               this.router.navigate(['/login']);
             })
             .catch((error)=>{
               loading.dismiss();
               let mensaje = this.utiles.translateAuthError(error.code);
-              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"})
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'})
             });
           }).catch((error)=>{
             loading.dismiss();
             let mensaje = this.utiles.translateAuthError(error.code);
-            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'});
           });
         }).catch((error)=>{
           loading.dismiss();
           let mensaje = this.utiles.translateAuthError(error.code);
-          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'});
         });
       }else{
         this.auth.registerAnonymous().then((data) => {
@@ -125,17 +125,17 @@ export class RegisterClientPage {
             }).catch((error)=>{
               loading.dismiss();
               let mensaje = this.utiles.translateAuthError(error.code);
-              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+              this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'});
             });
           }).catch((error)=>{
             loading.dismiss();
             let mensaje = this.utiles.translateAuthError(error.code);
-            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+            this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'});
           });
         }).catch((error)=>{
           loading.dismiss();
           let mensaje = this.utiles.translateAuthError(error.code);
-          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error"});
+          this.utiles.showSweet({titleText:mensaje.title,text:mensaje.content,icon:"error",confirmButtonText: 'Entendido'});
         });
       }
   }

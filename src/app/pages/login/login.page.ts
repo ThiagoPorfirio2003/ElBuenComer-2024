@@ -62,6 +62,7 @@ export class LoginPage {
                 titleText: mensaje.title,
                 text: mensaje.content,
                 icon: 'error',
+                confirmButtonText: 'Entendido'
               });
             }
           })
@@ -72,6 +73,7 @@ export class LoginPage {
               titleText: mensaje.title,
               text: mensaje.content,
               icon: 'error',
+              confirmButtonText: 'Entendido'
             });
           });
       })
@@ -82,6 +84,7 @@ export class LoginPage {
           titleText: mensaje.title,
           text: mensaje.content,
           icon: 'error',
+          confirmButtonText: 'Entendido'
         });
       });
   }
@@ -131,6 +134,7 @@ export class LoginPage {
             titleText: mensaje.title,
             text: mensaje.content,
             icon: 'warning',
+            confirmButtonText: 'Entendido'
           });
         }else if(state == enumClientState.Rejected){
           let mensaje = this.utiles.translateAuthError("CR");
@@ -138,6 +142,7 @@ export class LoginPage {
             titleText: mensaje.title,
             text: mensaje.content,
             icon: 'error',
+            confirmButtonText: 'Entendido'
           });
         }else{
           this.utiles.changeRoute('/client-home')
