@@ -290,10 +290,17 @@ h1.orderPrice
   ion-card{
       background: #1e1e1e;
   }
-  
+
+  ion-card-title{
+    font-weight: 700;
+    font-size: 32px;
+ 
+  }
+
   ion-card-header {
     color: white;
     background: #1e1e1e;
+    padding: 8px 16px;
   }
   
   ion-card-content {
@@ -341,3 +348,7 @@ h1.orderPrice
     }
   }
   
+  .content-txt{
+    font-weight: 500;
+    font-size: 25px;
+  }
