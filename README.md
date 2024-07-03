@@ -55,8 +55,6 @@
 
 ### Log In
 
-![Login](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/59d99c54-30ba-4c0f-8e2d-209345d7ca5f)
-
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/59d99c54-30ba-4c0f-8e2d-209345d7ca5f" width="300"/>
 
 #### Accesos rápidos
