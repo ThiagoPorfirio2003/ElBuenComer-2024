@@ -71,6 +71,16 @@
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/71d685b8-8979-4ced-8387-c5a803d22ebc" alt="Register_Anonimus" width="300"/>
 
+#### Correo de estado
+
+##### Aprobado
+
+<img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/25980919-cfc6-4fc6-88c7-18b015d55594" alt="Gmail_Exito" width="300"/>
+
+##### Rechazado
+
+<img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/ab186220-222e-4589-93fc-786fb92da396" alt="Gmail_Rechazo" width="300"/>
+
 ### Bartender
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/87826c4e-1020-4a23-a152-74619fddfff3" alt="bar_zip" width="300"/>
