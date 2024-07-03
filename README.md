@@ -169,7 +169,7 @@
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/e990faa4-f8f5-4f72-a761-18b1988c0138" alt="order_in_giving_out" width="300"/>
 
-##### Recibida
+##### Recibido
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/cdad3d03-5048-47a0-b1c3-fe0b9c749b53" alt="order_accepted" width="300"/>
 
