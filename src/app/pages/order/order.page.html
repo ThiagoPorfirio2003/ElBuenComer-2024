@@ -183,7 +183,9 @@
         -->
         <div class="full-screen bill-frame">
 
-          <ion-button (click)="true" class="consultar-mozo" fill="solid" color="green">
+          <h1 class="precio-total">${{this.bill.total}}</h1>
+
+          <ion-button (click)="this.payBill()" class="consultar-mozo" fill="solid" color="green">
             <h1>Pagar</h1>
             <ion-icon slot="end" name="cash-outline"></ion-icon>        
           </ion-button>
