@@ -57,6 +57,7 @@
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/59d99c54-30ba-4c0f-8e2d-209345d7ca5f" width="300"/>
 
+<!--
 #### Accesos rápidos
 
 ![fast_users](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/dfd4ad8a-a505-4b47-9bc5-ec160c92f7db)
@@ -150,7 +151,7 @@
 #### Revisar pedido
 
 ![confirm_order](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/9e44860e-5bab-435d-bca5-095ab1a094b7)
-
+-->
 
 <!--
 Thiago:
