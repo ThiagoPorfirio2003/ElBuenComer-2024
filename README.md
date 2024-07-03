@@ -161,7 +161,7 @@
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/95d5ff4a-6d97-49fb-a128-5cfa0597d1d8" alt="order_in_preparation" width="300"/>
 
-##### Terminada
+##### Terminado
 
 <img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/507036b9-ebc3-4586-97f1-18acab398599" alt="order_finished" width="300"/>
 
