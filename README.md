@@ -59,7 +59,10 @@
 
 #### Accesos rápidos
 
-<img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/dfd4ad8a-a505-4b47-9bc5-ec160c92f7db" alt="fast_users" width="300"/>
+<img src="https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/1272358a-c43d-4b64-8728-f2887df55a35" alt="fast_users" width="300"/>
+<!-- 
+![fast_users](https://github.com/ThiagoPorfirio2003/ElBuenComer-2024/assets/98666301/1272358a-c43d-4b64-8728-f2887df55a35)
+-->
 
 ### Registro
 
